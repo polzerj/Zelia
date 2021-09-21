@@ -1,0 +1,92 @@
+<style>
+    div {
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        z-index: 2;
+
+        height: 40vh;
+        width: 100vw;
+
+        background-color: var(--bg-color);
+        opacity: 95%;
+        border-radius: 16px 16px 0px 0px;
+    }
+
+    input {
+        opacity: 100%;
+
+        margin: 10px auto 10px auto;
+
+        width: clamp(7rem, 60%, 14rem);
+        text-align: center;
+
+        background-color: var(--bg-color);
+        color: var(--fg-color);
+
+        font-size: 2rem;
+
+        border: none;
+        outline: none;
+        border-bottom: 4px solid var(--primary);
+        display: block;
+    }
+
+    button {
+        opacity: 100%;
+        
+        width: clamp(100px, 90%, 400px);
+        
+        margin: auto;
+        padding: 8px;
+        font-size: 2rem;
+
+        background-color: var(--primary);
+        color: var(--primary-fg);
+
+        border: none;
+        border-radius: 4px;
+        display: block;
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
+
+    p {
+        opacity: 100%;
+        
+        font-size: 2rem;
+        text-align: center;
+        width: 70%;
+        margin: auto;
+    }
+
+
+    @media screen AND (min-width: 600px) {
+        div {
+            width: auto;
+            height: 100vh;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            position: static;
+            
+            opacity: 100%;     
+        }
+    }
+</style>
+
+<div>
+    <form>
+
+        <p>{{infoMsg}}</p>
+
+        <input type="text" placeholder="S4242" maxlength="8">
+
+        <button type="submit">Choose</button>
+
+    </form>
+</div>

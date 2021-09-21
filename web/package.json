@@ -1,0 +1,19 @@
+{
+  "name": "zeliaweb",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
+    "lint": "tsc --noEmit"
+  },
+  "author": "",
+  "license": "ISC",
+
+  "devDependencies": {
+    "typescript": "^4.3.2",
+    "vite": "^2.5.2"
+  }
+
+}

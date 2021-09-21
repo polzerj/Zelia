@@ -1,0 +1,40 @@
+:root {
+    --yellow: hsl(53, 100%, 40%);
+    --orange: hsl(30, 100%, 40%);
+    --red: hsl(0, 67%, 40%);
+    --magenta: hsl(340, 100%, 40%);
+    --purpel: hsl(270, 100%, 40%);
+    --lightblue: hsl(201, 100%, 40%);
+    --mint: hsl(166, 100%, 40%); 
+    --green: hsl(102, 61%, 29%);
+}
+
+* {
+    --fg-color: hsl(0, 0%, 0%);
+    --bg-color: hsl(0, 0%, 100%);
+    --primary: var(--orange);
+    --primary-fg: hsl(0, 0%, 100%);
+    --disabled: hsl(0, 0%, 71%);
+}
+
+@media (prefers-color-scheme: dark) {
+    * {
+        --fg-color: hsl(0, 0%, 86%);
+        --bg-color: hsl(0, 0%, 16%);
+        --primary: var(--orange);
+        /* --primary: hsl(340, 100%, 40%); */
+        --primary-fg: hsl(0, 0%, 80%);
+        --disabled: hsl(0, 0%, 42%);
+    }
+}
+
+/*
+
+colors:
+
+hsl(340, 100%, 40%); magenta
+hsl(30, 100%, 40%); orange
+hsl(201, 100%, 40%); lightblue
+hsl(166, 100%, 40%); mint
+hsl(53, 100%, 40%); yellow
+*/

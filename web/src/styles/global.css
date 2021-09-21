@@ -1,0 +1,37 @@
+
+* {
+    color: var(--fg-color);
+    background-color: var(--bg-color);
+    font-family: monospace;
+}
+
+html, body {
+    height: 100%;
+
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+#app {
+    width: clamp(100px, 100%, 600px);
+    margin: auto;
+}
+
+.flex{
+    display: flex;
+}
+
+.flex.column {
+    flex-direction: column;
+}
+
+
+/*
+@media (min-width: 1025px) {
+    html, body {
+        width: 500px;
+
+        margin: auto;
+    }
+}
+*/

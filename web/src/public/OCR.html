@@ -1,0 +1,47 @@
+<style>
+    div {
+        border-radius: 0px 0px 0px 0px;
+
+        background-color: black;
+
+        height: 100vh;
+        width: 100vw;
+
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    span {
+        color: red;
+        text-align: center;
+        display: block;
+    }
+
+    .hidden {
+        display: none;
+    }
+    
+    video {
+        height: 100vh;
+        width: auto;
+        transform: translateX(-25%);
+    }
+
+    @media screen AND (orientation: landscape) {
+
+        video {
+            width: 100vw;
+            height: auto;
+            transform: none;
+        }
+    }
+
+</style>
+
+<div>
+    <span class="hidden">Can't connect to camera :(</span>
+    <video></video>
+</div>
