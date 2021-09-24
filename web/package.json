@@ -10,10 +10,11 @@
   },
   "author": "",
   "license": "ISC",
-
   "devDependencies": {
     "typescript": "^4.3.2",
     "vite": "^2.5.2"
+  },
+  "dependencies": {
+    "tesseract.js": "^2.1.5"
   }
-
 }
