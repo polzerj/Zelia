@@ -1,0 +1,109 @@
+openapi: 3.1.0
+info:
+  title: openapi
+  version: "1.0"
+  contact:
+    name: Johannes Polzer
+    email: johannes.polzer@edu.szu.at
+  description: API for ZELIA
+servers:
+  - url: "http://localhost:3000"
+paths:
+  /api/rooms:
+    parameters: []
+    get:
+      summary: Your GET endpoint
+      tags: []
+      operationId: get-timetable-roomNumber
+      parameters: []
+      description: Timetable Endpoint
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/room"
+  "/api/rooms/{roomNumber}":
+    parameters:
+      - schema:
+          type: string
+        name: roomNumber
+        in: path
+        required: true
+    get:
+      summary: Get room by room number
+      operationId: get-room-room-number
+      description: ""
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/room"
+  /api/report:
+    post:
+      summary: Report
+      operationId: post-api-report
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/reportRequest"
+      description: ""
+      responses:
+        "200":
+          description: OK
+  /api/book:
+    post:
+      summary: ""
+      operationId: post-api-book
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/bookingRequest"
+components:
+  schemas:
+    room:
+      title: room
+      type: object
+      properties:
+        id:
+          type: string
+        roomNumber:
+          $ref: "#/components/schemas/roomNumber"
+      required:
+        - roomNumber
+    roomNumber:
+      type: string
+      title: roomNumber
+      pattern: '^[A-Z][0-9]{3}(\.[0-9])?$'
+      minLength: 5
+      maxLength: 7
+    reportRequest:
+      title: reportRequest
+      type: object
+      properties:
+        roomNumber:
+          $ref: "#/components/schemas/roomNumber"
+        description:
+          type: string
+        email:
+          type: string
+          format: email
+      required:
+        - roomNumber
+        - description
+        - email
+    bookingRequest:
+      title: bookingRequest
+      type: object
+      properties:
+        id:
+          type: string
