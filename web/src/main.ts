@@ -7,6 +7,7 @@ import OCR from "./components/OCR";
 import RoomInput from "./components/RoomInput";
 import Link from "./components/Link";
 import Debug from "./components/Debug";
+import _404 from "./components/404";
 
 const app = document.querySelector("#app")!;
 
@@ -31,6 +32,11 @@ let components: ComponentInfo[] = [
         type: Debug,
         path: "/Debug.html",
     },
+    {
+        tagName: "not-found",
+        type: _404,
+        path: "/404.html",
+    },
 ];
 
 initializeComponents(components).then(main);
@@ -48,8 +54,13 @@ function main() {
 
     logger.info("Components loaded!");
 
+    router.on("404", _404Page);
     router.on("/room", roomPage);
     router.on("/", mainPage);
+}
+
+function _404Page() {
+    app.append(document.createElement("not-found"));
 }
 
 function mainPage() {

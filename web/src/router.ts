@@ -23,7 +23,7 @@ class Router {
 
     public route(path: string, silentHistroy = false) {
         logger.info((silentHistroy ? "Returing" : "Routing") + " to " + path);
-        this.rootELement.innerHTML = "";
+        this.clearRootElement();
 
         !silentHistroy && window.history.pushState({}, "", path);
 
@@ -36,22 +36,46 @@ class Router {
 
     private emitEvent(path: string) {
         path = this.normalizePath(path);
-        this.registeredEvents
-            .filter((e) => e.path === path)
-            .forEach((event) => {
-                event.action();
-            });
+        const matchingEvents = this.registeredEvents.filter(
+            (e) => e.path === path
+        );
+        matchingEvents.forEach((event) => {
+            event.action();
+        });
+        if (matchingEvents.length === 0) {
+            this.registeredEvents
+                .filter((e) => e.path === "404")
+                .forEach((e) => e.action());
+        }
     }
 
     public on(path: string, action: RoutedAction) {
         this.registeredEvents.push({ path, action });
-
+        if (
+            this.registeredEvents.every(
+                (e) => e.path !== window.location.pathname
+            )
+        ) {
+            this.clearRootElement();
+            this.registeredEvents
+                .filter((e) => e.path === "404")
+                .forEach((e) => e.action());
+        }
         if (path === window.location.pathname) {
+            if (
+                this.registeredEvents.filter((e) => e.path === path).length ===
+                1
+            ) {
+                this.clearRootElement();
+            }
             action();
         }
     }
-    private normalizePath(path: string) : string{
+    private normalizePath(path: string): string {
         return path.split("?")[0];
+    }
+    private clearRootElement() {
+        this.rootELement.innerHTML = "";
     }
 }
 
