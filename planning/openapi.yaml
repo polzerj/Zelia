@@ -9,14 +9,14 @@ info:
 servers:
   - url: "http://localhost:3000"
 paths:
-  /api/rooms:
+  /api/room:
     parameters: []
     get:
-      summary: Your GET endpoint
+      summary: Get list of available rooms
       tags: []
-      operationId: get-timetable-roomNumber
+      operationId: get-room-numbers
       parameters: []
-      description: Timetable Endpoint
+      description: Get list of available rooms
       responses:
         "200":
           description: OK
@@ -26,7 +26,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/room"
-  "/api/rooms/{roomNumber}":
+  "/api/room/{roomNumber}":
     parameters:
       - schema:
           type: string
@@ -36,7 +36,7 @@ paths:
     get:
       summary: Get room by room number
       operationId: get-room-room-number
-      description: ""
+      description: Get room by room number
       responses:
         "200":
           description: OK
@@ -46,20 +46,20 @@ paths:
                 $ref: "#/components/schemas/room"
   /api/report:
     post:
-      summary: Report
+      summary: Report an issue
       operationId: post-api-report
       requestBody:
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/reportRequest"
-      description: ""
+      description: Report an issue
       responses:
         "200":
           description: OK
-  /api/book:
+  /api/booking:
     post:
-      summary: ""
+      summary: Book a room
       operationId: post-api-book
       responses:
         "200":
@@ -68,6 +68,29 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/bookingRequest"
+      description: Book a room
+  /api/admin/booking:
+    get:
+      summary: Get  bookings
+      tags: []
+      responses:
+        "200":
+          description: OK
+      operationId: get-api-admin-booking
+      description: Get bookings
+      parameters:
+        - $ref: "#/components/parameters/bookingType"
+  /api/admin/report:
+    get:
+      summary: Get reports
+      tags: []
+      responses:
+        "200":
+          description: OK
+      operationId: get-api-admin-report
+      description: Get reports
+      parameters:
+        - $ref: "#/components/parameters/reportType"
 components:
   schemas:
     room:
@@ -107,3 +130,24 @@ components:
       properties:
         id:
           type: string
+  parameters:
+    reportType:
+      name: type
+      in: query
+      schema:
+        type: string
+        enum:
+          - open
+          - closed
+          - in_progress
+          - not_relevant
+          - not_convertible
+    bookingType:
+      name: type
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - open
+          - closed
