@@ -9,7 +9,7 @@ const standardInit = {
     baseUrl: "/",
 };
 
-class App {
+export default class App {
     public app: Application;
     public port: number;
     baseUrl: string;
@@ -48,5 +48,3 @@ class App {
         });
     }
 }
-
-export default App;
