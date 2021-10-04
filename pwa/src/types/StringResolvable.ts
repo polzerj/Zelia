@@ -1,4 +1,3 @@
-
-export default interface StringResolvable{
-    toString():string
+export default interface StringResolvable {
+    toString(): string;
 }
