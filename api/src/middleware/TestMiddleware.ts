@@ -1,4 +1,4 @@
-import { Request, Response } from "../types/types";
+import { Request, Response } from "../types";
 export default function TestMiddleware(
     req: Request,
     res: Response,

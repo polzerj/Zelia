@@ -1,4 +1,4 @@
-import { Middleware } from "./types";
+import { Middleware } from ".";
 import { Request, Response, Router } from "express";
 
 interface MiddlewareParam {

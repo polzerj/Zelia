@@ -1,4 +1,4 @@
-import { ControllerBase, Middleware } from "./types/types";
+import { ControllerBase, Middleware } from "./types";
 import * as express from "express";
 import { Application } from "express";
 
