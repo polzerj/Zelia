@@ -56,7 +56,7 @@ class Router {
     }
 
     /**
-     * Register method to be called when page get opened
+     * Register action which gets executed when path is routed
      */
     public on(path: string, action: RoutedAction) {
         this.registeredEvents.push({ path, action });
