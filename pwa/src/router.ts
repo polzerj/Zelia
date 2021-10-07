@@ -24,7 +24,7 @@ class Router {
      * Redirect Page
      * @param path path to redirect to.
      * E.g.: "/login"
-     * When path is set to "404" it get rendered when no matching page got found
+     * When path not known -> render 404 page
      * @param silentHistory Set to true when
      */
     public redirect(path: string, silentHistory = false) {
