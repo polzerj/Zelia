@@ -3,6 +3,7 @@ import App from "./app";
 import bodyParser = require("body-parser");
 import HelloWorldController from "./controllers/HelloWorld";
 import TestMiddleware from "./middleware/TestMiddleware";
+import LoggingMiddleware from "./middleware/LoggingMiddleware";
 
 const app = new App({
     controllers: [new HelloWorldController()],
@@ -11,6 +12,7 @@ const app = new App({
         bodyParser.json(),
         bodyParser.urlencoded({ extended: true }),
         TestMiddleware,
+        LoggingMiddleware,
     ],
     baseUrl: "/api",
 });
