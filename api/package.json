@@ -26,5 +26,7 @@
         "express": "^4.17.1",
         "lodash.find": "^4.6.0",
         "otplib": "^12"
+        "mariadb": "^2.5.4",
+        "sequelize": "^6.6.5"
     }
 }
