@@ -32,11 +32,11 @@ User.init(
   {
     id:{
       type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
       primaryKey: true,
+      allowNull: false,
     },
     name:{
-      type: new DataTypes.STRING,
+      type: new DataTypes.STRING(128),
       allowNull: false,
     },
   },
@@ -49,13 +49,13 @@ User.init(
 async function doStuffWithUserModel() {
   const newUser = await User.create(
     {
-      id: 1,
-      name: "Richard",
+      id: 2,
+      name: "Johannes",
     });
   console.log(newUser.id, newUser.name);
 
-  //const foundUser = await User.findOne({where: {name: "Richard"}});
-  //if(foundUser == null) return;
-  //console.log(foundUser.name);
+  const foundUser = await User.findOne({where: {name: "Richard"}});
+  if(foundUser == null) return;
+  console.log(foundUser.name);
 }
 doStuffWithUserModel();
