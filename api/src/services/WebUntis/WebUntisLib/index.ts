@@ -8,20 +8,32 @@ import WebUntisAnonymousAuth from "./WebUntisAnonymousAuth";
 import LoginSessionInformations from "./LoginSessionInformations";
 import WebUntisElementType from "./WebUntisElementType";
 import Lesson from "./Lesson";
+import Student from "./Student";
+import Room from "./Room";
+import Klasse from "./Klasse";
+import Department from "./Department";
+import Holiday from "./Holiday";
+import StatusData from "./StatusData";
+import Homework from "./Homework";
+import Subject from "./Subject";
+import Timegrid from "./Timegrid";
+import { NewsWidget } from "./NewsWidget";
+import Teacher from "./Teacher";
+
 /**
  * WebUntis API Class
  */
 export default class WebUntis {
-    school: string;
-    schonolbase64: string;
-    username: string;
-    password: string;
-    baseurl: string;
-    cookies: any[];
-    id: string;
-    sessionInformation: LoginSessionInformations;
-    anonymous: boolean;
-    axios: AxiosInstance;
+    protected school: string;
+    protected schonolbase64: string;
+    protected username: string;
+    protected password: string;
+    protected baseurl: string;
+    protected cookies: any[];
+    protected id: string;
+    protected sessionInformation: LoginSessionInformations;
+    protected anonymous: boolean;
+    protected axios: AxiosInstance;
 
     static WebUntisSecretAuth: typeof WebUntisSecretAuth;
     static WebUntisQR: typeof WebUntisQR;
@@ -162,7 +174,10 @@ export default class WebUntis {
     /**
      * Get News Widget
      */
-    async getNewsWidget(date: Date, validateSession = true) {
+    async getNewsWidget(
+        date: Date,
+        validateSession = true
+    ): Promise<NewsWidget> {
         if (validateSession && !(await this.validateSession()))
             throw new Error("Current Session is not valid");
         const response = await (this.axios({
@@ -429,7 +444,7 @@ export default class WebUntis {
         rangeStart: Date,
         rangeEnd: Date,
         validateSession: boolean = true
-    ) {
+    ): Promise<Homework[]> {
         if (validateSession && !(await this.validateSession()))
             throw new Error("Current Session is not valid");
         const response = (await this.axios({
@@ -477,14 +492,14 @@ export default class WebUntis {
     /**
      * Get all known Subjects for the current logged in user
      */
-    async getSubjects(validateSession: boolean = true) {
+    async getSubjects(validateSession: boolean = true): Promise<Subject[]> {
         return await this._request("getSubjects", {}, validateSession);
     }
 
     /**
      * Get the timegrid of current school
      */
-    async getTimegrid(validateSession: boolean = true) {
+    async getTimegrid(validateSession: boolean = true): Promise<Timegrid> {
         return await this._request("getTimegridUnits", {}, validateSession);
     }
 
@@ -516,49 +531,53 @@ export default class WebUntis {
     /**
      * Get all known teachers by WebUntis
      */
-    async getTeachers(validateSession: boolean = true) {
+    async getTeachers(validateSession: boolean = true): Promise<Teacher> {
         return await this._request("getTeachers", {}, validateSession);
     }
 
     /**
      * Get all known students by WebUntis
      */
-    async getStudents(validateSession: boolean = true) {
+    async getStudents(validateSession: boolean = true): Promise<Student[]> {
         return await this._request("getStudents", {}, validateSession);
     }
 
     /**
      * Get all known rooms by WebUntis
      */
-    async getRooms(validateSession: boolean = true) {
+    async getRooms(validateSession: boolean = true): Promise<Room[]> {
         return await this._request("getRooms", {}, validateSession);
     }
 
     /**
      * Get all classes known by WebUntis
      */
-    async getClasses(validateSession: boolean = true) {
+    async getClasses(validateSession: boolean = true): Promise<Klasse[]> {
         return await this._request("getKlassen", {}, validateSession);
     }
 
     /**
      * Get all departments known by WebUntis
      */
-    async getDepartments(validateSession: boolean = true) {
+    async getDepartments(
+        validateSession: boolean = true
+    ): Promise<Department[]> {
         return await this._request("getDepartments", {}, validateSession);
     }
 
     /**
      * Get all holidays known by WebUntis
      */
-    async getHolidays(validateSession: boolean = true) {
+    async getHolidays(validateSession: boolean = true): Promise<Holiday[]> {
         return await this._request("getHolidays", {}, validateSession);
     }
 
     /**
      * Get all status data known by WebUntis
      */
-    async getStatusData(validateSession: boolean = true) {
+    async getStatusData(
+        validateSession: boolean = true
+    ): Promise<StatusData[]> {
         return await this._request("getStatusData", {}, validateSession);
     }
 
@@ -583,7 +602,7 @@ export default class WebUntis {
      * Make a JSON RPC Request with the current session
      * @param validateSession Whether the session should be checked first
      */
-    async _request(
+    protected async _request(
         method: string,
         parameter: any = {},
         validateSession = true,

@@ -1,7 +1,7 @@
 import CodesEntity from "./CodesEntity";
 import LsEntity from "./LsEntity";
 
-export interface StatusData {
+export default interface StatusData {
     lstypes: LsEntity[];
     codes: CodesEntity[];
 }

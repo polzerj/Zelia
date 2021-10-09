@@ -1,4 +1,4 @@
-export interface Holiday {
+export default interface Holiday {
     name: string;
     longName: string;
     id: number;
