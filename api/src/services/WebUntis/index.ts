@@ -2,7 +2,6 @@ import WebUntis from "./WebUntisLib"
 import Lesson from "./WebUntisLib/Lesson"
 
 const {WEBUNTIS_SCHOOL, WEBUNTIS_USERNAME, WEBUNTIS_PASSWORD, WEBUNTIS_BASE_URL} = process.env
-console.log({WEBUNTIS_SCHOOL, WEBUNTIS_USERNAME, WEBUNTIS_PASSWORD, WEBUNTIS_BASE_URL});
 
 const untis = new WebUntis(
     WEBUNTIS_SCHOOL,
@@ -22,8 +21,7 @@ export async function getTimetableByRoomNumber(roomNum: string): Promise<Lesson[
     return table;
 }
 
-
-async function getIDbyRoomNumber(RoomNumber:string)
+async function getIDbyRoomNumber(RoomNumber: string)
 {
     let return_id = -1;
     let rooms = await untis.getRooms();
@@ -49,6 +47,7 @@ function stringifyDate(date: number) {
         4
     )}`;
 }
+
 function stringifyTime(time: number) {
     let timeStr = `${time}`;
     if (timeStr.length === 3) {
@@ -57,10 +56,9 @@ function stringifyTime(time: number) {
     return `${timeStr.substr(0, 2)}:${timeStr.substr(2, 2)}`;
 }
 
-
 async function testCode() {
     await login();
-    let roomNum = '0315.2'
+    let roomNum = '0315.2';
     let table = await getTimetableByRoomNumber(roomNum);
     let mappedTable = table
         .map((lesson) => {
@@ -78,4 +76,5 @@ async function testCode() {
         .sort((a, b) => a.start.localeCompare(b.start));
     console.table(mappedTable);
 }
-testCode()
+
+testCode();
