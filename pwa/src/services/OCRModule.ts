@@ -10,8 +10,6 @@ interface Area2D {
 export default class OCRModule {
     scheduler: Scheduler = createScheduler();
 
-    constructor() {}
-
     public async initializeWorkers(numOfWorker: number = 1) {
         var registrations: Promise<void>[] = [];
         for (var i = 0; i < numOfWorker; i++) {

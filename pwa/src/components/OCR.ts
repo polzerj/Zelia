@@ -1,4 +1,3 @@
-import { start } from "repl";
 import OCRModule from "../services/OCRModule";
 import Component from "../types/Component";
 
@@ -7,11 +6,15 @@ interface SearchElements {
     errorMsg: HTMLSpanElement;
 }
 
+interface IntervalCancelToken {
+    id?: number;
+}
+
 export default class OCR extends Component<SearchElements> {
     private ocr: OCRModule;
     private workerTask: Promise<void>;
     private ocrInterval: number = 1000;
-    private ocrIntervalNumber: any = -1;
+    private ocrIntervalCancelToken: IntervalCancelToken = {};
     private virtualScreen: HTMLCanvasElement;
 
     constructor() {
@@ -23,6 +26,10 @@ export default class OCR extends Component<SearchElements> {
 
         this.virtualScreen = document.createElement("canvas");
         document.body.append(this.virtualScreen);
+    }
+
+    removeEventListenerCallback() {
+        if (this.ocrIntervalCancelToken.id) clearInterval(this.ocrIntervalCancelToken.id);
     }
 
     connectedCallback() {
@@ -53,7 +60,7 @@ export default class OCR extends Component<SearchElements> {
 
         this.play();
 
-        this.ocrIntervalNumber = setInterval(
+        this.ocrIntervalCancelToken.id = setInterval(
             this.doOcr.bind(this),
             this.ocrInterval
         ) as any;
