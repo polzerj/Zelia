@@ -1,4 +1,4 @@
-import logger from "../logger";
+import logger from "../util/logger";
 import OCRModule from "../services/OCRModule";
 import Component from "../types/Component";
 

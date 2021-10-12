@@ -1,4 +1,4 @@
-import logger from "./logger";
+import logger from "./util/logger";
 
 export type RoutedAction = () => void;
 

@@ -1,5 +1,5 @@
 import { createWorker, createScheduler, Scheduler } from "tesseract.js";
-import logger from "../logger";
+import logger from "../util/logger";
 
 interface Area2D {
     top: number;

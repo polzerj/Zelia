@@ -5,7 +5,7 @@ import router from "./router";
 import Test from "./components/Test";
 import NotFoundError from "./components/404";
 import OCR from "./components/OCR";
-import logger from "./logger";
+import logger from "./util/logger";
 
 const app = document.querySelector("#app")!;
 

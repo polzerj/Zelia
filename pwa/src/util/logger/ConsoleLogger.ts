@@ -1,10 +1,11 @@
+import Logger from "../../types/Logger";
 
-class Logger {
+export default class ConsoleLogger implements Logger {
     
     log(...x: any[]) {
         console.log(...x);    
     }
-    
+
     info(...x: any[]) {
         console.info(...x);
     }
@@ -17,5 +18,3 @@ class Logger {
         console.warn(...x);
     }
 }
-
-export default new Logger();
