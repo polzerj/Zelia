@@ -1,3 +1,5 @@
+import logger from "./logger";
+
 export type RoutedAction = () => void;
 
 interface RouterEvent {
@@ -13,7 +15,7 @@ class Router {
         this.registeredEvents = [];
         this.rootELement = rootELement;
 
-        console.info(
+        logger.info(
             "Router created! Starting on: " + window.location.pathname
         );
 
@@ -28,7 +30,7 @@ class Router {
      * @param silentHistory Set to true when
      */
     public redirect(path: string, silentHistory = false) {
-        console.info((silentHistory ? "Returning" : "Routing") + " to " + path);
+        logger.info((silentHistory ? "Returning" : "Routing") + " to " + path);
         this.clearRootElement();
 
         !silentHistory && window.history.pushState({}, "", path);

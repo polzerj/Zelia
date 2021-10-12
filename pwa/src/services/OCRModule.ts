@@ -1,4 +1,5 @@
 import { createWorker, createScheduler, Scheduler } from "tesseract.js";
+import logger from "../logger";
 
 interface Area2D {
     top: number;
@@ -13,11 +14,11 @@ export default class OCRModule {
     public async initializeWorkers(numOfWorker: number = 1) {
         var registrations: Promise<void>[] = [];
         for (var i = 0; i < numOfWorker; i++) {
-            console.log(`starting ocr service(${i + 1}/${numOfWorker})...`);
+            logger.log(`starting ocr service(${i + 1}/${numOfWorker})...`);
             registrations.push(this.createWorker());
         }
         await Promise.all(registrations);
-        console.log("ocr started...");
+        logger.log("ocr started...");
     }
     private async createWorker(lang = "eng") {
         const worker = createWorker();
