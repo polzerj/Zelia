@@ -1,3 +1,4 @@
+import logger from "../util/logger";
 import OCRModule from "../services/OCRModule";
 import Component from "../types/Component";
 
@@ -29,7 +30,8 @@ export default class OCR extends Component<SearchElements> {
     }
 
     removeEventListenerCallback() {
-        if (this.ocrIntervalCancelToken.id) clearInterval(this.ocrIntervalCancelToken.id);
+        if (this.ocrIntervalCancelToken.id)
+            clearInterval(this.ocrIntervalCancelToken.id);
     }
 
     connectedCallback() {
@@ -48,7 +50,7 @@ export default class OCR extends Component<SearchElements> {
     }
 
     error(e: any) {
-        console.error(e);
+        logger.error(e);
 
         this.elements.errorMsg.classList.remove("hidden");
         this.elements.video.classList.add("hidden");
@@ -72,7 +74,7 @@ export default class OCR extends Component<SearchElements> {
         this.virtualScreen
             .getContext("2d")
             ?.drawImage(this.elements.video, 0, 0);
-        console.log(this.virtualScreen);
+        logger.log(this.virtualScreen);
 
         let area = compress(this.virtualScreen);
 
