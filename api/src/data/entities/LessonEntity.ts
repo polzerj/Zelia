@@ -5,7 +5,6 @@ export default interface LessonEntity
     CurrentClass: string;
     CurrentTeacher: string;
     CurrentSubject: string;
-    LessonDate: Date;
     StartLesson: Date;
     EndLesson: Date;
 }

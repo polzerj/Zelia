@@ -5,7 +5,6 @@ export default interface RoomReportEntity
     AssignedAdminId: Number;
     Description: string;
     Email: string;
-    ReportDate: Date;
-    NoteTime: Date;
+    ReportDateTime: Date;
     Status: string;
 }
