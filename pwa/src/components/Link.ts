@@ -5,9 +5,11 @@ export default class Link extends Component<{}> {
     constructor() {
         super("zelia-link");
     }
+
     bindMethodsCallback() {
         this.onClick = this.onClick.bind(this);
     }
+
     registerEventListenerCallback() {
         this.addEventListener("click", this.onClick);
     }
