@@ -58,9 +58,9 @@ function stringifyTime(time: number) {
 
 async function testCode() {
     await login();
-    let roomNum = '0315.2';
+    let roomNum = 'EDV 2406';
     let table = await getTimetableByRoomNumber(roomNum);
-    let mappedTable = table
+    let mappedTable = table 
         .map((lesson) => {
             //console.log(lesson)
             return {
