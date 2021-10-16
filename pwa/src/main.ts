@@ -41,7 +41,9 @@ function main() {
     router.on("/", rootPage);
     router.on("404", notFoundPage);
     router.on("/ocr", ocrPage);
+    router.on("/room/:roomNumber", roomPage);
 }
+
 function notFoundPage() {
     const testComponent = document.createElement("not-found");
     app.append(testComponent);
@@ -54,4 +56,8 @@ function rootPage() {
 function ocrPage() {
     const ocr = document.createElement("zelia-ocr");
     app.append(ocr);
+}
+
+function roomPage(variables: { roomNumber: string; info: string }) {
+    logger.info(variables.roomNumber);
 }
