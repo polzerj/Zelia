@@ -25,12 +25,15 @@ const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
 class Room extends Model<RoomEntity>
   implements RoomEntity {
     public Id!: Number;
+    public AdminUserId!: Number;
     public RoomNumber!: string;
     public LongName!: string;
-    public Wheelchair!: boolean;
-    public Beamer!: boolean;
-    public Water!: boolean;
-    public Computer!: boolean; 
+    public IsWheelchairAccessable!: boolean;
+    public HasABeamer!: boolean;
+    public HasWater!: boolean;
+    public HasTeacherComputer!: boolean;
+    public NumberOfComputers!: Number;
+    public Seatplaces!: Number;
 }
 
 Room.init(
@@ -39,6 +42,11 @@ Room.init(
     {
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
+      allowNull: false,
+    },
+    AdminUserId:
+    {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     RoomNumber:
@@ -51,26 +59,36 @@ Room.init(
       type: DataTypes.STRING(128),
       allowNull: false,
     },
-    Wheelchair:
+    IsWheelchairAccessable:
     {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    Beamer:
+    HasABeamer:
     {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    Water:
+    HasWater:
     {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    Computer:
+    HasTeacherComputer:
     {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-    }
+    },
+    NumberOfComputers:
+    {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    Seatplaces:
+    {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
   },
   {
     tableName: "Room",
