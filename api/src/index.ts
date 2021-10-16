@@ -5,6 +5,7 @@ import HelloWorldController from "./controllers/HelloWorld";
 import TestMiddleware from "./middleware/TestMiddleware";
 import LoggingMiddleware from "./middleware/LoggingMiddleware";
 import Timetable from "./controllers/TimeTable";
+import CorsMiddleware from "./middleware/CorsMiddleware";
 
 const app = new App({
     controllers: [
@@ -17,6 +18,7 @@ const app = new App({
         bodyParser.urlencoded({ extended: true }),
         TestMiddleware,
         LoggingMiddleware,
+        CorsMiddleware,
     ],
     baseUrl: "/api",
 });
