@@ -6,6 +6,7 @@ import Test from "./components/Test";
 import NotFoundError from "./components/404";
 import OCR from "./components/OCR";
 import logger from "./util/logger";
+import Link from "./components/Link";
 
 const app = document.querySelector("#app")!;
 
@@ -25,13 +26,18 @@ let components: ComponentInfo[] = [
         type: OCR,
         path: "/OCR.html",
     },
+    {
+        tagName: "zelia-link",
+        type: Link,
+        path: "/Link.html",
+    },
 ];
 
 initializeComponents(components).then(main);
 
 function main() {
-    logger.info('Loaded components!');
-    
+    logger.info("Loaded components!");
+
     router.on("/", rootPage);
     router.on("404", notFoundPage);
     router.on("/ocr", ocrPage);
@@ -43,9 +49,8 @@ function notFoundPage() {
 function rootPage() {
     const testComponent = document.createElement("test-component");
     app.append(testComponent);
-
-    router.redirect("/ocr");
 }
+
 function ocrPage() {
     const ocr = document.createElement("zelia-ocr");
     app.append(ocr);
