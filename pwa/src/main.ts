@@ -1,6 +1,6 @@
 import ComponentInfo from "./types/ComponentInfo";
 import { initializeComponents } from "./loader";
-import router from "./router";
+import router, { PathVariables } from "./router";
 
 import Test from "./components/Test";
 import NotFoundError from "./components/404";
@@ -58,6 +58,6 @@ function ocrPage() {
     app.append(ocr);
 }
 
-function roomPage(variables: { roomNumber: string; info: string }) {
-    logger.info(variables.roomNumber);
+function roomPage(variables?: PathVariables) {
+    logger.info(variables?.roomNumber);
 }

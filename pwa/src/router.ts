@@ -1,10 +1,17 @@
 import logger from "./util/logger";
 
-export type RoutedAction = (...params: any[]) => void;
+export type RoutedAction = (variables?: PathVariables) => void;
 
 interface RouterEvent {
     path: string;
     action: RoutedAction;
+}
+
+export type PathVariables = { [key: string]: string };
+
+interface RouterEventInfo {
+    events: RouterEvent[];
+    variables: PathVariables;
 }
 
 class Router {
@@ -60,10 +67,7 @@ class Router {
      * Register action which gets executed when path is routed
      */
     public on(path: string, action: RoutedAction) {
-        path =
-            path.endsWith("/") && path.length > 1
-                ? path.substring(0, path.length - 1)
-                : path;
+        path = this.removeLastSlash(path);
 
         this.registeredEvents.push({ path, action });
         if (
@@ -94,16 +98,10 @@ class Router {
         this.rootELement.innerHTML = "";
     }
 
-    private getMatchingRouterEvents(path: string): {
-        events: RouterEvent[];
-        variables: any;
-    } {
-        path =
-            path.endsWith("/") && path.length > 1
-                ? path.substring(0, path.length - 1)
-                : path;
+    private getMatchingRouterEvents(path: string): RouterEventInfo {
+        path = this.removeLastSlash(path);
 
-        let data = { events: [], variables: {} } as any;
+        let data = { events: [], variables: {} } as RouterEventInfo;
         for (const ev of this.registeredEvents) {
             let ps = path.split("/");
             let eps = ev.path.split("/");
@@ -124,6 +122,12 @@ class Router {
             }
         }
         return data;
+    }
+
+    private removeLastSlash(path: string) {
+        return path.endsWith("/") && path.length > 1
+            ? path.substring(0, path.length - 1)
+            : path;
     }
 }
 
