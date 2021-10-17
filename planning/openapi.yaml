@@ -23,10 +23,11 @@ paths:
           content:
             application/json:
               schema:
+                description: ""
                 type: array
                 items:
-                  $ref: "#/components/schemas/room"
-  "/api/room/{roomNumber}":
+                  type: string
+  "/api/room/{roomNumber}/timetable":
     parameters:
       - schema:
           type: string
@@ -36,118 +37,179 @@ paths:
     get:
       summary: Get room by room number
       operationId: get-room-room-number
-      description: Get room by room number
+      description: Get timetable by room Number
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/room"
-  /api/report:
-    post:
-      summary: Report an issue
-      operationId: post-api-report
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/reportRequest"
-      description: Report an issue
-      responses:
-        "200":
-          description: OK
-  /api/booking:
-    post:
-      summary: Book a room
-      operationId: post-api-book
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/bookingRequest"
-      description: Book a room
-  /api/admin/booking:
-    get:
-      summary: Get  bookings
-      tags: []
-      responses:
-        "200":
-          description: OK
-      operationId: get-api-admin-booking
-      description: Get bookings
-      parameters:
-        - $ref: "#/components/parameters/bookingType"
-  /api/admin/report:
-    get:
-      summary: Get reports
-      tags: []
-      responses:
-        "200":
-          description: OK
-      operationId: get-api-admin-report
-      description: Get reports
-      parameters:
-        - $ref: "#/components/parameters/reportType"
+                type: array
+                items:
+                  $ref: "#/components/schemas/ULesson"
 components:
   schemas:
-    room:
-      title: room
+    UTeacher:
+      description: ""
       type: object
       properties:
         id:
+          type: number
+        name:
           type: string
-        roomNumber:
-          $ref: "#/components/schemas/roomNumber"
+          minLength: 1
+        longname:
+          type: string
+          minLength: 1
       required:
-        - roomNumber
-    roomNumber:
-      type: string
-      title: roomNumber
-      pattern: '^[A-Z][0-9]{3}(\.[0-9])?$'
-      minLength: 5
-      maxLength: 7
-    reportRequest:
-      title: reportRequest
-      type: object
-      properties:
-        roomNumber:
-          $ref: "#/components/schemas/roomNumber"
-        description:
-          type: string
-        email:
-          type: string
-          format: email
-      required:
-        - roomNumber
-        - description
-        - email
-    bookingRequest:
-      title: bookingRequest
+        - id
+        - name
+        - longname
+      x-examples:
+        example-1:
+          id: 174
+          name: ZACH
+          longname: ZACHERL
+    USubject:
+      description: ""
       type: object
       properties:
         id:
+          type: number
+        name:
           type: string
-  parameters:
-    reportType:
-      name: type
-      in: query
-      schema:
-        type: string
-        enum:
-          - open
-          - closed
-          - in_progress
-          - not_relevant
-          - not_convertible
-    bookingType:
-      name: type
-      in: query
-      required: false
-      schema:
-        type: string
-        enum:
-          - open
-          - closed
+          minLength: 1
+        longname:
+          type: string
+          minLength: 1
+      required:
+        - id
+        - name
+        - longname
+      x-examples:
+        example-1:
+          id: 496
+          name: NWT1
+          longname: Netzwerktechnik
+    URoom:
+      description: ""
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+          minLength: 1
+        longname:
+          type: string
+          minLength: 1
+      required:
+        - id
+        - name
+        - longname
+      x-examples:
+        example-1:
+          id: 305
+          name: EDV 2406a
+          longname: Teilungsraum zu EDV 2406 (vormals EDV6)
+    ULesson:
+      description: ""
+      type: object
+      x-examples:
+        example-1:
+          id: 1263062
+          date: 20211018
+          startTime: 1345
+          endTime: 1435
+          kl:
+            - id: 973
+              name: 3BHITN
+              longname: HTL IT-NWTK
+          te:
+            - id: 174
+              name: ZACH
+              longname: ZACHERL
+            - id: 221
+              name: RESC
+              longname: RESCH
+          su:
+            - id: 496
+              name: NWT1
+              longname: Netzwerktechnik
+          ro:
+            - id: 305
+              name: EDV 2406a
+              longname: Teilungsraum zu EDV 2406 (vormals EDV6)
+          lsnumber: 72700
+          activityType: Unterricht
+      properties:
+        id:
+          type: number
+        date:
+          type: number
+        startTime:
+          type: number
+        endTime:
+          type: number
+        kl:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/UClass"
+        te:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/UTeacher"
+        su:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/USubject"
+        ro:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/URoom"
+        lsnumber:
+          type: number
+        activityType:
+          type: string
+          minLength: 1
+      required:
+        - id
+        - date
+        - startTime
+        - endTime
+        - kl
+        - te
+        - su
+        - ro
+        - lsnumber
+        - activityType
+    UClass:
+      description: ""
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+          minLength: 1
+        longname:
+          type: string
+          minLength: 1
+      required:
+        - id
+        - name
+        - longname
+      x-examples:
+        example-1:
+          id: 943
+          name: 3AFITN
+          longname: FS Informationstechnik (NWTK)
+  parameters: {}
