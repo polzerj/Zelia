@@ -6,11 +6,15 @@ import TestMiddleware from "./middleware/TestMiddleware";
 import LoggingMiddleware from "./middleware/LoggingMiddleware";
 import Timetable from "./controllers/TimeTable";
 import CorsMiddleware from "./middleware/CorsMiddleware";
+import RoomList from "./controllers/RoomList";
+import RoomInfo from "./controllers/RoomInfo";
 
 const app = new App({
     controllers: [
         new HelloWorldController(),
-        new Timetable()
+        new Timetable(),
+        new RoomList(),
+        new RoomInfo(),
     ],
     middleWares: [
         // It is not deprecated if not used as function
