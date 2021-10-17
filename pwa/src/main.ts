@@ -1,6 +1,6 @@
 import ComponentInfo from "./types/ComponentInfo";
 import { initializeComponents } from "./loader";
-import router from "./router";
+import router, { PathVariables } from "./router";
 
 import Test from "./components/Test";
 import NotFoundError from "./components/404";
@@ -41,7 +41,9 @@ function main() {
     router.on("/", rootPage);
     router.on("404", notFoundPage);
     router.on("/ocr", ocrPage);
+    router.on("/room/:roomNumber", roomPage);
 }
+
 function notFoundPage() {
     const testComponent = document.createElement("not-found");
     app.append(testComponent);
@@ -54,4 +56,8 @@ function rootPage() {
 function ocrPage() {
     const ocr = document.createElement("zelia-ocr");
     app.append(ocr);
+}
+
+function roomPage(variables?: PathVariables) {
+    logger.info(variables?.roomNumber);
 }
