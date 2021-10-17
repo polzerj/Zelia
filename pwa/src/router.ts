@@ -1,10 +1,17 @@
 import logger from "./util/logger";
 
-export type RoutedAction = () => void;
+export type RoutedAction = (variables?: PathVariables) => void;
 
 interface RouterEvent {
     path: string;
     action: RoutedAction;
+}
+
+export type PathVariables = { [key: string]: string };
+
+interface RouterEventInfo {
+    events: RouterEvent[];
+    variables: PathVariables;
 }
 
 class Router {
@@ -15,9 +22,7 @@ class Router {
         this.registeredEvents = [];
         this.rootELement = rootELement;
 
-        logger.info(
-            "Router created! Starting on: " + window.location.pathname
-        );
+        logger.info("Router created! Starting on: " + window.location.pathname);
 
         this.onPop = this.onPop.bind(this);
         window.addEventListener("popstate", this.onPop);
@@ -44,13 +49,14 @@ class Router {
 
     private emitEvent(path: string) {
         path = this.normalizePath(path);
-        const matchingEvents = this.registeredEvents.filter(
-            (e) => e.path === path
-        );
-        matchingEvents.forEach((event) => {
-            event.action();
+
+        let matchingEvents = this.getMatchingRouterEvents(path);
+
+        matchingEvents.events.forEach((ev: RouterEvent) => {
+            ev.action(matchingEvents.variables);
         });
-        if (matchingEvents.length === 0) {
+
+        if (matchingEvents.events.length == 0) {
             this.registeredEvents
                 .filter((e) => e.path === "404")
                 .forEach((e) => e.action());
@@ -61,6 +67,8 @@ class Router {
      * Register action which gets executed when path is routed
      */
     public on(path: string, action: RoutedAction) {
+        path = this.removeLastSlash(path);
+
         this.registeredEvents.push({ path, action });
         if (
             this.registeredEvents.every(
@@ -72,14 +80,15 @@ class Router {
                 .filter((e) => e.path === "404")
                 .forEach((e) => e.action());
         }
-        if (path === window.location.pathname) {
-            if (
-                this.registeredEvents.filter((e) => e.path === path).length ===
-                1
-            ) {
-                this.clearRootElement();
-            }
-            action();
+
+        let matchingEvents = this.getMatchingRouterEvents(
+            window.location.pathname
+        );
+        if (matchingEvents.events.length > 0) {
+            this.clearRootElement();
+            matchingEvents.events.forEach((ev: RouterEvent) => {
+                ev.action(matchingEvents.variables);
+            });
         }
     }
     private normalizePath(path: string): string {
@@ -87,6 +96,38 @@ class Router {
     }
     private clearRootElement() {
         this.rootELement.innerHTML = "";
+    }
+
+    private getMatchingRouterEvents(path: string): RouterEventInfo {
+        path = this.removeLastSlash(path);
+
+        let data = { events: [], variables: {} } as RouterEventInfo;
+        for (const ev of this.registeredEvents) {
+            let ps = path.split("/");
+            let eps = ev.path.split("/");
+
+            if (ps.length == eps.length) {
+                let isSame = true;
+                let vars: { [key: string]: string } = {};
+                for (let i = 0; i < ps.length; i++) {
+                    if (eps[i] != ps[i] && !eps[i].startsWith(":")) {
+                        isSame = false;
+                    }
+                    if (eps[i]) vars[eps[i].substring(1)] = ps[i];
+                }
+                if (isSame) {
+                    data.events.push(ev);
+                    data.variables = vars;
+                }
+            }
+        }
+        return data;
+    }
+
+    private removeLastSlash(path: string) {
+        return path.endsWith("/") && path.length > 1
+            ? path.substring(0, path.length - 1)
+            : path;
     }
 }
 
