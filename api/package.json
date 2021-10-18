@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Rest-API for Zelia",
     "scripts": {
-        "dev": "nodemon --watch 'src' -e 'ts,json' --exec 'npm run build && node -r dotenv/config' dist/index.js",
+        "dev": "nodemon --watch 'src' -e 'ts,json' --exec \"npm run build && node -r dotenv/config dist/index.js\"",
         "start": "node dist/index.js",
         "build": "tsc",
         "clean": " rm -r dist"
