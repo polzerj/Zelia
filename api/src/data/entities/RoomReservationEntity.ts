@@ -7,5 +7,5 @@ export default interface RoomReservationEntity
     Email: string;
     StartReservation: Date;
     EndReservation: Date;
-    Status: string;
+    ReservationStatus: string;
 }

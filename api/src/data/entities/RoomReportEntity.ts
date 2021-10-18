@@ -3,8 +3,8 @@ export default interface RoomReportEntity
     Id: Number;
     RoomId: Number;
     AssignedAdminId: Number;
-    Description: string;
+    ReportDescription: string;
     Email: string;
     ReportDateTime: Date;
-    Status: string;
+    ReportStatus: string;
 }
