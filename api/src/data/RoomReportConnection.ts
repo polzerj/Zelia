@@ -1,3 +1,4 @@
+import { join } from "path/win32";
 import {
     Sequelize,
     Model,
@@ -27,10 +28,10 @@ class RoomReport extends Model<RoomReportEntity>
         public Id!: Number;
         public RoomId!: Number;
         public AssignedAdminId!: Number;
-        public Description!: string;
+        public ReportDescription!: string;
         public Email!: string;
         public ReportDateTime!: Date;
-        public Status!: string;
+        public ReportStatus!: string;
     }
 
 RoomReport.init(
@@ -51,7 +52,7 @@ RoomReport.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        Description:
+        ReportDescription:
         {
             type: DataTypes.STRING,
             allowNull: false,
@@ -66,7 +67,7 @@ RoomReport.init(
             type: DataTypes.DATE,
             allowNull: false,
         },
-        Status:
+        ReportStatus:
         {
             type: DataTypes.STRING,
             allowNull: false,
@@ -78,8 +79,8 @@ RoomReport.init(
     }
 );
 
-async function GetRoomReports() {
-    const roomReports = RoomReport.findAll();
-    return roomReports;
+export async function getRoomReports(roomNumber: string) :Promise<RoomReportEntity[]> {
+    const roomReports = await RoomReport.findAll({where: {}})
     console.log(roomReports);
+    return roomReports;
 }

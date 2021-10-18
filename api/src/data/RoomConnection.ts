@@ -96,8 +96,7 @@ Room.init(
   }
 );
 
-async function GetRooms() {
-  const rooms = await Room.findAll();
-  return rooms;
-  console.log(rooms);
-}
+export async function getRooms(roomNumber: string) :Promise<RoomEntity[]> {
+  const room = await Room.findAll({where: {RoomNumber: roomNumber}});
+  return room;
+};
