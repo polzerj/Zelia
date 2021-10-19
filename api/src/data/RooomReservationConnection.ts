@@ -12,7 +12,7 @@ import {
     Optional,
   } from "sequelize";
 
-import RoomReportEntity from "./entities/RoomReportEntity";
+import RoomReservationEntity from "./entities/RoomReservationEntity";
 
 const {DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE} = process.env;
 console.log(DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE);
@@ -22,18 +22,19 @@ const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
   dialect: 'mariadb'
 });
 
-class RoomReport extends Model<RoomReportEntity>
-    implements RoomReportEntity{
+class RoomReservation extends Model<RoomReservationEntity>
+    implements RoomReservationEntity{
         public Id!: Number;
         public RoomId!: Number;
         public AssignedAdminId!: Number;
-        public ReportDescription!: string;
+        public ReservationReason!: string;
         public Email!: string;
-        public ReportDateTime!: Date;
-        public ReportStatus!: string;
-    }
+        public StartReservation!: Date;
+        public EndReservation!: Date;
+        public ReservationStatus!: string;
+    };
 
-RoomReport.init(
+RoomReservation.init(
     {
         Id:
         {
@@ -51,7 +52,7 @@ RoomReport.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        ReportDescription:
+        ReservationReason:
         {
             type: DataTypes.STRING,
             allowNull: false,
@@ -61,25 +62,30 @@ RoomReport.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        ReportDateTime:
+        StartReservation:
+        {
+            type: DataTypes.DATE,
+            allowNull: false,    
+        },
+        EndReservation:
         {
             type: DataTypes.DATE,
             allowNull: false,
         },
-        ReportStatus:
+        ReservationStatus:
         {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: false
         }
     },
     {
-        tableName: "RoomReport",
+        tableName: "RoomReservation",
         sequelize,
     }
 );
 
-export async function getRoomReports(roomNumber: string) :Promise<RoomReportEntity[]> {
-    const roomReport = await RoomReport.findAll({where: {}})   //To implement
-    console.log(roomReport);
-    return roomReport;
+export async function getRoomReservations(roomNumber: string) :Promise<RoomReservationEntity[]> {
+    const roomReservation = await RoomReservation.findAll({where: {}})  //To implement
+    console.log(roomReservation);
+    return roomReservation;
 }

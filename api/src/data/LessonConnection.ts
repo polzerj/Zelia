@@ -12,7 +12,7 @@ import {
     Optional,
   } from "sequelize";
 
-import RoomReportEntity from "./entities/RoomReportEntity";
+import LessonEntity from "./entities/LessonEntity";
 
 const {DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE} = process.env;
 console.log(DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE);
@@ -22,64 +22,64 @@ const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
   dialect: 'mariadb'
 });
 
-class RoomReport extends Model<RoomReportEntity>
-    implements RoomReportEntity{
+class Lesson extends Model<LessonEntity>
+    implements LessonEntity{
         public Id!: Number;
         public RoomId!: Number;
-        public AssignedAdminId!: Number;
-        public ReportDescription!: string;
-        public Email!: string;
-        public ReportDateTime!: Date;
-        public ReportStatus!: string;
+        public CurrentClass!: string;
+        public CurrentTeacher!: string;
+        public CurrentSubject!: string;
+        public StartLesson!: Date;
+        public EndLesson!: Date;
     }
 
-RoomReport.init(
+Lesson.init(
     {
         Id:
         {
-            type: DataTypes.INTEGER,
+            type: DataTypes.NUMBER,
             autoIncrement: true,
             allowNull: false,
         },
         RoomId:
         {
-            type: DataTypes.INTEGER,
+            type: DataTypes.NUMBER,
             allowNull: false,
         },
-        AssignedAdminId:
-        {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        ReportDescription:
+        CurrentClass:
         {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        Email:
+        CurrentTeacher:
         {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        ReportDateTime:
+        CurrentSubject:
+        {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        StartLesson:
         {
             type: DataTypes.DATE,
             allowNull: false,
         },
-        ReportStatus:
+        EndLesson:
         {
-            type: DataTypes.STRING,
+            type: DataTypes.DATE,
             allowNull: false,
         }
     },
     {
-        tableName: "RoomReport",
+        tableName: "Lesson",
         sequelize,
     }
 );
 
-export async function getRoomReports(roomNumber: string) :Promise<RoomReportEntity[]> {
-    const roomReport = await RoomReport.findAll({where: {}})   //To implement
-    console.log(roomReport);
-    return roomReport;
+export async function getLessons(roomNumber: string) :Promise<LessonEntity[]> {
+    const lesson = await Lesson.findAll({where: {}})   //To implement
+    console.log(lesson);
+    return lesson;
 }
