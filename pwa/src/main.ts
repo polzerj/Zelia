@@ -7,6 +7,7 @@ import NotFoundError from "./components/404";
 import OCR from "./components/OCR";
 import logger from "./util/logger";
 import Link from "./components/Link";
+import RoomInput from "./components/RoomInput";
 import Timetable from "./components/Timetable";
 
 const app = document.querySelector("#app")!;
@@ -33,6 +34,11 @@ let components: ComponentInfo[] = [
         path: "/Link.html",
     },
     {
+        tagName: "zelia-room-input",
+        type: RoomInput,
+        path: "/RoomInput.html",
+    },
+    {
         tagName: "zelia-timetable",
         type: Timetable,
         path: "/Timetable.html",
@@ -56,7 +62,10 @@ function notFoundPage() {
 }
 function rootPage() {
     const testComponent = document.createElement("test-component");
+    const roomInput = document.createElement("zelia-room-input");
+
     app.append(testComponent);
+    app.append(roomInput);
 }
 
 function ocrPage() {
