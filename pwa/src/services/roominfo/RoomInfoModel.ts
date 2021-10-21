@@ -1,4 +1,4 @@
-export default interface RoomInfo {
+export default interface RoomInfoModel {
     roomNumber: string;
     name: string;
     description: string;
