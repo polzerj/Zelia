@@ -82,7 +82,7 @@ function ocrPage() {
 
 async function roomPage(variables?: PathVariables) {
     logger.info(variables?.roomNumber);
-  
+
     const backLink = document.createElement("zelia-link") as Link;
     backLink.textContent = "<- Back";
     backLink.href = "/";
@@ -91,17 +91,8 @@ async function roomPage(variables?: PathVariables) {
     const timetable = document.createElement("zelia-timetable") as Timetable;
     if (variables?.roomNumber) timetable.roomNumber = variables?.roomNumber;
     app.append(timetable);
-  
-  const info = document.createElement("zelia-room-info") as RoomInfo;
-    
-    if (variables?.roomNumber) {
-        try {
-            info.roomInfo = await getRoomInfoByRoomNumber(
-                variables?.roomNumber
-            );
-        } catch (e) {
-            logger.error(e);
-        }
-    }
+
+    const info = document.createElement("zelia-room-info") as RoomInfo;
+    if (variables?.roomNumber) info.roomNumber = variables?.roomNumber;
     app.append(info);
 }
