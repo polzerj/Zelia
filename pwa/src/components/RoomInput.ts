@@ -1,3 +1,4 @@
+import { getRoomList } from "../services/roomlist";
 import Component from "../types/Component";
 import logger from "../util/logger";
 
@@ -7,8 +8,6 @@ interface SearchElements {
     button: HTMLButtonElement;
     autoCompleteList: HTMLDataListElement;
 }
-
-const roomNumbers = ["S4124", "EDV 31", "1412"];
 
 export default class RoomInput extends Component<SearchElements> {
     constructor() {
@@ -42,7 +41,14 @@ export default class RoomInput extends Component<SearchElements> {
         logger.info(this.elements.input.value);
     }
 
-    fillDataList() {
+    async fillDataList() {
+        let roomNumbers = ["S4124", "EDV 31", "1412"];
+        try {
+            roomNumbers = await getRoomList();
+        } catch (e) {
+            logger.error(e);
+        }
+
         for (const rn of roomNumbers) {
             let item = document.createElement("option");
             item.textContent = rn;
