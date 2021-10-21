@@ -10,7 +10,11 @@ export default abstract class Component<T> extends HTMLElement {
     private searchQueries: SearchQueries;
     private _elements: any = {};
 
-    constructor(tagName: string, queries: SearchQueries = {}) {
+    constructor(
+        tagName: string,
+        queries: SearchQueries = {},
+        autoRender: boolean = true
+    ) {
         super();
         this.searchQueries = queries;
 
@@ -18,7 +22,7 @@ export default abstract class Component<T> extends HTMLElement {
         this.htmlSoucre = getComponentTemplateAsString(tagName);
 
         this.bindMethodsCallback();
-        this.render(true);
+        if (autoRender) this.render(true);
     }
 
     private searchElements() {
@@ -55,7 +59,7 @@ export default abstract class Component<T> extends HTMLElement {
 
     registerEventListenerCallback() {}
     removeEventListenerCallback() {}
-    bindMethodsCallback(){}
+    bindMethodsCallback() {}
 
     // static get observedAttributes(): string[];
     render(firstRender = false) {

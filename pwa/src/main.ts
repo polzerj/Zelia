@@ -9,6 +9,8 @@ import OCR from "./components/OCR";
 import logger from "./util/logger";
 import Link from "./components/Link";
 import RoomInfo from "./components/RoomInfo";
+import RoomInput from "./components/RoomInput";
+import Timetable from "./components/Timetable";
 
 const app = document.querySelector("#app")!;
 
@@ -38,6 +40,16 @@ let components: ComponentInfo[] = [
         type: RoomInfo,
         path: "/RoomInfo.html",
     },
+    {
+        tagName: "zelia-room-input",
+        type: RoomInput,
+        path: "/RoomInput.html",
+    },
+    {
+        tagName: "zelia-timetable",
+        type: Timetable,
+        path: "/Timetable.html",
+    },
 ];
 
 initializeComponents(components).then(main);
@@ -57,7 +69,10 @@ function notFoundPage() {
 }
 function rootPage() {
     const testComponent = document.createElement("test-component");
+    const roomInput = document.createElement("zelia-room-input");
+
     app.append(testComponent);
+    app.append(roomInput);
 }
 
 function ocrPage() {
@@ -66,12 +81,19 @@ function ocrPage() {
 }
 
 async function roomPage(variables?: PathVariables) {
-    const info = document.createElement("zelia-room-info") as RoomInfo;
+    logger.info(variables?.roomNumber);
+  
     const backLink = document.createElement("zelia-link") as Link;
     backLink.textContent = "<- Back";
     backLink.href = "/";
     app.append(backLink);
 
+    const timetable = document.createElement("zelia-timetable") as Timetable;
+    if (variables?.roomNumber) timetable.roomNumber = variables?.roomNumber;
+    app.append(timetable);
+  
+  const info = document.createElement("zelia-room-info") as RoomInfo;
+    
     if (variables?.roomNumber) {
         try {
             info.roomInfo = await getRoomInfoByRoomNumber(
