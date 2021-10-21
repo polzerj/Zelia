@@ -16,18 +16,13 @@ import {
 import RoomReportEntity from "./entities/RoomReportEntity";
 import {Room} from "./RoomConnection";
 
-const {DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE} = process.env;
-
-const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
-  host: DB_SERVER,
-  dialect: 'mariadb'
-});
+import sequelize from "./DatabaseConnectionHandler";
 
 export class RoomReport extends Model<RoomReportEntity>
     implements RoomReportEntity{
-        public Id!: Number;
-        public RoomId!: Number;
-        public AssignedAdminId!: Number;
+        public Id!: number;
+        public RoomId!: number;
+        public AssignedAdminId!: number;
         public ReportDescription!: string;
         public Email!: string;
         public ReportDateTime!: Date;

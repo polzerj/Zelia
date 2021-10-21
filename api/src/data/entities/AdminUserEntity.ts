@@ -1,6 +1,6 @@
 export default interface AdminUserEntity
 {
-    Id: Number
+    Id: number
     UserName: string;
     UserPassword: string;
 }

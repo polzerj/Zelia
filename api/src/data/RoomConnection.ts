@@ -13,28 +13,20 @@ import {
 } from "sequelize";
 
 import RoomEntity from "./entities/RoomEntity";
-//import {RoomReport} from "./RoomReportConnection";
-
-const {DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE} = process.env;
-console.log(DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE);
-
-const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
-  host: DB_SERVER,
-  dialect: 'mariadb'
-});
+import sequelize from "./DatabaseConnectionHandler";
 
 export class Room extends Model<RoomEntity>
   implements RoomEntity {
-    public Id!: Number;
-    public AdminUserId!: Number;
+    public Id!: number;
+    public AdminUserId!: number;
     public RoomNumber!: string;
     public LongName!: string;
     public IsWheelchairAccessable!: boolean;
     public HasABeamer!: boolean;
     public HasWater!: boolean;
     public HasTeacherComputer!: boolean;
-    public NumberOfComputers!: Number;
-    public Seatplaces!: Number;
+    public NumberOfComputers!: number;
+    public Seatplaces!: number;
 }
 
 Room.init(

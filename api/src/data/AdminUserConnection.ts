@@ -14,17 +14,12 @@ import {
 
 import AdminUserEntity from "./entities/AdminUserEntity";
 
-const {DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE} = process.env;
-console.log(DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE);
+import sequelize from "./DatabaseConnectionHandler";
 
-const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
-  host: DB_SERVER,
-  dialect: 'mariadb'
-});
 
 class AdminUser extends Model<AdminUserEntity>
     implements AdminUserEntity{
-        public Id!: Number;
+        public Id!: number;
         public UserName!: string;
         public UserPassword!: string;
     };

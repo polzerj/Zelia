@@ -15,18 +15,14 @@ import {
 import RoomReservationEntity from "./entities/RoomReservationEntity";
 import { Room } from "./RoomConnection";
 
-const {DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE} = process.env;
+import sequelize from "./DatabaseConnectionHandler";
 
-const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
-  host: DB_SERVER,
-  dialect: 'mariadb'
-});
 
 export class RoomReservation extends Model<RoomReservationEntity>
     implements RoomReservationEntity{
-        public Id!: Number;
-        public RoomId!: Number;
-        public AssignedAdminId!: Number;
+        public Id!: number;
+        public RoomId!: number;
+        public AssignedAdminId!: number;
         public ReservationReason!: string;
         public Email!: string;
         public StartReservation!: Date;

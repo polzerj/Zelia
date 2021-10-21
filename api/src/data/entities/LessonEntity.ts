@@ -1,7 +1,7 @@
 export default interface LessonEntity
 {
-    Id: Number;
-    RoomId: Number;
+    Id: number;
+    RoomId: number;
     CurrentClass: string;
     CurrentTeacher: string;
     CurrentSubject: string;

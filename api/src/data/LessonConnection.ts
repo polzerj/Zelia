@@ -15,17 +15,13 @@ import {
 import LessonEntity from "./entities/LessonEntity";
 import { Room } from "./RoomConnection";
 
-const {DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE} = process.env;
+import sequelize from "./DatabaseConnectionHandler";
 
-const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
-  host: DB_SERVER,
-  dialect: 'mariadb'
-});
 
 export class Lesson extends Model<LessonEntity>
     implements LessonEntity{
-        public Id!: Number;
-        public RoomId!: Number;
+        public Id!: number;
+        public RoomId!: number;
         public CurrentClass!: string;
         public CurrentTeacher!: string;
         public CurrentSubject!: string;
