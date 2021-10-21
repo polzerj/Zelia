@@ -1,7 +1,14 @@
-import WebUntis from "./WebUntisLib"
-import Lesson from "./WebUntisLib/Lesson"
+import WebUntisCache from "./WebuntisCache";
+import WebUntis from "./WebUntisLib";
+import Lesson from "./WebUntisLib/Lesson";
+import Room from "./WebUntisLib/Room";
 
-const {WEBUNTIS_SCHOOL, WEBUNTIS_USERNAME, WEBUNTIS_PASSWORD, WEBUNTIS_BASE_URL} = process.env
+const {
+    WEBUNTIS_SCHOOL,
+    WEBUNTIS_USERNAME,
+    WEBUNTIS_PASSWORD,
+    WEBUNTIS_BASE_URL,
+} = process.env;
 
 const untis = new WebUntis(
     WEBUNTIS_SCHOOL,
@@ -10,34 +17,46 @@ const untis = new WebUntis(
     WEBUNTIS_BASE_URL
 );
 
-export async function login(){
+const cache = new WebUntisCache();
+
+export async function login() {
     await untis.login();
 }
 
-export async function getTimetableByRoomNumber(roomNum: string): Promise<Lesson[]> {
+export async function getTimetableByRoomNumber(
+    roomNum: string
+): Promise<Lesson[]> {
     let date = new Date();
     let roomId = await getIDbyRoomNumber(roomNum);
-    let table = await untis.getTimetableFor(date,roomId, 4);
+
+    if (cache.timetableAvailable(roomId)) {
+        const table = cache.getTimetable(roomId);
+        return table;
+    }
+    let table = await untis.getTimetableFor(date, roomId, 4);
+    cache.setTimetable(roomId, table);
     return table;
 }
 
-async function getIDbyRoomNumber(RoomNumber: string)
-{
+async function getIDbyRoomNumber(RoomNumber: string) {
     let return_id = -1;
-    let rooms = await untis.getRooms();
-    rooms.forEach(room => {
+    let rooms: Room[];
+    if (cache.roomsAvailable) {
+        rooms = cache.rooms;
+    } else {
+        rooms = await untis.getRooms();
+        cache.rooms = rooms;
+    }
+    for (const room of rooms) {
         let longname = room.longName;
         let shortname = room.name;
-        if(shortname.includes(RoomNumber)) {
-            return_id = room.id;
+        if (shortname.includes(RoomNumber)) {
+            return room.id;
         }
-        else{
-            if(longname.includes(RoomNumber)) {
-                return_id = room.id;
-            }
+        if (longname.includes(RoomNumber)) {
+            return room.id;
         }
-    });
-    return return_id;    
+    }
 }
 
 function stringifyDate(date: number) {
@@ -58,7 +77,7 @@ function stringifyTime(time: number) {
 
 async function testCode() {
     await login();
-    let roomNum = 'EDV 2406';
+    let roomNum = "2406";
     let table = await getTimetableByRoomNumber(roomNum);
     let mappedTable = table
         .map((lesson) => {
@@ -70,8 +89,8 @@ async function testCode() {
                 subject: lesson.su.map((su) => su.longname),
                 date: stringifyDate(lesson.date),
                 start: stringifyTime(lesson.startTime),
-                end: stringifyTime(lesson.endTime),    
-            }
+                end: stringifyTime(lesson.endTime),
+            };
         })
         .sort((a, b) => a.start.localeCompare(b.start));
     console.table(mappedTable);
