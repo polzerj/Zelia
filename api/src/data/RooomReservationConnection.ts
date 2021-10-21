@@ -13,16 +13,16 @@ import {
   } from "sequelize";
 
 import RoomReservationEntity from "./entities/RoomReservationEntity";
+import { Room } from "./RoomConnection";
 
 const {DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE} = process.env;
-console.log(DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE);
 
 const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
   host: DB_SERVER,
   dialect: 'mariadb'
 });
 
-class RoomReservation extends Model<RoomReservationEntity>
+export class RoomReservation extends Model<RoomReservationEntity>
     implements RoomReservationEntity{
         public Id!: Number;
         public RoomId!: Number;
@@ -39,13 +39,17 @@ RoomReservation.init(
         Id:
         {
             type: DataTypes.INTEGER,
-            autoIncrement: true,
+            primaryKey: true,
             allowNull: false,
         },
         RoomId:
         {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            references:
+            {
+                model: Room,
+                key: "RoomId"
+            },
         },
         AssignedAdminId:
         {
@@ -84,8 +88,16 @@ RoomReservation.init(
     }
 );
 
-export async function getRoomReservations(roomNumber: string) :Promise<RoomReservationEntity[]> {
-    const roomReservation = await RoomReservation.findAll({where: {}})  //To implement
-    console.log(roomReservation);
+Room.hasMany(RoomReservation);
+RoomReservation.belongsTo(Room, {foreignKey: 'RoomId'});
+
+export async function getRoomReservations(roomNumber: string) :Promise<RoomReservation[]> {
+    const roomReservation = await RoomReservation.findAll({
+        include: [{
+            model: Room,
+            required: true,
+            where: {RoomNumber: roomNumber}
+        }]
+    })
     return roomReservation;
 }

@@ -13,6 +13,7 @@ import {
 } from "sequelize";
 
 import RoomEntity from "./entities/RoomEntity";
+//import {RoomReport} from "./RoomReportConnection";
 
 const {DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE} = process.env;
 console.log(DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE);
@@ -22,7 +23,7 @@ const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
   dialect: 'mariadb'
 });
 
-class Room extends Model<RoomEntity>
+export class Room extends Model<RoomEntity>
   implements RoomEntity {
     public Id!: Number;
     public AdminUserId!: Number;
@@ -96,7 +97,7 @@ Room.init(
   }
 );
 
-export async function getRooms(roomNumber: string) :Promise<RoomEntity[]> {
+export async function getRooms(roomNumber: string) :Promise<Room[]> {
   const room = await Room.findAll({where: {RoomNumber: roomNumber}});
   return room;
 };

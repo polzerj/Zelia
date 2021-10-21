@@ -10,19 +10,20 @@ import {
     HasManyCountAssociationsMixin,
     HasManyCreateAssociationMixin,
     Optional,
+    where,
   } from "sequelize";
 
 import RoomReportEntity from "./entities/RoomReportEntity";
+import {Room} from "./RoomConnection";
 
 const {DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE} = process.env;
-console.log(DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE);
 
 const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
   host: DB_SERVER,
   dialect: 'mariadb'
 });
 
-class RoomReport extends Model<RoomReportEntity>
+export class RoomReport extends Model<RoomReportEntity>
     implements RoomReportEntity{
         public Id!: Number;
         public RoomId!: Number;
@@ -38,13 +39,17 @@ RoomReport.init(
         Id:
         {
             type: DataTypes.INTEGER,
-            autoIncrement: true,
+            primaryKey: true,
             allowNull: false,
         },
         RoomId:
         {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            references: 
+            {
+                model: Room,
+                key: "RoomId"
+            },            
         },
         AssignedAdminId:
         {
@@ -78,8 +83,17 @@ RoomReport.init(
     }
 );
 
-export async function getRoomReports(roomNumber: string) :Promise<RoomReportEntity[]> {
-    const roomReport = await RoomReport.findAll({where: {}})   //To implement
-    console.log(roomReport);
+Room.hasMany(RoomReport)
+RoomReport.belongsTo(Room, {foreignKey: 'RoomId'});
+
+export async function getRoomReports(roomNumber: string) :Promise<RoomReport[]> {
+    const roomReport = await RoomReport.findAll({
+        include: [{
+            model: Room,
+            required: true,
+            where: {RoomNumber: roomNumber}
+        }]
+    })
     return roomReport;
+    //return (roomReport as any[]).map(e=>e.dataValue) as RoomReport[];
 }

@@ -34,7 +34,7 @@ AdminUser.init(
         Id:
         {
             type: DataTypes.NUMBER,
-            autoIncrement: true,
+            primaryKey: true,
             allowNull: false,
         },
         UserName:
@@ -55,7 +55,6 @@ AdminUser.init(
 );
 
 export async function getAdminUser() :Promise<AdminUserEntity[]> {
-    const adminUser = await AdminUser.findAll()  //To implement
-    console.log(adminUser);
+    const adminUser = await AdminUser.findAll()
     return adminUser;
 }
