@@ -7,7 +7,7 @@ export function getRoomInfoUrl(roomNr: string) {
 }
 
 export function getTimetableUrl(roomNr: string) {
-    return `${baseurl}/room/${roomNr}/timetable`;
+    return `${baseurl}/room/${roomNr}/timetable/`;
 }
 
 export function gerRoomListUrl() {

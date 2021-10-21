@@ -8,6 +8,7 @@ import OCR from "./components/OCR";
 import logger from "./util/logger";
 import Link from "./components/Link";
 import RoomInput from "./components/RoomInput";
+import Timetable from "./components/Timetable";
 
 const app = document.querySelector("#app")!;
 
@@ -36,6 +37,11 @@ let components: ComponentInfo[] = [
         tagName: "zelia-room-input",
         type: RoomInput,
         path: "/RoomInput.html",
+    },
+    {
+        tagName: "zelia-timetable",
+        type: Timetable,
+        path: "/Timetable.html",
     },
 ];
 
@@ -69,4 +75,8 @@ function ocrPage() {
 
 function roomPage(variables?: PathVariables) {
     logger.info(variables?.roomNumber);
+
+    const timetable = document.createElement("zelia-timetable") as Timetable;
+    if (variables?.roomNumber) timetable.roomNumber = variables?.roomNumber;
+    app.append(timetable);
 }
