@@ -1,4 +1,6 @@
-import RoomInfoModel from "models/RoomInfoModel";
+import RoomEntity from "../data/entities/RoomEntity";
+import { roomEntitiesToRoomInfoModels } from "../data/mapper/RoomInfoMapper";
+import { getRoomInfoByRoomNumber } from "../data/Databaseservice";
 import { Request, Response, ControllerBase } from "../types";
 
 export default class RoomInfo extends ControllerBase {
@@ -6,22 +8,18 @@ export default class RoomInfo extends ControllerBase {
         super("/room/:roomNumber");
     }
 
-    get(req: Request, res: Response) {
-        let roomInfo: RoomInfoModel = {
-            roomNumber: "S1208",
-            name: "Demo",
-            description: "Classroom of 5A/BHITN",
-            type: "Class",
-            isWheelchairAccessible: true,
-            hasTeacherComputer: true,
-            projector: "Smart",
-            projectorConnectors: ["HDMI", "USB"],
-            hasWater: true,
-            boards: ["smart", "white", "pin"],
-            numberOfComputers: 1,
-            numberOfSeats: 20,
-        };
+    async get(req: Request, res: Response) {
+        const roomNumber = req.params.roomNumber;
+        let data: RoomEntity[];
+        try {
+            data = await getRoomInfoByRoomNumber(roomNumber);
+        } catch (e: unknown) {
+            console.log(e);
 
-        res.json(roomInfo);
+            res.status(404).send("Room not found");
+            return;
+        }
+        const model = roomEntitiesToRoomInfoModels(data);
+        res.send(model);
     }
 }
