@@ -1,3 +1,5 @@
+import Room from "../services/WebUntis/WebUntisLib/Room";
+import { getRoomList } from "../services/WebUntis";
 import { Request, Response, ControllerBase } from "../types";
 
 export default class RoomList extends ControllerBase {
@@ -5,7 +7,15 @@ export default class RoomList extends ControllerBase {
         super("/room");
     }
 
-    get(req: Request, res: Response) {
-        res.json(["ITACA", "1308", "2412", "2406"]);
+    async get(req: Request, res: Response) {
+        let rooms = await getRoomList();
+        res.json(roomsToStringArray(rooms));
     }
+}
+
+function roomsToStringArray(rooms: Room[]) {
+    return [
+        ...rooms.map((room) => room.name),
+        ...rooms.map((room) => room.longName),
+    ];
 }

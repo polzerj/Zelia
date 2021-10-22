@@ -38,8 +38,7 @@ export async function getTimetableByRoomNumber(
     return table;
 }
 
-async function getIDbyRoomNumber(RoomNumber: string) {
-    let return_id = -1;
+export async function getRoomList() {
     let rooms: Room[];
     if (cache.roomsAvailable) {
         rooms = cache.rooms;
@@ -47,6 +46,12 @@ async function getIDbyRoomNumber(RoomNumber: string) {
         rooms = await untis.getRooms();
         cache.rooms = rooms;
     }
+    return rooms;
+}
+
+async function getIDbyRoomNumber(RoomNumber: string) {
+    let return_id = -1;
+    let rooms = await getRoomList();
     for (const room of rooms) {
         let longname = room.longName;
         let shortname = room.name;
