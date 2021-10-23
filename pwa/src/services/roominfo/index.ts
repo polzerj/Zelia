@@ -4,7 +4,7 @@ import RoomInfoModel from "./RoomInfoModel";
 
 export async function getRoomInfoByRoomNumber(
     roomNr: string
-): Promise<RoomInfoModel> {
+): Promise<RoomInfoModel[]> {
     const res = await fetch(getRoomInfoUrl(roomNr));
 
     if (res.status === 404) {
@@ -13,5 +13,5 @@ export async function getRoomInfoByRoomNumber(
 
     if (!res.ok) throw new Error("Another error (Not 404; Not Not found)");
 
-    return (await res.json()) as RoomInfoModel;
+    return (await res.json()) as RoomInfoModel[];
 }
