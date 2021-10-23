@@ -38,7 +38,7 @@ export default class RoomInfo extends Component<SearchElements> {
     private async loadInfo(roomNumber: string) {
         try {
             let roomInfo = await getRoomInfoByRoomNumber(roomNumber);
-            this.createElements(roomInfo);
+            this.createElements(roomInfo[0]);
         } catch (e) {
             logger.error(e);
             this.createErrorElements();
