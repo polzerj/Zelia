@@ -1,6 +1,6 @@
 import RoomEntity from "../data/entities/RoomEntity";
 import { roomEntitiesToRoomInfoModels } from "../data/mapper/RoomInfoMapper";
-import { getRoomInfoByRoomNumber } from "../data/Databaseservice";
+import { getRoomInfoByRoomNumber } from "../data/DatabaseService";
 import { Request, Response, ControllerBase } from "../types";
 
 export default class RoomInfo extends ControllerBase {
