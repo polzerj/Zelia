@@ -4,35 +4,80 @@ import RoomReservationEntity from "./entities/RoomReservationEntity";
 import LessonEntity from "./entities/LessonEntity";
 import AdminUserEntity from "./entities/AdminUserEntity";
 
-import { getRooms } from "./RoomConnection";
-import { getRoomReports } from "./RoomReportConnection";
-import { getRoomReservations } from "./RooomReservationConnection";
-import { getLessons } from "./LessonConnection";
-import { getAdminUser } from "./AdminUserConnection";
+import { getRooms, Room } from "./RoomConnection";
+import { getRoomReports, RoomReport } from "./RoomReportConnection";
+import { getRoomReservations, RoomReservation } from "./RooomReservationConnection";
+import { getLessons, Lesson } from "./LessonConnection";
+import { getAdminUser, AdminUser } from "./AdminUserConnection";
+import { RoomNotFoundException } from "./Exceptions/RoomNotFoundException";
+import { DatabaseNotAvailableException } from "./Exceptions/DatabaseNotAvailableException";
+import { NoAdminUsersFoundException } from "./Exceptions/NoAdminUsersFoundException";
 
 export async function getRoomInfoByRoomNumber(roomNumber: string): Promise<RoomEntity[]> {
-  const data: RoomEntity[] = await getRooms(roomNumber);
+  let data: Room[];
+  try {
+    data = await getRooms(roomNumber);
+  } catch (e) {
+    throw new DatabaseNotAvailableException();
+  }
+  if (data.length === 0) {
+    throw new RoomNotFoundException();
+  }
   return data;
 }
 
 export async function getRoomReportByRoomNumber(roomNumber: string): Promise<RoomReportEntity[]> {
-  const data = await getRoomReports(roomNumber);
+  let data: RoomReport[];
+  try {
+    data = await getRoomReports(roomNumber);
+  } catch (e) {
+    throw new DatabaseNotAvailableException();
+  }
+  if (data.length === 0) {
+    throw new RoomNotFoundException();
+  }
   return data;
 }
 
 export async function getRoomReservationByRoomNumber(
   roomNumber: string
 ): Promise<RoomReservationEntity[]> {
-  const data = await getRoomReservations(roomNumber);
+  let data: RoomReservation[];
+  try {
+    data = await getRoomReservations(roomNumber);
+  } catch (e) {
+    throw new DatabaseNotAvailableException();
+  }
+  if (data.length === 0) {
+    throw new RoomNotFoundException();
+  }
   return data;
 }
 
 export async function getLessonByRoomNumber(roomNumber: string): Promise<LessonEntity[]> {
-  const data = await getLessons(roomNumber);
+  let data: Lesson[];
+  try {
+    data = await getLessons(roomNumber);
+  } catch (e) {
+    throw new DatabaseNotAvailableException();
+  }
+  if (data.length === 0) {
+    throw new RoomNotFoundException();
+  }
   return data;
 }
 
 export async function getAdminUsers(): Promise<AdminUserEntity[]> {
-  const data = await getAdminUser();
+  let data: AdminUser[];
+  try {
+    data = await getAdminUser();
+  } catch (e) {
+    throw new DatabaseNotAvailableException();
+  }
+  if (data.length === 0) {
+    throw new NoAdminUsersFoundException();
+  }
   return data;
 }
+
+getRoomInfoByRoomNumber("1234");
