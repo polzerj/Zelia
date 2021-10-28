@@ -4,7 +4,7 @@ export function getMatchingPart(input: string): string | undefined {
     let matches = input.match(regEx);
     const firstMatch = matches?.[0];
     if (!firstMatch) return;
-    if (/^(S|s)/.test(firstMatch)) return firstMatch;
+    if (/^([A-Z]|[a-z])/.test(firstMatch)) return firstMatch.toUpperCase();
     return `S${firstMatch}`;
 }
 
