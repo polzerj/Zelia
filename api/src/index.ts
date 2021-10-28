@@ -10,7 +10,7 @@ import RoomList from "./controllers/RoomList";
 import RoomInfo from "./controllers/RoomInfo";
 import { login } from "./services/WebUntis";
 
-let WebUntisLoggedIn = false;
+export let isLoggedInWebUntis = false;
 
 const app = new App({
     controllers: [
@@ -33,11 +33,10 @@ const app = new App({
 async function TryLogin() {
     try {
         login();
-        WebUntisLoggedIn = true;
+        isLoggedInWebUntis = true;
     } catch (e) {
         console.log(e);
     }
 }
 TryLogin();
-export default WebUntisLoggedIn;
 app.listen();
