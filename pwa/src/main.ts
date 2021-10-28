@@ -61,6 +61,8 @@ function main() {
     router.on("404", notFoundPage);
     router.on("/ocr", ocrPage);
     router.on("/room/:roomNumber", roomPage);
+
+    router.redirect(window.location.pathname);
 }
 
 function notFoundPage() {
