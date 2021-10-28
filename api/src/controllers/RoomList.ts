@@ -1,6 +1,7 @@
 import Room from "../services/WebUntis/WebUntisLib/Room";
 import { getRoomList } from "../services/WebUntis";
 import { Request, Response, ControllerBase } from "../types";
+import  WebUntisLoggedIn from "../index";
 
 export default class RoomList extends ControllerBase {
     constructor() {

@@ -2,6 +2,7 @@ import RoomEntity from "../data/entities/RoomEntity";
 import { roomEntitiesToRoomInfoModels } from "../data/mapper/RoomInfoMapper";
 import { getRoomInfoByRoomNumber } from "../data/DatabaseService";
 import { Request, Response, ControllerBase } from "../types";
+import WebUntisLoggedIn from "../index";
 
 export default class RoomInfo extends ControllerBase {
     constructor() {
@@ -9,7 +10,10 @@ export default class RoomInfo extends ControllerBase {
     }
 
     async get(req: Request, res: Response) {
-        const roomNumber = req.params.roomNumber;
+        if (!WebUntisLoggedIn) {
+            res.status(500).send("No connection to WebUntis");
+        } else {
+            const roomNumber = req.params.roomNumber;
         let data: RoomEntity[];
         try {
             data = await getRoomInfoByRoomNumber(roomNumber);
@@ -21,5 +25,7 @@ export default class RoomInfo extends ControllerBase {
         }
         const model = roomEntitiesToRoomInfoModels(data);
         res.send(model);
+        }
+
     }
 }

@@ -101,4 +101,4 @@ async function testCode() {
     console.table(mappedTable);
 }
 
-testCode();
+//testCode();
