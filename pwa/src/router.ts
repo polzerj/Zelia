@@ -70,26 +70,6 @@ class Router {
         path = this.removeLastSlash(path);
 
         this.registeredEvents.push({ path, action });
-        if (
-            this.registeredEvents.every(
-                (e) => e.path !== window.location.pathname
-            )
-        ) {
-            this.clearRootElement();
-            this.registeredEvents
-                .filter((e) => e.path === "404")
-                .forEach((e) => e.action());
-        }
-
-        let matchingEvents = this.getMatchingRouterEvents(
-            window.location.pathname
-        );
-        if (matchingEvents.events.length > 0) {
-            this.clearRootElement();
-            matchingEvents.events.forEach((ev: RouterEvent) => {
-                ev.action(matchingEvents.variables);
-            });
-        }
     }
     private normalizePath(path: string): string {
         return path.split("?")[0];

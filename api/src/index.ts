@@ -8,6 +8,9 @@ import Timetable from "./controllers/TimeTable";
 import CorsMiddleware from "./middleware/CorsMiddleware";
 import RoomList from "./controllers/RoomList";
 import RoomInfo from "./controllers/RoomInfo";
+import { login } from "./services/WebUntis";
+
+export let isLoggedInWebUntis = false;
 
 const app = new App({
     controllers: [
@@ -27,4 +30,13 @@ const app = new App({
     baseUrl: "/api",
 });
 
+async function TryLogin() {
+    try {
+        login();
+        isLoggedInWebUntis = true;
+    } catch (e) {
+        console.log(e);
+    }
+}
+TryLogin();
 app.listen();
