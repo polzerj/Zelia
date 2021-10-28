@@ -1,3 +1,5 @@
+import { getTimeGrid } from "../services/timegrid";
+import Timegrid from "../services/timegrid/Timegrid";
 import { getTimetableByRoomNumber } from "../services/timetable";
 import Lesson from "../services/timetable/Lesson";
 import Component from "../types/Component";
@@ -5,14 +7,21 @@ import logger from "../util/logger";
 
 interface SearchElements {
     container: HTMLDivElement;
+    view: HTMLDivElement;
 }
 
 export default class Timetable extends Component<SearchElements> {
+    private timegrid: Promise<Timegrid>;
     constructor() {
-        super("zelia-timetable", { container: "#ttContainer" }, false);
+        super(
+            "zelia-timetable",
+            { container: "#ttContainer", view: "#ttView" },
+            false
+        );
 
         let attr = this.getAttribute("room-number");
         if (attr) this.loadLessons(attr);
+        this.timegrid = getTimeGrid();
     }
 
     set roomNumber(roomNumber: string) {
@@ -54,15 +63,24 @@ export default class Timetable extends Component<SearchElements> {
             })
             .sort((a, b) => a.start.localeCompare(b.start));
 
-        for (const lesson of table) {
-            let item = document.createElement("p");
-            item.textContent = `${lesson.subject[0]} - ${
-                lesson.class[0]
-            } - ${lesson.teacher.join(", ")} - start: ${lesson.start}`;
-            this.elements.container.append(item);
+        for (let i = 0; i < 12; i++) {
+            let lessonID = document.createElement("div");
+            lessonID.textContent = i;
+            lessonID.classList.add("lessonID");
+            this.elements.view.append(lessonID);
+
+            let subject = document.createElement("div");
+            if (table[i]) {
+                subject.classList.add("subject");
+                subject.textContent = `${table[i].subject[0]} - ${
+                    table[i].class[0]
+                } - ${table[i].teacher.join(", ")} - start: ${table[i].start}`;
+            }
+
+            this.elements.view.append(subject);
         }
 
-        if (lessons.length == 0) {
+        if (table.length == 0) {
             let item = document.createElement("p");
             item.textContent = "No lessons";
             this.elements.container.append(item);

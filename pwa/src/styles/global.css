@@ -1,0 +1,10 @@
+body {
+    font-family: var(--default-font);
+    color: var(--fg-color);
+    background-color: var(--bg-color);
+}
+
+#app {
+    margin: auto;
+    width: clamp(300px, 90%, 1000px);
+}

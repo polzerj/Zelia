@@ -90,11 +90,11 @@ async function roomPage(variables?: PathVariables) {
     backLink.href = "/";
     app.append(backLink);
 
-    const timetable = document.createElement("zelia-timetable") as Timetable;
-    if (variables?.roomNumber) timetable.roomNumber = variables?.roomNumber;
-    app.append(timetable);
-
     const info = document.createElement("zelia-room-info") as RoomInfo;
     if (variables?.roomNumber) info.roomNumber = variables?.roomNumber;
     app.append(info);
+
+    const timetable = document.createElement("zelia-timetable") as Timetable;
+    if (variables?.roomNumber) timetable.roomNumber = variables?.roomNumber;
+    app.append(timetable);
 }

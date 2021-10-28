@@ -50,7 +50,7 @@ export default class RoomInput extends Component<SearchElements> {
         if (mp /* && isRoomNumberValid(mp) */) {
             router.redirect("/room/" + mp);
         } else {
-            // TODO: show user (style input red)
+            this.elements.input.classList.add("error");
         }
     }
 
