@@ -101,4 +101,8 @@ async function testCode() {
     console.table(mappedTable);
 }
 
+export function getTimegrid() {
+    return untis.getTimegrid();
+}
+
 //testCode();

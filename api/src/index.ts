@@ -11,6 +11,7 @@ import RoomInfo from "./controllers/RoomInfo";
 import { login } from "./services/WebUntis";
 
 export let isLoggedInWebUntis = false;
+import Timegrid from "./controllers/Timegrid";
 
 const app = new App({
     controllers: [
@@ -18,6 +19,7 @@ const app = new App({
         new Timetable(),
         new RoomList(),
         new RoomInfo(),
+        new Timegrid(),
     ],
     middleWares: [
         // It is not deprecated if not used as function
