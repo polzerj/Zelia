@@ -79,5 +79,3 @@ export async function getAdminUsers(): Promise<AdminUserEntity[]> {
   }
   return data;
 }
-
-getRoomInfoByRoomNumber("1234");
