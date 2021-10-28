@@ -1,4 +1,4 @@
-class RoomNotFoundException extends Error {
+export class RoomNotFoundException extends Error {
   constructor() {
     super("Room not found");
   }

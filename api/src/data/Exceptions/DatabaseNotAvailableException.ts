@@ -1,4 +1,4 @@
-class DatabaseNotAvailableException extends Error {
+export class DatabaseNotAvailableException extends Error {
   constructor() {
     super("Database not available");
   }

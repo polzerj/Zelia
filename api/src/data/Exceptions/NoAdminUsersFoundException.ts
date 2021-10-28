@@ -1,4 +1,4 @@
-class NoAdminUsersFoundException extends Error {
+export class NoAdminUsersFoundException extends Error {
   constructor() {
     super("No Admin Users in Database found");
   }
