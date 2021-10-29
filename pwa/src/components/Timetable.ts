@@ -1,3 +1,8 @@
+import {
+    getTimetableViewOfTimegridAndTimetable,
+    simplifyLesson,
+    timetableToSortedTimetable,
+} from "../services/mapper/timetable";
 import { getTimeGrid } from "../services/timegrid";
 import Timegrid from "../services/timegrid/Timegrid";
 import { getTimetableByRoomNumber } from "../services/timetable";
@@ -11,7 +16,7 @@ interface SearchElements {
 }
 
 export default class Timetable extends Component<SearchElements> {
-    private timegrid: Promise<Timegrid>;
+    private timegrid: Promise<Timegrid[]>;
     constructor() {
         super(
             "zelia-timetable",
@@ -47,34 +52,27 @@ export default class Timetable extends Component<SearchElements> {
         }
     }
 
-    private createTimetableElements(lessons: Lesson[]) {
-        let table = lessons
-            .map((lesson) => {
-                return {
-                    class: lesson.kl.map((kl) => kl.name),
-                    room: lesson.ro.map((ro) => ro.name),
-                    teacher: lesson.te.map((te) => te.name),
-                    subjectLongName: lesson.su.map((su) => su.longname),
-                    subject: lesson.su.map((su) => su.name),
-                    date: stringifyDate(lesson.date),
-                    start: stringifyTime(lesson.startTime),
-                    end: stringifyTime(lesson.endTime),
-                };
-            })
-            .sort((a, b) => a.start.localeCompare(b.start));
-
-        for (let i = 0; i < 12; i++) {
+    private async createTimetableElements(lessons: Lesson[]) {
+        let table = timetableToSortedTimetable(lessons);
+        const grid = await this.timegrid;
+        const griddedTimeTable = getTimetableViewOfTimegridAndTimetable(
+            table,
+            grid[0]
+        );
+        for (const lessonName in griddedTimeTable) {
+            const lesson = griddedTimeTable[lessonName];
             let lessonID = document.createElement("div");
-            lessonID.textContent = i;
+            lessonID.textContent = lessonName;
             lessonID.classList.add("lessonID");
             this.elements.view.append(lessonID);
 
             let subject = document.createElement("div");
-            if (table[i]) {
+            if (lesson) {
+                const simplifiedLesson = simplifyLesson(lesson);
                 subject.classList.add("subject");
-                subject.textContent = `${table[i].subject[0]} - ${
-                    table[i].class[0]
-                } - ${table[i].teacher.join(", ")} - start: ${table[i].start}`;
+                subject.textContent = `${simplifiedLesson.subject[0]} - ${
+                    simplifiedLesson.class[0]
+                } - ${simplifiedLesson.teacher.join(", ")}`;
             }
 
             this.elements.view.append(subject);
@@ -85,29 +83,12 @@ export default class Timetable extends Component<SearchElements> {
             item.textContent = "No lessons";
             this.elements.container.append(item);
         }
-
-        console.log(lessons);
     }
+
     private createNoTimetableFoundElement(e: Error) {
         logger.error(e);
 
         this.elements.container.append("No lesson data found");
         // when api server is running and invalid room number is fetched (1234) this function is called but "NO lessons data found" is removed from dom
     }
-}
-
-function stringifyDate(date: number) {
-    let dateStr = `${date}`;
-    return `${dateStr.substr(6, 2)}.${dateStr.substr(4, 2)}.${dateStr.substr(
-        0,
-        4
-    )}`;
-}
-
-function stringifyTime(time: number) {
-    let timeStr = `${time}`;
-    if (timeStr.length === 3) {
-        timeStr = `0${timeStr}`;
-    }
-    return `${timeStr.substr(0, 2)}:${timeStr.substr(2, 2)}`;
 }
