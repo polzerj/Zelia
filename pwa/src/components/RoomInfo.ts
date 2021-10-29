@@ -1,3 +1,4 @@
+import Accordion from "../services/animation/Accordion";
 import { getRoomInfoByRoomNumber } from "../services/roominfo";
 import {
     buildSummary,
@@ -35,6 +36,10 @@ export default class RoomInfo extends Component<SearchElements> {
 
     get roomNumber(): string {
         return this.getAttribute("room-number") ?? "";
+    }
+
+    registerEventListenerCallback() {
+        new Accordion(this.elements.details);
     }
 
     private async loadInfo(roomNumber: string) {
