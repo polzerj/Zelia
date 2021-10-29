@@ -26,6 +26,7 @@ export async function login() {
 export async function getTimetableByRoomNumber(
     roomNum: string
 ): Promise<Lesson[]> {
+    if (/^([A-Z]|[a-z])/.test(roomNum)) roomNum = roomNum.substr(1);
     let date = new Date();
     let roomId = await getIDbyRoomNumber(roomNum);
 
