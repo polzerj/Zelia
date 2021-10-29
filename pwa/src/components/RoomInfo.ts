@@ -1,4 +1,8 @@
 import { getRoomInfoByRoomNumber } from "../services/roominfo";
+import {
+    buildSummary,
+    createRoomInfoText,
+} from "../services/roominfo/elementCreation";
 import RoomInfoModel from "../services/roominfo/RoomInfoModel";
 import Component from "../types/Component";
 import logger from "../util/logger";
@@ -9,8 +13,6 @@ interface SearchElements {
 }
 
 export default class RoomInfo extends Component<SearchElements> {
-    private _roomInfo?: RoomInfoModel;
-
     constructor() {
         super(
             "zelia-room-info",
@@ -49,16 +51,22 @@ export default class RoomInfo extends Component<SearchElements> {
         let welcomeMsg = "Willkommen in " + roomInfo.roomNumber;
 
         this.setState("welcomeMsg", welcomeMsg);
-        this.setState("infoSummary", roomInfo.description);
+        this.setState("infoSummary", buildSummary(roomInfo));
 
-        for (const key in roomInfo) {
-            let e = document.createElement("p");
-            let val = (roomInfo as any)[key];
-
-            e.textContent = key + " - " + val;
-
-            this.elements.divExtendable.append(e);
+        for (const infoText of createRoomInfoText(roomInfo)) {
+            this.appendInfo(infoText);
         }
+
+        /*  for (const key in roomInfo) {
+            let val = (roomInfo as any)[key];
+            this.appendInfo(key + " - " + val);
+        } */
+    }
+
+    private appendInfo(text: string) {
+        const e = document.createElement("p");
+        e.textContent = text;
+        this.elements.divExtendable.append(e);
     }
 
     private createErrorElements() {
