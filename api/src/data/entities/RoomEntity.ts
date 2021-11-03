@@ -4,10 +4,9 @@ export default interface RoomEntity {
   RoomNumber: string;
   LongName: string;
   IsWheelchairAccessable: boolean;
-  HasABeamer: boolean;
   HasWater: boolean;
   HasTeacherComputer: boolean;
-  HasProjector: boolean;
+  Projector: string;
   ProjectorConnectors: string;
   Boards: string;
   NumberOfComputers: number;

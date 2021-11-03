@@ -21,10 +21,9 @@ export class Room extends Model<RoomEntity> implements RoomEntity {
   public RoomNumber!: string;
   public LongName!: string;
   public IsWheelchairAccessable!: boolean;
-  public HasABeamer!: boolean;
   public HasWater!: boolean;
   public HasTeacherComputer!: boolean;
-  public HasProjector!: boolean;
+  public Projector!: string;
   public ProjectorConnectors!: string;
   public Boards!: string;
   public NumberOfComputers!: number;
@@ -54,10 +53,6 @@ Room.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    HasABeamer: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
     HasWater: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -66,8 +61,8 @@ Room.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    HasProjector: {
-      type: DataTypes.BOOLEAN,
+    Projector: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     ProjectorConnectors: {
