@@ -9,7 +9,7 @@ export default abstract class Component<T> extends HTMLElement {
 
     private searchQueries: SearchQueries;
     private _elements: any = {};
-    useShadowRoot: any;
+    useShadowRoot: boolean;
 
     constructor(
         tagName: string,
@@ -26,7 +26,7 @@ export default abstract class Component<T> extends HTMLElement {
             useShadowRoot: true,
         });
 
-        this.useShadowRoot = options.useShadowRoot;
+        this.useShadowRoot = options.useShadowRoot!;
         this.searchQueries = options.queries!;
         if (this.useShadowRoot) {
             this.attachShadow({ mode: "open" });
