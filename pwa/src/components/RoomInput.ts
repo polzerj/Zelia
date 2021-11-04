@@ -15,10 +15,12 @@ export default class RoomInput extends Component<SearchElements> {
     roomNumbers: Promise<string[]>;
     constructor() {
         super("zelia-room-input", {
-            input: "#tbxInput",
-            button: "#btnSubmit",
-            form: "#frmInput",
-            autoCompleteList: "#dtlAutoComplete",
+            queries: {
+                input: "#tbxInput",
+                button: "#btnSubmit",
+                form: "#frmInput",
+                autoCompleteList: "#dtlAutoComplete",
+            },
         });
 
         this.setState("infoMsg", "Raumnummer eingeben:");

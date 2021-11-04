@@ -15,14 +15,13 @@ interface SearchElements {
 
 export default class RoomInfo extends Component<SearchElements> {
     constructor() {
-        super(
-            "zelia-room-info",
-            {
+        super("zelia-room-info", {
+            queries: {
                 details: "#dtlInfo",
                 divExtendable: "#divExtendable",
             },
-            false
-        );
+            autoRender: false,
+        });
 
         let attr = this.getAttribute("room-number");
         if (attr) this.loadInfo(attr);

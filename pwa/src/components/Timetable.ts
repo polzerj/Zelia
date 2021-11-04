@@ -18,11 +18,10 @@ interface SearchElements {
 export default class Timetable extends Component<SearchElements> {
     private timegrid: Promise<Timegrid[]>;
     constructor() {
-        super(
-            "zelia-timetable",
-            { container: "#ttContainer", view: "#ttView" },
-            false
-        );
+        super("zelia-timetable", {
+            queries: { container: "#ttContainer", view: "#ttView" },
+            autoRender: false,
+        });
 
         let attr = this.getAttribute("room-number");
         if (attr) this.loadLessons(attr);

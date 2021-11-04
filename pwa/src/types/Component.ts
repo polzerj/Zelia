@@ -9,25 +9,38 @@ export default abstract class Component<T> extends HTMLElement {
 
     private searchQueries: SearchQueries;
     private _elements: any = {};
+    useShadowRoot: boolean;
 
     constructor(
         tagName: string,
-        queries: SearchQueries = {},
-        autoRender: boolean = true
+        options?: {
+            queries?: SearchQueries;
+            autoRender?: boolean;
+            useShadowRoot?: boolean;
+        }
     ) {
         super();
-        this.searchQueries = queries;
+        options = Object.assign(options, {
+            queries: {},
+            autoRender: true,
+            useShadowRoot: true,
+        });
 
-        this.attachShadow({ mode: "open" });
+        this.useShadowRoot = options.useShadowRoot!;
+        this.searchQueries = options.queries!;
+        if (this.useShadowRoot) {
+            this.attachShadow({ mode: "open" });
+        }
         this.htmlSoucre = getComponentTemplateAsString(tagName);
 
         this.bindMethodsCallback();
-        if (autoRender) this.render(true);
+        if (options.autoRender) this.render(true);
     }
 
     private searchElements() {
+        let selfElement = this.useShadowRoot ? this.shadowRoot : this;
         for (const key in this.searchQueries) {
-            let e = this.shadowRoot?.querySelector(this.searchQueries[key]);
+            let e = selfElement?.querySelector(this.searchQueries[key]);
             if (e) this._elements[key] = e;
         }
     }
@@ -69,8 +82,14 @@ export default abstract class Component<T> extends HTMLElement {
         for (const [key, val] of this.state.entries()) {
             source = source.replaceAll(`{{${key}}}`, val.toString());
         }
-        this.shadowRoot!.innerHTML =
-            source ?? '</span style="color:red">No tag source found</span>';
+
+        if (this.useShadowRoot) {
+            this.shadowRoot!.innerHTML =
+                source ?? '</span style="color:red">No tag source found</span>';
+        } else {
+            this.innerHTML =
+                source ?? '</span style="color:red">No tag source found</span>';
+        }
 
         this.searchElements();
         this.registerEventListenerCallback();
