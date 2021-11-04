@@ -1,9 +1,11 @@
 import logger from "../util/logger";
 import OCRModule from "../services/OCRModule";
 import Component from "../types/Component";
+import { getMatchingPart, isRoomNumberValid } from "../services/validation";
+import router from "../router";
 
 interface SearchElements {
-    video: HTMLVideoElement;
+    canvas: HTMLCanvasElement;
     errorMsg: HTMLSpanElement;
 }
 
@@ -16,22 +18,30 @@ export default class OCR extends Component<SearchElements> {
     private workerTask: Promise<void>;
     private ocrInterval: number = 1000;
     private ocrIntervalCancelToken: IntervalCancelToken = {};
+    private virtualCamera: HTMLVideoElement;
     private virtualScreen: HTMLCanvasElement;
+    private stream?: MediaStream;
 
     constructor() {
-        super("zelia-ocr", { video: "#screen", errorMsg: "#errorMsg" });
+        super("zelia-ocr", { canvas: "#screen", errorMsg: "#errorMsg" });
         this.setState("errorMsg", "Couldn't capture camera stream");
 
         this.ocr = new OCRModule();
         this.workerTask = this.ocr.initializeWorkers(1);
 
+        this.virtualCamera = document.createElement("video");
+        this.virtualCamera.width = window.innerWidth;
+
         this.virtualScreen = document.createElement("canvas");
-        document.body.append(this.virtualScreen);
+
+        this.elements.canvas.style.width = "100%";
     }
 
     removeEventListenerCallback() {
-        if (this.ocrIntervalCancelToken.id)
-            clearInterval(this.ocrIntervalCancelToken.id);
+        if (this.ocrIntervalCancelToken.id) clearInterval(this.ocrIntervalCancelToken.id);
+        this.stream?.getTracks().forEach((track) => {
+            track.stop();
+        });
     }
 
     connectedCallback() {
@@ -53,49 +63,74 @@ export default class OCR extends Component<SearchElements> {
         logger.error(e);
 
         this.elements.errorMsg.classList.remove("hidden");
-        this.elements.video.classList.add("hidden");
+        this.elements.canvas.classList.add("hidden");
     }
 
     async link(stream: MediaStream) {
-        this.elements.video.srcObject = stream;
+        this.stream = stream;
+
+        this.virtualCamera.srcObject = stream;
         await this.workerTask;
 
-        this.play();
+        await this.play();
 
-        this.ocrIntervalCancelToken.id = setInterval(
-            this.doOcr.bind(this),
-            this.ocrInterval
-        ) as any;
+        // create canvas and show borders
+        let { videoWidth, videoHeight } = this.virtualCamera;
+
+        //let ratio = videoWidth / videoHeight;
+        this.elements.canvas.width = videoWidth;
+        this.elements.canvas.height = videoHeight;
+
+        this.elements.canvas.style.width = "100%";
+
+        let centerY = this.elements.canvas.height / 2;
+
+        let ctx = this.elements.canvas.getContext("2d")!;
+
+        const render = () => {
+            ctx.drawImage(this.virtualCamera, 0, 0);
+
+            ctx.fillStyle = "rgba(0,0,0,0.5)";
+            ctx.fillRect(0, 0, this.elements.canvas.width, centerY - 100);
+            ctx.fillRect(0, centerY + 100, this.elements.canvas.width, this.elements.canvas.height);
+
+            requestAnimationFrame(render);
+        };
+        requestAnimationFrame(render);
+
+        // start ocr interval
+        this.virtualScreen.width = this.elements.canvas.width;
+        this.virtualScreen.height = 200;
+
+        this.ocrIntervalCancelToken.id = setInterval(this.doOcr.bind(this), this.ocrInterval) as any;
     }
     doOcr() {
-        this.virtualScreen.width = this.elements.video.videoWidth;
-        this.virtualScreen.height = this.elements.video.videoHeight;
-
-        this.virtualScreen
-            .getContext("2d")
-            ?.drawImage(this.elements.video, 0, 0);
-        logger.log(this.virtualScreen);
+        this.virtualScreen.getContext("2d")?.drawImage(this.virtualCamera, 0, -(this.elements.canvas.height - 200) / 2);
 
         let area = compress(this.virtualScreen);
 
         this.ocr.convert(this.virtualScreen, area).then((s) => {
-            document.body.append(s);
+            logger.log(s);
+
+            // TODO: check for room number and route to site :)
+            let num = getMatchingPart(s) ?? "";
+            if (isRoomNumberValid(num)) {
+                router.redirect("/room/" + num);
+            }
         });
     }
 
-    play() {
-        this.elements.video.play();
+    async play() {
+        await this.virtualCamera.play();
     }
 
     pause() {
-        this.elements.video.pause();
+        this.virtualCamera.pause();
     }
 }
 
 function compress(virtualScreen: HTMLCanvasElement) {
-    let imgData = virtualScreen
-        .getContext("2d")!
-        .getImageData(0, 0, virtualScreen.width, virtualScreen.height);
+    let imgData = virtualScreen.getContext("2d")!.getImageData(0, 0, virtualScreen.width, virtualScreen.height);
 
     let data = imgData.data;
 
