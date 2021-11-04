@@ -23,7 +23,9 @@ export default class OCR extends Component<SearchElements> {
     private stream?: MediaStream;
 
     constructor() {
-        super("zelia-ocr", { canvas: "#screen", errorMsg: "#errorMsg" });
+        super("zelia-ocr", {
+            queries: { video: "#screen", errorMsg: "#errorMsg" },
+        });
         this.setState("errorMsg", "Couldn't capture camera stream");
 
         this.ocr = new OCRModule();

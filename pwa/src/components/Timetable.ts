@@ -9,7 +9,10 @@ interface SearchElements {
 
 export default class Timetable extends Component<SearchElements> {
     constructor() {
-        super("zelia-timetable", { container: "#ttContainer" }, false);
+        super("zelia-timetable", {
+            queries: { container: "#ttContainer" },
+            autoRender: false,
+        });
 
         let attr = this.getAttribute("room-number");
         if (attr) this.loadLessons(attr);
