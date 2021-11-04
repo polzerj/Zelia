@@ -3,7 +3,7 @@ import Component from "../types/Component";
 
 export default class Link extends Component<{}> {
     constructor() {
-        super("zelia-link", { useShadowRoot: false });
+        super("zelia-link", { useShadowRoot: true });
     }
 
     bindMethodsCallback() {

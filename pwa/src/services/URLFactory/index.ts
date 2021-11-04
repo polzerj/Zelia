@@ -1,6 +1,6 @@
 /* const baseurl = "/api";
  */
-const baseurl = "http://johannes.polzer:5000/api";
+const baseurl = "http://localhost:3001/api";
 
 export function getRoomInfoUrl(roomNr: string) {
     return `${baseurl}/room/${roomNr}/`;
