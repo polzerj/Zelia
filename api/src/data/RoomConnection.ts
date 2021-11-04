@@ -23,7 +23,7 @@ export class Room extends Model<RoomEntity> implements RoomEntity {
   public IsWheelchairAccessable!: boolean;
   public HasWater!: boolean;
   public HasTeacherComputer!: boolean;
-  public Projector!: string;
+  public Projector!: ProjectorString;
   public ProjectorConnectors!: string;
   public Boards!: string;
   public NumberOfComputers!: number;
