@@ -1,7 +1,6 @@
 import ComponentInfo from "./types/ComponentInfo";
 import { initializeComponents } from "./loader";
 import router, { PathVariables } from "./router";
-import { getRoomInfoByRoomNumber } from "./services/roominfo";
 
 import Test from "./components/Test";
 import NotFoundError from "./components/404";
@@ -78,6 +77,11 @@ function rootPage() {
 }
 
 function ocrPage() {
+    const backLink = document.createElement("zelia-link") as Link;
+    backLink.textContent = "<- Back";
+    backLink.href = "/";
+    app.append(backLink);
+
     const ocr = document.createElement("zelia-ocr");
     app.append(ocr);
 }
