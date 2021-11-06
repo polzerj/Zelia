@@ -14,73 +14,86 @@ import {
 
 import RoomEntity from "./entities/RoomEntity";
 import sequelize from "./DatabaseConnectionHandler";
+import { ProjectorType } from "./typesOfARoom/ProjectorType";
+import { ProjectorConnectorsTypes } from "./typesOfARoom/ProjectorConnectorsTypes";
+import { BoardTypes } from "./typesOfARoom/BoardType";
+import { RoomType } from "./typesOfARoom/RoomType";
 
-export class Room extends Model<RoomEntity>
-  implements RoomEntity {
-    public Id!: number;
-    public AdminUserId!: number;
-    public RoomNumber!: string;
-    public LongName!: string;
-    public IsWheelchairAccessable!: boolean;
-    public HasABeamer!: boolean;
-    public HasWater!: boolean;
-    public HasTeacherComputer!: boolean;
-    public NumberOfComputers!: number;
-    public Seatplaces!: number;
+export class Room extends Model<RoomEntity> implements RoomEntity {
+  public Id!: number;
+  public AdminUserId!: number;
+  public RoomNumber!: string;
+  public LongName!: string;
+  public RoomDescription!: string;
+  public RoomType!: RoomType;
+  public IsWheelchairAccessable!: boolean;
+  public HasWater!: boolean;
+  public HasTeacherComputer!: boolean;
+  public Projector!: ProjectorType;
+  public ProjectorConnectors!: ProjectorConnectorsTypes;
+  public Boards!: BoardTypes;
+  public NumberOfComputers!: number;
+  public NumberOfSeats!: number;
 }
 
 Room.init(
   {
-    Id:
-    {
+    Id: {
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
       allowNull: false,
     },
-    AdminUserId:
-    {
+    AdminUserId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    RoomNumber:
-    {
+    RoomNumber: {
       type: DataTypes.STRING(128),
       allowNull: false,
     },
-    LongName:
-    {
+    LongName: {
       type: DataTypes.STRING(128),
       allowNull: false,
     },
-    IsWheelchairAccessable:
-    {
+    RoomDescription: {
+      type: DataTypes.STRING(128),
+      allowNull: false,
+    },
+    RoomType: {
+      type: DataTypes.STRING(128),
+      allowNull: false,
+    },
+    IsWheelchairAccessable: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    HasABeamer:
-    {
+    HasWater: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    HasWater:
-    {
+    HasTeacherComputer: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    HasTeacherComputer:
-    {
-      type: DataTypes.BOOLEAN,
+    Projector: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    NumberOfComputers:
-    {
+    ProjectorConnectors: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Boards: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    NumberOfComputers: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    Seatplaces:
-    {
+    NumberOfSeats: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
   },
   {
@@ -89,7 +102,7 @@ Room.init(
   }
 );
 
-export async function getRooms(roomNumber: string) :Promise<Room[]> {
-  const room = await Room.findAll({where: {RoomNumber: roomNumber}});
+export async function getRooms(roomNumber: string): Promise<Room[]> {
+  const room = await Room.findAll({ where: { RoomNumber: roomNumber } });
   return room;
-};
+}
