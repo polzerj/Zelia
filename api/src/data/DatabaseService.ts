@@ -40,7 +40,7 @@ export async function getRoomReportByRoomNumber(roomNumber: string): Promise<Roo
 }
 
 export async function getRoomReservationByRoomNumber(
-    roomNumber: string
+  roomNumber: string
 ): Promise<RoomReservationEntity[]> {
   let data: RoomReservation[];
   try {

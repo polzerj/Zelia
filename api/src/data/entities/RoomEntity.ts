@@ -1,14 +1,21 @@
+import { ProjectorType } from "data/typesOfARoom/ProjectorType";
+import { ProjectorConnectorsTypes } from "data/typesOfARoom/ProjectorConnectorsTypes";
+import { BoardTypes } from "data/typesOfARoom/BoardType";
+import { RoomType } from "data/typesOfARoom/RoomType";
+
 export default interface RoomEntity {
   Id: number;
   AdminUserId: number;
   RoomNumber: string;
   LongName: string;
+  RoomDescription: string;
+  RoomType: RoomType;
   IsWheelchairAccessable: boolean;
   HasWater: boolean;
   HasTeacherComputer: boolean;
-  Projector: ProjectorString;
-  ProjectorConnectors: string;
-  Boards: string;
+  Projector: ProjectorType;
+  ProjectorConnectors: ProjectorConnectorsTypes;
+  Boards: BoardTypes;
   NumberOfComputers: number;
-  Seatplaces: number;
+  NumberOfSeats: number;
 }

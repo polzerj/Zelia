@@ -14,20 +14,26 @@ import {
 
 import RoomEntity from "./entities/RoomEntity";
 import sequelize from "./DatabaseConnectionHandler";
+import { ProjectorType } from "./typesOfARoom/ProjectorType";
+import { ProjectorConnectorsTypes } from "./typesOfARoom/ProjectorConnectorsTypes";
+import { BoardTypes } from "./typesOfARoom/BoardType";
+import { RoomType } from "./typesOfARoom/RoomType";
 
 export class Room extends Model<RoomEntity> implements RoomEntity {
   public Id!: number;
   public AdminUserId!: number;
   public RoomNumber!: string;
   public LongName!: string;
+  public RoomDescription!: string;
+  public RoomType!: RoomType;
   public IsWheelchairAccessable!: boolean;
   public HasWater!: boolean;
   public HasTeacherComputer!: boolean;
-  public Projector!: ProjectorString;
-  public ProjectorConnectors!: string;
-  public Boards!: string;
+  public Projector!: ProjectorType;
+  public ProjectorConnectors!: ProjectorConnectorsTypes;
+  public Boards!: BoardTypes;
   public NumberOfComputers!: number;
-  public Seatplaces!: number;
+  public NumberOfSeats!: number;
 }
 
 Room.init(
@@ -46,6 +52,14 @@ Room.init(
       allowNull: false,
     },
     LongName: {
+      type: DataTypes.STRING(128),
+      allowNull: false,
+    },
+    RoomDescription: {
+      type: DataTypes.STRING(128),
+      allowNull: false,
+    },
+    RoomType: {
       type: DataTypes.STRING(128),
       allowNull: false,
     },
@@ -77,7 +91,7 @@ Room.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    Seatplaces: {
+    NumberOfSeats: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
