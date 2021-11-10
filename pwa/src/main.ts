@@ -2,7 +2,6 @@ import ComponentInfo from "./types/ComponentInfo";
 import { initializeComponents } from "./loader";
 import router, { PathVariables } from "./router";
 
-import Test from "./components/Test";
 import NotFoundError from "./components/404";
 import OCR from "./components/OCR";
 import logger from "./util/logger";
@@ -14,11 +13,6 @@ import Timetable from "./components/Timetable";
 const app = document.querySelector("#app")!;
 
 let components: ComponentInfo[] = [
-    {
-        tagName: "test-component",
-        type: Test,
-        path: "/Test.html",
-    },
     {
         tagName: "not-found",
         type: NotFoundError,
