@@ -1,6 +1,6 @@
 /* const baseurl = "/api";
  */
-const baseurl = "http://localhost:5000/api";
+const baseurl = `https://${window.location.hostname}/api`;
 
 export function getRoomInfoUrl(roomNr: string) {
     return `${baseurl}/room/${roomNr}/`;
@@ -12,4 +12,8 @@ export function getTimetableUrl(roomNr: string) {
 
 export function gerRoomListUrl() {
     return `${baseurl}/room/`;
+}
+
+export function getTimegridUrl() {
+    return `${baseurl}/timegrid/`;
 }

@@ -9,6 +9,8 @@ interface SearchElements {
     input: HTMLInputElement;
     button: HTMLButtonElement;
     autoCompleteList: HTMLDataListElement;
+    ocrInfoText: HTMLSpanElement;
+    ocrButton: HTMLButtonElement;
 }
 
 export default class RoomInput extends Component<SearchElements> {
@@ -20,11 +22,28 @@ export default class RoomInput extends Component<SearchElements> {
                 button: "#btnSubmit",
                 form: "#frmInput",
                 autoCompleteList: "#dtlAutoComplete",
+                ocrInfoText: "#spnOcrInfo",
+                ocrButton: "#btnOcr",
             },
         });
 
         this.setState("infoMsg", "Raumnummer eingeben:");
         this.setState("btnText", "Choose");
+
+        const isMobile = window.navigator.userAgent
+            .toLowerCase()
+            .includes("mobile");
+
+        let ocrInfoMsg = "Or use a camera";
+        //if (!isMobile) ocrInfoMsg += " on your mobile device";
+
+        this.setState("ocrInfoMsg", ocrInfoMsg);
+
+        if (!isMobile) this.elements.ocrInfoText.style.display = "none";
+
+        if (isMobile) {
+            this.elements.ocrButton.style.display = "";
+        }
 
         this.roomNumbers = getRoomList();
         this.fillDataList();
@@ -32,14 +51,21 @@ export default class RoomInput extends Component<SearchElements> {
 
     bindMethodsCallback() {
         this.submit = this.submit.bind(this);
+        this.ocrRedirect = this.ocrRedirect.bind(this);
     }
 
     registerEventListenerCallback() {
         this.elements.form.addEventListener("submit", this.submit);
+        this.elements.ocrButton.addEventListener("click", this.ocrRedirect);
     }
 
     removeEventListenerCallback() {
         this.elements.form.removeEventListener("submit", this.submit);
+        this.elements.ocrButton.removeEventListener("click", this.ocrRedirect);
+    }
+
+    private ocrRedirect() {
+        router.redirect("/ocr");
     }
 
     submit(ev: Event) {
@@ -52,7 +78,7 @@ export default class RoomInput extends Component<SearchElements> {
         if (mp /* && isRoomNumberValid(mp) */) {
             router.redirect("/room/" + mp);
         } else {
-            // TODO: show user (style input red)
+            this.elements.input.classList.add("error");
         }
     }
 

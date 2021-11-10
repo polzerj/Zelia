@@ -13,18 +13,21 @@ export default abstract class Component<T> extends HTMLElement {
 
     constructor(
         tagName: string,
-        options?: {
+        options: {
             queries?: SearchQueries;
             autoRender?: boolean;
             useShadowRoot?: boolean;
-        }
+        } = {}
     ) {
         super();
-        options = Object.assign(options, {
-            queries: {},
-            autoRender: true,
-            useShadowRoot: true,
-        });
+        options = Object.assign(
+            {
+                queries: {},
+                autoRender: true,
+                useShadowRoot: true,
+            },
+            options
+        );
 
         this.useShadowRoot = options.useShadowRoot!;
         this.searchQueries = options.queries!;

@@ -1,0 +1,25 @@
+body {
+    font-family: var(--default-font);
+    color: var(--fg-color);
+    background-color: var(--bg-color);
+}
+
+#app {
+    margin: auto;
+    width: clamp(300px, 90%, 1000px);
+}
+
+button {
+    font-size: 2rem;
+    text-align: center;
+    margin: auto;
+
+    background-color: var(--primary-btn);
+    color: var(--fg-color);
+
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+}
+button:hover {
+    cursor: pointer;
+}

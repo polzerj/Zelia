@@ -2,11 +2,18 @@
     .hidden {
         display: none;
     }
+    details {
+        margin-bottom: 2em;
+    }
+    summary {
+        cursor: pointer;
+        outline: none;
+    }
 </style>
 
 <h2>{{welcomeMsg}}</h2>
 
 <details id="dtlInfo">
     <summary>{{infoSummary}}</summary>
-    <div id="divExtendable"></div>
+    <div id="divExtendable" class="content"></div>
 </details>
