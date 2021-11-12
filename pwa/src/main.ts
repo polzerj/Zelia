@@ -9,6 +9,7 @@ import Link from "./components/Link";
 import RoomInfo from "./components/RoomInfo";
 import RoomInput from "./components/RoomInput";
 import Timetable from "./components/Timetable";
+import Debug from "./components/Debug";
 
 const app = document.querySelector("#app")!;
 
@@ -42,6 +43,11 @@ let components: ComponentInfo[] = [
         tagName: "zelia-timetable",
         type: Timetable,
         path: "/Timetable.html",
+    },
+    {
+        tagName: "zelia-debug",
+        type: Debug,
+        path: "/Debug.html",
     },
 ];
 
