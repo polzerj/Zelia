@@ -1,5 +1,7 @@
 import RoomEntity from "data/entities/RoomEntity";
 import RoomInfoModel from "models/RoomInfoModel";
+import { BoardTypes } from "data/typesOfARoom/BoardType";
+import { ProjectorConnectorsTypes } from "data/typesOfARoom/ProjectorConnectorsTypes";
 
 export function roomEntitiesToRoomInfoModels(entities: RoomEntity[]): RoomInfoModel[] {
   const model: RoomInfoModel[] = entities.map(roomEntityToRoomInfoModel);
@@ -15,16 +17,9 @@ export function roomEntityToRoomInfoModel(entity: RoomEntity): RoomInfoModel {
     isWheelchairAccessible: entity.IsWheelchairAccessable,
     hasTeacherComputer: entity.HasTeacherComputer,
     projector: entity.Projector,
-    projectorConnectors: entity.ProjectorConnectors.split(",") as (
-      | "VGA"
-      | "HDMI"
-      | "DVI"
-      | "USB"
-      | "Display Port"
-      | "NEC Multipresenter"
-    )[],
+    projectorConnectors: entity.ProjectorConnectors.split(",") as ProjectorConnectorsTypes,
     hasWater: entity.HasWater,
-    boards: entity.Boards.split(",") as ("black" | "white" | "smart" | "pin")[],
+    boards: entity.Boards.split(",") as BoardTypes,
     numberOfComputers: entity.NumberOfComputers,
     numberOfSeats: entity.NumberOfSeats,
   };

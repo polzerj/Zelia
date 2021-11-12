@@ -1,6 +1,4 @@
 import { ProjectorType } from "data/typesOfARoom/ProjectorType";
-import { ProjectorConnectorsTypes } from "data/typesOfARoom/ProjectorConnectorsTypes";
-import { BoardTypes } from "data/typesOfARoom/BoardType";
 import { RoomType } from "data/typesOfARoom/RoomType";
 
 export default interface RoomEntity {
