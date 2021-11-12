@@ -2,6 +2,7 @@ import WebUntisCache from "./WebuntisCache";
 import WebUntis from "./WebUntisLib";
 import Lesson from "./WebUntisLib/Lesson";
 import Room from "./WebUntisLib/Room";
+export let isValidLogin = false;
 
 const {
     WEBUNTIS_SCHOOL,
@@ -48,6 +49,16 @@ export async function getRoomList() {
         cache.rooms = rooms;
     }
     return rooms;
+}
+
+export async function TryLogin() {
+    try {
+        login();
+        isValidLogin = true;
+    } catch (e) {
+        console.log(e);
+    }
+    return isValidLogin;
 }
 
 async function getIDbyRoomNumber(RoomNumber: string) {

@@ -1,7 +1,7 @@
 import { ControllerBase, Request, Response } from "../types";
 import type Lesson from "../services/WebUntis/WebUntisLib/Lesson";
 import { getTimetableByRoomNumber, login } from "../services/WebUntis";
-import { isValidLogin } from "../index";
+import { isValidLogin } from "../services/WebUntis";
 
 export default class Timetable extends ControllerBase {
     constructor() {
@@ -18,7 +18,9 @@ export default class Timetable extends ControllerBase {
             } catch (e) {
                 if (e.message == "Current session is not valid") {
                     try {
-                        login();
+                        await login();
+                        this.get(req, res);
+                        return;
                     } catch {
                         res.status(500).send("No connection to WebUntis");
                         return;

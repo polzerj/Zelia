@@ -9,8 +9,8 @@ import CorsMiddleware from "./middleware/CorsMiddleware";
 import RoomList from "./controllers/RoomList";
 import RoomInfo from "./controllers/RoomInfo";
 import { login } from "./services/WebUntis";
-export let isValidLogin = false;
 import Timegrid from "./controllers/Timegrid";
+import { TryLogin } from "./services/WebUntis";
 
 const app = new App({
     controllers: [
@@ -31,13 +31,5 @@ const app = new App({
     baseUrl: "/api",
 });
 
-async function TryLogin() {
-    try {
-        login();
-        isValidLogin = true;
-    } catch (e) {
-        console.log(e);
-    }
-}
-TryLogin();
+var valid = TryLogin();
 app.listen();

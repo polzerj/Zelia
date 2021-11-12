@@ -2,7 +2,7 @@ import RoomEntity from "../data/entities/RoomEntity";
 import { roomEntitiesToRoomInfoModels } from "../data/mapper/RoomInfoMapper";
 import { getRoomInfoByRoomNumber } from "../data/DatabaseService";
 import { Request, Response, ControllerBase } from "../types";
-import { isValidLogin } from "../index";
+import { isValidLogin } from "../services/WebUntis";
 
 export default class RoomInfo extends ControllerBase {
     constructor() {
