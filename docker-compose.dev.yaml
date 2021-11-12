@@ -10,7 +10,20 @@ services:
             - "443:443"
         depends_on:
             - "api"
-
+    environment:
+        PORT: 3001
+        DB_SERVER: db
+        DB_USER: root 
+        DB_DATABASE: Zelia
+        DB_PASSWORD_FILE: /api/apiSecrets/db_password
+        WEBUNTIS_USERNAME_FILE: /api/apiSecrets/webuntis_username
+        WEBUNTIS_PASSWORD_FILE: /api/apiSecrets/webuntis_password
+        WEBUNTIS_SCHOOL: szu
+        WEBUNTIS_BASE_URL: aoide.webuntis.com
+    secrets:
+        - DB_PASSWORD
+        - WEBUNTIS_USERNAME
+        - WEBUNTIS_PASSWORD
     api:
         image: node:16-alpine
         volumes:
@@ -31,3 +44,10 @@ services:
         build: ./db
         volumes:
             - ./db/sql:/docker-entrypoint-initdb.d
+secrets:
+  DB_PASSWORD:
+    file: api/apiSecrets/db_password.txt
+  WEBUNTIS_USERNAME:
+    file: api/apiSecrets/webuntis_username.txt
+  WEBUNTIS_PASSWORD:
+    file: api/apiSecrets/webuntis_password.txt
