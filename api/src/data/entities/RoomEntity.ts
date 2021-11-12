@@ -14,8 +14,8 @@ export default interface RoomEntity {
   HasWater: boolean;
   HasTeacherComputer: boolean;
   Projector: ProjectorType;
-  ProjectorConnectors: ProjectorConnectorsTypes;
-  Boards: BoardTypes;
+  ProjectorConnectors: string;
+  Boards: string;
   NumberOfComputers: number;
   NumberOfSeats: number;
 }

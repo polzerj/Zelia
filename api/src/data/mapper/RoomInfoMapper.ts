@@ -15,9 +15,16 @@ export function roomEntityToRoomInfoModel(entity: RoomEntity): RoomInfoModel {
     isWheelchairAccessible: entity.IsWheelchairAccessable,
     hasTeacherComputer: entity.HasTeacherComputer,
     projector: entity.Projector,
-    projectorConnectors: entity.ProjectorConnectors,
+    projectorConnectors: entity.ProjectorConnectors.split(",") as (
+      | "VGA"
+      | "HDMI"
+      | "DVI"
+      | "USB"
+      | "Display Port"
+      | "NEC Multipresenter"
+    )[],
     hasWater: entity.HasWater,
-    boards: entity.Boards,
+    boards: entity.Boards.split(",") as ("black" | "white" | "smart" | "pin")[],
     numberOfComputers: entity.NumberOfComputers,
     numberOfSeats: entity.NumberOfSeats,
   };
