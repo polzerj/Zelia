@@ -1,4 +1,4 @@
-import { getTimegrid } from "../services/WebUntis";
+import { getTimegrid, login } from "../services/WebUntis";
 import { Request, Response, ControllerBase } from "../types";
 console.log("here");
 
@@ -8,7 +8,20 @@ export default class HelloWorldController extends ControllerBase {
     }
 
     async get(req: Request, res: Response) {
-        const tg = await getTimegrid();
+        try {
+            var tg = await getTimegrid();
+            
+        } catch (e) {
+            if (e.message == "Current session is not valid") {
+                try {
+                    login();
+                } catch {
+                    res.status(500).send("No connection to WebUntis");
+                    return;
+                }
+            }
+        }
+
         res.json(tg);
     }
 }

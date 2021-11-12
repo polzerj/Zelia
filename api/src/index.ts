@@ -9,8 +9,7 @@ import CorsMiddleware from "./middleware/CorsMiddleware";
 import RoomList from "./controllers/RoomList";
 import RoomInfo from "./controllers/RoomInfo";
 import { login } from "./services/WebUntis";
-
-export let isLoggedInWebUntis = false;
+export let isValidLogin = false;
 import Timegrid from "./controllers/Timegrid";
 
 const app = new App({
@@ -35,7 +34,7 @@ const app = new App({
 async function TryLogin() {
     try {
         login();
-        isLoggedInWebUntis = true;
+        isValidLogin = true;
     } catch (e) {
         console.log(e);
     }
