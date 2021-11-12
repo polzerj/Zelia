@@ -30,8 +30,8 @@ export class Room extends Model<RoomEntity> implements RoomEntity {
   public HasWater!: boolean;
   public HasTeacherComputer!: boolean;
   public Projector!: ProjectorType;
-  public ProjectorConnectors!: ProjectorConnectorsTypes;
-  public Boards!: BoardTypes;
+  public ProjectorConnectors!: string;
+  public Boards!: string;
   public NumberOfComputers!: number;
   public NumberOfSeats!: number;
 }

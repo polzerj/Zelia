@@ -1,6 +1,4 @@
 import { ProjectorType } from "data/typesOfARoom/ProjectorType";
-import { ProjectorConnectorsTypes } from "data/typesOfARoom/ProjectorConnectorsTypes";
-import { BoardTypes } from "data/typesOfARoom/BoardType";
 import { RoomType } from "data/typesOfARoom/RoomType";
 
 export default interface RoomEntity {
@@ -14,8 +12,8 @@ export default interface RoomEntity {
   HasWater: boolean;
   HasTeacherComputer: boolean;
   Projector: ProjectorType;
-  ProjectorConnectors: ProjectorConnectorsTypes;
-  Boards: BoardTypes;
+  ProjectorConnectors: string;
+  Boards: string;
   NumberOfComputers: number;
   NumberOfSeats: number;
 }
