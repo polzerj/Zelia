@@ -11,15 +11,15 @@ services:
         depends_on:
             - "api"
     environment:
-        PORT: 3001
-        DB_SERVER: db
-        DB_USER: root 
-        DB_DATABASE: Zelia
+        PORT: ${PORT}
+        DB_SERVER: ${DB_SERVER}
+        DB_USER: ${DB_USER} 
+        DB_DATABASE: ${DB_DATABASE}
         DB_PASSWORD: "${DB_PASSWORD}"
         WEBUNTIS_USERNAME: "${WEBUNTIS_USERNAME}"
         WEBUNTIS_PASSWORD: "${WEBUNTIS_PASSWORD}"
-        WEBUNTIS_SCHOOL: szu
-        WEBUNTIS_BASE_URL: aoide.webuntis.com
+        WEBUNTIS_SCHOOL: ${WEBUNTIS_SCHOOL}
+        WEBUNTIS_BASE_URL: ${WEBUNTIS_BASE_URL}
     api:
         image: node:16-alpine
         volumes:
@@ -37,6 +37,8 @@ services:
         command: npm i
         command: ["npm", "run", "dev"]
     db:
-        build: ./db
+        image: mariadb
+        environment:
+            MARIADB_ROOT_PASSWORD: "${DB_PASSWORD}"
         volumes:
             - ./db/sql:/docker-entrypoint-initdb.d

@@ -1,29 +1,31 @@
 version: "3"
 
 services:
-  nginx:
-    image: nginx:1.16.0-alpine
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./certs:/etc/certs
-      - ./pwa/dist:/www
-    ports:
-      - "443:443"
-    depends_on:
-      - "api"
-  api:
-    build: ./api
-    environment:
-      PORT: 3001
-      DB_SERVER: db
-      DB_USER: root
-      DB_DATABASE: Zelia
-      DB_PASSWORD: "${DB_PASSWORD}"
-      WEBUNTIS_USERNAME: "${WEBUNTIS_USERNAME}"
-      WEBUNTIS_PASSWORD: "${WEBUNTIS_PASSWORD}"
-      WEBUNTIS_SCHOOL: szu
-      WEBUNTIS_BASE_URL: aoide.webuntis.com
-  db:
-    build: ./db
-    volumes:
-      - ./db/sql/01DatabaseScript.sql:/docker-entrypoint-initdb.d/01DatabaseScript.sql
+    nginx:
+        image: nginx:1.16.0-alpine
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf
+            - ./certs:/etc/certs
+            - ./pwa/dist:/www
+        ports:
+            - "443:443"
+        depends_on:
+            - "api"
+    api:
+        build: ./api
+        environment:
+            PORT: ${PORT}
+            DB_SERVER: ${DB_SERVER}
+            DB_USER: ${DB_USER}
+            DB_DATABASE: ${DB_DATABASE}
+            DB_PASSWORD: "${DB_PASSWORD}"
+            WEBUNTIS_USERNAME: "${WEBUNTIS_USERNAME}"
+            WEBUNTIS_PASSWORD: "${WEBUNTIS_PASSWORD}"
+            WEBUNTIS_SCHOOL: ${WEBUNTIS_SCHOOL}
+            WEBUNTIS_BASE_URL: ${WEBUNTIS_BASE_URL}
+    db:
+        image: mariadb
+        environment:
+            MARIADB_ROOT_PASSWORD: "${DB_PASSWORD}"
+        volumes:
+            - ./db/sql/01DatabaseScript.sql:/docker-entrypoint-initdb.d/01DatabaseScript.sql
