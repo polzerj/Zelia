@@ -18,24 +18,12 @@ services:
       DB_SERVER: db
       DB_USER: root
       DB_DATABASE: Zelia
-      DB_PASSWORD_FILE: /run/secrets/db_password
-      WEBUNTIS_USERNAME_FILE: /run/secrets/webuntis_username
-      WEBUNTIS_PASSWORD_FILE: /run/Secrets/webuntis_password
+      DB_PASSWORD: "${DB_PASSWORD}"
+      WEBUNTIS_USERNAME: "${WEBUNTIS_USERNAME}"
+      WEBUNTIS_PASSWORD: "${WEBUNTIS_PASSWORD}"
       WEBUNTIS_SCHOOL: szu
       WEBUNTIS_BASE_URL: aoide.webuntis.com
-    secrets:
-      - db_password
-      - webuntis_username
-      - webuntis_password
   db:
     build: ./db
     volumes:
       - ./db/sql/01DatabaseScript.sql:/docker-entrypoint-initdb.d/01DatabaseScript.sql
-
-secrets:
-  db_password:
-    file: api/apiSecrets/db_password.txt
-  webuntis_username:
-    file: api/apiSecrets/webuntis_username.txt
-  webuntis_password:
-    file: api/apiSecrets/webuntis_password.txt
