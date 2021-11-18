@@ -13,18 +13,9 @@ export default class HelloWorldController extends ControllerBase {
         try {
             tg = await getTimegrid();
         } catch (e) {
-            if (e.message == "Current session is not valid") {
-                try {
-                    await login();
-                    this.get(req, res);
-                    return;
-                } catch {
-                    res.status(500).send("No connection to WebUntis");
-                    return;
-                }
-            }
+            res.status(500).send(e.message);
+            return;
         }
-
         res.json(tg);
     }
 }

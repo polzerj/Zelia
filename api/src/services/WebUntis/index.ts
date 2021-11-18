@@ -18,6 +18,8 @@ const untis = new WebUntis(
     WEBUNTIS_BASE_URL
 );
 
+const NoConnError = new Error("Unable to connect to WebUntis");
+
 const cache = new WebUntisCache();
 
 export async function login() {
@@ -27,6 +29,7 @@ export async function login() {
 export async function getTimetableByRoomNumber(
     roomNum: string
 ): Promise<Lesson[]> {
+    var table;
     if (/^([A-Z]|[a-z])/.test(roomNum)) roomNum = roomNum.substr(1);
     let date = new Date();
     let roomId = await getIDbyRoomNumber(roomNum);
@@ -35,7 +38,20 @@ export async function getTimetableByRoomNumber(
         const table = cache.getTimetable(roomId);
         return table;
     }
-    let table = await untis.getTimetableFor(date, roomId, 4);
+    try {
+        table = await untis.getTimetableFor(date, roomId, 4);
+    } catch (e) {
+        if (e.message == "Current session is not valid") {
+            await login();
+            await getTimetableByRoomNumber(roomNum);
+        } else if (e.message == "Server didn't returned any result.") {
+            console.log(e);
+            throw new Error("Room not found");
+        } else {
+            console.log(e.message);
+            throw NoConnError;
+        }
+    }
     cache.setTimetable(roomId, table);
     return table;
 }
@@ -45,8 +61,17 @@ export async function getRoomList() {
     if (cache.roomsAvailable) {
         rooms = cache.rooms;
     } else {
-        rooms = await untis.getRooms();
-        cache.rooms = rooms;
+        try {
+            rooms = await untis.getRooms();
+            cache.rooms = rooms;
+        } catch (e) {
+            if (e.message == "Current session is not valid") {
+                login();
+                await getRoomList();
+            } else {
+                throw NoConnError;
+            }
+        }
     }
     return rooms;
 }
@@ -113,8 +138,19 @@ async function testCode() {
     console.table(mappedTable);
 }
 
-export function getTimegrid() {
-    return untis.getTimegrid();
+export async function getTimegrid() {
+    let grid;
+    try {
+        grid = untis.getTimegrid();
+    } catch (e) {
+        if (e.message == "Current session is not valid") {
+            await login();
+            getTimegrid();
+        } else {
+            throw NoConnError;
+        }
+    }
+    return grid;
 }
 
 //testCode();

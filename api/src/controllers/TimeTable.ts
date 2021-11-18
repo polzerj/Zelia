@@ -11,24 +11,17 @@ export default class Timetable extends ControllerBase {
         let roomNumber = req.params.roomNr;
         let timetable: Lesson[];
         if (!isValidLogin) {
-            res.status(500).send("No connection to WebUntis");
+            res.status(500).send("No valid WebUntis Login");
         } else {
             try {
                 timetable = await getTimetableByRoomNumber(roomNumber);
             } catch (e) {
-                if (e.message == "Current session is not valid") {
-                    try {
-                        await login();
-                        this.get(req, res);
-                        return;
-                    } catch {
-                        res.status(500).send("No connection to WebUntis");
-                        return;
-                    }
-                } else {
-                    res.status(404).send(
-                        `Timetable for ${roomNumber} not found!`
-                    );
+                if (e.message == "Room not found") {
+                    res.status(404).send(e.message);
+                    return;
+                }
+                if (e.message == "Unable to connect to WebUntis") {
+                    res.status(500).send(e.message);
                     return;
                 }
             }
