@@ -18,7 +18,17 @@ const untis = new WebUntis(
     WEBUNTIS_BASE_URL
 );
 
-const NoConnError = new Error("Unable to connect to WebUntis");
+class NoConnectionError extends Error {
+    constructor() {
+        super("Unable to connect to WebUntis");
+    }
+}
+
+class RoomNotFoundError extends Error {
+    constructor() {
+        super("Room not found");
+    }
+}
 
 const cache = new WebUntisCache();
 
@@ -46,10 +56,10 @@ export async function getTimetableByRoomNumber(
             await getTimetableByRoomNumber(roomNum);
         } else if (e.message == "Server didn't returned any result.") {
             console.log(e);
-            throw new Error("Room not found");
+            throw new RoomNotFoundError();
         } else {
             console.log(e.message);
-            throw NoConnError;
+            throw new NoConnectionError();
         }
     }
     cache.setTimetable(roomId, table);
@@ -66,10 +76,22 @@ export async function getRoomList() {
             cache.rooms = rooms;
         } catch (e) {
             if (e.message == "Current session is not valid") {
-                login();
+                let count = 0;
+                while (count < 3) {
+                    try {
+                        login();
+                        break;
+                    } catch {
+                        count += 1;
+                    }
+                }
+                if (count >= 3) {
+                    throw new NoConnectionError();
+                    return;
+                }
                 await getRoomList();
             } else {
-                throw NoConnError;
+                throw new NoConnectionError();
             }
         }
     }
@@ -78,7 +100,7 @@ export async function getRoomList() {
 
 export async function TryLogin() {
     try {
-        login();
+        await login();
         isValidLogin = true;
     } catch (e) {
         console.log(e);
@@ -147,7 +169,7 @@ export async function getTimegrid() {
             await login();
             getTimegrid();
         } else {
-            throw NoConnError;
+            throw new NoConnectionError();
         }
     }
     return grid;
