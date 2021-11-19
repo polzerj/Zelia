@@ -79,7 +79,7 @@ export async function getRoomList() {
                 let count = 0;
                 while (count < 3) {
                     try {
-                        login();
+                        await login();
                         break;
                     } catch {
                         count += 1;

@@ -31,5 +31,5 @@ const app = new App({
     baseUrl: "/api",
 });
 
-var valid = TryLogin();
+TryLogin();
 app.listen();
