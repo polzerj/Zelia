@@ -1,7 +1,6 @@
 import Timegrid from "services/WebUntis/WebUntisLib/Timegrid";
 import { getTimegrid, login } from "../services/WebUntis";
 import { Request, Response, ControllerBase } from "../types";
-console.log("here");
 
 export default class HelloWorldController extends ControllerBase {
     constructor() {
