@@ -132,7 +132,7 @@ export default class OCR extends Component<SearchElements> {
             // TODO: check for room number and route to site :)
             let num = getMatchingPart(s) ?? "";
             if (isRoomNumberValid(num)) {
-                router.redirect("/room/" + num);
+                logger.info("found:" + num);
             }
         });
     }
