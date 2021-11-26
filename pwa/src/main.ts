@@ -9,6 +9,7 @@ import Link from "./components/Link";
 import RoomInfo from "./components/RoomInfo";
 import RoomInput from "./components/RoomInput";
 import Timetable from "./components/Timetable";
+import Report from "./components/Report";
 
 const app = document.querySelector("#app")!;
 
@@ -43,6 +44,11 @@ let components: ComponentInfo[] = [
         type: Timetable,
         path: "/Timetable.html",
     },
+    {
+        tagName: "zelia-report",
+        type: Report,
+        path: "/Report.html",
+    },
 ];
 
 initializeComponents(components).then(main);
@@ -54,6 +60,7 @@ function main() {
     router.on("404", notFoundPage);
     router.on("/ocr", ocrPage);
     router.on("/room/:roomNumber", roomPage);
+    router.on("/room/:roomNumber/report", reportPage);
 
     router.redirect(window.location.pathname);
 }
@@ -71,10 +78,7 @@ function rootPage() {
 }
 
 function ocrPage() {
-    const backLink = document.createElement("zelia-link") as Link;
-    backLink.textContent = "<- Back";
-    backLink.href = "/";
-    app.append(backLink);
+    appendLink("<- Back", "/");
 
     const ocr = document.createElement("zelia-ocr");
     app.append(ocr);
@@ -83,10 +87,7 @@ function ocrPage() {
 async function roomPage(variables?: PathVariables) {
     logger.info(variables?.roomNumber);
 
-    const backLink = document.createElement("zelia-link") as Link;
-    backLink.textContent = "<- Back";
-    backLink.href = "/";
-    app.append(backLink);
+    appendLink("<- Back", "/");
 
     const info = document.createElement("zelia-room-info") as RoomInfo;
     if (variables?.roomNumber) info.roomNumber = variables?.roomNumber;
@@ -95,4 +96,32 @@ async function roomPage(variables?: PathVariables) {
     const timetable = document.createElement("zelia-timetable") as Timetable;
     if (variables?.roomNumber) timetable.roomNumber = variables?.roomNumber;
     app.append(timetable);
+
+    const reportLink = document.createElement("zelia-link") as Link;
+    reportLink.href = `/room/${variables?.roomNumber}/report`;
+    reportLink.innerText = "Report a Problem";
+    app.append(reportLink);
+}
+
+function reportPage(variables?: PathVariables) {
+    logger.info(variables?.roomNumber);
+
+    const report = document.createElement("zelia-report") as Report;
+    if (variables?.roomNumber) report.roomNumber = variables?.roomNumber;
+
+    if (variables?.roomNumber) {
+        appendLink(
+            "<- Back to " + variables?.roomNumber,
+            "/room/" + variables?.roomNumber
+        );
+    }
+
+    app.append(report);
+}
+
+function appendLink(text: string, path: string) {
+    const backLink = document.createElement("zelia-link") as Link;
+    backLink.textContent = text;
+    backLink.href = path;
+    app.append(backLink);
 }
