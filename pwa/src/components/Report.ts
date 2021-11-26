@@ -45,9 +45,9 @@ export default class NotFoundError extends Component<SearchElements> {
     }
 
     writeStates() {
-        this.setState("reportMsg", `What's wrong with the room :( (${this.roomNumber})`);
+        this.setState("reportMsg", `Welches Problem gib es in ${this.roomNumber}`);
         this.setState("firstNoticeLabel", "Wann wurde es bemerkt");
-        this.setState("messageLabel", "Was ist hinnig?");
+        this.setState("messageLabel", "Beschreibung des Problems?");
         this.setState("btnSubmit", "Melden");
 
         this.render(true);
