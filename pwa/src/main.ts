@@ -12,7 +12,6 @@ import Timetable from "./components/Timetable";
 import Report from "./components/Report";
 import Debug from "./components/Debug";
 
-
 const app = document.querySelector("#app")!;
 
 let components: ComponentInfo[] = [
@@ -50,7 +49,8 @@ let components: ComponentInfo[] = [
         tagName: "zelia-report",
         type: Report,
         path: "/Report.html",
-    },{
+    },
+    {
         tagName: "zelia-debug",
         type: Debug,
         path: "/Debug.html",
@@ -116,12 +116,8 @@ function reportPage(variables?: PathVariables) {
     if (variables?.roomNumber) report.roomNumber = variables?.roomNumber;
 
     if (variables?.roomNumber) {
-        appendLink(
-            "<- Back to " + variables?.roomNumber,
-            "/room/" + variables?.roomNumber
-        );
+        appendLink("<- Back to " + variables?.roomNumber, "/room/" + variables?.roomNumber);
     }
-
     app.append(report);
 }
 

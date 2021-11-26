@@ -36,7 +36,6 @@ export default class NotFoundError extends Component<SearchElements> {
 
     set roomNumber(roomNumber: string) {
         this.setAttribute("room-number", roomNumber);
-
         this.writeStates();
     }
 
@@ -49,7 +48,6 @@ export default class NotFoundError extends Component<SearchElements> {
         this.setState("firstNoticeLabel", "Wann wurde es bemerkt");
         this.setState("messageLabel", "Beschreibung des Problems?");
         this.setState("btnSubmit", "Melden");
-
         this.render(true);
     }
 
