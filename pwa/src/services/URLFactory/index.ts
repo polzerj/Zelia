@@ -17,3 +17,7 @@ export function gerRoomListUrl() {
 export function getTimegridUrl() {
     return `${baseurl}/timegrid/`;
 }
+
+export function getRoomReportUrl(roomNr: string) {
+    return `${baseurl}/room/${roomNr}/report`;
+}

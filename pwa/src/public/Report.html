@@ -1,0 +1,49 @@
+<style>
+    form > *:not(label, h1) {
+        background-color: rgba(0, 0, 0, 0);
+
+        color: var(--fg-color);
+        border: none;
+        outline: none;
+
+        box-sizing: border-box;
+
+        padding: 0.5em;
+        margin: 0px;
+
+        width: 100%;
+    }
+    label {
+        display: block;
+        font-size: 1em;
+    }
+    form > input {
+        border-bottom: 1px solid var(--primary);
+        margin: 1em auto 1em auto;
+        border-radius: 0px;
+    }
+    form > textarea {
+        background-color: var(--bg-dark-color);
+        resize: none;
+
+        border-radius: 4px;
+    }
+    form > button {
+        background-color: var(--primary);
+        font-size: 2em;
+        padding: 0.2em;
+
+        border-radius: 4px;
+    }
+</style>
+
+<form action="">
+    <h1>{{reportMsg}}</h1>
+    <label for="email">EDU-Mail:</label>
+    <input type="email" name="email" id="email" placeholder="name.last@edu.szu.at" required pattern="^.*@(edu\.)?szu\.at$" /> <br />
+    <label for="first-notice">{{firstNoticeLabel}}</label>
+    <input type="datetime-local" name="first-notice" id="first-notice" required /><br />
+    <label for="message">{{messageLabel}}</label>
+    <textarea name="message" id="message" cols="30" rows="10" required></textarea>
+    <button type="submit">{{btnSubmit}}</button>
+</form>
