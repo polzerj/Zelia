@@ -10,6 +10,8 @@ import RoomInfo from "./components/RoomInfo";
 import RoomInput from "./components/RoomInput";
 import Timetable from "./components/Timetable";
 import Report from "./components/Report";
+import Debug from "./components/Debug";
+
 
 const app = document.querySelector("#app")!;
 
@@ -48,6 +50,10 @@ let components: ComponentInfo[] = [
         tagName: "zelia-report",
         type: Report,
         path: "/Report.html",
+    },{
+        tagName: "zelia-debug",
+        type: Debug,
+        path: "/Debug.html",
     },
 ];
 
