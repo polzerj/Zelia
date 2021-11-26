@@ -23,10 +23,130 @@ paths:
           content:
             application/json:
               schema:
-                description: ""
                 type: array
+                description: ""
+                minItems: 1
+                uniqueItems: true
+                x-examples:
+                  example-1:
+                    - roomNumber: S1308
+                      name: 5AHITN
+                      description: Klassenraum der 5A/BHITN
+                      type: Class
+                      isWheelchairAccessible: true
+                      hasTeacherComputer: true
+                      projector: normal
+                      projectorConnectors:
+                        - HDMI
+                        - " VGA"
+                      hasWater: false
+                      boards:
+                        - normal
+                      numberOfComputers: 1
+                      numberOfSeats: 26
                 items:
                   type: string
+        "500":
+          description: Internal Server Error
+  "/api/room/{roomNumber}":
+    parameters:
+      - schema:
+          type: string
+        name: roomNumber
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ""
+                minItems: 1
+                uniqueItems: true
+                x-examples:
+                  example-1:
+                    - roomNumber: S1308
+                      name: 5AHITN
+                      description: Klassenraum der 5A/BHITN
+                      type: Class
+                      isWheelchairAccessible: true
+                      hasTeacherComputer: true
+                      projector: normal
+                      projectorConnectors:
+                        - HDMI
+                        - " VGA"
+                      hasWater: false
+                      boards:
+                        - normal
+                      numberOfComputers: 1
+                      numberOfSeats: 26
+                items:
+                  type: object
+                  properties:
+                    roomNumber:
+                      type: string
+                      minLength: 1
+                    name:
+                      type: string
+                      minLength: 1
+                    description:
+                      type: string
+                      minLength: 1
+                    type:
+                      type: string
+                      minLength: 1
+                    isWheelchairAccessible:
+                      type: boolean
+                    hasTeacherComputer:
+                      type: boolean
+                    projector:
+                      type: string
+                      minLength: 1
+                    projectorConnectors:
+                      type: array
+                      items:
+                        type: string
+                    hasWater:
+                      type: boolean
+                    boards:
+                      type: array
+                      items:
+                        type: string
+                    numberOfComputers:
+                      type: number
+                    numberOfSeats:
+                      type: number
+                  required:
+                    - roomNumber
+                    - name
+                    - description
+                    - type
+                    - isWheelchairAccessible
+                    - hasTeacherComputer
+                    - projector
+                    - projectorConnectors
+                    - hasWater
+                    - boards
+                    - numberOfComputers
+                    - numberOfSeats
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+            multipart/form-data:
+              schema:
+                type: object
+                properties: {}
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      operationId: get-api-room-roomNumber
   "/api/room/{roomNumber}/timetable":
     parameters:
       - schema:
@@ -47,6 +167,55 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/ULesson"
+        "404":
+          description: Not Class Found
+        "500":
+          description: Internal Server Error
+  "/api/room/{roomNumber}/book":
+    parameters:
+      - schema:
+          type: string
+        name: roomNumber
+        in: path
+        required: true
+    post:
+      summary: Post booking
+      operationId: post-api-room-roomNumber-book
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: string
+                purpose:
+                  type: string
+                from:
+                  type: integer
+                until:
+                  type: integer
+      description: ""
+  "/api/room/{roomNumber}/report":
+    parameters:
+      - schema:
+          type: string
+        name: roomNumber
+        in: path
+        required: true
+    post:
+      summary: ""
+      operationId: post-api-room-roomNumber-report
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
 components:
   schemas:
     UTeacher:
