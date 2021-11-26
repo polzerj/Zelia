@@ -1,16 +1,17 @@
 export function getMatchingPart(input: string): string | undefined {
-    input = input./* replace(/\s/g, "") .*/ replace(/,/g, ".");
-    const regEx = /[A-Z]?[0-9]{4,5}(\.[0-9])?/g;
+    //input = input./* replace(/\s/g, "") .*/ replace(/,/g, ".");
+    const regEx = /[[A-Z]{0,4} {0,2}[0-9]{4}((\.|,) {0,2}[0-9])?/g;
     if (!regEx.test(input)) return;
     let matches = input.match(regEx);
-    const firstMatch = matches?.[0];
+    let firstMatch = matches?.[0].toUpperCase().replaceAll(" ", "");
     if (!firstMatch) return;
-    let match = /^([A-Z]|[a-z])/.test(firstMatch)
-        ? firstMatch.toUpperCase()
-        : `S${firstMatch}`;
-    if (match.length === 6) {
-        match = match.slice(0, 4) + "." + match.slice(5);
+    if (firstMatch.includes("EDV")) {
+        firstMatch = firstMatch.replace("EDV", "S");
     }
+    let match = /^[A-Z]/.test(firstMatch) ? firstMatch : `S${firstMatch}`;
+    /* if (match.length === 6) {
+        match = match.slice(0, 4) + "." + match.slice(5);
+    } */
     return match;
 }
 
