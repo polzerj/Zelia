@@ -1,4 +1,7 @@
+import router from "../router";
+import { postRoomReport } from "../services/roomreport";
 import Component from "../types/Component";
+import logger from "../util/logger";
 
 interface SearchElements {
     form: HTMLFormElement;
@@ -42,26 +45,31 @@ export default class NotFoundError extends Component<SearchElements> {
     }
 
     writeStates() {
-        this.setState(
-            "reportMsg",
-            `What's wrong with the room :( (${this.roomNumber})`
-        );
+        this.setState("reportMsg", `What's wrong with the room :( (${this.roomNumber})`);
         this.setState("firstNoticeLabel", "Wann wurde es bemerkt");
         this.setState("messageLabel", "Was ist hinnig?");
+        this.setState("btnSubmit", "Melden");
 
         this.render(true);
     }
 
-    reportSubmitted(e: Event) {
+    async reportSubmitted(e: Event) {
         e.preventDefault();
 
         const formData = new FormData(this.elements.form);
 
-        const data = {
-            roomNumber: this.roomNumber,
-            email: formData.get("email") as string,
-            message: formData.get("message") as string,
-            firstNotice: formData.get("first-notice") as string,
-        };
+        let datetime = new Date(formData.get("first-notice") as string);
+
+        try {
+            await postRoomReport({
+                roomNumber: this.roomNumber,
+                user: formData.get("email") as string,
+                message: formData.get("message") as string,
+                firstDedection: datetime.getTime(),
+            });
+            router.redirect("/room/" + this.roomNumber);
+        } catch (e) {
+            logger.error("something went wrong (no connectoin to server)");
+        }
     }
 }

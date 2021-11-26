@@ -13,6 +13,7 @@
     --primary-btn: hsl(189, 100%, 35%, 50%);
     --fg-color: hsl(0, 0%, 0%);
     --bg-color: hsl(0, 0%, 98%);
+    --bg-dark-color: hsl(0, 0%, 86%);
 
     --green: hsl(133, 100%, 23%);
     --red: #e00000;
@@ -24,5 +25,6 @@
     :root {
         --fg-color: hsl(0, 0%, 93%);
         --bg-color: hsl(0, 0%, 7%);
+        --bg-dark-color: hsl(0, 0%, 16%);
     }
 }
