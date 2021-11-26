@@ -200,6 +200,13 @@ paths:
                   type: integer
                 until:
                   type: integer
+                roomNumber:
+                  type: string
+              required:
+                - user
+                - purpose
+                - from
+                - until
       description: ""
   "/api/room/{roomNumber}/report":
     parameters:
@@ -214,6 +221,23 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: string
+                  firstDetected:
+                    type: integer
+                  information:
+                    type: string
+                  roomNumber:
+                    type: string
+                required:
+                  - user
+                  - firstDetected
+                  - information
         "400":
           description: Bad Request
 components:
