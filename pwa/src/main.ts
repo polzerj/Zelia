@@ -11,6 +11,7 @@ import RoomInput from "./components/RoomInput";
 import Timetable from "./components/Timetable";
 import Report from "./components/Report";
 import Debug from "./components/Debug";
+import Booking from "./components/Booking";
 import AdminLogin from "./components/AdminLogin";
 import Dashboard from "./components/Dashboard";
 import BookingHandle from "./components/BookingHandle";
@@ -56,6 +57,11 @@ let components: ComponentInfo[] = [
         path: "/Report.html",
     },
     {
+        tagName: "zelia-booking",
+        type: Booking,
+        path: "/Booking.html",
+    },
+    {
         tagName: "zelia-debug",
         type: Debug,
         path: "/Debug.html",
@@ -92,6 +98,8 @@ function main() {
     router.on("/ocr", ocrPage);
     router.on("/room/:roomNumber", roomPage);
     router.on("/room/:roomNumber/report", reportPage);
+    router.on("/room/:roomNumber/book", bookingPage);
+
     router.on("/admin", adminPage);
     router.on("/admin/dashboard", dashboardPage);
 
@@ -134,12 +142,30 @@ async function roomPage(variables?: PathVariables) {
     reportLink.href = `/room/${variables?.roomNumber}/report`;
     reportLink.innerText = "Report a Problem";
     app.append(reportLink);
+    app.append(document.createElement("br"));
+
+    const bookingLink = document.createElement("zelia-link") as Link;
+    bookingLink.href = `/room/${variables?.roomNumber}/book`;
+    bookingLink.innerText = "Book this room";
+    app.append(bookingLink);
 }
 
 function reportPage(variables?: PathVariables) {
     logger.info(variables?.roomNumber);
 
     const report = document.createElement("zelia-report") as Report;
+    if (variables?.roomNumber) report.roomNumber = variables?.roomNumber;
+
+    if (variables?.roomNumber) {
+        appendLink("<- Back to " + variables?.roomNumber, "/room/" + variables?.roomNumber);
+    }
+    app.append(report);
+}
+
+function bookingPage(variables?: PathVariables) {
+    logger.info(variables?.roomNumber);
+
+    const report = document.createElement("zelia-booking") as Booking;
     if (variables?.roomNumber) report.roomNumber = variables?.roomNumber;
 
     if (variables?.roomNumber) {
