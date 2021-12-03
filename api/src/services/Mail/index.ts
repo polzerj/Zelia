@@ -2,7 +2,7 @@ import Booking from "../../types/Booking";
 import Report from "../../types/Report";
 import MailError from "./MailError";
 
-import nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer");
 
 const { EMAIL_NAME, EMAIL_PASSWORD } = process.env;
 
