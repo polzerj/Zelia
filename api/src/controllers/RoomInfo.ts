@@ -3,8 +3,8 @@ import { roomEntitiesToRoomInfoModels } from "../data/mapper/RoomInfoMapper";
 import { getRoomInfoByRoomNumber } from "../data/DatabaseService";
 import { Request, Response, ControllerBase } from "../types";
 import { isValidLogin } from "../services/WebUntis";
-import { RoomNotFoundException } from "data/Exceptions/RoomNotFoundException";
-import { DatabaseNotAvailableException } from "data/Exceptions/DatabaseNotAvailableException";
+import { RoomNotFoundException } from "../data/Exceptions/RoomNotFoundException";
+import { DatabaseNotAvailableException } from "../data/Exceptions/DatabaseNotAvailableException";
 
 export default class RoomInfo extends ControllerBase {
     constructor() {
