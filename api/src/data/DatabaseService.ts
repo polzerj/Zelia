@@ -12,6 +12,7 @@ import { getAdminUser, AdminUser } from "./AdminUserConnection";
 import { RoomNotFoundException } from "./Exceptions/RoomNotFoundException";
 import { DatabaseNotAvailableException } from "./Exceptions/DatabaseNotAvailableException";
 import { NoAdminUsersFoundException } from "./Exceptions/NoAdminUsersFoundException";
+import { CouldNotInsertDataException } from "./Exceptions/CouldNotInsertDataException";
 
 export async function getRoomInfoByRoomNumber(roomNumber: string): Promise<RoomEntity[]> {
   let data: Room[];
@@ -78,4 +79,11 @@ export async function getAdminUsers(): Promise<AdminUserEntity[]> {
     throw new NoAdminUsersFoundException();
   }
   return data;
+}
+
+export async function setRoomReportDbService(roomReport: RoomReport) {
+  try {
+  } catch (e) {
+    throw new CouldNotInsertDataException();
+  }
 }
