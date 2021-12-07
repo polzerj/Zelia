@@ -10,7 +10,7 @@ export function getTimetableUrl(roomNr: string) {
     return `${baseurl}/room/${roomNr}/timetable/`;
 }
 
-export function gerRoomListUrl() {
+export function getRoomListUrl() {
     return `${baseurl}/room/`;
 }
 
@@ -20,4 +20,8 @@ export function getTimegridUrl() {
 
 export function getRoomReportUrl(roomNr: string) {
     return `${baseurl}/room/${roomNr}/report`;
+}
+
+export function getAdminLoginUrl() {
+    return `${baseurl}/admin/login`;
 }

@@ -1,5 +1,5 @@
 import router from "../router";
-import { postRoomReport } from "../services/roomreport";
+import { postRoomReport } from "../services/room";
 import Component from "../types/Component";
 import logger from "../util/logger";
 

@@ -1,4 +1,4 @@
-import { getRoomList } from "../services/roomlist";
+import { getRoomList } from "../services/room";
 import { getMatchingPart } from "../services/validation";
 import Component from "../types/Component";
 import logger from "../util/logger";
@@ -30,9 +30,7 @@ export default class RoomInput extends Component<SearchElements> {
         this.setState("infoMsg", "Raumnummer eingeben:");
         this.setState("btnText", "Choose");
 
-        const isMobile = window.navigator.userAgent
-            .toLowerCase()
-            .includes("mobile");
+        const isMobile = window.navigator.userAgent.toLowerCase().includes("mobile");
 
         let ocrInfoMsg = "Or use a camera";
         //if (!isMobile) ocrInfoMsg += " on your mobile device";
