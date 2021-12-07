@@ -67,10 +67,10 @@ export async function getLessonByRoomNumber(roomNumber: string): Promise<LessonE
   return data;
 }
 
-export async function getAdminUsers(): Promise<AdminUserEntity[]> {
+export async function getAdminUsers(userName: string, hash: string): Promise<AdminUserEntity[]> {
   let data: AdminUser[];
   try {
-    data = await getAdminUser();
+    data = await getAdminUser(userName, hash);
   } catch (e) {
     throw new DatabaseNotAvailableException();
   }

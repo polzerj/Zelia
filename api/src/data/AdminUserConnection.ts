@@ -10,6 +10,7 @@ import {
   HasManyCountAssociationsMixin,
   HasManyCreateAssociationMixin,
   Optional,
+  and,
 } from "sequelize";
 
 import AdminUserEntity from "./entities/AdminUserEntity";
@@ -44,7 +45,10 @@ AdminUser.init(
   }
 );
 
-export async function getAdminUser(): Promise<AdminUser[]> {
-  const adminUser = await AdminUser.findAll();
+export async function getAdminUser(userName: string, hash: string): Promise<AdminUser[]> {
+  const adminUser = await AdminUser.findAll({
+    attributes: { exclude: ["UserPassword"] },
+    where: { UserName: userName, UserPassword: hash },
+  });
   return adminUser;
 }
