@@ -40,7 +40,7 @@ export default class AdminLogin extends Component<SearchElements> {
         if (isLoggedIn) {
             router.redirect("/admin/dashbord");
         } else {
-            // TODO: show error
+            this.elements.error.textContent = "Useranme or Password wrong!";
         }
     }
 }

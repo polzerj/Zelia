@@ -12,6 +12,7 @@
     --secondary: hsl(197, 100%, 27%);
     --primary-btn: hsl(189, 100%, 35%, 50%);
     --fg-color: hsl(0, 0%, 0%);
+    --fg-dark-color: hsl(0, 0%, 42%);
     --bg-color: hsl(0, 0%, 98%);
     --bg-dark-color: hsl(0, 0%, 86%);
 
@@ -24,6 +25,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --fg-color: hsl(0, 0%, 93%);
+        --fg-dark-color: hsl(0, 0%, 42%);
         --bg-color: hsl(0, 0%, 7%);
         --bg-dark-color: hsl(0, 0%, 16%);
     }

@@ -24,5 +24,24 @@ export async function login(username: string, password: string): Promise<boolean
 }
 
 export async function fetchRequests(type?: "reports" | "bookings" | "all", amount?: number): Promise<(RoomReportModel | RoomBookingModel)[]> {
-    return [];
+    return [
+        new RoomReportModel({
+            firstDedection: new Date().getTime(),
+            user: "julian.kusternigg@edu.szu.at",
+            roomNumber: "1308",
+            message: "Beamer liegt am Boden :(",
+        }),
+        new RoomBookingModel({
+            purpose: "Weil der Raum so schön ist :) !",
+            user: "julian.kusternigg@edu.szu.at",
+            roomNumber: "1308",
+            date: new Date().getTime(),
+            from: 1,
+            until: 3,
+        }),
+    ];
+}
+
+export function isLoggedIn(): boolean {
+    return sessionStorage.getItem("token") ? true : false;
 }
