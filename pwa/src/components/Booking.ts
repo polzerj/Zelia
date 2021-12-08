@@ -12,6 +12,8 @@ interface SearchElements {
 }
 
 export default class Booking extends Component<SearchElements> {
+    private freeLessons: number[] = [];
+
     constructor() {
         super("zelia-booking", {
             queries: {
@@ -86,6 +88,15 @@ export default class Booking extends Component<SearchElements> {
     }
 
     rerenderNumberOfLessons(e: Event) {
+        // get the start lesson and return all numbers from start lesson onwards as long as the difference is equal one
+        let startLesson = parseInt(this.elements.sltStartLesson.value);
+        for (let i = 0; i < array.length; i++) {
+            const element = array[i];
+            
+        }
+
+
+
         logger.log(
             "rerenderNumberOfLessons",
             this.elements.sltStartLesson.value
@@ -98,6 +109,10 @@ export default class Booking extends Component<SearchElements> {
         const formData = new FormData(this.elements.form);
 
         let datetime = new Date(formData.get("day") as string);
+        let startLesson = parseInt(formData.get("start-lesson") as string);
+        let numLessons = parseInt(formData.get("num-lessons") as string);
+        let purpose = formData.get("purpose") as string;
+        let email = formData.get("email") as string;
 
         try {
             router.redirect("/room/" + this.roomNumber);
