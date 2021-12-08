@@ -16,7 +16,6 @@ export default class RoomBooking extends ControllerBase {
     }
 
     async post(req: Request, res: Response) {
-        // TODO:
         // -> build obj
         // -> add to mgr service
         // -> send email
