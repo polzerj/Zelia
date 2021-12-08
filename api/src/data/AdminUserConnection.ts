@@ -47,7 +47,7 @@ AdminUser.init(
 
 export async function getAdminUser(userName: string, hash: string): Promise<AdminUser[]> {
   const adminUser = await AdminUser.findAll({
-    attributes: { exclude: ["UserPassword"] },
+    attributes: { exclude: ["UserPassword", "createdAt", "updatedAt"] },
     where: { UserName: userName, UserPassword: hash },
   });
   return adminUser;
