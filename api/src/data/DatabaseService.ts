@@ -6,7 +6,7 @@ import AdminUserEntity from "./entities/AdminUserEntity";
 import Booking from "../types/Booking";
 
 import { getRooms, Room } from "./RoomConnection";
-import { getRoomReports, RoomReport } from "./RoomReportConnection";
+import { getRoomReports, setRoomReport, RoomReport } from "./RoomReportConnection";
 import {
   getRoomReservations,
   setRoomReservation,
@@ -17,6 +17,8 @@ import { getAdminUser, AdminUser } from "./AdminUserConnection";
 import { RoomNotFoundException } from "./Exceptions/RoomNotFoundException";
 import { DatabaseNotAvailableException } from "./Exceptions/DatabaseNotAvailableException";
 import { NoAdminUsersFoundException } from "./Exceptions/NoAdminUsersFoundException";
+import { CouldNotInsertDataException } from "./Exceptions/CouldNotInsertDataException";
+import Report from "types/Report";
 
 export async function getRoomInfoByRoomNumber(roomNumber: string): Promise<RoomEntity[]> {
   let data: Room[];
@@ -92,4 +94,12 @@ export async function setRoomReservationByDate(booking: Booking) {
   try {
     setRoomReservation(booking);
   } catch (e) {}
+}
+
+export async function setRoomReportDbService(roomReport: Report) {
+  try {
+    setRoomReport(roomReport);
+  } catch (e) {
+    throw new CouldNotInsertDataException();
+  }
 }

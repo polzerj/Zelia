@@ -8,9 +8,11 @@ import Timetable from "./controllers/TimeTable";
 import CorsMiddleware from "./middleware/CorsMiddleware";
 import RoomList from "./controllers/RoomList";
 import RoomInfo from "./controllers/RoomInfo";
+import Login from "./controllers/Login";
 import { login } from "./services/WebUntis";
 import Timegrid from "./controllers/Timegrid";
 import { TryLogin } from "./services/WebUntis";
+import AdminRequest from "./controllers/AdminRequest";
 
 const app = new App({
     controllers: [
@@ -19,6 +21,8 @@ const app = new App({
         new RoomList(),
         new RoomInfo(),
         new Timegrid(),
+        new Login(),
+        new AdminRequest(),
     ],
     middleWares: [
         // It is not deprecated if not used as function
