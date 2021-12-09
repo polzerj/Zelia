@@ -11,7 +11,7 @@ import {
   getRoomReservations,
   setRoomReservation,
   RoomReservation,
-} from "./RooomReservationConnection";
+} from "./RoomReservationConnection";
 import { getLessons, Lesson } from "./LessonConnection";
 import { getAdminUser, AdminUser } from "./AdminUserConnection";
 import { RoomNotFoundException } from "./Exceptions/RoomNotFoundException";
