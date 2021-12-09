@@ -9,7 +9,7 @@ export default function (req: Request, res: Response, next: NextMethod): void {
         return;
     }
     try {
-        const decoded = jwt.verify(token, jwt_secret );
+        const decoded = jwt.verify(token, jwt_secret);
     } catch {
         res.status(401).send("Invalid token");
         return;
