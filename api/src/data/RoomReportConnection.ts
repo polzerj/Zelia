@@ -19,7 +19,7 @@ import { Room } from "./RoomConnection";
 import sequelize from "./DatabaseConnectionHandler";
 
 export class RoomReport extends Model<RoomReportEntity> implements RoomReportEntity {
-  public Id!: number;
+  public Id?: number;
   public RoomId!: number;
   public AssignedAdminId!: number;
   public ReportDescription!: string;
@@ -35,7 +35,6 @@ RoomReport.init(
     Id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false,
     },
     RoomId: {
       type: DataTypes.INTEGER,
@@ -94,4 +93,17 @@ export async function getRoomReports(roomNumber: string): Promise<RoomReport[]> 
   });
   return roomReport;
   //return (roomReport as any[]).map(e=>e.dataValue) as RoomReport[];
+}
+
+export async function setRoomReport(roomReport: RoomReport) {
+  RoomReport.create({
+    RoomId: 1,
+    AssignedAdminId: roomReport.AssignedAdminId,
+    ReportDescription: roomReport.ReportDescription,
+    Email: roomReport.Email,
+    ReportDateTime: roomReport.ReportDateTime,
+    ReportStatus: roomReport.ReportStatus,
+    Hash: roomReport.Hash,
+    Verified: roomReport.Verified,
+  });
 }

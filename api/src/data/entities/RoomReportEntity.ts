@@ -1,5 +1,5 @@
 export default interface RoomReportEntity {
-  Id: number;
+  Id?: number;
   RoomId: number;
   AssignedAdminId: number;
   ReportDescription: string;

@@ -5,7 +5,7 @@ import LessonEntity from "./entities/LessonEntity";
 import AdminUserEntity from "./entities/AdminUserEntity";
 
 import { getRooms, Room } from "./RoomConnection";
-import { getRoomReports, RoomReport } from "./RoomReportConnection";
+import { getRoomReports, setRoomReport, RoomReport } from "./RoomReportConnection";
 import { getRoomReservations, RoomReservation } from "./RooomReservationConnection";
 import { getLessons, Lesson } from "./LessonConnection";
 import { getAdminUser, AdminUser } from "./AdminUserConnection";
@@ -86,6 +86,7 @@ export async function getAdminUserByNameAndPw(
 
 export async function setRoomReportDbService(roomReport: RoomReport) {
   try {
+    setRoomReport(roomReport);
   } catch (e) {
     throw new CouldNotInsertDataException();
   }
