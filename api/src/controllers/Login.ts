@@ -18,7 +18,7 @@ export default class Login extends ControllerBase {
         let hash = crypto.createHash("md5").update(pwd).digest("hex");
         try {
             let data = getAdminUserByNameAndPw(user, hash);
-            let token = jwt.sign({ user, pwd }, "zelia", {
+            let token = jwt.sign({user}, "zelia", {
                 algorithm: "HS256",
             });
             res.status(200).json({ token });
