@@ -11,6 +11,7 @@ import RoomInfo from "./controllers/RoomInfo";
 import { login } from "./services/WebUntis";
 import Timegrid from "./controllers/Timegrid";
 import { TryLogin } from "./services/WebUntis";
+import AdminRequest from "./controllers/AdminRequest";
 
 const app = new App({
     controllers: [
@@ -19,6 +20,7 @@ const app = new App({
         new RoomList(),
         new RoomInfo(),
         new Timegrid(),
+        new AdminRequest(),
     ],
     middleWares: [
         // It is not deprecated if not used as function
