@@ -5,13 +5,15 @@ import LessonEntity from "./entities/LessonEntity";
 import AdminUserEntity from "./entities/AdminUserEntity";
 
 import { getRooms, Room } from "./RoomConnection";
-import { getRoomReports, RoomReport } from "./RoomReportConnection";
+import { getRoomReports, setRoomReport, RoomReport } from "./RoomReportConnection";
 import { getRoomReservations, RoomReservation } from "./RooomReservationConnection";
 import { getLessons, Lesson } from "./LessonConnection";
 import { getAdminUser, AdminUser } from "./AdminUserConnection";
 import { RoomNotFoundException } from "./Exceptions/RoomNotFoundException";
 import { DatabaseNotAvailableException } from "./Exceptions/DatabaseNotAvailableException";
 import { NoAdminUsersFoundException } from "./Exceptions/NoAdminUsersFoundException";
+import { CouldNotInsertDataException } from "./Exceptions/CouldNotInsertDataException";
+import Report from "types/Report";
 
 export async function getRoomInfoByRoomNumber(roomNumber: string): Promise<RoomEntity[]> {
   let data: Room[];
@@ -81,4 +83,12 @@ export async function getAdminUserByNameAndPw(
     throw new NoAdminUsersFoundException();
   }
   return data;
+}
+
+export async function setRoomReportDbService(roomReport: Report) {
+  try {
+    setRoomReport(roomReport);
+  } catch (e) {
+    throw new CouldNotInsertDataException();
+  }
 }
