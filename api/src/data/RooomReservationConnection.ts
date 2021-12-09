@@ -16,9 +16,12 @@ import RoomReservationEntity from "./entities/RoomReservationEntity";
 import { Room } from "./RoomConnection";
 
 import sequelize from "./DatabaseConnectionHandler";
+import Booking from "types/Booking";
+import { getRoomInfoByRoomNumber } from "./DatabaseService";
+import RoomBooking from "controllers/RoomBooking";
 
 export class RoomReservation extends Model<RoomReservationEntity> implements RoomReservationEntity {
-  public Id!: number;
+  public Id?: number;
   public RoomId!: number;
   public AssignedAdminId!: number;
   public ReservationReason!: string;
@@ -35,7 +38,6 @@ RoomReservation.init(
     Id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false,
     },
     RoomId: {
       type: DataTypes.INTEGER,
@@ -97,4 +99,19 @@ export async function getRoomReservations(roomNumber: string): Promise<RoomReser
     ],
   });
   return roomReservation;
+}
+
+export async function setRoomReservation(roomBooking: Booking) {
+  let roomId = (await getRoomInfoByRoomNumber(roomBooking.roomNumber))[0].Id;
+  RoomReservation.create({
+    RoomId: roomId,
+    AssignedAdminId: 1,
+    ReservationReason: roomBooking.purpose,
+    Email: roomBooking.user,
+    StartReservation: new Date(roomBooking.from),
+    EndReservation: new Date(roomBooking.until),
+    ReservationStatus: "open",
+    Hash: roomBooking.hash,
+    Verified: false,
+  });
 }
