@@ -5,7 +5,7 @@ import { DatabaseNotAvailableException } from "../data/Exceptions/DatabaseNotAva
 import { NoAdminUsersFoundException } from "../data/Exceptions/NoAdminUsersFoundException";
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
-const env = process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export default class Login extends ControllerBase {
     constructor() {
@@ -19,7 +19,7 @@ export default class Login extends ControllerBase {
         let hash = crypto.createHash("md5").update(pwd).digest("hex");
         try {
             let data = getAdminUserByNameAndPw(user, hash);
-            let token = jwt.sign({ user }, env, {
+            let token = jwt.sign({ user }, JWT_SECRET, {
                 algorithm: "HS256",
             });
             res.status(200).json({ token });
