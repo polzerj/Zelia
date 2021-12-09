@@ -17,6 +17,8 @@ import RoomReportEntity from "./entities/RoomReportEntity";
 import { Room } from "./RoomConnection";
 
 import sequelize from "./DatabaseConnectionHandler";
+import Report from "types/Report";
+import { getRoomInfoByRoomNumber } from "./DatabaseService";
 
 export class RoomReport extends Model<RoomReportEntity> implements RoomReportEntity {
   public Id?: number;
@@ -95,15 +97,17 @@ export async function getRoomReports(roomNumber: string): Promise<RoomReport[]> 
   //return (roomReport as any[]).map(e=>e.dataValue) as RoomReport[];
 }
 
-export async function setRoomReport(roomReport: RoomReport) {
+export async function setRoomReport(roomReport: Report) {
+  let roomId = (await getRoomInfoByRoomNumber(roomReport.roomNumber))[0].Id;
+  //Create Room if not existing
   RoomReport.create({
-    RoomId: 1,
-    AssignedAdminId: roomReport.AssignedAdminId,
-    ReportDescription: roomReport.ReportDescription,
-    Email: roomReport.Email,
-    ReportDateTime: roomReport.ReportDateTime,
-    ReportStatus: roomReport.ReportStatus,
-    Hash: roomReport.Hash,
-    Verified: roomReport.Verified,
+    RoomId: roomId,
+    AssignedAdminId: 1,
+    ReportDescription: roomReport.information,
+    Email: roomReport.user,
+    ReportDateTime: roomReport.firstDetected,
+    ReportStatus: "open",
+    Hash: roomReport.hash,
+    Verified: false,
   });
 }
