@@ -3,10 +3,15 @@ import RoomReportEntity from "./entities/RoomReportEntity";
 import RoomReservationEntity from "./entities/RoomReservationEntity";
 import LessonEntity from "./entities/LessonEntity";
 import AdminUserEntity from "./entities/AdminUserEntity";
+import Booking from "../types/Booking";
 
 import { getRooms, Room } from "./RoomConnection";
 import { getRoomReports, setRoomReport, RoomReport } from "./RoomReportConnection";
-import { getRoomReservations, RoomReservation } from "./RooomReservationConnection";
+import {
+  getRoomReservations,
+  setRoomReservation,
+  RoomReservation,
+} from "./RoomReservationConnection";
 import { getLessons, Lesson } from "./LessonConnection";
 import { getAdminUser, AdminUser } from "./AdminUserConnection";
 import { RoomNotFoundException } from "./Exceptions/RoomNotFoundException";
@@ -83,6 +88,14 @@ export async function getAdminUserByNameAndPw(
     throw new NoAdminUsersFoundException();
   }
   return data;
+}
+
+export async function setRoomReservationByDate(booking: Booking) {
+  try {
+    setRoomReservation(booking);
+  } catch (e) {
+    throw new CouldNotInsertDataException();
+  }
 }
 
 export async function setRoomReportDbService(roomReport: Report) {

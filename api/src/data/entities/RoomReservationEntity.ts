@@ -1,5 +1,5 @@
 export default interface RoomReservationEntity {
-  Id: number;
+  Id?: number;
   RoomId: number;
   AssignedAdminId: number;
   ReservationReason: string;
