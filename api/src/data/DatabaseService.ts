@@ -93,7 +93,9 @@ export async function getAdminUserByNameAndPw(
 export async function setRoomReservationByDate(booking: Booking) {
   try {
     setRoomReservation(booking);
-  } catch (e) {}
+  } catch (e) {
+    throw new CouldNotInsertDataException();
+  }
 }
 
 export async function setRoomReportDbService(roomReport: Report) {
