@@ -26,6 +26,8 @@ export class RoomReservation extends Model<RoomReservationEntity> implements Roo
   public StartReservation!: Date;
   public EndReservation!: Date;
   public ReservationStatus!: string;
+  public Hash!: string;
+  public Verified!: boolean;
 }
 
 RoomReservation.init(
@@ -64,6 +66,14 @@ RoomReservation.init(
     },
     ReservationStatus: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Hash: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Verified: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
   },

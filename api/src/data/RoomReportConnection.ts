@@ -26,6 +26,8 @@ export class RoomReport extends Model<RoomReportEntity> implements RoomReportEnt
   public Email!: string;
   public ReportDateTime!: Date;
   public ReportStatus!: string;
+  public Hash!: string;
+  public Verified!: boolean;
 }
 
 RoomReport.init(
@@ -62,6 +64,14 @@ RoomReport.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    Hash: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Verified: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
   },
   {
     tableName: "RoomReport",
@@ -84,8 +94,4 @@ export async function getRoomReports(roomNumber: string): Promise<RoomReport[]> 
   });
   return roomReport;
   //return (roomReport as any[]).map(e=>e.dataValue) as RoomReport[];
-}
-
-export async function setRoomReport(roomReport: RoomReport) {
-  const internRoomReport = await RoomReport.create(roomReport);
 }

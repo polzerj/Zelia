@@ -1,10 +1,11 @@
+import Report from "../types/Report";
 import Booking from "../types/Booking";
 
 class RequestManager {
-    private requestMap: { [hash: string]: Booking } = {};
+    private requestMap: { [hash: string]: Booking | Report } = {};
     private expirationMap: { [hash: string]: NodeJS.Timeout };
 
-    public add(request: Booking) {
+    public add(request: Booking | Report) {
         this.requestMap[request.hash] = request;
 
         this.expirationMap[request.hash] = setTimeout(() => {
