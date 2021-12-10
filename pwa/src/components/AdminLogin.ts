@@ -38,7 +38,7 @@ export default class AdminLogin extends Component<SearchElements> {
         let isLoggedIn = await login(username, password);
 
         if (isLoggedIn) {
-            router.redirect("/admin/dashbord");
+            router.redirect("/admin/dashboard");
         } else {
             this.elements.error.textContent = "Useranme or Password wrong!";
         }

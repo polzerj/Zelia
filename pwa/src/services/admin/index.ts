@@ -1,6 +1,6 @@
 import RoomReportModel from "../room/RoomReportModel";
 import logger from "../../util/logger";
-import { getAdminLoginUrl } from "../URLFactory";
+import { getAdminLoginUrl, getRequestsUrl } from "../URLFactory";
 import RoomBookingModel from "../room/RoomBookingModel";
 
 export async function login(username: string, password: string): Promise<boolean> {
@@ -20,10 +20,47 @@ export async function login(username: string, password: string): Promise<boolean
     let { token }: { token: string } = await res.json();
     sessionStorage.setItem("token", token);
 
+    console.log(token);
+
     return true;
 }
 
 export async function fetchRequests(type?: "reports" | "bookings" | "all", amount?: number): Promise<(RoomReportModel | RoomBookingModel)[]> {
+    let token = sessionStorage.getItem("token");
+    if (!token) throw Error("Bist nichta nagelmendet du wplleer ");
+
+    let req = await fetch(getRequestsUrl(), {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            authorization: "bearer " + token,
+        },
+    });
+
+    let obj = await req.json();
+
+    console.log(obj);
+
+    // TODO: Mapper obj to map from API
+    let l = [];
+    for (const o of obj) {
+        if (o.purpose) l.push(new RoomBookingModel(o));
+        else
+            l.push(
+                new RoomReportModel({
+                    user: o.user,
+                    message: o.information,
+                    firstDedection: o.firstDetected,
+                    roomNumber: o.roomNumber,
+                })
+            );
+    }
+
+    console.log(l);
+
+    return l;
+
     return [
         new RoomReportModel({
             firstDedection: new Date().getTime(),
@@ -43,5 +80,7 @@ export async function fetchRequests(type?: "reports" | "bookings" | "all", amoun
 }
 
 export function isLoggedIn(): boolean {
+    console.log(sessionStorage.getItem("token"));
+
     return sessionStorage.getItem("token") ? true : false;
 }

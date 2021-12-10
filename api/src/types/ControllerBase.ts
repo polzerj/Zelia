@@ -31,10 +31,8 @@ export default abstract class ControllerBase {
             put,
             patch,
             delete: dlt,
-        } = Object.assign<MiddlewareParam, MiddlewareParam>(
-            { all: [], get: [], post: [], put: [], patch: [], delete: [] },
-            middlewareParam
-        );
+        } = Object.assign<MiddlewareParam, MiddlewareParam>({ all: [], get: [], post: [], put: [], patch: [], delete: [] }, middlewareParam);
+
         all.forEach((middleware) => this.router.use(middleware));
         this.router.get(this.path, ...get, this.get);
         this.router.post(this.path, ...post, this.post);

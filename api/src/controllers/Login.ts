@@ -13,23 +13,21 @@ export default class Login extends ControllerBase {
     }
 
     async post(req: Request, res: Response) {
-        console.log(req);
         let user = req.body.username;
         let pwd = req.body.password;
-        let hash = crypto.createHash("md5").update(pwd).digest("hex");
+        //let hash = crypto.createHash("md5").update(pwd).digest("hex");
         try {
-            let data = getAdminUserByNameAndPw(user, hash);
+            let data = await getAdminUserByNameAndPw(user, pwd);
             let token = jwt.sign({ user }, JWT_SECRET, {
                 algorithm: "HS256",
             });
             res.status(200).json({ token });
         } catch (e) {
-            console.log(e);
-            if (e.instanceof(DatabaseNotAvailableException)) {
+            if (e instanceof DatabaseNotAvailableException) {
                 res.status(500).send("Database not available");
                 return;
             }
-            if (e.instanceof(NoAdminUsersFoundException)) {
+            if (e instanceof NoAdminUsersFoundException) {
                 res.status(401).send("Invalid Login Name|Password");
                 return;
             }

@@ -18,11 +18,12 @@ const mailTransport = nodemailer.createTransport(transportOptions);
 
 export async function sendVerificationMail(req: Booking | Report) {
     try {
-        await mailTransport.sendMail({
+        //TODO: send email
+        /*await mailTransport.sendMail({
             to: req.user,
             subject: "Bestätigunslink",
             text: "zelia.at/verify/" + req.hash,
-        });
+        });*/
     } catch (err) {
         throw new MailError("Couldn't send mail");
     }

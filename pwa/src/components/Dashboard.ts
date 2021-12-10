@@ -43,6 +43,8 @@ export default class Dashboard extends Component<SearchElements> {
     }
 
     private createReportHandle(report: RoomReportModel): ReportHandle {
+        console.log(report.firstDedection);
+
         let rh = document.createElement("zelia-report-handle") as ReportHandle;
         rh.reportData = report;
         return rh;

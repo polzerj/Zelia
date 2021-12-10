@@ -58,6 +58,8 @@ export default class NotFoundError extends Component<SearchElements> {
 
         let datetime = new Date(formData.get("first-notice") as string);
 
+        console.log(datetime);
+
         try {
             await postRoomReport({
                 roomNumber: this.roomNumber,
