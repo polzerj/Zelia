@@ -26,8 +26,7 @@ export default class RoomBooking extends ControllerBase {
         // -> send email
         // <- send response
 
-        const { roomNumber, user, date, until, from, purpose } =
-            req.params as unknown as IBooking;
+        const { roomNumber, user, date, until, from, purpose } = req.params as unknown as IBooking;
         let booking = new Booking(roomNumber, user, date, from, until, purpose);
 
         RequestManager.add(booking);

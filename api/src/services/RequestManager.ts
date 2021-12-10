@@ -7,6 +7,7 @@ class RequestManager {
 
     public add(request: Booking | Report) {
         this.requestMap[request.hash] = request;
+        console.log(request);
 
         this.expirationMap[request.hash] = setTimeout(() => {
             this.close(request.hash);

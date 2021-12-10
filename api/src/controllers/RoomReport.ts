@@ -16,8 +16,6 @@ export default class RoomReport extends ControllerBase {
     }
 
     async post(req: Request, res: Response) {
-        console.log("TF");
-
         // -> build obj
         // -> add to mgr service
         // -> send email
