@@ -11,6 +11,11 @@ import RoomInput from "./components/RoomInput";
 import Timetable from "./components/Timetable";
 import Report from "./components/Report";
 import Debug from "./components/Debug";
+import AdminLogin from "./components/AdminLogin";
+import Dashboard from "./components/Dashboard";
+import BookingHandle from "./components/BookingHandle";
+import ReportHandle from "./components/ReportHandle";
+import { isLoggedIn } from "./services/admin";
 
 const app = document.querySelector("#app")!;
 
@@ -55,6 +60,26 @@ let components: ComponentInfo[] = [
         type: Debug,
         path: "/Debug.html",
     },
+    {
+        tagName: "zelia-admin-login",
+        type: AdminLogin,
+        path: "/AdminLogin.html",
+    },
+    {
+        tagName: "zelia-admin-dashboard",
+        type: Dashboard,
+        path: "/Dashboard.html",
+    },
+    {
+        tagName: "zelia-report-handle",
+        type: ReportHandle,
+        path: "/ReportHandle.html",
+    },
+    {
+        tagName: "zelia-booking-handle",
+        type: BookingHandle,
+        path: "/BookingHandle.html",
+    },
 ];
 
 initializeComponents(components).then(main);
@@ -67,6 +92,8 @@ function main() {
     router.on("/ocr", ocrPage);
     router.on("/room/:roomNumber", roomPage);
     router.on("/room/:roomNumber/report", reportPage);
+    router.on("/admin", adminPage);
+    router.on("/admin/dashboard", dashboardPage);
 
     router.redirect(window.location.pathname);
 }
@@ -126,4 +153,19 @@ function appendLink(text: string, path: string) {
     backLink.textContent = text;
     backLink.href = path;
     app.append(backLink);
+}
+
+function adminPage() {
+    const adminLogin = document.createElement("zelia-admin-login") as AdminLogin;
+    app.append(adminLogin);
+}
+
+function dashboardPage() {
+    if (!isLoggedIn()) {
+        router.redirect("/admin");
+        return;
+    }
+
+    const adminDashboard = document.createElement("zelia-admin-dashboard") as Dashboard;
+    app.append(adminDashboard);
 }

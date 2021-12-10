@@ -57,9 +57,7 @@ class Router {
         });
 
         if (matchingEvents.events.length == 0) {
-            this.registeredEvents
-                .filter((e) => e.path === "404")
-                .forEach((e) => e.action());
+            this.registeredEvents.filter((e) => e.path === "404").forEach((e) => e.action());
         }
     }
 
@@ -105,9 +103,11 @@ class Router {
     }
 
     private removeLastSlash(path: string) {
-        return path.endsWith("/") && path.length > 1
-            ? path.substring(0, path.length - 1)
-            : path;
+        return path.endsWith("/") && path.length > 1 ? path.substring(0, path.length - 1) : path;
+    }
+
+    public get currentPath(): string {
+        return window.location.pathname;
     }
 }
 

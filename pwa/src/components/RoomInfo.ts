@@ -1,10 +1,7 @@
 import Accordion from "../services/animation/Accordion";
-import { getRoomInfoByRoomNumber } from "../services/roominfo";
-import {
-    buildSummary,
-    createRoomInfoText,
-} from "../services/roominfo/elementCreation";
-import RoomInfoModel from "../services/roominfo/RoomInfoModel";
+import { getRoomInfoByRoomNumber } from "../services/room";
+import { buildSummary, createRoomInfoText } from "../services/room/elementCreation";
+import RoomInfoModel from "../services/room/RoomInfoModel";
 import Component from "../types/Component";
 import logger from "../util/logger";
 

@@ -1,0 +1,46 @@
+<style>
+    span {
+        font-size: 1.5em;
+    }
+    .user {
+    }
+    .date {
+        color: var(--fg-dark-color);
+    }
+    .card {
+        padding: 2em 2em 2em 2em;
+        background-color: var(--bg-dark-color);
+        border-radius: 8px;
+        margin: 1em;
+    }
+    .card > h1 {
+        margin: 0px 0px 1em 0px;
+    }
+    button {
+        margin: 1em 2em 0px 0px;
+        font-size: 1.5em;
+        border-radius: 6px;
+        border-width: 0px;
+        padding: 0.4em;
+        cursor: pointer;
+    }
+    button.report {
+        background-color: var(--primary);
+        color: var(--fg-color);
+    }
+    button.allow {
+        background-color: var(--green);
+        color: var(--fg-color);
+    }
+    button.deny {
+        background-color: var(--red);
+        color: var(--fg-color);
+    }
+</style>
+
+<h1>Dashboard</h1>
+
+<div id="divFeed"></div>
+<div class="card">
+    <span>{{noReqMsg}}</span>
+</div>
