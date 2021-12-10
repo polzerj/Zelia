@@ -1,4 +1,5 @@
 import router from "../router";
+import { postBookingReport } from "../services/room";
 import Component from "../types/Component";
 import logger from "../util/logger";
 
@@ -8,11 +9,11 @@ interface SearchElements {
     txaPurpose: HTMLTextAreaElement;
     dapDay: HTMLInputElement;
     sltStartLesson: HTMLSelectElement;
-    sltNumLessons: HTMLSelectElement;
+    sltNumLesson: HTMLSelectElement;
 }
 
 export default class Booking extends Component<SearchElements> {
-    private freeLessons: number[] = [];
+    private freeLessons: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
     constructor() {
         super("zelia-booking", {
@@ -22,28 +23,29 @@ export default class Booking extends Component<SearchElements> {
                 txaPurpose: "#purpose",
                 dapDay: "#day",
                 sltStartLesson: "#start-lesson",
-                sltNumLessons: "#num-lessons",
+                sltNumLesson: "#num-lesson",
             },
             autoRender: true,
         });
 
         this.setState("bookingMsg", `No room selected :(`);
     }
+
     registerEventListenerCallback() {
         this.elements.form.addEventListener("submit", this.bookingSubmitted);
-        this.elements.dapDay.addEventListener("change", this.rerenderStartLesson);
-        this.elements.sltStartLesson.addEventListener("change", this.rerenderNumberOfLessons);
+        this.elements.dapDay.addEventListener("change", this.reRenderStartLesson);
+        this.elements.sltStartLesson.addEventListener("change", this.reRenderNumberOfLessons);
     }
 
     removeEventListenerCallback() {
         this.elements.form.removeEventListener("submit", this.bookingSubmitted);
-        this.elements.dapDay.removeEventListener("change", this.rerenderStartLesson);
-        this.elements.sltStartLesson.removeEventListener("change", this.rerenderNumberOfLessons);
+        this.elements.dapDay.removeEventListener("change", this.reRenderStartLesson);
+        this.elements.sltStartLesson.removeEventListener("change", this.reRenderNumberOfLessons);
     }
     bindMethodsCallback() {
         this.bookingSubmitted = this.bookingSubmitted.bind(this);
-        this.rerenderStartLesson = this.rerenderStartLesson.bind(this);
-        this.rerenderNumberOfLessons = this.rerenderNumberOfLessons.bind(this);
+        this.reRenderStartLesson = this.reRenderStartLesson.bind(this);
+        this.reRenderNumberOfLessons = this.reRenderNumberOfLessons.bind(this);
     }
 
     set roomNumber(roomNumber: string) {
@@ -63,14 +65,34 @@ export default class Booking extends Component<SearchElements> {
         this.setState("numLesson", "Anzahl der Unterrichtseinheiten:");
         this.setState("btnSubmit", "Buchen");
         this.render(true);
+
+        this.reRenderStartLesson();
     }
 
-    rerenderStartLesson(e: Event) {
-        logger.log("rerenderStartLesson", this.elements.dapDay.value);
+    reRenderStartLesson(e?: Event) {
+        this.elements.sltStartLesson.innerHTML = "";
+
+        for (const lesson of this.freeLessons) {
+            let el = document.createElement("option");
+            el.value = lesson.toString();
+            el.innerText = lesson.toString();
+            this.elements.sltStartLesson.append(el);
+        }
     }
 
-    rerenderNumberOfLessons(e: Event) {
-        logger.log("rerenderNumberOfLessons", this.elements.sltStartLesson.value);
+    reRenderNumberOfLessons(e?: Event) {
+        this.elements.sltNumLesson.innerHTML = "";
+
+        let free = 13 - Number.parseInt(this.elements.sltStartLesson.value);
+        let fls = [];
+        for (let i = 1; i < free; i++) fls.push(i);
+
+        for (const lesson of fls) {
+            let el = document.createElement("option");
+            el.value = lesson.toString();
+            el.innerText = lesson.toString();
+            this.elements.sltNumLesson.append(el);
+        }
     }
 
     async bookingSubmitted(e: Event) {
@@ -78,13 +100,15 @@ export default class Booking extends Component<SearchElements> {
 
         const formData = new FormData(this.elements.form);
 
-        let datetime = new Date(formData.get("day") as string);
-        let startLesson = parseInt(formData.get("start-lesson") as string);
-        let numLessons = parseInt(formData.get("num-lessons") as string);
-        let purpose = formData.get("purpose") as string;
-        let email = formData.get("email") as string;
-
         try {
+            await postBookingReport({
+                roomNumber: this.roomNumber,
+                date: new Date(formData.get("day") as string).getTime(),
+                from: parseInt(formData.get("start-lesson") as string),
+                until: parseInt(formData.get("num-lessons") as string),
+                purpose: formData.get("purpose") as string,
+                user: formData.get("email") as string,
+            });
             router.redirect("/room/" + this.roomNumber);
         } catch (e) {
             logger.error("something went wrong (no connectoin to server)");

@@ -41,46 +41,29 @@
         border-radius: 0px;
         cursor: pointer;
     }
+
+    option {
+        background-color: var(--bg-dark-color);
+        color: var(--fg-color);
+    }
 </style>
 
 <form action="">
     <h1>{{bookingMsg}}</h1>
     <label for="email">EDU-Mail:</label>
-    <input
-        type="email"
-        name="email"
-        id="email"
-        placeholder="name.last@edu.szu.at"
-        required
-        pattern="^.*@(edu\.)?szu\.at$"
-    />
+    <input type="email" name="email" id="email" placeholder="name.last@edu.szu.at" required pattern="^.*@(edu\.)?szu\.at$" />
     <br />
     <label for="day">{{day}}</label>
     <input type="date" name="day" id="day" required /><br />
     <label for="start-lesson">{{startLesson}}</label>
     <select name="start-lesson" id="start-lesson">
-        <option value="-1" disabled selected>
-            Wähle die Unterrichtseinheit
-        </option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
+        <option value="-1" disabled selected>Wähle die Unterrichtseinheit</option>
     </select>
     <br />
     <label for="num-lesson">{{numLesson}}</label>
-    <select name="num-lesson" id="num-lesson">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-    </select>
+    <select name="num-lesson" id="num-lesson"></select>
     <br />
     <label for="purpose">{{messageLabel}}</label>
-    <textarea
-        name="purpose"
-        id="purpose"
-        cols="30"
-        rows="10"
-        required
-    ></textarea>
+    <textarea name="purpose" id="purpose" cols="30" rows="10" required></textarea>
     <button type="submit">{{btnSubmit}}</button>
 </form>

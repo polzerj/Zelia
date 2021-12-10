@@ -22,6 +22,10 @@ export function getRoomReportUrl(roomNr: string) {
     return `${baseurl}/room/${roomNr}/report`;
 }
 
+export function getBookingReportUrl(roomNr: string) {
+    return `${baseurl}/room/${roomNr}/book`;
+}
+
 export function getAdminLoginUrl() {
     return `${baseurl}/admin/login`;
 }
