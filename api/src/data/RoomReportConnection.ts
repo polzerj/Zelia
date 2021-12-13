@@ -105,7 +105,7 @@ export async function setRoomReport(roomReport: Report) {
         AssignedAdminId: 1,
         ReportDescription: roomReport.information,
         Email: roomReport.user,
-        ReportDateTime: roomReport.firstDetected,
+        ReportDateTime: new Date(roomReport.firstDetected),
         ReportStatus: "open",
         Hash: roomReport.hash,
         Verified: false,
