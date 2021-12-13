@@ -1,9 +1,11 @@
+import Accordion from "../services/animation/Accordion";
 import RoomBookingModel from "../services/room/RoomBookingModel";
 import Component from "../types/Component";
 
 interface SearchElements {
     btnDeny: HTMLButtonElement;
     btnAllow: HTMLButtonElement;
+    details: HTMLDetailsElement;
 }
 
 export default class BookingHandle extends Component<SearchElements> {
@@ -14,6 +16,7 @@ export default class BookingHandle extends Component<SearchElements> {
             queries: {
                 btnDeny: "#btnDeny",
                 btnAllow: "#btnAllow",
+                details: "details",
             },
         });
         // INFO: Elements with no shadowroot inside other custom shadowroot elements cannot be auto-rendered
@@ -38,6 +41,7 @@ export default class BookingHandle extends Component<SearchElements> {
     registerEventListenerCallback() {
         this.elements.btnAllow.addEventListener("click", this.btnAllowClick.bind(this));
         this.elements.btnDeny.addEventListener("click", this.btnDenyClick.bind(this));
+        //new Accordion(this.elements.details);
     }
 
     btnDenyClick() {
