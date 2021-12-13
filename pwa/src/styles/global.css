@@ -5,12 +5,16 @@ body {
 }
 
 #app {
+    font-size: 2rem;
     margin: auto;
     width: clamp(300px, 90%, 1000px);
 }
 
+input {
+    font-family: var(--default-font);
+}
+
 button {
-    font-size: 2rem;
     text-align: center;
     margin: auto;
 
