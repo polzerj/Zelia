@@ -187,8 +187,6 @@ function adminPage() {
 }
 
 function dashboardPage() {
-    console.log("Laoding admin");
-
     if (!isLoggedIn()) {
         router.redirect("/admin");
         return;
