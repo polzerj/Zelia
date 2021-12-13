@@ -23,14 +23,15 @@ export default class ReportHandle extends Component<SearchElements> {
 
         this.setState("roomNr", data.roomNumber);
         this.setState("user", data.user);
-        this.setState("description", data.message);
-        this.setState("date", new Date(data.firstDedection).toLocaleString());
+        this.setState("description", data.information);
+        this.setState("date", new Date(data.firstDetected).toLocaleString());
 
         this.render(true);
     }
 
     registerEventListenerCallback() {
         this.elements.btnClose.addEventListener("click", this.btnCloseClick.bind(this));
+        //new Accordion(this.elements.details);
     }
 
     btnCloseClick() {

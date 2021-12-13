@@ -44,9 +44,9 @@ export default class NotFoundError extends Component<SearchElements> {
     }
 
     writeStates() {
-        this.setState("reportMsg", `Welches Problem gib es in ${this.roomNumber}`);
-        this.setState("firstNoticeLabel", "Wann wurde es bemerkt");
-        this.setState("messageLabel", "Beschreibung des Problems?");
+        this.setState("reportMsg", `Mangelmeldung für ${this.roomNumber}`);
+        this.setState("firstNoticeLabel", "Zuerst aufgetreten: ");
+        this.setState("messageLabel", "Problembeschreibung:");
         this.setState("btnSubmit", "Melden");
         this.render(true);
     }
@@ -64,8 +64,8 @@ export default class NotFoundError extends Component<SearchElements> {
             await postRoomReport({
                 roomNumber: this.roomNumber,
                 user: formData.get("email") as string,
-                message: formData.get("message") as string,
-                firstDedection: datetime.getTime(),
+                information: formData.get("message") as string,
+                firstDetected: datetime.getTime(),
             });
             router.redirect("/room/" + this.roomNumber);
         } catch (e) {

@@ -1,11 +1,9 @@
-<div class="card">
-    <h1>{{info}}{{roomNr}}</h1>
-
-    <span class="user">{{user}}</span>
-    <span class="date"> - {{date}}</span>
-    <br />
-    <h2>{{notice}}</h2>
-    <span>{{description}}</span>
-    <br />
-    <button class="report" id="btnClose">{{close}}</button>
-</div>
+<details class="card">
+    <summary><span>{{roomNr}} - {{user}}</span><span class="date"> - {{date}}</span></summary>
+    <div class="content">
+        <h2>{{notice}}</h2>
+        <span>{{description}}</span>
+        <br />
+        <button class="report" id="btnClose">{{close}}</button>
+    </div>
+</details>

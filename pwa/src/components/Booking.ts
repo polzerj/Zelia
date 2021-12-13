@@ -58,10 +58,10 @@ export default class Booking extends Component<SearchElements> {
     }
 
     writeStates() {
-        this.setState("bookingMsg", `Wann willst du ${this.roomNumber} buchen?`);
-        this.setState("messageLabel", "Grund für die Buchung:");
-        this.setState("day", `An welchem Tag willst du ${this.roomNumber} buchen?`);
-        this.setState("startLesson", "Welche Stunde willst du buchen?");
+        this.setState("bookingMsg", `Raumbuchung für ${this.roomNumber}`);
+        this.setState("messageLabel", "Buchungsgrund:");
+        this.setState("day", `Tag der Buchung:`);
+        this.setState("startLesson", "Start der Reservierung");
         this.setState("numLesson", "Anzahl der Unterrichtseinheiten:");
         this.setState("btnSubmit", "Buchen");
         this.render(true);

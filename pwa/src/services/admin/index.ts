@@ -27,7 +27,7 @@ export async function login(username: string, password: string): Promise<boolean
 
 export async function fetchRequests(type?: "reports" | "bookings" | "all", amount?: number): Promise<(RoomReportModel | RoomBookingModel)[]> {
     let token = sessionStorage.getItem("token");
-    if (!token) throw Error("Bist nichta nagelmendet du wplleer ");
+    if (!token) throw Error("No active session token");
 
     let req = await fetch(getRequestsUrl(), {
         method: "GET",
@@ -38,45 +38,16 @@ export async function fetchRequests(type?: "reports" | "bookings" | "all", amoun
         },
     });
 
-    let obj = await req.json();
+    let requests = await req.json();
 
-    console.log(obj);
+    return requestsToModel(requests);
+}
 
-    // TODO: Mapper obj to map from API
-    let l = [];
-    for (const o of obj) {
-        if (o.purpose) l.push(new RoomBookingModel(o));
-        else
-            l.push(
-                new RoomReportModel({
-                    user: o.user,
-                    message: o.information,
-                    firstDedection: o.firstDetected,
-                    roomNumber: o.roomNumber,
-                })
-            );
-    }
-
-    console.log(l);
-
-    return l;
-
-    return [
-        new RoomReportModel({
-            firstDedection: new Date().getTime(),
-            user: "julian.kusternigg@edu.szu.at",
-            roomNumber: "1308",
-            message: "Beamer liegt am Boden :(",
-        }),
-        new RoomBookingModel({
-            purpose: "Weil der Raum so schön ist :) !",
-            user: "julian.kusternigg@edu.szu.at",
-            roomNumber: "1308",
-            date: new Date().getTime(),
-            from: 1,
-            until: 3,
-        }),
-    ];
+function requestsToModel(requests: any[]) {
+    return requests.map((req) => {
+        if (req.purpose) return new RoomBookingModel(req);
+        return new RoomReportModel(req);
+    });
 }
 
 export function isLoggedIn(): boolean {
