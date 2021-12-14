@@ -1,3 +1,4 @@
+//#region "Imports"
 import RoomEntity from "./entities/RoomEntity";
 import RoomReportEntity from "./entities/RoomReportEntity";
 import RoomReservationEntity from "./entities/RoomReservationEntity";
@@ -6,7 +7,7 @@ import AdminUserEntity from "./entities/AdminUserEntity";
 import Booking from "../types/Booking";
 
 import { getRooms, Room } from "./RoomConnection";
-import { getRoomReports, setRoomReport, RoomReport } from "./RoomReportConnection";
+import { getRoomReport, getRoomReports, setRoomReport, RoomReport } from "./RoomReportConnection";
 import {
   getRoomReservation,
   getRoomReservations,
@@ -21,7 +22,10 @@ import { NoAdminUsersFoundException } from "./Exceptions/NoAdminUsersFoundExcept
 import { CouldNotInsertDataException } from "./Exceptions/CouldNotInsertDataException";
 import Report from "types/Report";
 import { NoRoomReservationsFoundException } from "./Exceptions/NoRoomReservationsFoundException";
+import { NoRoomReportsFoundException } from "./Exceptions/NoRoomReportsFoundException";
+//#endregion
 
+//#region "RoomInfo"
 export async function getRoomInfoByRoomNumber(roomNumber: string): Promise<RoomEntity[]> {
   let data: Room[];
   try {
@@ -34,11 +38,13 @@ export async function getRoomInfoByRoomNumber(roomNumber: string): Promise<RoomE
   }
   return data;
 }
+//#endregion
 
+//#region "RoomReport"
 export async function getRoomReportByRoomNumber(roomNumber: string): Promise<RoomReportEntity[]> {
   let data: RoomReport[];
   try {
-    data = await getRoomReports(roomNumber);
+    data = await getRoomReport(roomNumber);
   } catch (e) {
     throw new DatabaseNotAvailableException();
   }
@@ -48,6 +54,29 @@ export async function getRoomReportByRoomNumber(roomNumber: string): Promise<Roo
   return data;
 }
 
+export async function getAllRoomReports(): Promise<RoomReportEntity[]> {
+  let data: RoomReport[];
+  try {
+    data = await getRoomReports();
+  } catch (e) {
+    throw new DatabaseNotAvailableException();
+  }
+  if (data.length === 0) {
+    throw new NoRoomReportsFoundException();
+  }
+  return data;
+}
+
+export async function setRoomReportDbService(roomReport: Report) {
+  try {
+    setRoomReport(roomReport);
+  } catch (e) {
+    throw new CouldNotInsertDataException();
+  }
+}
+//#endregion
+
+//#region "RoomReservation"
 export async function getRoomReservationByRoomNumber(
   roomNumber: string
 ): Promise<RoomReservationEntity[]> {
@@ -76,6 +105,16 @@ export async function getAllRoomReservations(): Promise<RoomReservationEntity[]>
   return data;
 }
 
+export async function setRoomReservationByDate(booking: Booking) {
+  try {
+    setRoomReservation(booking);
+  } catch (e) {
+    throw new CouldNotInsertDataException();
+  }
+}
+//#endregion
+
+//#region "Lesson"
 export async function getLessonByRoomNumber(roomNumber: string): Promise<LessonEntity[]> {
   let data: Lesson[];
   try {
@@ -88,7 +127,9 @@ export async function getLessonByRoomNumber(roomNumber: string): Promise<LessonE
   }
   return data;
 }
+//#endregion
 
+//#region "AdminUser"
 export async function getAdminUserByNameAndPw(
   userName: string,
   hash: string
@@ -106,19 +147,4 @@ export async function getAdminUserByNameAndPw(
   }
   return data;
 }
-
-export async function setRoomReservationByDate(booking: Booking) {
-  try {
-    setRoomReservation(booking);
-  } catch (e) {
-    throw new CouldNotInsertDataException();
-  }
-}
-
-export async function setRoomReportDbService(roomReport: Report) {
-  try {
-    setRoomReport(roomReport);
-  } catch (e) {
-    throw new CouldNotInsertDataException();
-  }
-}
+//#endregion
