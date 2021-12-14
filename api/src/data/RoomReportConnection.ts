@@ -24,6 +24,7 @@ export class RoomReport extends Model<RoomReportEntity> implements RoomReportEnt
   public Id?: number;
   public RoomId!: number;
   public AssignedAdminId!: number;
+  public RoomNumber!: string;
   public ReportDescription!: string;
   public Email!: string;
   public ReportDateTime!: Date;
@@ -47,6 +48,10 @@ RoomReport.init(
     },
     AssignedAdminId: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    RoomNumber: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     ReportDescription: {
@@ -103,6 +108,7 @@ export async function setRoomReport(roomReport: Report) {
   RoomReport.create({
     RoomId: roomId,
     AssignedAdminId: 1,
+    RoomNumber: roomReport.roomNumber,
     ReportDescription: roomReport.information,
     Email: roomReport.user,
     ReportDateTime: new Date(roomReport.firstDetected),
@@ -114,6 +120,17 @@ export async function setRoomReport(roomReport: Report) {
 
 export async function getRoomReports(): Promise<RoomReport[]> {
   const roomReports = await RoomReport.findAll({
+    attributes: {
+      exclude: [
+        "RoomId",
+        "AssignedAdminId",
+        "ReportStatus",
+        "Hash",
+        "Verified",
+        "createdAt",
+        "updatedAt",
+      ],
+    },
     include: [
       {
         model: Room,
