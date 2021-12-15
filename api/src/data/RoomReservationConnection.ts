@@ -24,6 +24,7 @@ export class RoomReservation extends Model<RoomReservationEntity> implements Roo
   public Id?: number;
   public RoomId!: number;
   public AssignedAdminId!: number;
+  public RoomNumber!: string;
   public ReservationReason!: string;
   public Email!: string;
   public StartReservation!: Date;
@@ -48,6 +49,10 @@ RoomReservation.init(
     },
     AssignedAdminId: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    RoomNumber: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     ReservationReason: {
@@ -106,6 +111,7 @@ export async function setRoomReservation(roomBooking: Booking) {
   RoomReservation.create({
     RoomId: roomId,
     AssignedAdminId: 1,
+    RoomNumber: roomBooking.roomNumber,
     ReservationReason: roomBooking.purpose,
     Email: roomBooking.user,
     // TODO: Not going to work :)
@@ -119,6 +125,17 @@ export async function setRoomReservation(roomBooking: Booking) {
 
 export async function getRoomReservations(): Promise<RoomReservation[]> {
   const roomReservations = await RoomReservation.findAll({
+    attributes: {
+      exclude: [
+        "RoomId",
+        "AssignedAdminId",
+        "ReservationStatus",
+        "Hash",
+        "Verified",
+        "createdAt",
+        "updatedAt",
+      ],
+    },
     include: [
       {
         model: Room,
