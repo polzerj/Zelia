@@ -2,7 +2,10 @@ import Booking from "../types/Booking";
 import Report from "../types/Report";
 import { Request, Response, ControllerBase } from "../types";
 import AuthenticationMiddleware from "../middleware/AutenticationMiddleware";
-import { getAllAdminRequests } from "../data/DatabaseService";
+import {
+    getAllRoomReports,
+    getAllRoomReservations,
+} from "../data/DatabaseService";
 import { RoomReport } from "../data/RoomReportConnection";
 import { RoomReservation } from "../data/RoomReservationConnection";
 
@@ -12,7 +15,10 @@ export default class AdminRequest extends ControllerBase {
     }
 
     async get(req: Request, res: Response) {
-        let reqs = await getAllAdminRequests();
+        let reqs = [
+            ...(await getAllRoomReports()),
+            ...(await getAllRoomReservations()),
+        ];
         let toSend = [];
         for (const req of reqs) {
             if (req instanceof RoomReport) {

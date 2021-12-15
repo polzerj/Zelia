@@ -24,9 +24,9 @@ export default class Report extends HashObject {
     static fromDB(report: RoomReportEntity): Report {
         // room id is not room number -> join in db
         return new Report(
-            report.RoomId,
+            report.RoomNumber,
             report.Email,
-            report.ReportDateTime,
+            report.ReportDateTime.getTime(),
             report.ReportDescription
         );
     }

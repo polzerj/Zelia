@@ -32,7 +32,7 @@ export default class Booking extends HashObject {
     static fromDB(booking: RoomReservationEntity): Booking {
         // room id is not room number -> join in db
         return new Booking(
-            booking.RoomId,
+            booking.RoomNumber,
             booking.Email,
             booking.StartReservation.getTime(),
             booking.StartReservation.getTime(),
