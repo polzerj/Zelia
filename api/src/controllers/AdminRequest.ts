@@ -2,6 +2,9 @@ import Booking from "../types/Booking";
 import Report from "../types/Report";
 import { Request, Response, ControllerBase } from "../types";
 import AuthenticationMiddleware from "../middleware/AutenticationMiddleware";
+import { getAllAdminRequests } from "../data/DatabaseService";
+import { RoomReport } from "../data/RoomReportConnection";
+import { RoomReservation } from "../data/RoomReservationConnection";
 
 export default class AdminRequest extends ControllerBase {
     constructor() {
@@ -9,10 +12,15 @@ export default class AdminRequest extends ControllerBase {
     }
 
     async get(req: Request, res: Response) {
-        res.json([
-            new Report("1308", "mersed.keco@edu.szu.at", new Date().getTime(), "Waschbecken voller Schlamm"),
-            new Booking("1308", "mersed.keco@edu.szu.at", new Date().getTime(), 1, 3, "Weil der Raum so schön ist"),
-            new Report("2406", "mersed.keco@edu.szu.at", new Date().getTime(), "Keine Tafel mehr"),
-        ]);
+        let reqs = await getAllAdminRequests();
+        let toSend = [];
+        for (const req of reqs) {
+            if (req instanceof RoomReport) {
+                toSend.push(Report.fromDB(req));
+            } else if (req instanceof RoomReservation) {
+                toSend.push(Booking.fromDB(req));
+            }
+        }
+        res.json(toSend);
     }
 }
