@@ -9,7 +9,7 @@
         padding: 1em 1em 1em 1em;
         background-color: var(--bg-dark-color);
         border-radius: 8px;
-        margin: 1em;
+        margin: 1em 0px 1em 0px;
     }
     h1 {
         font-size: 2em;
@@ -62,12 +62,17 @@
         background: red;
         cursor: pointer;
     }
+    .filter-header {
+        display: block;
+        margin-bottom: 0.4em;
+    }
 </style>
 
 <h1>Dashboard</h1>
 
 <!-- Filter for requests -->
 <div class="filter-items">
+    <span class="filter-header">Filter:</span>
     <label for="cbxBooking">
         {{cbxBooking}}
         <input type="checkbox" name="cbxBooking" id="cbxBooking" checked />
@@ -79,6 +84,6 @@
 </div>
 
 <div id="divFeed"></div>
-<div class="card">
+<div class="card" id="noReqMsg" style="display: none">
     <span>{{noReqMsg}}</span>
 </div>

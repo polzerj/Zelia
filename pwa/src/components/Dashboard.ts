@@ -12,6 +12,7 @@ interface SearchElements {
 
     cbxBooking: HTMLInputElement;
     cbxReport: HTMLInputElement;
+    noReqMsg: HTMLDivElement;
 }
 
 export default class Dashboard extends Component<SearchElements> {
@@ -19,7 +20,7 @@ export default class Dashboard extends Component<SearchElements> {
     constructor() {
         super("zelia-admin-dashboard", {
             useShadowRoot: true,
-            queries: { divFeed: "#divFeed", cbxBooking: "#cbxBooking", cbxReport: "#cbxReport" },
+            queries: { divFeed: "#divFeed", cbxBooking: "#cbxBooking", cbxReport: "#cbxReport", noReqMsg: "#noReqMsg" },
         });
 
         this.setState("noReqMsg", "Keine weiteren Anfragen vorhanden!");
@@ -56,6 +57,7 @@ export default class Dashboard extends Component<SearchElements> {
 
     async filter() {
         this.elements.divFeed.innerHTML = "";
+        this.elements.noReqMsg.style.display = "none";
 
         for (const req of await this.requests) {
             if (req instanceof RoomBookingModel) {
@@ -63,6 +65,10 @@ export default class Dashboard extends Component<SearchElements> {
             } else if (req instanceof RoomReportModel) {
                 if (this.elements.cbxReport.checked) this.elements.divFeed.append(this.createReportHandle(req));
             }
+        }
+
+        if (this.elements.divFeed.innerHTML == "") {
+            this.elements.noReqMsg.style.display = "block";
         }
     }
 }
