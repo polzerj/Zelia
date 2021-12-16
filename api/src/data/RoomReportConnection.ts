@@ -11,6 +11,7 @@ import {
   HasManyCreateAssociationMixin,
   Optional,
   where,
+  IntegerDataType,
 } from "sequelize";
 
 import RoomReportEntity from "./entities/RoomReportEntity";
@@ -139,4 +140,12 @@ export async function getRoomReports(): Promise<RoomReport[]> {
     ],
   });
   return roomReports;
+}
+
+export async function alterRoomReportVerified(id: number) {
+  await RoomReport.update({ Verified: true }, { where: { Id: id } });
+}
+
+export async function alterRoomReportStatus(id: number, toChangeStatus: string) {
+  await RoomReport.update({ ReportStatus: toChangeStatus }, { where: { Id: id } });
 }
