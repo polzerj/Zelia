@@ -9,6 +9,9 @@ import ReportHandle from "./ReportHandle";
 
 interface SearchElements {
     divFeed: HTMLDivElement;
+
+    cbxBooking: HTMLInputElement;
+    cbxReport: HTMLInputElement;
 }
 
 export default class Dashboard extends Component<SearchElements> {
@@ -16,24 +19,18 @@ export default class Dashboard extends Component<SearchElements> {
     constructor() {
         super("zelia-admin-dashboard", {
             useShadowRoot: true,
-            queries: { divFeed: "#divFeed" },
+            queries: { divFeed: "#divFeed", cbxBooking: "#cbxBooking", cbxReport: "#cbxReport" },
         });
 
         this.setState("noReqMsg", "Keine weiteren Anfragen vorhanden!");
+        this.setState("cbxBooking", "Buchungen");
+        this.setState("cbxReport", "Meldungen");
 
         this.requests = fetchRequests();
     }
 
     async connectedCallback() {
-        this.elements.divFeed.innerHTML = "";
-
-        for (const req of await this.requests) {
-            if (req instanceof RoomBookingModel) {
-                this.elements.divFeed.append(this.createBookingHandle(req));
-            } else if (req instanceof RoomReportModel) {
-                this.elements.divFeed.append(this.createReportHandle(req));
-            }
-        }
+        this.filter();
     }
 
     private createBookingHandle(booking: RoomBookingModel): BookingHandle {
@@ -50,7 +47,22 @@ export default class Dashboard extends Component<SearchElements> {
 
     bindMethodsCallback() {}
 
-    registerEventListenerCallback() {}
+    registerEventListenerCallback() {
+        this.elements.cbxBooking.addEventListener("change", this.filter.bind(this));
+        this.elements.cbxReport.addEventListener("change", this.filter.bind(this));
+    }
 
     removeEventListenerCallback() {}
+
+    async filter() {
+        this.elements.divFeed.innerHTML = "";
+
+        for (const req of await this.requests) {
+            if (req instanceof RoomBookingModel) {
+                if (this.elements.cbxBooking.checked) this.elements.divFeed.append(this.createBookingHandle(req));
+            } else if (req instanceof RoomReportModel) {
+                if (this.elements.cbxReport.checked) this.elements.divFeed.append(this.createReportHandle(req));
+            }
+        }
+    }
 }
