@@ -18,7 +18,9 @@ import {
   getRoomReservation,
   getRoomReservations,
   setRoomReservation,
+  alterRoomReservationConfirm,
   RoomReservation,
+  alterRoomReservationDecline,
 } from "./RoomReservationConnection";
 import { getLessons, Lesson } from "./LessonConnection";
 import { getAdminUser, AdminUser } from "./AdminUserConnection";
@@ -127,6 +129,22 @@ export async function setRoomReservationByDate(booking: Booking) {
     throw new CouldNotInsertDataException();
   }
 }
+
+export async function alterRoomReservationConfirmById(id: number) {
+  try {
+    alterRoomReservationConfirm(id);
+  } catch (e) {
+    throw new CouldNotAlterDataException();
+  }
+}
+
+export async function alterRoomReservationDeclineById(id: number) {
+  try {
+    alterRoomReservationDecline(id);
+  } catch (e) {
+    throw new CouldNotAlterDataException();
+  }
+}
 //#endregion
 
 //#region "Lesson"
@@ -165,6 +183,6 @@ export async function getAdminUserByNameAndPw(
 //#endregion
 
 //(async () => {
-//console.log(await getAllRoomReports());
-//alterRommReportVerifiedById(1);
+//  console.log(await getAllRoomReports());
+//  alterRoomReservationDeclineById(2);
 //})();
