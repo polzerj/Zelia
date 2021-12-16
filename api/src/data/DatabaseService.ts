@@ -13,6 +13,7 @@ import {
   setRoomReport,
   alterRoomReportVerified,
   RoomReport,
+  alterRoomReportStatus,
 } from "./RoomReportConnection";
 import {
   getRoomReservation,
@@ -87,6 +88,14 @@ export async function setRoomReportDbService(roomReport: Report) {
 export async function alterRoomReportVerifiedById(id: number) {
   try {
     alterRoomReportVerified(id);
+  } catch (e) {
+    throw new CouldNotAlterDataException();
+  }
+}
+
+export async function alterRoomReportStatusById(id: number, toChangeStatus: string) {
+  try {
+    alterRoomReportStatus(id, toChangeStatus);
   } catch (e) {
     throw new CouldNotAlterDataException();
   }
