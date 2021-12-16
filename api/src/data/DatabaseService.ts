@@ -82,7 +82,7 @@ export async function setRoomReportDbService(roomReport: Report) {
   }
 }
 
-export async function alterRommReportVerifiedById(id: number) {
+export async function alterRoomReportVerifiedById(id: number) {
   try {
     alterRoomReportVerified(id);
   } catch (e) {
