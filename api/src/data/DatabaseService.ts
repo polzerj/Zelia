@@ -7,7 +7,13 @@ import AdminUserEntity from "./entities/AdminUserEntity";
 import Booking from "../types/Booking";
 
 import { getRooms, Room } from "./RoomConnection";
-import { getRoomReport, getRoomReports, setRoomReport, RoomReport } from "./RoomReportConnection";
+import {
+  getRoomReport,
+  getRoomReports,
+  setRoomReport,
+  alterRoomReportVerified,
+  RoomReport,
+} from "./RoomReportConnection";
 import {
   getRoomReservation,
   getRoomReservations,
@@ -23,6 +29,7 @@ import { CouldNotInsertDataException } from "./Exceptions/CouldNotInsertDataExce
 import Report from "types/Report";
 import { NoRoomReservationsFoundException } from "./Exceptions/NoRoomReservationsFoundException";
 import { NoRoomReportsFoundException } from "./Exceptions/NoRoomReportsFoundException";
+import { CouldNotAlterDataException } from "./Exceptions/CouldNotAlterDataException";
 //#endregion
 
 //#region "RoomInfo"
@@ -72,6 +79,14 @@ export async function setRoomReportDbService(roomReport: Report) {
     setRoomReport(roomReport);
   } catch (e) {
     throw new CouldNotInsertDataException();
+  }
+}
+
+export async function alterRommReportVerifiedById(id: number) {
+  try {
+    alterRoomReportVerified(id);
+  } catch (e) {
+    throw new CouldNotAlterDataException();
   }
 }
 //#endregion
@@ -148,3 +163,8 @@ export async function getAdminUserByNameAndPw(
   return data;
 }
 //#endregion
+
+//(async () => {
+//console.log(await getAllRoomReports());
+//alterRommReportVerifiedById(1);
+//})();
