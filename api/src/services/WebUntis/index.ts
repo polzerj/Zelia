@@ -3,6 +3,8 @@ import WebUntis from "./WebUntisLib";
 import Lesson from "./WebUntisLib/Lesson";
 import Room from "./WebUntisLib/Room";
 export let isValidLogin = false;
+import { NoConnectionException } from "../../data/Exceptions/NoConnectionException";
+import { RoomNotFoundException } from "../../data/Exceptions/RoomNotFoundException";
 
 const {
     WEBUNTIS_SCHOOL,
@@ -17,18 +19,6 @@ const untis = new WebUntis(
     WEBUNTIS_PASSWORD,
     WEBUNTIS_BASE_URL
 );
-
-class NoConnectionError extends Error {
-    constructor() {
-        super("Unable to connect to WebUntis");
-    }
-}
-
-class RoomNotFoundError extends Error {
-    constructor() {
-        super("Room not found");
-    }
-}
 
 const cache = new WebUntisCache();
 
@@ -48,6 +38,7 @@ export async function getTimetableByRoomNumber(
         const table = cache.getTimetable(roomId);
         return table;
     }
+    /*
     try {
         table = await untis.getTimetableFor(date, roomId, 4);
     } catch (e) {
@@ -56,10 +47,26 @@ export async function getTimetableByRoomNumber(
             await getTimetableByRoomNumber(roomNum);
         } else if (e.message == "Server didn't returned any result.") {
             console.log(e);
-            throw new RoomNotFoundError();
+            throw new RoomNotFoundException();
         } else {
             console.log(e.message);
-            throw new NoConnectionError();
+            throw new NoConnectionException();
+        }
+    }*/
+    try {
+        let valid = untis.validateSession();
+        if (valid) {
+            table = await untis.getTimetableFor(date, roomId, 4);
+        } else {
+            await login();
+            await getTimetableByRoomNumber(roomNum);
+        }
+    } catch (e) {
+        console.log(e);
+        if (e.message == "Server didn't returned any result.") {
+            throw new RoomNotFoundException();
+        } else {
+            throw new NoConnectionException();
         }
     }
     cache.setTimetable(roomId, table);
@@ -72,10 +79,20 @@ export async function getRoomList() {
         rooms = cache.rooms;
     } else {
         try {
-            rooms = await untis.getRooms();
-            cache.rooms = rooms;
+            let valid = untis.validateSession();
+            if (valid) {
+                rooms = await untis.getRooms();
+                cache.rooms = rooms;
+            } else {
+                await login();
+                await getRoomList();
+            }
         } catch (e) {
-            if (e.message == "Current session is not valid") {
+            console.log(e);
+            throw new NoConnectionException();
+        }
+
+        /* if (e.message == "Current Session is not valid") {
                 let count = 0;
                 while (count < 3) {
                     try {
@@ -92,8 +109,7 @@ export async function getRoomList() {
                 await getRoomList();
             } else {
                 throw new NoConnectionError();
-            }
-        }
+            }*/
     }
     return rooms;
 }
@@ -162,17 +178,30 @@ async function testCode() {
 
 export async function getTimegrid() {
     let grid;
+    let valid = await untis.validateSession();
     try {
+        if (valid) {
+            grid = untis.getTimegrid();
+        } else {
+            await login();
+            grid = await getTimegrid();
+        }
+    } catch (e) {
+        console.log(e);
+        throw new NoConnectionException();
+    }
+    return grid;
+    //let grid = untis.getTimegrid();
+    /*try {
         grid = untis.getTimegrid();
     } catch (e) {
-        if (e.message == "Current session is not valid") {
+        console.error(e);
+        if (e.message == "Current Session is not valid") {
             await login();
-            getTimegrid();
+            await getTimegrid();
         } else {
             throw new NoConnectionError();
         }
-    }
-    return grid;
+    }*/
+    //return grid;
 }
-
-//testCode();
