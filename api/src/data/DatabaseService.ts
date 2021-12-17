@@ -22,6 +22,7 @@ import {
   alterRoomReservationConfirm,
   RoomReservation,
   alterRoomReservationDecline,
+  alterRoomReservationVerified,
 } from "./RoomReservationConnection";
 import { getLessons, Lesson } from "./LessonConnection";
 import { getAdminUser, AdminUser } from "./AdminUserConnection";
@@ -139,6 +140,14 @@ export async function setRoomReservationByDate(booking: Booking) {
   }
 }
 
+export async function alterRoomReservationVerifiedById(id: number) {
+  try {
+    alterRoomReservationVerified(id);
+  } catch (e) {
+    throw new CouldNotAlterDataException();
+  }
+}
+
 export async function alterRoomReservationConfirmById(id: number) {
   try {
     alterRoomReservationConfirm(id);
@@ -154,6 +163,7 @@ export async function alterRoomReservationDeclineById(id: number) {
     throw new CouldNotAlterDataException();
   }
 }
+
 //#endregion
 
 //#region "Lesson"

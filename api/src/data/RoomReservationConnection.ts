@@ -146,10 +146,14 @@ export async function getRoomReservations(): Promise<RoomReservation[]> {
   return roomReservations;
 }
 
+export async function alterRoomReservationVerified(id: number) {
+  RoomReservation.update({ Verified: true }, { where: { Id: id } });
+}
+
 export async function alterRoomReservationConfirm(id: number) {
-  RoomReservation.update({ Verified: true, ReservationStatus: "confirmed" }, { where: { Id: id } });
+  RoomReservation.update({ ReservationStatus: "confirmed" }, { where: { Id: id } });
 }
 
 export async function alterRoomReservationDecline(id: number) {
-  RoomReservation.update({ Verified: true, ReservationStatus: "decline" }, { where: { Id: id } });
+  RoomReservation.update({ ReservationStatus: "decline" }, { where: { Id: id } });
 }
