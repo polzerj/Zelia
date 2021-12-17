@@ -33,14 +33,26 @@ export default class Booking extends Component<SearchElements> {
 
     registerEventListenerCallback() {
         this.elements.form.addEventListener("submit", this.bookingSubmitted);
-        this.elements.dapDay.addEventListener("change", this.reRenderStartLesson);
-        this.elements.sltStartLesson.addEventListener("change", this.reRenderNumberOfLessons);
+        this.elements.dapDay.addEventListener(
+            "change",
+            this.reRenderStartLesson
+        );
+        this.elements.sltStartLesson.addEventListener(
+            "change",
+            this.reRenderNumberOfLessons
+        );
     }
 
     removeEventListenerCallback() {
         this.elements.form.removeEventListener("submit", this.bookingSubmitted);
-        this.elements.dapDay.removeEventListener("change", this.reRenderStartLesson);
-        this.elements.sltStartLesson.removeEventListener("change", this.reRenderNumberOfLessons);
+        this.elements.dapDay.removeEventListener(
+            "change",
+            this.reRenderStartLesson
+        );
+        this.elements.sltStartLesson.removeEventListener(
+            "change",
+            this.reRenderNumberOfLessons
+        );
     }
     bindMethodsCallback() {
         this.bookingSubmitted = this.bookingSubmitted.bind(this);
@@ -71,7 +83,11 @@ export default class Booking extends Component<SearchElements> {
 
     reRenderStartLesson(e?: Event) {
         this.elements.sltStartLesson.innerHTML = "";
-
+        let el = document.createElement("option");
+        el.disabled = true;
+        el.innerText = "Bitte wählen";
+        el.selected = true;
+        this.elements.sltStartLesson.append(el);
         for (const lesson of this.freeLessons) {
             let el = document.createElement("option");
             el.value = lesson.toString();
