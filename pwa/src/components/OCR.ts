@@ -2,6 +2,7 @@ import logger from "../util/logger";
 import OCRModule from "../services/OCRModule";
 import Component from "../types/Component";
 import { getMatchingPart, isRoomNumberValid } from "../services/validation";
+import router from "../router";
 
 interface SearchElements {
     canvas: HTMLCanvasElement;
@@ -39,7 +40,8 @@ export default class OCR extends Component<SearchElements> {
     }
 
     removeEventListenerCallback() {
-        if (this.ocrIntervalCancelToken.id) clearInterval(this.ocrIntervalCancelToken.id);
+        if (this.ocrIntervalCancelToken.id)
+            clearInterval(this.ocrIntervalCancelToken.id);
         this.stream?.getTracks().forEach((track) => {
             track.stop();
         });
@@ -93,7 +95,12 @@ export default class OCR extends Component<SearchElements> {
 
             ctx.fillStyle = "rgba(0,0,0,0.5)";
             ctx.fillRect(0, 0, this.elements.canvas.width, centerY - 100);
-            ctx.fillRect(0, centerY + 100, this.elements.canvas.width, this.elements.canvas.height);
+            ctx.fillRect(
+                0,
+                centerY + 100,
+                this.elements.canvas.width,
+                this.elements.canvas.height
+            );
 
             requestAnimationFrame(render);
         };
@@ -103,10 +110,19 @@ export default class OCR extends Component<SearchElements> {
         this.virtualScreen.width = this.elements.canvas.width;
         this.virtualScreen.height = 200;
 
-        this.ocrIntervalCancelToken.id = setInterval(this.doOcr.bind(this), this.ocrInterval) as any;
+        this.ocrIntervalCancelToken.id = setInterval(
+            this.doOcr.bind(this),
+            this.ocrInterval
+        ) as any;
     }
     doOcr() {
-        this.virtualScreen.getContext("2d")?.drawImage(this.virtualCamera, 0, -(this.elements.canvas.height - 200) / 2);
+        this.virtualScreen
+            .getContext("2d")
+            ?.drawImage(
+                this.virtualCamera,
+                0,
+                -(this.elements.canvas.height - 200) / 2
+            );
 
         let area = compress(this.virtualScreen);
 
@@ -117,6 +133,7 @@ export default class OCR extends Component<SearchElements> {
             let num = getMatchingPart(s) ?? "";
             if (isRoomNumberValid(num)) {
                 logger.info("found:" + num);
+                router.redirect("/room/" + num);
             }
         });
     }
@@ -131,7 +148,9 @@ export default class OCR extends Component<SearchElements> {
 }
 
 function compress(virtualScreen: HTMLCanvasElement) {
-    let imgData = virtualScreen.getContext("2d")!.getImageData(0, 0, virtualScreen.width, virtualScreen.height);
+    let imgData = virtualScreen
+        .getContext("2d")!
+        .getImageData(0, 0, virtualScreen.width, virtualScreen.height);
 
     let data = imgData.data;
 

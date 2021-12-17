@@ -10,14 +10,18 @@
 :root {
     --primary: hsl(189, 100%, 35%);
     --secondary: hsl(197, 100%, 27%);
-    --primary-btn: hsl(189, 100%, 35%, 50%);
-    --fg-color: hsl(0, 0%, 0%);
+    --primary-light: hsl(189, 100%, 35%, 50%);
+    --secondary-light: hsl(197, 100%, 27%, 50%);
+    --primary-fg: hsl(0, 0%, 98%);
+    --secondary-fg: hsl(0, 0%, 100%);
+
+    --fg-color: hsl(0, 0%, 2%);
     --fg-dark-color: hsl(0, 0%, 42%);
     --bg-color: hsl(0, 0%, 98%);
     --bg-dark-color: hsl(0, 0%, 86%);
 
     --green: hsl(133, 100%, 23%);
-    --red: #e00000;
+    --red: hsl(0, 100%, 44%);
 
     --default-font: roboto, sans-serif;
 }

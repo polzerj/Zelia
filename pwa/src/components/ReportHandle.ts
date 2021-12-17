@@ -1,8 +1,10 @@
+import Accordion from "../services/animation/Accordion";
 import RoomReportModel from "../services/room/RoomReportModel";
 import Component from "../types/Component";
 
 interface SearchElements {
     btnClose: HTMLButtonElement;
+    details: HTMLDetailsElement;
 }
 
 export default class ReportHandle extends Component<SearchElements> {
@@ -12,6 +14,7 @@ export default class ReportHandle extends Component<SearchElements> {
             autoRender: false,
             queries: {
                 btnClose: "#btnClose",
+                details: "details",
             },
         });
     }
@@ -20,6 +23,7 @@ export default class ReportHandle extends Component<SearchElements> {
         this.setState("notice", "Anmerkung: ");
         this.setState("info", "Meldung für: ");
         this.setState("close", "Erledigt");
+        this.setState("tagReport", "Meldung");
 
         this.setState("roomNr", data.roomNumber);
         this.setState("user", data.user);
@@ -30,8 +34,11 @@ export default class ReportHandle extends Component<SearchElements> {
     }
 
     registerEventListenerCallback() {
-        this.elements.btnClose.addEventListener("click", this.btnCloseClick.bind(this));
-        //new Accordion(this.elements.details);
+        this.elements.btnClose.addEventListener(
+            "click",
+            this.btnCloseClick.bind(this)
+        );
+        new Accordion(this.elements.details, { duration: 100 });
     }
 
     btnCloseClick() {
