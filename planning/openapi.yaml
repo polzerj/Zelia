@@ -1,13 +1,13 @@
 openapi: 3.1.0
 info:
   title: openapi
-  version: "1.0"
+  version: '1.0'
   contact:
     name: Johannes Polzer
     email: johannes.polzer@edu.szu.at
   description: API for ZELIA
 servers:
-  - url: "http://localhost:3000"
+  - url: 'http://localhost:3000'
 paths:
   /api/room:
     parameters: []
@@ -18,13 +18,13 @@ paths:
       parameters: []
       description: Get list of available rooms
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 type: array
-                description: ""
+                description: ''
                 minItems: 1
                 uniqueItems: true
                 x-examples:
@@ -38,7 +38,7 @@ paths:
                       projector: normal
                       projectorConnectors:
                         - HDMI
-                        - " VGA"
+                        - ' VGA'
                       hasWater: false
                       boards:
                         - normal
@@ -46,9 +46,9 @@ paths:
                       numberOfSeats: 26
                 items:
                   type: string
-        "500":
+        '500':
           description: Internal Server Error
-  "/api/room/{roomNumber}":
+  '/api/room/{roomNumber}':
     parameters:
       - schema:
           type: string
@@ -59,13 +59,13 @@ paths:
       summary: Your GET endpoint
       tags: []
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 type: array
-                description: ""
+                description: ''
                 minItems: 1
                 uniqueItems: true
                 x-examples:
@@ -79,7 +79,7 @@ paths:
                       projector: normal
                       projectorConnectors:
                         - HDMI
-                        - " VGA"
+                        - ' VGA'
                       hasWater: false
                       boards:
                         - normal
@@ -142,12 +142,12 @@ paths:
               schema:
                 type: object
                 properties: {}
-        "404":
+        '404':
           description: Not Found
-        "500":
+        '500':
           description: Internal Server Error
       operationId: get-api-room-roomNumber
-  "/api/room/{roomNumber}/timetable":
+  '/api/room/{roomNumber}/timetable':
     parameters:
       - schema:
           type: string
@@ -159,19 +159,19 @@ paths:
       operationId: get-room-room-number
       description: Get timetable by room Number
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/ULesson"
-        "404":
+                  $ref: '#/components/schemas/ULesson'
+        '404':
           description: Not Class Found
-        "500":
+        '500':
           description: Internal Server Error
-  "/api/room/{roomNumber}/book":
+  '/api/room/{roomNumber}/book':
     parameters:
       - schema:
           type: string
@@ -182,9 +182,9 @@ paths:
       summary: Post booking
       operationId: post-api-room-roomNumber-book
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
       requestBody:
         content:
@@ -202,13 +202,16 @@ paths:
                   type: integer
                 roomNumber:
                   type: string
+                date:
+                  type: integer
               required:
                 - user
                 - purpose
                 - from
                 - until
-      description: ""
-  "/api/room/{roomNumber}/report":
+                - date
+      description: ''
+  '/api/room/{roomNumber}/report':
     parameters:
       - schema:
           type: string
@@ -216,10 +219,10 @@ paths:
         in: path
         required: true
     post:
-      summary: ""
+      summary: ''
       operationId: post-api-room-roomNumber-report
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
@@ -238,12 +241,55 @@ paths:
                   - user
                   - firstDetected
                   - information
-        "400":
+        '400':
           description: Bad Request
+  '/api/room/{roomNumber}/free':
+    parameters:
+      - schema:
+          type: string
+        name: roomNumber
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+        '500':
+          description: Internal Server Error
+      operationId: get-api-room-roomNumber-free
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: date
+  '/api/verify/{hash}':
+    parameters:
+      - schema:
+          type: string
+        name: hash
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Internal Server Error
+      operationId: get-api-verify-hash
 components:
   schemas:
     UTeacher:
-      description: ""
+      description: ''
       type: object
       properties:
         id:
@@ -264,7 +310,7 @@ components:
           name: ZACH
           longname: ZACHERL
     USubject:
-      description: ""
+      description: ''
       type: object
       properties:
         id:
@@ -285,7 +331,7 @@ components:
           name: NWT1
           longname: Netzwerktechnik
     URoom:
-      description: ""
+      description: ''
       type: object
       properties:
         id:
@@ -306,7 +352,7 @@ components:
           name: EDV 2406a
           longname: Teilungsraum zu EDV 2406 (vormals EDV6)
     ULesson:
-      description: ""
+      description: ''
       type: object
       x-examples:
         example-1:
@@ -349,25 +395,25 @@ components:
           uniqueItems: true
           minItems: 1
           items:
-            $ref: "#/components/schemas/UClass"
+            $ref: '#/components/schemas/UClass'
         te:
           type: array
           uniqueItems: true
           minItems: 1
           items:
-            $ref: "#/components/schemas/UTeacher"
+            $ref: '#/components/schemas/UTeacher'
         su:
           type: array
           uniqueItems: true
           minItems: 1
           items:
-            $ref: "#/components/schemas/USubject"
+            $ref: '#/components/schemas/USubject'
         ro:
           type: array
           uniqueItems: true
           minItems: 1
           items:
-            $ref: "#/components/schemas/URoom"
+            $ref: '#/components/schemas/URoom'
         lsnumber:
           type: number
         activityType:
@@ -385,7 +431,7 @@ components:
         - lsnumber
         - activityType
     UClass:
-      description: ""
+      description: ''
       type: object
       properties:
         id:
