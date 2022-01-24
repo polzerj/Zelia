@@ -15,3 +15,80 @@ Web Components ermöglichen es "Client-Side"-Code wiederverwendbar zu machen. Da
 \hfour{Custom Elements}
 
 Custom Elements sind ES 2015 Klassen, welche vom "HTMLElement" erben. 
+
+\begin{lstlisting}[language=TypeScript,caption={Erstellung einer Custom Element Klasse}]
+class MyElement extends HTMLElement {
+    ...
+}
+\end{lstlisting}
+
+Dadurch können sie als Custom Element registriert werden. Dabei muss ein Name vergeben werden, welcher einen Bindestrich enthält.
+
+\begin{lstlisting}[language=TypeScript,caption={Registrierung des Custom Elements}]
+window.customElements.define('my-element', MyElement);
+\end{lstlisting}
+
+Wenn das Custom Element registriert ist, kann es mit dem vergebenen Namen im HTML verwendet werden
+
+%TODO: <my-element></my-element>
+
+%TODO: Verwendung des Custom Elements im HTML
+
+Um den Lebenszyklus eines Custom Elements besser zu kontrollieren, gibt es sogenannte "lifecycle callbacks":
+\begin{itemize}
+    \item Der "connectedCallback" wird aufgerufen, wenn das Element in das DOM eingefügt wird. Darin können zum Beispiel Event Listeners registriert werden.
+        \begin{lstlisting}[language=TypeScript,caption={"connectedCallback" Beispiel}]
+connectedCallback()
+{
+    console.log("Custom element added to page.");
+}
+        \end{lstlisting}
+
+    \item Der "disconnectedCallback" ist das Gegenstück zum "connectedCallback" und wird beim Verlassen des DOMs aufgerufen. Darin sollten etwaige "Event Listeners" entfernt werden. 
+    \begin{lstlisting}[language=TypeScript,caption={"disconnectedCallback" Beispiel}]
+disconnectedCallback()
+{
+    console.log("Custom element removed to page.");
+}
+    \end{lstlisting}
+
+    \item Der "adoptedCallback" wird jedes Mal aufgerufen, wenn das Element auf eine neue Seite verschoben wird.
+    \begin{lstlisting}[language=TypeScript,caption={"adoptedCallback" Beispiel}]
+adoptedCallback(){
+    console.log("Custom element moved to new page.");
+}
+    \end{lstlisting}
+    \item Der vierte Lifecycle-Hook ist der "attributeChangedCallback". Dieser wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. Allerdings müssen dafür eine Liste an Attributnamen von der statischen Eigenschaft "observedAttributes" zurückgegeben werden. 
+    
+    Der "attributeChangedCallback" nimmt drei Parameter:
+    \begin{itemize}
+        \item 	Name: Name des Attibutes
+        \item 	Old Value: Den Wert vor der Änderung
+        \item 	New Value: Der neue, aktuelle Wert 
+    \end{itemize}
+
+    \begin{lstlisting}[language=TypeScript,caption={"attributeChangedCallback" Beispiel}]
+attributeChangedCallback(name, oldValue, newValue)
+{
+    console.log(`Attribute ${name} changed from ${oldValue} to ${newValue}.`);
+}
+
+static get observedAttributes(){
+    return ['c','l'];
+}
+    \end{lstlisting}
+\end{itemize}
+
+\hfour{Shadow DOM}
+
+Ein Shadow DOM ist ein DOM Subtree, welcher separat von der restlichen Seite gerendert wird. Dadurch kann auch auf Custom Elements ein Style in <style> Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen.
+
+Um einen Shadow Root zu erstellen, muss lediglich die Methode "attachShadow" aufgerufen werden. 
+
+\begin{lstlisting}[language=TypeScript,caption={Erstellung eines Shadow Roots}]
+this.attachShadow({mode: "open"});
+\end{lstlisting}å
+
+Der Mode muss auf open gesetzt werden, damit der "ShaddowRoot" befüllt werden kann. Nun kann mit "this.shadowRoot" auf den "ShadowRoot" innerhalb des Custom Components zugegriffen werden.
+
+\cite{MDNShadowRoot}
