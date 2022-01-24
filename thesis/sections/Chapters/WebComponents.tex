@@ -87,8 +87,64 @@ Um einen Shadow Root zu erstellen, muss lediglich die Methode "attachShadow" auf
 
 \begin{lstlisting}[language=TypeScript,caption={Erstellung eines Shadow Roots}]
 this.attachShadow({mode: "open"});
-\end{lstlisting}å
+\end{lstlisting}
 
-Der Mode muss auf open gesetzt werden, damit der "ShaddowRoot" befüllt werden kann. Nun kann mit "this.shadowRoot" auf den "ShadowRoot" innerhalb des Custom Components zugegriffen werden.
+Der Mode muss auf open gesetzt werden, damit der "ShadowRoot" befüllt werden kann. Nun kann mit "this.shadowRoot" auf den "ShadowRoot" innerhalb des Custom Components zugegriffen werden.
 
 \cite{MDNShadowRoot}
+
+\hfour{HTML Templates}
+
+Um das Custom Element mit Inhalten zu füllen, gibt es in HTML den "template"-Tag, welcher nicht im DOM gerendert wird, aber trotzdem mit Javascript referenziert werden kann. 
+
+\begin{lstlisting}[language=HTML,caption={Erstellung eines HTML Templates}]
+<template id="hello-template">
+    <p>Hello Template</p>
+</template>
+\end{lstlisting}
+
+Um nun das Template in ein Custom Element zu rendern, muss der Content in das Custom Element, oder dessen Shadow DOM kopiert werden.
+
+\begin{lstlisting}[language=TypeScript,caption={Kopieren des Templates in das Custom Element}]
+class HelloTemplate extends HTMLElement {
+    constructor) {}
+    super();
+    /** @type {HTMLTemplateElement} */
+    cost template = document.querySelector("#hello-template");
+    const templateContent = template. content;
+    this.append(templateContent.cloneNode(true));
+    }
+}
+window.customElements.define("hello-template", HelloTemplate);
+\end{lstlisting}
+
+Um den Inhalt der Components dynamisch zu machen, gibt es den HTML Slot-Tag. Dieser ermöglicht es Inhalte an die Components weiterzugeben. Dafür muss allerdings der Shadow DOM verwendet werden. Ein Slot wird immer mit seinem Namen referenziert. Wenn bei einer Child-Node eines Custom Elements kein Slotname angegeben ist, dann wird diese Node im Slot ohne Namen gerendert. Wird für einen Slot kein Node gesetzt, dann wird der Inhalt des Slots als Standardwert verwendet. 
+
+\cite{MDNSlots}
+
+\begin{lstlisting}[language=TypeScript,caption={Web Component Beispiel (JavaScript)}]
+class HelloComponent extends HTMLElement{
+    constructor() {
+        super();
+        this.attachShadow({ mode: "open" }) ;
+        /** @type {HTMLTemplateElement}*/
+        cost template = document.querySelector("#hello-template");
+        cost templateContent = template.content;
+        this.shadowRoot.append(templateContent.cloneNode(true));
+    }   
+}
+window.customElements.define("hello-component", HelloComponent);
+\end{lstlisting}
+
+\begin{lstlisting}[language=HTML,caption={Web Component Beispiel (HTML)}]
+<template id="hello-template">
+    <p><slot name="greeting">Hello</slot> <slot>World</slot>!!</p>
+</template>
+<hello-component>
+    <span slot="greeting">Hi</span>
+    Universe
+</hello-component>
+\end{lstlisting}
+
+Ausgabe: \\
+Hi Universe!!
