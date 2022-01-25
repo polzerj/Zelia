@@ -1,9 +1,9 @@
 
 \lstdefinelanguage{TypeScript}{
-        basicstyle=\ttfamily\fontsize{9pt}{11pt}\selectfont,
-        keywords={typeof, constructor, class, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, extends, static},
+        basicstyle=\ttfamily\fontsize{10pt}{12pt}\selectfont,
+        keywords={typeof, constructor, class, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, extends, static, default},
         keywordstyle=\color{dblue}\bfseries,
-        ndkeywords={export, define, log, boolean, throw, implements, import, this, get, string, number, boolean, true, false, any},
+        ndkeywords={export, abstract, define, log, boolean, throw, implements, import, this, get, string, number, boolean, true, false, any, void, T, ComponentInfo},
         ndkeywordstyle=\color{turquise}\bfseries,
         identifierstyle=\color{black},
         comment=[l]{//},
@@ -18,6 +18,22 @@
         numberstyle=\color{gray}\ttfamily,
         breaklines=true,
         %captionstyles=\color{gray}\ttfamily\fontsize{10pt}{11pt}\selectfont,
+}
+\lstset{
+        language=HTML,
+        basicstyle=\ttfamily\fontsize{10pt}{12pt}\selectfont,
+        keywordstyle=\color{magenta}\bfseries,
+        ndkeywordstyle=\color{turquise}\bfseries,
+        identifierstyle=\color{black},
+        comment=[l]{//},
+        morecomment=[s]{/*}{*/},
+        commentstyle=\color{lgreen}\ttfamily,
+        stringstyle=\color{orange}\ttfamily,
+        morestring=[b]",
+        showstringspaces=false,
+        numbers=left,
+        numberstyle=\color{gray}\ttfamily,
+        breaklines=true,
 }
 \lstdefinelanguage{CSS}{
         basicstyle=\ttfamily,

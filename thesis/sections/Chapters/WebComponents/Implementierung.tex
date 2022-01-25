@@ -5,3 +5,48 @@ Wie ein der Rest von ZELIA ist auch der Code im Frontend in Typescript geschrieb
 
 \hfour{Architektur}
 Wie eben im Standard beschrieben muss es eine Klasse geben, welche von "HTMLElement" erbt, um als "Custom HTML Element" verwendet werden zu können. So gibt es in der ZELIA Implementierung die abstrakte Klasse "Component", von der alle anderen Komponenten erben.
+
+\typescript{code/WebComponents/BaseInterfaces.ts}{Schnittstellen der Basiskomponente}
+
+Die jeweils dazugehörige HTML Quelle wird vom sogenannten "Component Loader", wenn die Website aufgerufen wird, geladen und zwischengespeichert. Dadurch muss nicht jede Komponente ihren Darstellungscode selbst herunterladen, wenn sie verwendet wird, wie es bei manchen Bibliotheken der Fall ist. Somit ist es kaum merkbar, wenn man eine Seite wechselt, denn die Seite kann schon angezeigt werden, während die nötigen Infos noch nachgeladen werden.
+
+Mit Hilfe von "States" kann man Text dynamisch ersetzen, wie es auch in anderen Bibliotheken gemacht wird.
+
+\html{code/WebComponents/State.html}{Ersetzungsmechanismus (HTML)}
+\typescript{code/WebComponents/State.ts}{Ersetzungsmechanismus (Javascript)}
+
+Dadurch können zum Beispiel nachgeladene Daten eingefügt werden, aber auch die Sprache der Seite kann schnell geändert werden.
+
+Zusätzlich kann sich das Komponentensystem automatisch Referenzen auf HTML Elemente suchen. Dafür muss im Konstruktor von der Basiskomponente, von der alle Komponenten erben, nur definiert sein, wie ein Element gefunden wird. Um die Richtigkeit der Datentypen und die automatische Vervollständigung aufrecht zu erhalten, wird als generischen Typ der Komponente mitgegeben, welche Datentypen die Elemente haben, die automatisch gefunden werden.
+
+\typescript{code/WebComponents/AutoRef.ts}{Erstellen einer Komponente und suchen einer Referenz}
+
+In diesem Beispiel wird das Element "button" gesucht. Dieses Element ist vom Typ "HTMLButtonElement" und kann mit "\#btnInfo" gefunden werden. Die Raute im Suchfeld heißt, dass der nachfolgende Text die ID von dem HTML-Element ist. Somit würde der Suchtext für das folgende Beispiel zutreffen:
+
+\html{code/WebComponents/IDButton.html}{Beispiel eines HTML Knopfes mit ID}
+
+Im Endeffekt steht dann auf dem Knopf "Click Me". Das "Click" wird mithilfe der
+"States" ersetzt und danach wird über die Elementreferenz ein "Me" angehängt. Das automatische Finden von Referenzen ist wichtig, um Events abzufangen oder Elemente zu modifizieren, wenn es notwendig ist.
+
+Wie kurz erwähnt lädt der "Component Loader" die notwendigen HTML-Files und speichert sie. Verwendet werden die Daten dann von der Basis "Component"- Klasse, welche im Konstruktor einen Parameter bekommt, in dem der Name des HTML Elements steht. Über diesen Namen holt sich die Komponente, wenn sie erstellt, wird die HTML Ressource. Wenn sie schließlich angezeigt werden soll, ersetzt sie die "States" und fügt sich selbst in die Webseite hinzu.
+
+\typescript{code/WebComponents/ComponentLoader.ts}{Laden einer Komponente}
+
+Erst nachdem alle Ressourcen der Komponenten geladen wurden, wird der Client-Side-Router (siehe Kapitel Client-Side-Router) erstellt und somit die Seite gestartet. Dadurch wird sichergestellt, dass keine verzögerten Ladezeiten durch das Laden der Ressourcen auftreten.
+
+\hfour{"Life-Cycle"}
+
+Wenn nun ein eigenes Element erstellt wird, hat der "Loader" die HTML-Ressource, falls es eine gibt, bereits geladen. Während der Initialisierung des Elements, holt sich dieser die HTLM-Ressource als Text. Im Konstruktor der Basiskomponente gibt es neben dem "query"-Parameter, welcher für die automatische referenzieren verwendet wird, noch die "autoRender" und "useShaddowRoot" Argumente. Standardmäßig sind beide Werte auf Wahr gesetzt. Das heißt die Komponente wird, sobald sie auf die Seite hinzugefügt wird, ihr HTML anzeigen und ein einem "ShadowRoot" eingebunden werden. Durch das "ShadowRoot" wird es als eigenes Dokument angezeigt unabhängig von dem, wo es eingebunden wird, was Überschneidungen verschieden CSS-Styles behebt. Somit sieht die Komponente jedes Mal gleich aus, unabhängig von der restlichen Seite.
+
+Bevor der HTML-Text dargestellt werden kann, werden die States ersetzt. Danach wird geschaut ob die Elemente die automatisch referenziert werden sollen, vorhanden sind. Falls sich ein "State" ändert, wird der Inhalt der Komponente automatisch neu erstellt und gerendert. Durch das neu erstellen der Komponente bekommen auch die referenzierten Elemente neue Referenzen. Das könnte ein Problem sein, wenn man Komponenten hat, bei denen es wichtig ist, dass die Elemente "dieselben" bleiben. Somit sollte man sich um das Modifizieren dieser Komponenten selbst kümmern oder keine States ändern, sodass nicht neu gerendert werden muss.
+
+\hthree{In ZELIA eingebaute Komponenten}
+
+Insgesamt besteht das komplette Frontend aus 12 Komponenten, die auf 7 Seiten verteilt sind. Zusätzlich gibt es die "Debug"-Komponente, die uns während der Entwicklung einen Logger zu Verfügung gestellt hat, der vor allem praktisch war, um auf Mobilgeräten die Hintergrundaufgaben mitverfolgen zu können.
+
+\hfour{Die Startseite}
+
+Auf dem Root-Pfad ("/") liegt unsere Willkommensseite. Auf ihr findet man die Raumeingabekomponente, die von der ZELIA-API alle möglichen Raumnummern abfragt und als Auswahlhilfe anzeigt. Auf Mobilgeräten, wie Smartphones oder Tablets, wird zusätzlich ein Knopf angezeigt, der es möglich macht, die Raumnummer mit der Kamera des Geräts einzulesen. Wenn man auf diesen Knopf drückt, wird man zur "OCR"-Seite weitergeleitet. Gibt man die Raumnummer selbst ein, so landet man auf der Rauminformationsseite. Während der manuellen Eingabe, werden alle bekannten Räume als "Dropdown" unter der Eingabebox angezeigt. Gibt man die ersten Buchstaben des Raumnamens oder Raumnummer an, so werden nur mehr Ergebnisse angezeigt, die dem angegebenen Muster entsprechen.
+
+Beispiel:
+
