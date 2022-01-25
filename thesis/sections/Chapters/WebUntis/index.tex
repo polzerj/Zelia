@@ -71,14 +71,17 @@ Das allererste Problem ist, dass gewisse Räume mit mehreren Namen beziehungswei
 
 Die Methode bekommt einen Wert des Typen "RoomNumber" übergeben. Gleichzeitig beschaffen wir uns mit der Methode getRoomList() alle eingetragenen Klassen und gehen in einer for-Schleife durch jedes Element durch. Die Vorgehensweise scheint zwar unprofessionell, doch während der Implementierung ist aufgefallen, dass der vollständige Klassenname nicht immer im Longname oder im Shortname abgespeichert, sondern eher rein zufällig in einem der beiden Parametern beinhaltet ist. Deswegen prüfen wir auf Nummer sicher beide Parameter ab und geben bei einer Übereinstimmung die dazu vorhandene Raum-ID mit, diese ist einzigartig dennoch können wie schon zuvor gesagt, mehrere IDs auf einen Raum zeigen, was in dem Fall kein allzu großes Problem darstellt.
 
-Des Weiteren gab es das Problem, das WebUntis einen Token eingebaut hat, welcher nach einer gewissen Zeit abläuft und die momentane Sitzung als "ungültig" deklariert.
+Des Weiteren gab es das Problem, das WebUntis einen Token eingebaut hat, welcher nach einer gewissen Zeit abläuft und die momentane Sitzung als "ungültig" deklariert.In diesem Fall können wir mit der Methode validateSession() abprüfen, ob der Token zum Zeitpunkt der Abfrage schon abgelaufen oder noch gültig ist. 
 
-/// Fehlt noch!!!!
+\typescript{code/WebUntis/validateSession.ts}{Abfrage eines "gültigen" Tokens}
 
 
+Falls der Token zum Zeitpunkt der Abfrage ungültig ist, wird die Variable valid auf "false" gesetzt und springt nach der if-Abfrage in den else-Zweig. Dort wird automatisch eine Neuanmeldung mit den Informationen des Benutzers getätigt und es wird erneut versucht, die gewünschte Methode auszuführen.
+
+\pagebreak
 Während dem Exception-Handling ist uns folgender Fehler seitens WebUntis aufgefallen:
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics{media/WebUntis/ExceptionHandling.png}
     \caption{Exception Handling}
