@@ -1,0 +1,50 @@
+\htwo{Client Side Router}
+
+\hthree{Routing im Allgemeinen}
+
+In der Netzwerktechnik ist “Routing” der Vorgang, um einen Weg für Daten zu finden. In der Webentwicklung ist das gar nicht so anders. Jede Seite hat einen bestimmten Pfad, eine Route, z.B.:
+
+\emph{https://zelia/home} oder \emph{.../room/S1308}
+
+In diesen Fällen wären "/home" und "/room/S1308" 2 verschiedene Routen. Früher hat man am Webserver, also der Server, der die Daten zu Verfügung stellt, ein Verzeichnis gehabt, dass alle möglichen Pfade abbildet.
+
+\begin{figure}[h]
+    \begin{lstlisting}
+www/
+> home/
+  > room/
+    > S1308/
+    > ...
+    \end{lstlisting}
+    \caption{Ordnerstruktur eines Webservers}
+\end{figure}
+
+Diese Art von Webserver stellt statische Websites zu Verfügung. Statisch, weil die Daten, z.B.: das "index.html", nicht geändert werden, sondern so wie sie am Server liegen dem Client geschickt werden. Dies hat den Vorteil das der Server kaum Ressourcen verbraucht. In Jedem dieser Verzeichnisse kann man ein "index.html" finden, welches der Webserver schickt, wenn einer dieser Pfade vom Browser angefragt wird. Da gibt es schon das erste Problem: Es muss für jeden Raum ein fertiges "index.html" im richtigen Pfad geben, um darauf zugreifen zu können.
+
+Als Lösung dafür gibt sogenannte Router, die wissen was zu tun ist, wenn eine Route angefragt wird. Somit kann man diese statische Hierarchie auflösen und auf jede Anfrage individuell reagieren. In der Webentwicklung werden diese Steuerungsprogramme, die auf Anfragen reagieren, meist Controller genannt. Ein Controller bekommt somit eine Anfrage und liefert eine Antwort, welche im Zusammenhang von vorher das "index.html" ist. Dabei ist aber wichtig zu erwähnen das der Inhalt des "index.html", also der Antworttext, modifiziert werden kann. So kann ein Router Beispielsweiße alle Routen die aus "/room/..."bestehen an einen Controller weitergeben, der dem Client jeweils andere Informationen zurückgibt.
+
+Nochmal kurz zusammengefasst: Router sind in der Webentwicklung da, um Routen (Pfade) aufzulösen und an den richtigen Controller weiterzureichen. Controller liefern dann individuelle Ergebnisse auf jeweilige Anfragen.
+
+\hthree{Backend vs Frontend Routing}
+
+\hfour{"Backend Routing"}
+
+Back-End Routing wird der Vorgang genannt bei dem das Routing im Backend der Applikation, also Serverseitig, passiert. Beispiele dafür wären wie oben genannt: statische Webserver oder dynamische Webserver, welche mit Controllern arbeiten.
+
+\hfour{"Frontend Routing"}
+
+Front-End Routing, oder "Client-Side-Routing", ist, wenn das Routing zum Client verschoben wird, also im Browser abgefertigt wird. So muss ein Webserver nur eine einzige Seite zu Verfügung stellen und der Client lädt diese und zusätzlich holt er sich die notwendigen Informationen, die er braucht, um eine Seite darzustellen.
+
+Im Beispiel von vorhin, müsste der Webserver nur ein "index.html" hosten welches der Client, egal welche Route er besucht herunterlädt. Das ist meist eine Minimale HTML Seite, die eine JavaScript Datei einbindet. Dieses Skript schaut dann auf welchem Pfad es sich befindet und holt Informationen von einer API, die benötigt sind, um eine Seite aufzubauen. Das "index.html" wird nur einmal zu Beginn, wenn die Website besucht wird, also wenn man die URL manuell im Browser eingibt, heruntergeladen. Bei jedem Link auf der Website werden nur die notwendigen Infos nachgeladen und angezeigt. Zusätzlich wird mit Hilfe der "History-API" ein Eintrag in den Verlauf gemacht so, dass man mit der "Zurücktaste", im Browser, zu zuvor besuchten Pfaden zurückspringen kann.
+
+Obwohl die Seite eigentlich nie verlassen wird, ändert der Browser den Verlauf und den Pfad, der in der URL-Eingabe Box steht. Somit ist es möglich das Routing komplett in den Browser zu verschieben.
+
+\hfour{Vorteile des Client-Side-Routers}
+
+Einer der größten Vorteile ist, dass die eigentliche Webpage, also das "index.html", praktisch überall bereitgestellt werden kann, da es wie schon gesagt kaum Ressourcen benötigt, so einfache statische Seiten zu Verfügung zu stellen. Die Browser auf den Geräten, mit denen die Seite aufgerufen wird, haben eine komplexere Aufgabe, aber mit heutigen Computern ist das auch kein Problem mehr.
+
+Außerdem ist es oft schneller, nur notwendige Infos nachzuladen, vor allem wenn man im Browser heruntergeladene Daten in Caches zwischenspeichert. Somit müssen am Anfang meist mehr Daten geladen werden, dafür hat man dann beim Wechseln der Seite kaum Ladezeiten. Zusätzlich kann man Musterwerte verwenden, oder einen Ladebildschirm anzeigen, wenn die individuellen Werte noch nachgeladen werden. So kann der Browser schon mal irgendwas darstellen und man muss nicht warten, bis eine gesamte Seite am Server zusammengestellt und geschickt wird.
+
+Die Daten, die angezeigt werden sollen, werden von "API-Servern" zu Verfügung gestellt. Dort kann man schön die Schnittstellen definieren und gut überwachen welche Daten zugänglich sind. Somit kann man Server und Client besser voneinander trennen, anders als wenn am Server die HTML Seiten generiert werden, was bei komplexen Anwendungen schnell unübersichtlich werden kann.
+
+\input{sections/Chapters/ClientSideRouter/implementierung.tex}
