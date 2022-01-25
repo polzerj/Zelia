@@ -1,4 +1,4 @@
-\documentclass[a4paper,15pt,twoside]{article}
+\documentclass[a4paper,twoside]{article}
 
 \input{util/utils.tex}
 
@@ -11,9 +11,11 @@
 
 
 \hone{Umsetzung}
-\input{sections/Chapters/WebComponents.tex}
 
+\input{sections/Chapters/WebComponents.tex}
 \include{sections/Chapters/ClientSideRouter.tex}
-\printbibliography 
+
+\renewcommand{\refname}{Quellen}
+\printbibliography
 
 \end{document}

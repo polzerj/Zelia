@@ -30,9 +30,9 @@ window.customElements.define('my-element', MyElement);
 
 Wenn das Custom Element registriert ist, kann es mit dem vergebenen Namen im HTML verwendet werden
 
-%TODO: <my-element></my-element>
-
-%TODO: Verwendung des Custom Elements im HTML
+\begin{lstlisting}[language=HTML,caption={Verwendung des Custom Elements im HTML}]
+<my-element></my-element>
+\end{lstlisting}
 
 Um den Lebenszyklus eines Custom Elements besser zu kontrollieren, gibt es sogenannte "lifecycle callbacks":
 \begin{itemize}
@@ -107,11 +107,11 @@ Um nun das Template in ein Custom Element zu rendern, muss der Content in das Cu
 
 \begin{lstlisting}[language=TypeScript,caption={Kopieren des Templates in das Custom Element}]
 class HelloTemplate extends HTMLElement {
-    constructor) {}
+    constructor() {
     super();
     /** @type {HTMLTemplateElement} */
     cost template = document.querySelector("#hello-template");
-    const templateContent = template. content;
+    const templateContent = template.content;
     this.append(templateContent.cloneNode(true));
     }
 }
