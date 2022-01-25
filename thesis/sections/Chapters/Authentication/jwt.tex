@@ -1,0 +1,40 @@
+\hthree{3.13.2	Json Web Token (JWT)}
+
+Der JWT speichert die Benutzerdaten verschlüsselt im Token selbst. Dieses Token wird wie ein Sitzungs-"Cookie" bei jeder Anfrage mitgeschickt. Da die Sitzungsdaten jedoch im Token gespeichert sind, müssen die Server die Sitzungen nicht synchronisieren. Es ist außerdem möglich, einen getrennten Server nur für die Autorisierung zu verwenden. Die einzige Voraussetzung ist, dass sowohl der Autorisierungsserver als auch der eigentliche Webserver das gleiche JWT-"Secret" verwenden. Um sicherzustellen, dass das Token nicht manipuliert wird, haben nur die Server den Schlüssel, um das Token zu signieren und die darin enthaltenen zu manipulieren. 
+
+Das JWT ist im RFC7519 definiert. Jedes JSON Web Token ist in drei Abschnitte unterteilt. 
+
+\begin{itemize}
+    \item "Header"
+    \item "Payload"
+    \item "Signature"
+\end{itemize}
+
+Im Header befinden sich meist zwei Felder. Der Typ des Tokens (typ) und der "Signing"-Algorithmus (alg). Die standardisierten Felder sind in der Regel drei Zeichen lang, um das "Token" möglichst kompakt zu halten.
+
+Die Payload besteht in der Regel aus Benutzerdaten. Dennoch gibt es drei Arten von "Claims": 
+
+\begin{itemize}
+    \item "Registered claims" sind vordefinierte "Claims" wie
+    \begin{itemize}
+        \item "iss": is user
+        \item "exp":  expiration time
+        \item …
+    \end{itemize}
+    \item "Public claims" können vom Entwickler definiert werden
+    \item "Private claims" werden verwendet, um Informationen zwischen Servern auszutauschen
+\end{itemize}
+
+Sowohl Header als auch Payload werden mit Base64 kodiert.
+
+Die Signature wird erstellt durch Verschlüsseln der Base64Url kodierten Header, Payload und einem Secret mit dem im Header spezifizierten Verschlüsselungsalgorithmus.
+
+Alle drei Teile des JWT werden mit einem Punkt dazwischen verkettet. 
+
+Wenn geschützte Ressourcen angefordert werden, wird das JWT in der Regel im Authorization-Header als Bearer Token gesendet. Dieser Header würde wie folgt aussehen:
+
+\emph{Authorization: Bearer \textless JWT Token\textgreater}
+
+\cite{Auth0JWT}
+\cite{RFC7519}
+\cite{WdsJWT}
