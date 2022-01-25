@@ -1,0 +1,6 @@
+const {
+    WEBUNTIS_SCHOOL,
+    WEBUNTIS_USERNAME,
+    WEBUNTIS_PASSWORD,
+    WEBUNTIS_BASE_URL,
+} = process.env;
