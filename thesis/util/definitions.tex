@@ -6,5 +6,13 @@
 \newcommand{\hthree}[1]{\subsubsection{#1}}
 \newcommand{\hfour}[1]{{\large \textbf{\linebreak#1}}}
 
+\renewcommand{\lstlistingname}{Code}
+\renewcommand{\lstlistlistingname}{Codeabbildungsverzeichnis}
+
+\newcommand{\typescript}[2]{\begin{singlespacing}\lstinputlisting[language=TypeScript,caption={#2},captionpos=b]{#1}\end{singlespacing}}
+\newcommand{\html}[2]{\begin{singlespacing}\lstinputlisting[language=HTML,caption={#2},captionpos=b]{#1}\end{singlespacing}}
+\newcommand{\css}[2]{\begin{singlespacing}\lstinputlisting[language=CSS,caption={#2},captionpos=b]{#1}\end{singlespacing}}
+\newcommand{\sql}[2]{\begin{singlespacing}\lstinputlisting[language=SQL,caption={#2},captionpos=b]{#1}\end{singlespacing}}
+
 \setlength{\parindent}{0px}
-\setlength{\parskip}{1em}
+\setlength{\parskip}{0.75em}

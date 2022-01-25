@@ -16,68 +16,38 @@ Web Components ermöglichen es "Client-Side"-Code wiederverwendbar zu machen. Da
 
 Custom Elements sind ES 2015 Klassen, welche vom "HTMLElement" erben. 
 
-\begin{lstlisting}[language=TypeScript,caption={Erstellung einer Custom Element Klasse}]
-class MyElement extends HTMLElement {
-    ...
-}
-\end{lstlisting}
+\typescript{code/WebComponents/one.ts}{Erstellung einer Custom Element Klasse}
 
 Dadurch können sie als Custom Element registriert werden. Dabei muss ein Name vergeben werden, welcher einen Bindestrich enthält.
 
-\begin{lstlisting}[language=TypeScript,caption={Registrierung des Custom Elements}]
-window.customElements.define('my-element', MyElement);
-\end{lstlisting}
+
+\typescript{code/WebComponents/two.ts}{Registrierung des Custom Elements}
 
 Wenn das Custom Element registriert ist, kann es mit dem vergebenen Namen im HTML verwendet werden
 
-\begin{lstlisting}[language=HTML,caption={Verwendung des Custom Elements im HTML}]
-<my-element></my-element>
-\end{lstlisting}
+\html{code/WebComponents/three.html}{Verwendung des Custom Elements im HTML}
 
 Um den Lebenszyklus eines Custom Elements besser zu kontrollieren, gibt es sogenannte "lifecycle callbacks":
-\begin{itemize}
-    \item Der "connectedCallback" wird aufgerufen, wenn das Element in das DOM eingefügt wird. Darin können zum Beispiel Event Listeners registriert werden.
-        \begin{lstlisting}[language=TypeScript,caption={"connectedCallback" Beispiel}]
-connectedCallback()
-{
-    console.log("Custom element added to page.");
-}
-        \end{lstlisting}
 
-    \item Der "disconnectedCallback" ist das Gegenstück zum "connectedCallback" und wird beim Verlassen des DOMs aufgerufen. Darin sollten etwaige "Event Listeners" entfernt werden. 
-    \begin{lstlisting}[language=TypeScript,caption={"disconnectedCallback" Beispiel}]
-disconnectedCallback()
-{
-    console.log("Custom element removed to page.");
-}
-    \end{lstlisting}
+Der "connectedCallback" wird aufgerufen, wenn das Element in das DOM eingefügt wird. Darin können zum Beispiel Event Listeners registriert werden.
+\typescript{code/WebComponents/four.ts}{"connectedCallback" Beispiel}
+   
+Der "disconnectedCallback" ist das Gegenstück zum "connectedCallback" und wird beim Verlassen des DOMs aufgerufen. Darin sollten etwaige "Event Listeners" entfernt werden. 
+\typescript{code/WebComponents/five.ts}{"disconnectedCallback" Beispiel}
 
-    \item Der "adoptedCallback" wird jedes Mal aufgerufen, wenn das Element auf eine neue Seite verschoben wird.
-    \begin{lstlisting}[language=TypeScript,caption={"adoptedCallback" Beispiel}]
-adoptedCallback(){
-    console.log("Custom element moved to new page.");
-}
-    \end{lstlisting}
-    \item Der vierte Lifecycle-Hook ist der "attributeChangedCallback". Dieser wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. Allerdings müssen dafür eine Liste an Attributnamen von der statischen Eigenschaft "observedAttributes" zurückgegeben werden. 
+Der "adoptedCallback" wird jedes Mal aufgerufen, wenn das Element auf eine neue Seite verschoben wird.
+\typescript{code/WebComponents/six.ts}{"adoptedCallback" Beispiel}
+
+Der vierte Lifecycle-Hook ist der "attributeChangedCallback". Dieser wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. Allerdings müssen dafür eine Liste an Attributnamen von der statischen Eigenschaft "observedAttributes" zurückgegeben werden. 
     
-    Der "attributeChangedCallback" nimmt drei Parameter:
-    \begin{itemize}
-        \item 	Name: Name des Attibutes
-        \item 	Old Value: Den Wert vor der Änderung
-        \item 	New Value: Der neue, aktuelle Wert 
-    \end{itemize}
-
-    \begin{lstlisting}[language=TypeScript,caption={"attributeChangedCallback" Beispiel}]
-attributeChangedCallback(name, oldValue, newValue)
-{
-    console.log(`Attribute ${name} changed from ${oldValue} to ${newValue}.`);
-}
-
-static get observedAttributes(){
-    return ['c','l'];
-}
-    \end{lstlisting}
+Der "attributeChangedCallback" nimmt drei Parameter:
+\begin{itemize}
+    \item 	Name: Name des Attibutes
+    \item 	Old Value: Den Wert vor der Änderung
+    \item 	New Value: Der neue, aktuelle Wert 
 \end{itemize}
+
+\typescript{code/WebComponents/seven.ts}{"attributeChangedCallback" Beispiel}
 
 \hfour{Shadow DOM}
 
@@ -85,9 +55,7 @@ Ein Shadow DOM ist ein DOM Subtree, welcher separat von der restlichen Seite ger
 
 Um einen Shadow Root zu erstellen, muss lediglich die Methode "attachShadow" aufgerufen werden. 
 
-\begin{lstlisting}[language=TypeScript,caption={Erstellung eines Shadow Roots}]
-this.attachShadow({mode: "open"});
-\end{lstlisting}
+\typescript{code/WebComponents/eight.ts}{Erstellung eines Shadow Roots}
 
 Der Mode muss auf open gesetzt werden, damit der "ShadowRoot" befüllt werden kann. Nun kann mit "this.shadowRoot" auf den "ShadowRoot" innerhalb des Custom Components zugegriffen werden.
 
@@ -97,54 +65,21 @@ Der Mode muss auf open gesetzt werden, damit der "ShadowRoot" befüllt werden ka
 
 Um das Custom Element mit Inhalten zu füllen, gibt es in HTML den "template"-Tag, welcher nicht im DOM gerendert wird, aber trotzdem mit Javascript referenziert werden kann. 
 
-\begin{lstlisting}[language=HTML,caption={Erstellung eines HTML Templates}]
-<template id="hello-template">
-    <p>Hello Template</p>
-</template>
-\end{lstlisting}
+\html{code/WebComponents/nine.html}{Erstellung eines HTML Templates}
 
 Um nun das Template in ein Custom Element zu rendern, muss der Content in das Custom Element, oder dessen Shadow DOM kopiert werden.
 
-\begin{lstlisting}[language=TypeScript,caption={Kopieren des Templates in das Custom Element}]
-class HelloTemplate extends HTMLElement {
-    constructor() {
-    super();
-    /** @type {HTMLTemplateElement} */
-    cost template = document.querySelector("#hello-template");
-    const templateContent = template.content;
-    this.append(templateContent.cloneNode(true));
-    }
-}
-window.customElements.define("hello-template", HelloTemplate);
-\end{lstlisting}
+\typescript{code/WebComponents/ten.ts}{Kopieren des Templates in das Custom Element}
+
 
 Um den Inhalt der Components dynamisch zu machen, gibt es den HTML Slot-Tag. Dieser ermöglicht es Inhalte an die Components weiterzugeben. Dafür muss allerdings der Shadow DOM verwendet werden. Ein Slot wird immer mit seinem Namen referenziert. Wenn bei einer Child-Node eines Custom Elements kein Slotname angegeben ist, dann wird diese Node im Slot ohne Namen gerendert. Wird für einen Slot kein Node gesetzt, dann wird der Inhalt des Slots als Standardwert verwendet. 
 
 \cite{MDNSlots}
 
-\begin{lstlisting}[language=TypeScript,caption={Web Component Beispiel (JavaScript)}]
-class HelloComponent extends HTMLElement{
-    constructor() {
-        super();
-        this.attachShadow({ mode: "open" }) ;
-        /** @type {HTMLTemplateElement}*/
-        cost template = document.querySelector("#hello-template");
-        cost templateContent = template.content;
-        this.shadowRoot.append(templateContent.cloneNode(true));
-    }   
-}
-window.customElements.define("hello-component", HelloComponent);
-\end{lstlisting}
+\typescript{code/WebComponents/eleven.ts}{Web Component Beispiel (JavaScript)}
 
-\begin{lstlisting}[language=HTML,caption={Web Component Beispiel (HTML)}]
-<template id="hello-template">
-    <p><slot name="greeting">Hello</slot> <slot>World</slot>!!</p>
-</template>
-<hello-component>
-    <span slot="greeting">Hi</span>
-    Universe
-</hello-component>
-\end{lstlisting}
+
+\html{code/WebComponents/twelve.html}{Web Component Beispiel (HTML)}
 
 Ausgabe: \\
 Hi Universe!!

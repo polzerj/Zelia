@@ -1,0 +1,3 @@
+class MyElement extends HTMLElement {
+    ...
+}
