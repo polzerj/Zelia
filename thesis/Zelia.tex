@@ -1,12 +1,16 @@
-\documentclass[a4paper,twoside]{article}
+\documentclass[a4paper,twoside, 12pt]{article}
 
 \input{util/utils.tex}
 
+\linespread{1.5}
 \begin{document}
 
 \maketitle
 \pagebreak
 \tableofcontents
+\include{sections/EE.tex}
+\include{sections/Kurzfassung.tex}
+\include{sections/Abstract.tex}
 \include{sections/Vorwort.tex}
 
 
@@ -15,6 +19,10 @@
 \input{sections/Chapters/WebComponents.tex}
 \include{sections/Chapters/ClientSideRouter.tex}
 
+\listoffigures
+\pagebreak
+\lstlistoflistings
+\pagebreak
 \renewcommand{\refname}{Quellen}
 \printbibliography
 

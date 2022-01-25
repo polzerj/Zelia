@@ -1,0 +1,7 @@
+<template id="hello-template">
+  <p><slot name="greeting">Hello</slot> <slot>World</slot>!!</p>
+</template>
+<hello-component>
+  <span slot="greeting">Hi</span>
+  Universe
+</hello-component>
