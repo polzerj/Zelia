@@ -1,0 +1,3 @@
+\hthree{Controller}
+Ein Controller behandelt alle "Requests" auf einem Pfad. 
+Controller sind Klassen, welche von der "ControllerBase" erben. Im Super-Konstruktor des Controllers muss der Pfad der Requests angegeben werden, welche vom Controller verarbeitet werden sollen. Zusätzlich kann ein Objekt mit zusätzlichen Middlewares übergeben werden. Um eine HTTP-Methode zu implementieren, müssen lediglich die Methoden "get", "post", "put", "patch" oder "delete" überschrieben werden. Diese nehmen die von "ExpressJS" bekannten Parameter "Request" und "Response". 
