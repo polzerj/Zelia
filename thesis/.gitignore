@@ -27,3 +27,5 @@
 *.pdf
 *.synctex.gz
 *.run.xml
+
+.DS_Store
