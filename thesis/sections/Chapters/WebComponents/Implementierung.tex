@@ -50,3 +50,12 @@ Auf dem Root-Pfad ("/") liegt unsere Willkommensseite. Auf ihr findet man die Ra
 
 Beispiel:
 
+\image{media/WebComponents/Startseite}{ZELIA Startseite}
+
+\hfour{Die "OCR"-Seite}
+
+Auf dieser Seite können alle Geräte, die eine Kamera haben, mittels "Optical Character Recognition" (siehe Kapitel Optical Character Recognition), die Raumnummer von abscannen, zum Beispiel von Raumschildern, die vor den Räumen hängen. Aufgebaut ist die Seite mit einer Komponente, welche anzeigt was die Kamera sieht und einer Zweiten die als Link dient, um zurück zur Startseite zu kommen. Die Komponente, welche die Kamera anzeigt, ist auch zuständig um den OCR-Service (Tesseract) zu starten und mit Hilfe von diesem den Text aus den Bildern auszulesen. Bevor das Bild an den OCR-Service übergeht, wird es auf 2 Farben komprimiert und so klein zusammengeschnitten, dass nur mehr der markierte Fokusteil der Kamera im Bild ist.
+
+% TODO: Bild von der Seite
+
+Meist liefert der OCR-Prozess gut erkennbare Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist wichtig, dass nachdem das Bild in Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, Bild in Text umzuwandeln, wird einmal pro Sekunde gemacht. Dieser Wert ist einfach änderbar, aber wir haben uns nach längerem testen geeinigt, dass eine Sekunde völlig ausreichen ist, um schnell Raumnummern zu erfassen. Würde der Wert kleiner werden, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, so würden schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
