@@ -4,7 +4,9 @@
 \newcommand{\hone}[1]{\section{#1}}
 \newcommand{\htwo}[1]{\subsection{#1}\markboth{#1}{}}
 \newcommand{\hthree}[1]{\subsubsection{#1}}
-\newcommand{\hfour}[1]{{\large \textbf{\linebreak#1}}}
+\newcommand{\hfour}[1]{\begin{flushleft}
+    {\large \textbf{#1}} 
+\end{flushleft}}
 
 \renewcommand{\lstlistingname}{Code}
 \renewcommand{\lstlistlistingname}{Codeabbildungsverzeichnis}
@@ -13,6 +15,14 @@
 \newcommand{\html}[2]{\begin{singlespacing}\lstinputlisting[language=HTML,caption={#2},captionpos=b]{#1}\end{singlespacing}}
 \newcommand{\css}[2]{\begin{singlespacing}\lstinputlisting[language=CSS,caption={#2},captionpos=b]{#1}\end{singlespacing}}
 \newcommand{\sql}[2]{\begin{singlespacing}\lstinputlisting[language=SQL,caption={#2},captionpos=b]{#1}\end{singlespacing}}
+
+\newcommand{\image}[2]{
+    \begin{figure}[h]
+        \centering
+        \includegraphics{#1}
+        \caption{#2}
+    \end{figure}
+}
 
 \setlength{\parindent}{0px}
 \setlength{\parskip}{0.75em}

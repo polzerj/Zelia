@@ -1,0 +1,1 @@
+let dbOpenRequest = indexedDB.open("<name oft he DB>", [Version of the DB]);

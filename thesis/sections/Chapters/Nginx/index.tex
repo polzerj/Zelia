@@ -1,0 +1,20 @@
+\htwo{Nginx}
+
+NGINX ist ein Webserver, Reverse-Proxy und E-Mail-Proxy, der von Igor Sysoev entwickelt und unter der BSD-Lizenz veröffentlicht wurde. Er kann auch für "Load Balancing" und Media Streaming verwendet werden.
+
+\cite{WikiNginx}
+\cite{nginx}
+
+NGINX wird in der Datei "nginx.conf" konfiguriert, die sich im Verzeichnis "/etc/nginx/" befinden muss. 
+
+\css{code/Nginx/example.conf}{Beispiel einer "nginx.conf" Datei}
+
+Im Folgenden wird der Server-Teil im Abschnitt http genauer betrachtet:
+Dort wird definiert, auf welchem Port der Server Verbindungen erwartet und ob er SSL verwenden soll oder nicht. Wenn NGINX für die Verwendung von SSL konfiguriert ist, müssen das SSL-Zertifikat und der Zertifikatsschlüssel dort konfiguriert werden.
+
+Innerhalb der Locations wird definiert, wie NGINX die Anfragen behandeln soll.\\ In diesem Beispiel werden alle Anfragen innerhalb des "/api"-Pfads an den auf\\ http://api:3001 laufenden Server weitergeleitet.
+
+Für alle anderen Anfragen werden die Dateien aus dem Verzeichnis "/www" bereitgestellt. 
+
+Da das Frontend von Zelia als eine SPA mit dynamischen Komponenten entwickelt wurde, ist die einzige Datei, die für jeden Pfad ausgeliefert werden muss, die Datei index.html. Dieses Verhalten wird mit dem Schlüsselwort "try\_files" konfiguriert. In diesem Fall wird versucht, die vom Client angeforderte Datei zu erhalten. Wenn sie nicht existiert, wird die Datei index.html ausgeliefert. Daher können Dateien wie CSS- oder JS-Dateien wie üblich abgerufen werden.
+

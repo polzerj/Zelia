@@ -1,0 +1,26 @@
+\hthree{Indexed-DB}
+
+Eine ganz neue Art der Speicherung ist Indexed DB. Indexed DB ist eine Datenbank, die in den Webbrowser eingebaut ist, um eine große Menge an Daten als Objekte zu speichern. Jede Datenbank enthält so genannte Object-Stores. Dies sind Sammlungen von Daten. Innerhalb der Object-Stores können die Objekte gespeichert werden. Für jeden Object-Store muss ein Primärschlüssel definiert sein. Dies kann entweder ein Attribut des Objekts oder eine automatisch inkrementierende Ganzzahl sein. Um Datensätze durch die Suche nach anderen Eigenschaften schneller zu finden, kann ein Index erstellt werden. Diese indizierten Attribute müssen in jedem Eintrag des Object-Stores gesetzt werden.
+
+Die Indexed DB API ist allerdings nicht so einfach wie die für die Session- oder den Local-Storage. 
+
+Um mit Indexed DB arbeiten zu können muss zunächst ein sogenannter open request erstellt werden:
+
+\typescript{code/Webspeicher/openRequest.ts}{Erstellen eines Indexed-DB Open-Requests}
+
+Auf dem Open Request Objekt gibt es mehrere Events. Das Event "upgradeneeded" wird ausgelöst, wenn die geöffnete Datenbank noch nicht erstellt wurde oder wenn die Version erhöht wurde. Innerhalb dieses Ereignisses müssen die Object Stores und die Indizes erstellt werden: 
+
+\typescript{code/Webspeicher/createDB.ts}{Erstellen und ändern des Datenbankschemas}
+
+Das Event "Success" wird nach der Einrichtung der Datenbank ausgelöst, falls erforderlich. Nach dem Success Event sind alle Arten von Manipulationen und Abfragen der Daten möglich. Um Daten aus der Indexed DB abzurufen, muss eine Transaktion unter Verwendung des Indexed Database Objekts erstellt werden. Das Indexed Database Objekt ist als Ergebnis des Open Request abrufbar.
+
+\typescript{code/Webspeicher/getByPrimaryKey.ts}{Abfragen von Datensätzen mit einem Primärschlüssel}
+
+Es ist auch möglich, Daten über einen Index abzurufen. Da ein indiziertes Attribut nicht eindeutig sein kann, gibt es zwei Methoden, um die Daten zu erhalten. Die Methode get liefert die erste Übereinstimmung oder getAll liefert alle Übereinstimmungen als Array.
+
+\typescript{code/Webspeicher/getByIndex.ts}{Abfragen von Datensätzen mit einem Index}
+
+Die Add-Methode des Object Stores erlaubt es Objekte hinzuzufügen und die Put-Methode überschreibt bestehende.
+
+\cite{MDNIndexedDB}
+\cite{MDNUsingIndexedDB}
