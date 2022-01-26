@@ -1,16 +1,15 @@
-\hthree{Standard}
+\htwo{Standard}
 
 Web Components ermöglichen es "Client-Side"-Code wiederverwendbar zu machen. Dabei wurden drei neue Technologien eingeführt:
 
-\begin{itemize}
+\begin{itemize}[itemsep=0em]
     \item Custom Elements
     \item Shadow DOM
     \item HTML Templates
 \end{itemize}
-
 \cite{MDNWebComponents}
 
-\hfour{Custom Elements}
+\hthree{Custom Elements}
 
 Custom Elements sind ES 2015 Klassen, welche vom "HTMLElement" erben. 
 
@@ -42,7 +41,7 @@ Der "adoptedCallback" wird jedes Mal aufgerufen, wenn das Element auf eine neue 
 Der vierte Lifecycle-Hook ist der "attributeChangedCallback". Dieser wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. Allerdings müssen dafür eine Liste an Attributnamen von der statischen Eigenschaft "observedAttributes" zurückgegeben werden. 
     
 Der "attributeChangedCallback" nimmt drei Parameter:
-\begin{itemize}
+\begin{itemize}[itemsep=0em]
     \item 	Name: Name des Attibutes
     \item 	Old Value: Den Wert vor der Änderung
     \item 	New Value: Der neue, aktuelle Wert 
@@ -50,19 +49,18 @@ Der "attributeChangedCallback" nimmt drei Parameter:
 
 \typescript{code/WebComponents/seven.ts}{"attributeChangedCallback" Beispiel}
 
-\hfour{Shadow DOM}
+\hthree{Shadow DOM}
 
-Ein Shadow DOM ist ein DOM Subtree, welcher separat von der restlichen Seite gerendert wird. Dadurch kann auch auf Custom Elements ein Style in <style> Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen.
+Ein Shadow DOM ist ein DOM Subtree, welcher separat von der restlichen Seite gerendert wird. Dadurch kann auch auf Custom Elements ein Style in Style-Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen.
 
 Um einen Shadow Root zu erstellen, muss lediglich die Methode "attachShadow" aufgerufen werden. 
 
 \typescript{code/WebComponents/eight.ts}{Erstellung eines Shadow Roots}
 
 Der Mode muss auf open gesetzt werden, damit der "ShadowRoot" befüllt werden kann. Nun kann mit "this.shadowRoot" auf den "ShadowRoot" innerhalb des Custom Components zugegriffen werden.
-
 \cite{MDNShadowRoot}
 
-\hfour{HTML Templates}
+\hthree{HTML Templates}
 
 Um das Custom Element mit Inhalten zu füllen, gibt es in HTML den "template"-Tag, welcher nicht im DOM gerendert wird, aber trotzdem mit Javascript referenziert werden kann. 
 
@@ -74,7 +72,6 @@ Um nun das Template in ein Custom Element zu rendern, muss der Content in das Cu
 
 
 Um den Inhalt der Components dynamisch zu machen, gibt es den HTML Slot-Tag. Dieser ermöglicht es Inhalte an die Components weiterzugeben. Dafür muss allerdings der Shadow DOM verwendet werden. Ein Slot wird immer mit seinem Namen referenziert. Wenn bei einer Child-Node eines Custom Elements kein Slotname angegeben ist, dann wird diese Node im Slot ohne Namen gerendert. Wird für einen Slot kein Node gesetzt, dann wird der Inhalt des Slots als Standardwert verwendet. 
-
 \cite{MDNSlots}
 
 \typescript{code/WebComponents/eleven.ts}{Web Component Beispiel (JavaScript)}

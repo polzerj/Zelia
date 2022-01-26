@@ -1,0 +1,21 @@
+\hthree{LXC VS. Docker}
+
+\hfour{Architektur}
+
+Zu Beginn und im Kern ähnelt sich die Systemarchitektur von LXC jener von Docker, da die wichtigsten verwendeten Funktionen des Linux-Kernel "cgroups" und "namespaces" sind. "Cgroups" sind hierbei für die Aufteilung von CPU, Speicher und vielem mehr im System zuständig. "Namespaces" erlauben das Erstellen von mehreren virtuellen Instanzen des Kernels. Man kann also sagen, dass sich LXC und Docker im Bereich des Systemkernels also sehr ident sind.
+Im Bereich der Engine, welche zwischen Anwendung und Kernel liegt, setzt LXC auf das Framework "liblxc". Docker implementierte jedoch ihre eigene Engine, welche den Namen libcontainer" trug. Diese wurde jedoch im Laufe der Jahre durch mehrere dazwischenliegende Abstraktionsschichten ergänzt.
+Die gesamte Architektur von Docker ist jedoch nicht so trivial. Der grobe Ablauf beim Zugriff auf Daten sieht wie folgt aus:
+Zu Beginn greift der Client auf den "Docker Deamon" zu, welcher auf einem "Docker\_Host" liegt zu. Dieser bietet die Hauptbenutzeroberfläche. Der "Docker Deamon" greift nun auf ein Image im Host zu, welches schreibgeschützt ist. Es kann jedoch von Images mehrere Container geben, auf welchem dann die gewünschten Änderungen vom Client durchgeführt werden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{media/DockerAndContainering/DockerArchitektur.png}
+    \caption{Docker Architektur}
+\end{figure}
+
+\hfour{Speicherverwaltung}
+
+Bei LXC ist die Speicherverwaltung recht einfach gemacht worden. Sofern keine anderen Optionen gewählt wurden, legt LXC die Daten unter dem Linux Pfad: "/var/lib/lxc/[container-name]/rootfs" ab. Die Einbindung von Datenbanken oder eines NAS-Systems (Network Attached Storage) funktioniert ohne große Probleme, da alles über das "rootfs" des jeweiligen Containernamen abgewickelt wird.
+Bei Docker funktioniert das Ganze ein bisschen anders. Hierbei wird das Image normal in seiner Gesamtheit abgelegt, das Image verweist jedoch auf eine Vielzahl von Speicherebenen, welche eben einem Image eindeutig zugeordnet sind. Diese Ebenen werden beim Erzeugen übereinandergestapelt. Dieser Speicherstapel des Images ist dann die Basis des sogenannten "Container-Root-Dateisystem". Für das übereinanderstapeln und das generelle Verwalten der Speicherebenen ist der Treiber des "Docker Storage" zuständig. Außerdem verwaltet dieser Treiber auch das gemeinsame Verwenden von Speicherebenen zwischen Containern. Ein Vorteil, welcher sich einerseits aus diesem Verwaltungsmechanismus und andererseits aus der gegenseitigen Nutzbarkeit ergibt, auf der einen Seite das vereinfachte Erstellen, Verschieben oder Kopieren des gesamten Images und auf der anderen Seite spart die gemeinsame Nutzung Speicherplatz auf dem System.
+Sobald der User einen neuen Container erzeugt, passiert folgendes: Es wird auf das angegebene Image zugegriffen, welches jedoch schreibgeschützt ist. Deshalb bekommt jeder einzelne Container eines Images eine eigene Speicherebene in diesem Gesamtimage. So greift jeder Container nur auf seinen Speicherstand zu und man kann von einem Image auch mehrere unterschiedliche Speicherstände haben.
+
