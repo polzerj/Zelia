@@ -1,20 +1,22 @@
+\hone{Allgmeineines}
+
 Das Zentrale, einheitliche Lehrrauminformationsauslesystem, kurz ZELIA, ist vereinfacht gesagt ein Programm, mit dem man Informationen von Lehrräumen abfragen kann. Zusätzlich zum Abfragen, kann man auch Defekte bei Räumen melden und falls man einen Raum braucht für Nachhilfe oder etc. gibt es die Möglichkeit Buchungen zu tätigen. Die Zielgruppe für ZELIA sind vor allem Schüler*innen und Lehrer*innen die täglich in mehreren Lehrräumen unterwegs sind und schauen wollen welche Klasse für welchen Unterricht geeignet ist.
 
 Man braucht nur die Nummer eines Raumes, um die jeweiligen Informationen zu erhalten. Bei den Infos, welche über Raume abgefragt werden können, handelt es sich zum einem um Standarddaten, wie zum Beispiel die Anzahl von Plätzen und Computern oder welche Arten von Tafeln sich in diesem Raum befinden. Zum anderen werden die Raumstundenpläne von WebUntis abgefragt und angezeigt. Zusätzlich hat man die Möglichkeit, Meldungen zu sehen oder ob der Raum von anderen gebucht wurde.
 
 Aufteilen kann man ZELIA in 3 Teile: Den Server, die Datenbank und den "Client". Jeder dieser Teile ist in sich abgetrennt und einzeln geplant und implementiert worden.
 
-\hfour{Der ZELIA-Server}
+\htwo{Server}
 
 Der ZELIA-Server ist das Herzstück von ZELIA. Er sammelt und stellt alle Daten zu Verfügung, welche benötigt werden um die Software auf den Endgeräten, also den Clients, darzustellen. Dafür kann der Server nochmal in 3 Teile unterteilt werden.
 
 Der Erste und wichtigste Teil ist die Schnittstelle für die Endgeräte, genannt ZELIA- API ("Application Programming Interface"). Über diese Schnittstelle fragt das Client- Programm Informationen über Räume ab. Der zweite Teil ist die Schnittstelle hin zur Datenbank, bei der primär die Daten über Raume geholt werden, aber auch Administratorbenutzer (siehe ZELIA-Datenbank und ZELIA-Client). Der letzte Teil kümmert sich um die Abfragen von WebUntis um Zugriff auf aktuelle Stundenpläne jeweiliger Raume zu bekommen.
 
-\hfour{Die ZELIA-Datenbank}
+\htwo{Datenbank}
 
 Die Informationen wie, Anzahl von Plätzen und Computern, werden in der ZELIA Datenbank gespeichert. Dort werden auch Meldungen und Buchungen von Räumen abgelegt, damit später darauf zurückgegriffen werden kann. Um die Meldungen und Buchungen abzufragen, braucht man einen Administratorbenutzer. Diese Benutzer sind auch in der Datenbank gespeichert. Die Datenbank steht abgeschottet in einem privaten Netz, welches mittels Containertechnologien (siehe Kapitel Docker und andere Containertechnologien) bewerkstelligt wird, und kann nur über definierte Schnittstellen angesprochen und abgefragt werden. Verwendet wird die Datenbank "MariaDB". Am Datenbankteil des ZELIA-Servers wird "Sequelize" verwendet, um Datenbankabfragen zu machen.
 
-\hfour{Der ZELIA-Client}
+\htwo{Client}
 
 Damit jeder ZELIA verwenden kann, ist der Client eine Web-Anwendung auf, die man mit jedem Gerät zugreifen kann. Diese Web-Applikation ist optimiert, dass sie auch auf leistungsschwächeren Geräten und Smartphones gut funktionieren. Auf mobilen Endgeräten gibt es die Möglichkeit die Außenkamera zu verwenden, um Raumnummern automatisch einzulesen. Nachdem man auf der Startseite eine Raumnummer eingegeben hat, egal ob manuell oder gescannt, sieht man die jeweiligen Informationen eines Raumes. Wie schon erwähnt gibt es auch die Möglichkeit Raume zu melden oder zu buchen. Meldungen und Buchungen können im sogenannten "Admin Panel" angesehen und nach Relevanz gefiltert werden. Auf die Administratorübersicht kann auch über die Web-Anwendung zugegriffen werden, aber nur mit gültigem Benutzername und Passwort eines verifizierten Administrators, welcher in der Datenbank gespeichert ist.
 
