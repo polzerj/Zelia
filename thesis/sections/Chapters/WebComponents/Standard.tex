@@ -1,5 +1,3 @@
-\htwo{Web Components}
-
 \hthree{Standard}
 
 Web Components ermöglichen es "Client-Side"-Code wiederverwendbar zu machen. Dabei wurden drei neue Technologien eingeführt:
@@ -30,12 +28,15 @@ Wenn das Custom Element registriert ist, kann es mit dem vergebenen Namen im HTM
 Um den Lebenszyklus eines Custom Elements besser zu kontrollieren, gibt es sogenannte "lifecycle callbacks":
 
 Der "connectedCallback" wird aufgerufen, wenn das Element in das DOM eingefügt wird. Darin können zum Beispiel Event Listeners registriert werden.
+
 \typescript{code/WebComponents/four.ts}{"connectedCallback" Beispiel}
    
 Der "disconnectedCallback" ist das Gegenstück zum "connectedCallback" und wird beim Verlassen des DOMs aufgerufen. Darin sollten etwaige "Event Listeners" entfernt werden. 
+
 \typescript{code/WebComponents/five.ts}{"disconnectedCallback" Beispiel}
 
 Der "adoptedCallback" wird jedes Mal aufgerufen, wenn das Element auf eine neue Seite verschoben wird.
+
 \typescript{code/WebComponents/six.ts}{"adoptedCallback" Beispiel}
 
 Der vierte Lifecycle-Hook ist der "attributeChangedCallback". Dieser wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. Allerdings müssen dafür eine Liste an Attributnamen von der statischen Eigenschaft "observedAttributes" zurückgegeben werden. 
