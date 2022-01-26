@@ -1,0 +1,21 @@
+\hthree{Vorteile von Docker}
+
+\hfour{Modularität}
+
+In Docker Container fokussieren sich darauf beim Ausfall oder der Aktualisierung eines Teils der Anwendung nicht das ganze System herunterzufahren, sondern nur den Teil, welcher wirklich davon betroffen ist. Weiters macht dieser microbasierte Ansatz es auch möglich, dass Prozesse von mehreren Anwendungen gleichzeitig genutzt werden können. \cite{DockerGrundlagen}
+
+\hfour{Layer- und Image-Versionskontrolle}
+
+Jedes Image in Docker ist in den einzelnen Bestandteilen in Layern organsiert. Jeder einzelne Layer ist einem Image fix zu zuordnen. Bei jeder Veränderung oder Abänderung, welche ein Image betrifft, wird ein neuer Layer erstellt. Dies kommt zum Beispiel bei der Eingabe der Befehle: "docker run", oder "docker copy" vor.
+
+Diese erstellten Layer aus alten Images werden beim Erstellen von neuen Containern wiederverwendet. Dies beschleunigt die Erstellung neuer Container gewaltig. Weiters können Änderungen, welche während des Betriebes passieren von allen Docker Containern gleichzeitig verwendet werden um so noch mehr Performance herausholen.
+
+In Bezug auf die Versionskontrolle kann man folgendes sagen: Durch die Containerorganisierung in Layern, welche immer ein Änderungsprotokoll enthalten, habe ich immer die gesamte Kontrolle über meine Docker Container. \cite{DockerGrundlagen}
+
+\hfour{Rollback}
+
+Layer bieten auch den Vorteil, Rollbacks, also das Zurückkehren auf eine ältere Version, sehr einfach und elegant umzusetzen. Sollte der Entwickler oder die Entwicklerin mit der aktuellen Version eines Images nicht zufrieden sein, so ist ein Rollback über Layer organisiert einfach zu bewerkstelligen. Der hier implementierte Standard eines Rollbacks unterstützt auch die agile Entwicklung und die kontinuierliche Integration und Bereitstellung. \cite{DockerGrundlagen}
+
+\hfour{Schnelle Bereitstellung}
+
+Für den Fall, dass ein Unternehmen neue Hardware benötigt, dauert es oft lange, bis diese voll funktions- und einsatzfähig ist und ist mit einem großen Aufwand verbunden. Durch Docker reduziert sich dieser Aufwand auf ein Minimum. Durch das Organisieren von Prozessen in Containern, kann ich Prozesse ganz einfach unterschiedlichen Applikationen gleichzeitig und innerhalb von wenigen Minuten bereitstellen. Weiters muss das die Stammmaschine beim Hinzufügen oder Verschieben eines Containers nicht neu gebootet werden und Downtimes des Systems werden so minimiert. \cite{DockerGrundlagen}
