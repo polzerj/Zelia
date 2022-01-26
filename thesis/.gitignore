@@ -25,6 +25,7 @@
 *.mtc1
 *.out
 *.pdf
+!*.svg.pdf
 *.synctex.gz
 *.run.xml
 
