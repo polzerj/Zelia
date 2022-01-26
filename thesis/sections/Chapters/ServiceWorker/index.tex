@@ -1,6 +1,9 @@
-\htwo{Service Worker}
+\hone{Service Worker}
+
+\htwo{Allgemeines}
 
 Web-Worker sind JavaScript-Skripte, die als Background-Task ausgeführt werden. Sie können zum Beispiel dazu verwendet werden, um eine Webseite offlinefähig zu machen oder Push-Notifications zu implementieren.  Um einen Web-Worker zu starten, ist es empfehlenswert zu prüfen, ob der Browser Web-Worker unterstützt.
+
 \hthree{Life Cycle Events eines Service Workers} 
 
 Ein Service Worker hat verschiedene Events: 
@@ -34,7 +37,7 @@ Ein Service Worker kann über das "serviceWorker" Objekt des "navigator" Objekts
 
 \typescript{code/ServiceWorker/register.ts}{Registrieren eines Service Workers}
 \pagebreak
-\hthree{Implementierung eines Caches}
+\htwo{Implementierung eines Caches}
 Der folgende Code zeigt, wie ein Service Worker mit der Cache-API zur Verwendung eines statischen und dynamischen Cache programmiert wird:
 
 \typescript{code/ServiceWorker/cache.ts}{Verwendung der Cache-API in einem Service Worker}
