@@ -8,8 +8,11 @@
     {\large \textbf{#1}} 
 \end{flushleft}}
 
+\renewcommand{\figurename}{Abbildung}
+\renewcommand{\listfigurename}{Abbildungsverzeichnis}
+
 \renewcommand{\lstlistingname}{Code}
-\renewcommand{\lstlistlistingname}{Codeabbildungsverzeichnis}
+\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
 
 \newcommand{\typescript}[2]{\begin{minipage}{\linewidth} \begin{singlespacing}\lstinputlisting[language=TypeScript,caption={#2},captionpos=b]{#1}\end{singlespacing} \end{minipage}}
 \newcommand{\html}[2]{\begin{minipage}{\linewidth} \begin{singlespacing}\lstinputlisting[language=HTML,caption={#2},captionpos=b]{#1}\end{singlespacing} \end{minipage}}

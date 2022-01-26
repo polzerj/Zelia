@@ -1,4 +1,4 @@
-\hthree{3.13.2	Json Web Token (JWT)}
+\hthree{Json Web Token (JWT)}
 
 Der JWT speichert die Benutzerdaten verschlüsselt im Token selbst. Dieses Token wird wie ein Sitzungs-"Cookie" bei jeder Anfrage mitgeschickt. Da die Sitzungsdaten jedoch im Token gespeichert sind, müssen die Server die Sitzungen nicht synchronisieren. Es ist außerdem möglich, einen getrennten Server nur für die Autorisierung zu verwenden. Die einzige Voraussetzung ist, dass sowohl der Autorisierungsserver als auch der eigentliche Webserver das gleiche JWT-"Secret" verwenden. Um sicherzustellen, dass das Token nicht manipuliert wird, haben nur die Server den Schlüssel, um das Token zu signieren und die darin enthaltenen zu manipulieren. 
 

@@ -1,9 +1,9 @@
-\hthree{Implementierung}
+\htwo{Implementierung}
 
-\hfour{Einleitung}
+\hthree{Einleitung}
 Wie ein der Rest von ZELIA ist auch der Code im Frontend in Typescript geschrieben, um einen besseren Überblick zu behalten. Zusätzlich bringt es noch Vorteile bei der Implementierung des Komponentensystems. Wie schon gesagt ist das Komponentensystem, neben dem Client-Side-Router, der zweite Teil unserer Frontend Bibliothek, den wir selbst entworfen haben, um unsere Webseite dazustellen zu können. Somit müssen wir uns nicht auf andere Frameworks verlassen, die in den meisten Fällen nicht so performant sind, da unsere Bibliothek perfekt an die Bedürfnisse von ZELIA angepasst ist.
 
-\hfour{Architektur}
+\hthree{Architektur}
 Wie eben im Standard beschrieben muss es eine Klasse geben, welche von "HTMLElement" erbt, um als "Custom HTML Element" verwendet werden zu können. So gibt es in der ZELIA Implementierung die abstrakte Klasse "Component", von der alle anderen Komponenten erben.
 
 \typescript{code/WebComponents/BaseInterfaces.ts}{Schnittstellen der Basiskomponente}
@@ -40,7 +40,7 @@ Wenn nun ein eigenes Element erstellt wird, hat der "Loader" die HTML-Ressource,
 
 Bevor der HTML-Text dargestellt werden kann, werden die States ersetzt. Danach wird geschaut ob die Elemente die automatisch referenziert werden sollen, vorhanden sind. Falls sich ein "State" ändert, wird der Inhalt der Komponente automatisch neu erstellt und gerendert. Durch das neu erstellen der Komponente bekommen auch die referenzierten Elemente neue Referenzen. Das könnte ein Problem sein, wenn man Komponenten hat, bei denen es wichtig ist, dass die Elemente "dieselben" bleiben. Somit sollte man sich um das Modifizieren dieser Komponenten selbst kümmern oder keine States ändern, sodass nicht neu gerendert werden muss.
 
-\hthree{In ZELIA eingebaute Komponenten}
+\hthree{Eingebaute Komponenten}
 
 Insgesamt besteht das komplette Frontend aus 12 Komponenten, die auf 7 Seiten verteilt sind. Zusätzlich gibt es die "Debug"-Komponente, die uns während der Entwicklung einen Logger zu Verfügung gestellt hat, der vor allem praktisch war, um auf Mobilgeräten die Hintergrundaufgaben mitverfolgen zu können.
 
