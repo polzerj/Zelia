@@ -62,11 +62,7 @@ Das Ergebnis sieht bei Zelia wie folgt aus:
 Mithilfe der API ist zwar einiges möglich, dennoch sind uns in dem Anwendungsfall Zelia einige "Probleme" aufgefallen, die abgefangen beziehungsweise ausgebessert werden mussten.
 Das allererste Problem ist, dass gewisse Räume mit mehreren Namen beziehungsweise mehreren IDs eingetragen sind und anfänglich die Frage im Raum stand, nach welchen Kriterien man den Klassenraum auffindet. Bei Zelia ist man sich aber im Endeffekt einig geworden, nach der ID des Raumes zu suchen.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics{media/WebUntis/getIDbyRoomNumber.png}
-    \caption{Raum über ID zurückbekommen}
-\end{figure}
+\typescript{code/WebUntis/getIDByRoomNumber.ts}{Raum über ID zurückbekommen}
 
 
 Die Methode bekommt einen Wert des Typen "RoomNumber" übergeben. Gleichzeitig beschaffen wir uns mit der Methode getRoomList() alle eingetragenen Klassen und gehen in einer for-Schleife durch jedes Element durch. Die Vorgehensweise scheint zwar unprofessionell, doch während der Implementierung ist aufgefallen, dass der vollständige Klassenname nicht immer im Longname oder im Shortname abgespeichert, sondern eher rein zufällig in einem der beiden Parametern beinhaltet ist. Deswegen prüfen wir auf Nummer sicher beide Parameter ab und geben bei einer Übereinstimmung die dazu vorhandene Raum-ID mit, diese ist einzigartig dennoch können wie schon zuvor gesagt, mehrere IDs auf einen Raum zeigen, was in dem Fall kein allzu großes Problem darstellt.
@@ -81,10 +77,6 @@ Falls der Token zum Zeitpunkt der Abfrage ungültig ist, wird die Variable valid
 \pagebreak
 Während dem Exception-Handling ist uns folgender Fehler seitens WebUntis aufgefallen:
 
-\begin{figure}[H]
-    \centering
-    \includegraphics{media/WebUntis/ExceptionHandling.png}
-    \caption{Exception Handling}
-\end{figure}
+\typescript{code/WebUntis/ExceptionHandling.ts}{ExceptionHandling}
 
 Wenn der WebUntis-Server kein Ergebnis auf eine Anfrage zurückgesendet, schickt dieser eine Exception-Message, die wir in diesem Fall abfangen. Leider ist aber die Nachricht falsch geschrieben und der Fehler ist nicht direkt ersichtlich, außer man liest sehr genau. Dieser Fehler wird aber mit dem Code in der nahestehenden Abbildung abgefangen und macht weitergehend keine Probleme im Code.

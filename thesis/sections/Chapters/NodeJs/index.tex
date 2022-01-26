@@ -1,18 +1,18 @@
-\htwo{Node.Js}
+\hone{Node.Js}
 Node.Js ist eine plattformübergreifende JavaScript-Laufzeitumgebung, die auf der V8 JS-Engine von Google basiert. Node.js wurde entwickelt, um skalierbare Netzwerkanwendungen zu erstellen. Node.js ist beeinflusst von Ruby's "Event Machine" und Pythons "Twisted" und ähnelt diesen im Design. Die aktuelle Node.js-Version ist die Version 17, während die Veröffentlichung der Version 18 für den 25. Oktober 2022 geplant ist. Laut W3Techs wird Node.js von 1,2\% aller Webseiten genutzt. Auf das ganze Internet gerechnet sind das über 20 Millionen Webseiten. \cite{Node}
 
 \hthree{Die Architektur von Node.js}
 Die von Node.js verwendete Architektur der "Single Threaded Event Loop" dient dazu, mehrere Clients gleichzeitig zu handhaben. Um den Unterschied zwischen dieser und anderen Runtimes zu verstehen, ist es wichtig zu verstehen, wie Mulit-Threaded Concurrent Clients in Java gehandhabt wird. \cite{NodeJs.dev}
 
 
-Das Modell des Multi-Threaded Request-Response versendet Anfragen an verschiedene Clients, worauf der Server jede einzelne verarbeitet, bevor er darauf eine Antwort versendet. Das Problem liegt aber jedoch daran, dass mehrere Threads verwendet werden, um gleichzeitige Aufrufe zu verarbeiten. Verwendete Threads sind in einem Thread-Pool definiert und werden einkommenden Anfragen zugewiesen, um diese zu bearbeiten. \cite{Arocom}
+Das Modell des Multithreaded Request/Response versendet Anfragen an verschiedene Clients, worauf der Server jede einzelne verarbeitet, bevor er darauf eine Antwort versendet. Das Problem liegt aber jedoch daran, dass mehrere Threads verwendet werden, um gleichzeitige Aufrufe zu verarbeiten. Verwendete Threads sind in einem Thread-Pool definiert und werden einkommenden Anfragen zugewiesen, um diese zu bearbeiten. \cite{Arocom}
 
 
 
 \begin{figure}[H]
     \centering
     \includegraphics{media/NodeJs/MultiThreadedRequestResponse.png}
-    \caption{Multi-Threaded Request-Response}
+    \caption{Multithreaded Request/Response\cite{Multithreaded}}
 \end{figure}
 
 Thread-basierte Netzwerke sind ineffizient und äußerst schwierig zu verwenden. Node.js-Benutzer müssen sich keine Sorgen machen, dass ein Prozess blockiert wird, da es keine Sperren gibt. Es gibt kaum Möglichkeiten, einen Prozess zu sperren, außer wenn die E/A mit synchronen Methoden der Node.js-Standardbibliothek durchgeführt wird. Aufgrund des "not locking" Mechanismus sind skalierbare Systeme mit Node.js sehr einfach zu entwickeln. 
@@ -22,7 +22,7 @@ Node.js arbeitet mit dem Modell der "Event Loop", welches natürlich seine eigen
 \begin{figure}[H]
     \centering
     \includegraphics{media/NodeJs/NodeJsArchitektur.png}
-    \caption{Node.Js Architektur}
+    \caption{Node.Js Architektur\cite{ArchitekturFoto}}
 \end{figure}
 
 
@@ -43,24 +43,26 @@ Obwohl Node.js für eine Vielzahl von Anwendungen verwendet wird, sind einige An
 \begin{figure}[H]
     \centering
     \includegraphics{media/NodeJs/NodeJsAnwendungen.png}
-    \caption{Node.Js Anwendungen}
+    \caption{Node.Js Anwendungen \cite{AnwendungenFoto}}
 \end{figure}
 
-1.	Chats in Echtzeit
-Die Node.js Architektur bietet eine gute Basis, um Echtzeit-Kommunikation zu verarbeiten. Durch die leichte Skalierbarkeit wird die Laufzeitumgebung oft bei der Entwicklung von Chatbots verwendet. Des Weiteren wird es einem Entwickler leicht gemacht, zusätzliche Chat-Funktionen wie Multi-Person-Chats und Push-Benachrichtigungen zu erstellen.
-
-2.	Internet of Things
-IoT-Anwendungen bestehen in den meisten Fällen aus mehreren Sensoren, die oftmals häufig, kleine Datenpakete senden, die sich mit der Zeit zu einer großen Anzahl von Anfragen anhäufen können. Node.js eignet sich aufgrund der schnellen, gleichzeitigen Verarbeitung von Anfragen dafür umso mehr.
-
-3.	Komplexe Single-Page-Anwendungen (SPAs)
-Bei SPAs wird die ganze Anwendung in einer Seite geladen. In der Regel bedeutet das, dass im Hintergrund gewisse Anfragen für bestimmte Komponenten gestellt werden. Die Eventschleife spielt in diesem Fall eine große Bedeutung.
-
-4.	REST API-basierte Anwendungen
-JavaScript wird nicht nur im Frontend, sondern auch im Backend von Webseiten eingesetzt. Mithilfe von Node.js besitzt ein Server somit die Möglichkeit, über REST APIs mit dem Frontend zu kommunizieren. Erwähnenswert ist noch, dass über Node.js bestimmte Pakete wie zum Beispiel Express.js zur Verfügung gestellt wird, die es noch einfacher machen, Webanwendungen zu erstellen.
-
-5.	Daten-Streaming
-Bekannte Unternehmen wie Netflix und Disney+ nutzen Node.js für Streaming-Zwecke. Der Grund dafür ist der, dass die Laufzeitumgebung schnell und leichtgewichtig ist. Wichtig zu erwähnen ist, dass eine native Streaming-API in Node.js schon vorweg implementiert ist. Streams ermöglichen den Nutzern, Anfragen aneinander weiterzuleiten, was das Ergebnis mit sich bringt, dass die Daten direkt an ihr Ziel gestreamt werden.
-
+\begin{enumerate}
+    \item Chats in Echtzeit
+    \newline Die Node.js Architektur bietet eine gute Basis, um Echtzeit-Kommunikation zu verarbeiten. Durch die leichte Skalierbarkeit wird die Laufzeitumgebung oft bei der Entwicklung von Chatbots verwendet. Des Weiteren wird es einem Entwickler leicht gemacht, zusätzliche Chat-Funktionen wie Multi-Person-Chats und Push-Benachrichtigungen zu erstellen.
+    \item Internet of Things
+    \newline
+    IoT-Anwendungen bestehen in den meisten Fällen aus mehreren Sensoren, die oftmals häufig, kleine Datenpakete senden, die sich mit der Zeit zu einer großen Anzahl von Anfragen anhäufen können. Node.js eignet sich aufgrund der schnellen, gleichzeitigen Verarbeitung von Anfragen dafür umso mehr.
+    \item Komplexe Single-Page-Anwendungen (SPAs)
+    \newline
+    Bei SPAs wird die ganze Anwendung in einer Seite geladen. In der Regel bedeutet das, dass im Hintergrund gewisse Anfragen für bestimmte Komponenten gestellt werden. Die Eventschleife spielt in diesem Fall eine große Bedeutung.
+    \item REST API-basierte Anwendungen
+    \newline
+    JavaScript wird nicht nur im Frontend, sondern auch im Backend von Webseiten eingesetzt. Mithilfe von Node.js besitzt ein Server somit die Möglichkeit, über REST APIs mit dem Frontend zu kommunizieren. Erwähnenswert ist noch, dass über Node.js bestimmte Pakete wie zum Beispiel Express.js zur Verfügung gestellt wird, die es noch einfacher machen, Webanwendungen zu erstellen.
+    \item Daten-Streaming
+    \newline
+    Bekannte Unternehmen wie Netflix und Disney+ nutzen Node.js für Streaming-Zwecke. Der Grund dafür ist der, dass die Laufzeitumgebung schnell und leichtgewichtig ist. Wichtig zu erwähnen ist, dass eine native Streaming-API in Node.js schon vorweg implementiert ist. Streams ermöglichen den Nutzern, Anfragen aneinander weiterzuleiten, was das Ergebnis mit sich bringt, dass die Daten direkt an ihr Ziel gestreamt werden.
+    
+   \end{enumerate}
 \cite{Anwendungen}
 
 
@@ -82,5 +84,5 @@ NPM wird mit einem Kommandozeilenprogramm ausgeliefert. Die Möglichkeit besteht
 \begin{figure}[H]
     \centering
     \includegraphics{media/NodeJs/NPM.png}
-    \caption{NPM Logo}
+    \caption{NPM Logo\cite{NPMLOGO}}
 \end{figure}

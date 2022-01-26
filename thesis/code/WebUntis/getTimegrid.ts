@@ -1,3 +1,4 @@
-1.	async getTimegrid(validateSession = true) {
-    2.	        return await this._request('getTimegridUnits', {}, validateSes-sion);}
+async getTimegrid(validateSession = true) {
+  return await this._request('getTimegridUnits', {}, validateSession);
+}
     
