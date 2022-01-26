@@ -2,7 +2,7 @@
 
 Web Components ermöglichen es "Client-Side"-Code wiederverwendbar zu machen. Dabei wurden drei neue Technologien eingeführt:
 
-\begin{itemize}
+\begin{itemize}[itemsep=0em]
     \item Custom Elements
     \item Shadow DOM
     \item HTML Templates
@@ -42,7 +42,7 @@ Der "adoptedCallback" wird jedes Mal aufgerufen, wenn das Element auf eine neue 
 Der vierte Lifecycle-Hook ist der "attributeChangedCallback". Dieser wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. Allerdings müssen dafür eine Liste an Attributnamen von der statischen Eigenschaft "observedAttributes" zurückgegeben werden. 
     
 Der "attributeChangedCallback" nimmt drei Parameter:
-\begin{itemize}
+\begin{itemize}[itemsep=0em]
     \item 	Name: Name des Attibutes
     \item 	Old Value: Den Wert vor der Änderung
     \item 	New Value: Der neue, aktuelle Wert 
@@ -52,7 +52,7 @@ Der "attributeChangedCallback" nimmt drei Parameter:
 
 \hfour{Shadow DOM}
 
-Ein Shadow DOM ist ein DOM Subtree, welcher separat von der restlichen Seite gerendert wird. Dadurch kann auch auf Custom Elements ein Style in <style> Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen.
+Ein Shadow DOM ist ein DOM Subtree, welcher separat von der restlichen Seite gerendert wird. Dadurch kann auch auf Custom Elements ein Style in Style-Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen.
 
 Um einen Shadow Root zu erstellen, muss lediglich die Methode "attachShadow" aufgerufen werden. 
 
