@@ -1,11 +1,11 @@
-\hone{Node.Js}
+\htwo{Node.Js}
 Node.Js ist eine plattformübergreifende JavaScript-Laufzeitumgebung, die auf der V8 JS-Engine von Google basiert. Node.js wurde entwickelt, um skalierbare Netzwerkanwendungen zu erstellen. Node.js ist beeinflusst von Ruby's "Event Machine" und Pythons "Twisted" und ähnelt diesen im Design. Die aktuelle Node.js-Version ist die Version 17, während die Veröffentlichung der Version 18 für den 25. Oktober 2022 geplant ist. Laut W3Techs wird Node.js von 1,2\% aller Webseiten genutzt. Auf das ganze Internet gerechnet sind das über 20 Millionen Webseiten. \cite{Node}
 
-\hthree{Die Architektur von Node.js}
+\hfour{Die Architektur von Node.js}
 Die von Node.js verwendete Architektur der "Single Threaded Event Loop" dient dazu, mehrere Clients gleichzeitig zu handhaben. Um den Unterschied zwischen dieser und anderen Runtimes zu verstehen, ist es wichtig zu verstehen, wie Mulit-Threaded Concurrent Clients in Java gehandhabt wird. \cite{NodeJs.dev}
 
 
-Das Modell des Multithreaded Request/Response versendet Anfragen an verschiedene Clients, worauf der Server jede einzelne verarbeitet, bevor er darauf eine Antwort versendet. Das Problem liegt aber jedoch daran, dass mehrere Threads verwendet werden, um gleichzeitige Aufrufe zu verarbeiten. Verwendete Threads sind in einem Thread-Pool definiert und werden einkommenden Anfragen zugewiesen, um diese zu bearbeiten. \cite{Arocom}
+Das Modell des "Multithreaded Request/Response" versendet Anfragen an verschiedene Clients, worauf der Server jede einzelne verarbeitet, bevor er darauf eine Antwort versendet. Das Problem liegt aber jedoch daran, dass mehrere Threads verwendet werden, um gleichzeitige Aufrufe zu verarbeiten. Verwendete Threads sind in einem Thread-Pool definiert und werden einkommenden Anfragen zugewiesen, um diese zu bearbeiten. \cite{Arocom}
 
 
 
@@ -40,7 +40,7 @@ Die Schleife verfolgt blockierende Anfragen und stellt solche in die Warteschlan
 
 Aufgrund der Verwendung von einer kleineren Anzahl von Threads, werden weniger Ressourcen beziehungsweise weniger Speicher verbraucht, welches sich auf die schnellere Ausführung von Anfragen ausübt. Wenn datenintensive Aufgaben verarbeitet werden müssen, dann ist die Verwendung von Multi-Threaded-Sprachen wie Java sinnvoller. In unserem Fall ist aber die Verwendung von Node.js die sinnvollste Wahl. \cite{Arocom}
 
-\hthree{Anwendungen von Node.Js}
+\hfour{Anwendungen von Node.Js}
 
 Obwohl Node.js für eine Vielzahl von Anwendungen verwendet wird, sind einige Anwendungsfälle sehr beliebt und Node.js eine sehr gute Wahl dafür.
 
@@ -71,7 +71,7 @@ Obwohl Node.js für eine Vielzahl von Anwendungen verwendet wird, sind einige An
 
 
 
-\hthree{Hello World in Node.Js}
+\hfour{Hello World in Node.Js}
 
 Um in die neu entdeckte Programmiersprache reinzuwachsen ist es oft so, dass man bei jeder neuen Programmiersprache ein "Hello World"-Programm zu schreiben. Dies sieht bei Node.js folgendermaßen aus:
 
@@ -81,7 +81,7 @@ In unserem Codebeispiel wird das http Modul als erstes geladen. Danach wird die 
 
 Node.js wird den Entwicklern mit dem bereits eingebauten Modul namens "HTTP" bereitgestellt, welches ermöglicht, Daten über das "HyperText Transfer Protocol" (HTTP) zu übertragen. \cite{HelloWorld}
 
-\hthree{NPM}
+\hfour{NPM}
 
 Der Node Package Manager (NPM) ist das Paket-System von Node.js. Es ist das größte Ökosystem aller Open Source Bibliotheken der Welt, mit über einer Millionen Pakete, weitere Pakete werden täglich releast. NPM ist kostenlos und hat eine sehr große Community, des Öfteren Open Source Entwickler und begeisterte Programmierer. Die Firma, die hinter NPM steht, die sogenannte NPM INC. wurde 2014 gegründet und 2020 von GitHub aufgekauft.
 NPM wird mit einem Kommandozeilenprogramm ausgeliefert. Die Möglichkeit besteht auch, auf der Webseite von NPM nach gewünschten Paketen zu suchen und diese mit einem einzigen Befehl zu installieren. Die Versionierung der Pakete und die Überprüfung von Abhängigkeiten kann eingerichtet werden. Node.js ist ein Dreh – und Angelpunkt für Entwickler vor allem wegen dem Package Support.

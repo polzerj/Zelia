@@ -1,10 +1,10 @@
-\htwo{MariaDb vs. MySQL}
+\hthree{MariaDb vs. MySQL}
 
 2009, als MariaDB ins Leben gerufen wurde konnte MySQL schon auf Erfahrung und Wissen aus 20 Jahr zurückgreifen. Zu Beginn des neuen Datenbanksystems, waren die Unterschiede der beiden noch gar nicht so groß und MariaDB wollte den primären Fokus auf einen smarten Support von Systemen und das Abwickeln sauberer Weiterentwicklung legen, welche durch die Open-Source Community getragen wird. Mittlerweile vorfolgen beide Unternehmen und Datenbankmanagementsysteme konträre Produktionsansätze und Zugänge zu Problemlösungen im Datenverwaltungsbereich in den 20ern der 21. Jahrhundert.
 
 MySQL und MariaDB basieren beiden auf den gleichen ursprünglich identen Softwarekern. MariaDB wurde damals als Abspaltung (Fork) von der MySQL Version 5.1 ins Leben gerufen und entwickelte im Laufe der Zeit immer mehr an Selbstständigkeit und Unabhängigkeit zu MySQL. Im nachfolgenden Vergleich gehen wir auf die Unterschiede zwischen MySQL Version 8.0.11 und der MariaDB Version 10.2.8 ein.
 
-\hthree{Datenbankstruktur}
+\hfour{Datenbankstruktur}
 
 Eines der Ziele, welches sich MariaDB zu Beginn gesetzt hatte, eine Gesamtkompatibilität zwischen den beiden Datenbankmanagementsystemen herzustellen. Das heißt, dass ein Wechsel zwischen MySQL und MariaDB oder umgekehrt, aber auch ein Umstieg zwischen unterschiedlichen MySQL Versionen problemlos funktionieren soll. Dieses Kriterium wurde von Seiten MariaDB bis zur MySQL Version 7 tadellos umgesetzt.
 
@@ -14,7 +14,7 @@ Die Kompatibilität wurde von MariaDB immer sehr großgeschrieben. Deshalb wurde
 
 Eines der Beispiele, dass sich MySQL und MariaDB in der zukünftigen Entwicklung voneinander weg wegbewegen und unterschiedliche Weg einschlagen werden ist das Implementieren des sogenannten "Data-Dictionary" welches transaktional arbeitet und seit MySQL Version 8 enthalten ist. Dieses Konzept unterscheidet sich in Grundlegenden Punkten Dieses Konzept, welches zur Verarbeitung von Metadaten eingebaut wurde, distanziert sich grundlegend von vorhergegangenen. Da MariaDB zurzeit nicht wissentlich an einem vergleichbaren Mechanismus arbeitet ist davon auszugehen, dass in Zukunft auch keine Kompatibilität im Bereich von Datafiles geben wird.
 
-\hthree{Datenbank-Engines}
+\hfour{Datenbank-Engines}
 
 Eine Datenbank-Engine ist ein sogenanntes Speichersubsystem, welches für das Erstellen, Lesen, Manipulieren und Löschen von Daten zuständig ist. Ohne diese Engine wäre dies für das Datenbankmanagementsystem nicht möglich.
 MariaDB möchte sich in diesem Bereich durch eine stetig wachsende Anzahl an unterstützen Engines von MySQL unterscheiden. Dies hat den Vorteil, dass man bei der Auswahl eine höhere Flexibilität genießt.
@@ -23,17 +23,17 @@ Als Beispiel für eine von beiden Seiten kompatible Engine kann man InnoDB, nenn
 
 MariaDB unterstützt jedoch mit 19 Datenbank-Engines eine deutlich höhere Anzahl als MySQL, welche nur 8 unterstützen. Als Beispiel für ein nur von MariaDB angebotene Engine kann man TukoDB nennen, welche auf die Verarbeitung von großen Datenmengen spezialisiert ist und damit perfekt für den "Big Data" Anwendungsbereich optimiert ist.
 
-\hthree{Datenbankabfrage}
+\hfour{Datenbankabfrage}
 
 In diesem Punkt gibt es keinerlei Unterschiede zwischen den Systemen, da beide eine 100\% solide und korrekte SQL-Unterstützung bieten.
 
-\hthree{Performance}
+\hfour{Performance}
 
 Das Liefern von Leistung wird in vielen Unternehmen der ausschlaggebendste Punkt in Bezug auf die Wahl des Datenbanksystems sein. Sollte sich eine Firma nun für ein von Michael Widenius entworfenes Produkt (MySQL oder MariaDB) entscheiden, stellt sich die Frage, welches der beiden Datenbankmanagementsystemen schaffte es mir eine höhere Performance zu liefern. Wenn man auf die blanken Ergebnisse eines Benchmark-Tests (wie des DBT-3) blickt hat MariaDB die Nase vorne, jedoch gibt hierbei vor Allem die verwendete Datenbank-Engine den Ausschlag.
 
 Man kann jedoch sagen, dass sehr viel von dem Entwickler abhängt, da es immer darauf ankommt, was man für welchen Anwendungsfall verwendet und implementiert. Hierbei kommt es wie schon oben erwähnt auf die verwendete Datenbank-Engine an. In diesem Punkt kann MariaDB besonders Punkten, da es viele alternative Engines unterstützt. MariaDB liefert seit Version 10.0.1 seinen Kunden aber auch eine zusätzliche Optimierung der SQL-Abfragen, da man nun nicht mehr auf interne Statistiken der Datenbank-Engine vertraut, sondern werden innerhalb des Systems berechnet und als normale Tabelle abgespeichert. So kann man schneller und engineunabhängig den besten Weg für SQL-Kommandos ermitteln.
 
-\hthree{Hochverfügbarkeit}
+\hfour{Hochverfügbarkeit}
 
 Beide Systeme können Technologien liefern, welche für den Hochverfügbarkeitsbereich eingesetzt werden können.
 
@@ -41,7 +41,7 @@ MySQL verwendet eine Datenbankkonstruktion (Clustertechnologie), welche transakt
 
 Bei MariaDB sieht das Ganze ein bisschen anders aus, da sie im Bereich von Cluster auf die externe Clustertechnologie "Galera" setzten. Die Verbindungsstelle dazu wurde seit MariaDB Version 10.1 standardmäßig implementiert. Der Nachteil hierbei ist jedoch, dass die einzig unterstützte Datenbank-Engine bei Verwenden von "Galera" (Clusterbetrieb) nur InnoDB ist.
 
-\hthree{Sicherheit}
+\hfour{Sicherheit}
 
 Im Bereich der Sicherheit setzten bei auf das Verschlüsseln von Daten, das Authentifizieren und das Hinzufügen von unterschiedlichen Benutzern mit unterschiedlichen Rechten.
 

@@ -1,9 +1,9 @@
-\htwo{Implementierung}
+\hthree{Implementierung}
 
-\hthree{Einleitung}
+\hfour{Einleitung}
 Wie ein der Rest von ZELIA ist auch der Code im Frontend in Typescript geschrieben, um einen besseren Überblick zu behalten. Zusätzlich bringt es noch Vorteile bei der Implementierung des Komponentensystems. Wie schon gesagt ist das Komponentensystem, neben dem Client-Side-Router, der zweite Teil unserer Frontend Bibliothek, den wir selbst entworfen haben, um unsere Webseite dazustellen zu können. Somit müssen wir uns nicht auf andere Frameworks verlassen, die in den meisten Fällen nicht so performant sind, da unsere Bibliothek perfekt an die Bedürfnisse von ZELIA angepasst ist.
 
-\hthree{Architektur}
+\hfour{Architektur}
 Wie eben im Standard beschrieben muss es eine Klasse geben, welche von "HTMLElement" erbt, um als "Custom HTML Element" verwendet werden zu können. So gibt es in der ZELIA Implementierung die abstrakte Klasse "Component", von der alle anderen Komponenten erben.
 
 \typescript{code/WebComponents/BaseInterfaces.ts}{Schnittstellen der Basiskomponente}
@@ -40,11 +40,11 @@ Wenn nun ein eigenes Element erstellt wird, hat der "Loader" die HTML-Ressource,
 
 Bevor der HTML-Text dargestellt werden kann, werden die States ersetzt. Danach wird geschaut ob die Elemente die automatisch referenziert werden sollen, vorhanden sind. Falls sich ein "State" ändert, wird der Inhalt der Komponente automatisch neu erstellt und gerendert. Durch das neu erstellen der Komponente bekommen auch die referenzierten Elemente neue Referenzen. Das könnte ein Problem sein, wenn man Komponenten hat, bei denen es wichtig ist, dass die Elemente "dieselben" bleiben. Somit sollte man sich um das Modifizieren dieser Komponenten selbst kümmern oder keine States ändern, sodass nicht neu gerendert werden muss.
 
-\hthree{Eingebaute Komponenten}
+\hfour{Eingebaute Komponenten}
 
 Insgesamt besteht das komplette Frontend aus 12 Komponenten, die auf 7 Seiten verteilt sind. Zusätzlich gibt es die "Debug"-Komponente, die uns während der Entwicklung einen Logger zu Verfügung gestellt hat, der vor allem praktisch war, um auf Mobilgeräten die Hintergrundaufgaben mitverfolgen zu können.
 
-\hfour{Die Startseite}
+\hfive{Die Startseite}
 
 Auf dem Root-Pfad ("/") liegt unsere Willkommensseite. Auf ihr findet man die Raum-\\eingabekomponente, die von der ZELIA-API alle möglichen Raumnummern abfragt und als Auswahlhilfe anzeigt. Auf Mobilgeräten, wie Smartphones oder Tablets, wird zusätzlich ein Knopf angezeigt, der es möglich macht, die Raumnummer mit der Kamera des Geräts einzulesen. Wenn man auf diesen Knopf drückt, wird man zur "OCR"-Seite weitergeleitet. Gibt man die Raumnummer selbst ein, so landet man auf der Rauminformationsseite. Während der manuellen Eingabe, werden alle bekannten Räume als "Dropdown" unter der Eingabebox angezeigt. Gibt man die ersten Buchstaben des Raumnamens oder Raumnummer an, so werden nur mehr Ergebnisse angezeigt, die dem angegebenen Muster entsprechen.
 
@@ -52,7 +52,7 @@ Beispiel:
 
 \image{media/WebComponents/Startseite}{ZELIA Startseite}
 
-\hfour{Die "OCR"-Seite}
+\hfive{Die "OCR"-Seite}
 
 Auf dieser Seite können alle Geräte, die eine Kamera haben, mittels "Optical Character Recognition" (siehe Kapitel Optical Character Recognition), die Raumnummer von abscannen, zum Beispiel von Raumschildern, die vor den Räumen hängen. Aufgebaut ist die Seite mit einer Komponente, welche anzeigt was die Kamera sieht und einer Zweiten die als Link dient, um zurück zur Startseite zu kommen. Die Komponente, welche die Kamera anzeigt, ist auch zuständig um den OCR-Service (Tesseract) zu starten und mit Hilfe von diesem den Text aus den Bildern auszulesen. Bevor das Bild an den OCR-Service übergeht, wird es auf 2 Farben komprimiert und so klein zusammengeschnitten, dass nur mehr der markierte Fokusteil der Kamera im Bild ist.
 

@@ -1,4 +1,4 @@
-\htwo{Standard}
+\hthree{Standard}
 
 Web Components ermöglichen es "Client-Side"-Code wiederverwendbar zu machen. Dabei wurden drei neue Technologien eingeführt:
 
@@ -9,7 +9,7 @@ Web Components ermöglichen es "Client-Side"-Code wiederverwendbar zu machen. Da
 \end{itemize}
 \cite{MDNWebComponents}
 
-\hthree{Custom Elements}
+\hfour{Custom Elements}
 
 Custom Elements sind ES 2015 Klassen, welche vom "HTMLElement" erben. 
 
@@ -49,7 +49,7 @@ Der "attributeChangedCallback" nimmt drei Parameter:
 
 \typescript{code/WebComponents/seven.ts}{"attributeChangedCallback" Beispiel}
 
-\hthree{Shadow DOM}
+\hfour{Shadow DOM}
 
 Ein Shadow DOM ist ein DOM Subtree, welcher separat von der restlichen Seite gerendert wird. Dadurch kann auch auf Custom Elements ein Style in Style-Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen.
 
@@ -60,7 +60,7 @@ Um einen Shadow Root zu erstellen, muss lediglich die Methode "attachShadow" auf
 Der Mode muss auf open gesetzt werden, damit der "ShadowRoot" befüllt werden kann. Nun kann mit "this.shadowRoot" auf den "ShadowRoot" innerhalb des Custom Components zugegriffen werden.
 \cite{MDNShadowRoot}
 
-\hthree{HTML Templates}
+\hfour{HTML Templates}
 
 Um das Custom Element mit Inhalten zu füllen, gibt es in HTML den "template"-Tag, welcher nicht im DOM gerendert wird, aber trotzdem mit Javascript referenziert werden kann. 
 

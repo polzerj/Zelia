@@ -2,9 +2,6 @@
 
 \input{util/utils.tex}
 
-\linespread{1.5}
-\raggedbottom
-
 \begin{document}
 
 \maketitle
@@ -17,20 +14,42 @@
 \tableofcontents
 
 \include{sections/Chapters/Intro/index.tex}
+
+\hone{Frontend}
+
 \include{sections/Chapters/WebComponents/index.tex}
 \include{sections/Chapters/ClientSideRouter/index.tex}
 \include{sections/Chapters/OCR/index.tex}
-\include{sections/Chapters/APITemplate/index.tex}
-\include{sections/Chapters/WebUntis/index.tex}
-\include{sections/Chapters/NodeJs/index.tex}
-\include{sections/Chapters/ExpressJs/index.tex}
-\include{sections/Chapters/TypeScript/index.tex}
 \include{sections/Chapters/ResponsiveDesign/index.tex}
 \include{sections/Chapters/Webspeicher/index.tex}
 \include{sections/Chapters/ServiceWorker/index.tex}
+% Vite 
+
+\hone{Server}
+
+% Rest-API
+% ZELIA-API
+% Open-API
+\include{sections/Chapters/NodeJs/index.tex}
+\include{sections/Chapters/TypeScript/index.tex}
+\include{sections/Chapters/ExpressJs/index.tex}
+\include{sections/Chapters/APITemplate/index.tex}
 \include{sections/Chapters/Authentication/index.tex}
 \include{sections/Chapters/MariaDB/index.tex}
-\include{sections/Chapters/Hosting/index.tex}
+% Sequelize
+% DB-API
+\include{sections/Chapters/WebUntis/index.tex}
+
+\hone{Backend-Technologien}
+
+\include{sections/Chapters/Nginx/index.tex}
+\include{sections/Chapters/DockerAndContainering/index.tex}
+\include{sections/Chapters/DockerImplementation/index.tex}
+
+\hone{Projektmanagement}
+% Struktur
+% Github
+% Projekttagebuch?
 
 \listoffigures
 \pagebreak
