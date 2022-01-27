@@ -4,7 +4,7 @@ Durch das Arbeiten mit Type Script in ZELIA ist es erforderlich Sequelize nach d
 
 Zu Beginn muss das Sequelize Framework eingebunden werden. Dies passiert durch das normale Importieren in Type Script.
 
-//Code Snippet import
+\typescript{code/Sequelize/import.ts}{Importieren von Sequelize}
 
 Um eine Verbindung aufzubauen braucht man Paramenter, welche bei ZELIA in einem eigenen ".env" File ausgelagert ist. Folgende Parameter sind für den Aufbau erforderlich:
 
@@ -17,19 +17,21 @@ Um eine Verbindung aufzubauen braucht man Paramenter, welche bei ZELIA in einem 
 
 Nun speichert man die jeweiligen Variablen in eine lokal angelegte Konstante. Zugegriffen wird auf die ".env" Datei mit "process.env".
 
-//Code Snippt const
+\typescript{code/Sequelize/const.ts}{Erstellen einer Konstante für die Umgebungsvariablen}
 
 Nachher legt man eine lokale Variable namens "sequelize" vom Datentyp "Sequelize" an, welchen man durch den Import vom Sequelize verfügbar hat.
 
-//Code Snippet let
+\typescript{code/Sequelize/let.ts}{Lokale Variable vom Datentyp Sequelize}
 
 Diese lokale Variable wird nun mit "= new Sequelize" zu einem neuen Sequelize Objekt. Der Konstruktor von Sequelize, welcher in ZELIA verwendet wird benötigt 3 Parameter, nämlich einen Datenbanknamen, welcher ein String sein muss, den Datenbankuser, welcher auch als String mitgegeben wird und zu guter Letzt das Passwort, welches ebenfalls ein String sein muss. Nachher können außerdem diverseste Optionen angegeben werden. Im Projekt ZELIA verwendet man jedoch zwei Optionen, nämlich den "Host", bei welchem die Adresse des Datenbankserver mitgegeben wird und den "dialect", welcher sagt, welcher Datenbankserver verwendet wird. Nach dem Aufruf der Option muss ein Doppelpunkt folgen. Außerdem werden die Optionen in geschwungenen Klammern angegeben, welche sich aber noch immer im Aufruf des Konstruktors befinden. Die Optionen werden mit einem Beistrich voneinander getrennt.
 
-Die unterschiedlichsten Parameternamen oder Optionennamen hat man durch die lokal angelegt Konstante, welches aus der ".env" Datei ausgelesen wird bereits in dem File verfügbar. Deshalb kann man einfach den Namen des Parameters z.B "DB\_DATABASE" im Konstruktor von Sequelize angeben. Folgender Code ist für das oben beschriebene zuständig:
+Die unterschiedlichsten Parameternamen oder Optionennamen hat man durch die lokal angelegt Konstante, welches aus der ".env" Datei ausgelesen wird bereits in dem File verfügbar. Deshalb kann man einfach den Namen des Parameters z.B "DB\_DATABASE" im Konstruktor von Sequelize angeben.
 
-//Code Snippet sequelize
+Folgender Code ist für das oben beschriebene zuständig:
+
+\typescript{code/Sequelize/neuesObjekt.ts}{Erzeugen eines neuen Sequelizeobjekts}
 
 Zum Schluss verwendet man das Schlüsselwort "export", da so das Sequelizeobjekt nun auch in anderen Dateinen aufgerufen werden kann. Das ist für den weiteren Datenbankzugriff und die Verbindungsklassen wichtig.
 
-//Code Snippet export
+\typescript{code/Sequelize/export.ts}{Exportieren des Sequelizeobjekts}
 
