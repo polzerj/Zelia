@@ -33,4 +33,26 @@ Der Prozess zum Setzten eines Fremdschlüssels ist jedoch noch nicht abgeschloss
 
 \typescript{code/Sequelize/fremdSchluessel.ts}{Finalisieren einer Fremdbeziehung zwischen Zwei Tabellen}
 
+Bei den tatsächlichen Zugriffsmethoden gibt es wie oben schon erwähnt 4 unterschiedliche Arten
 
+\hfive{Auslesen aller Datensätze}
+
+Mit dieser Methode werden alle Datensätze einer Tabelle ausgelesen und in eine Konstante gespeichert. Dies ist beispielsweise für die Administrator*innen relevant, da diese eine Übersicht aller Meldungen für alle Räume benötigen um zu sehen, wie viele Schäden noch offen sind und welche schon abgearbeitet sind.
+
+Hierbei ist es auch nicht erforderlich, dass der Server eine Raumnummer als Parameter mitgibt. Die von Sequelize implementierte Methode "findAll" greift dann auf die Tabelle zu. Diese kann jedoch auch mit mehreren Attributen versehen werden. Als Beispiel kann das nicht zurückliefern von bestimmten Spalten nennen. Sollte ein Fremdschlüssel gesetzt sein, was in diesem Beispiel der Fall ist, ist es außerdem notwendig das "Model" der zu referenzierenden Tabelle anzugeben und die Eigenschaft "required" auf "true" zu setzten. Zum Schluss wird die Konstante mit den Werten zurückgegeben.
+
+\typescript{code/Sequelize/getAll.ts}{Zurückliefern aller Datensätze der Tabelle "RoomeReport"}
+
+\hfive{Auslesen von Datensätzen nach Raumnummer gefiltert}
+
+Mit dieser Methode werden nur einzelne Datensätze für einen bestimmten Raum ausgelesen. Dies ist beispielsweise für das hinzufügen von Warnungen vor Schäden zu einem Raum relevant. 
+
+Die Struktur ist der Methode zum Auslesen aller "RoomReports" ähnlich, jedoch mit dem Unterschied, dass ein Parameter mit der Raumnummer mitgegeben werden muss. Nun wird als zusätzliches Attribut ein "where" hinzugefügt um die Datensätze nach einer gewissen Raumnummer zu filtern.
+
+\typescript{code/Sequelize/getRoomNumber.ts}{Auslesen von bestimmten Datensätzen (nach Raumnummer gefiltert)}
+
+\hfive{Verändern von vorhandenen Datensätzen}
+
+Gerade beim Melden von Schäden in Räumen ist es wichtig, Datensätze welche schon vorhanden sind wieder zu verändern, da beim Eintrag in die Datenbank der Status einer Meldung darauf eingestellt ist, dass er noch nicht in Arbeit ist. Sobald er in Arbeit ist, kann eine Administrator*in den Status auf "in Arbeit" ändern, damit die Schüler*innen erkennen, dass sich um ihr gemeldetes Problem gekümmert wird. Zum Abschluss wird der Status auf "Erledigt" gesetzt.
+
+Hierbei müssen Zwei Parameter mitgegeben werden, nämlich einerseits die "id" des Datensatzes als Zahl und der neue "ReportStatus" als Text. Nun kann mit der von Sequelize bereitgestellten Methode "update" der Datensatz verändert werden. Hierbei muss zuerst der Spaltenname und der neue Status, welcher als Parameter mitgegeben wurde angegeben werden und nachher mit einem "where" der richtige Datensatz anhand der mitgegebenen "id" gefunden werden.
