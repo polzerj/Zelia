@@ -1,0 +1,13 @@
+\htwo{Überblick}
+
+Wie schon erwähnt ist der ZELIA Client eine Web-Anwendung welche in HTML, CSS und Typescript von Grund auf selbst geschrieben ist. Es wird nur eine externe Bibliothek für die Funktionalität der Webseite verwendet, nämlich TesseractJS. Das Tesseract-Projekt ist ein "Open Source"-Softwareprojekt welches Text aus Bilder extrahiert. Bei ZELIA wird das benötigt um mit der Smartphonekamera die Raumnummern, zum Beispiel von Türschildern, einzuscannen. (Mehr dazu im Kapitel Optical Character Recognition)
+
+Dadurch das wir sonst keine weitere Bibliothek verwenden, haben wir den Rest selbst entworfen und implementiert. Die Anforderungen dabei waren das man unsere Bibliothek von ZELIA trennen kann und das sie somit für jede andere Webseite einfach wiederverwendbar ist. Somit wurde die Bibliothek so weit wie möglich abstrahiert und komplett unabhängig von unserem eigentlichen Projekt geplant. ZELIA ist somit eine Erweiterung dieses "Frontend Frameworks"
+
+Die Bibliothek besteht aus 2 logischen Teilen, die nichts miteinander zu tun haben. 
+\begin{itemize}
+    \item Ein Komponenetensystem, mit dem man Elemente auf die Webseite hinzufügen und manipuleiren kann. 
+    \item Ein "Frontend Router", welcher zuständig ist, um Anfragen auf verschiede Pfade zu verarbeiten.
+\end{itemize}
+
+In den folgenden Kapiteln werden die Funktionalitäten der Frontend Bibliothek genauer erklärt.
