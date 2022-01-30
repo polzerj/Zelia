@@ -52,7 +52,7 @@ Auf dem Root-Pfad ("/") liegt unsere Willkommensseite. Auf ihr findet man die Ra
 
 Beispiel:
 
-\image{media/WebComponents/Startseite}{ZELIA Startseite}
+\image{media/WebComponents/Startseite_light}{Startseite}
 
 \hfive{Die "OCR"-Seite}
 
@@ -61,3 +61,41 @@ Auf dieser Seite können alle Geräte, die eine Kamera haben, mittels "Optical C
 % TODO: Bild von der Seite
 
 Meist liefert der OCR-Prozess gut erkennbare Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist wichtig, dass nachdem das Bild in Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, Bild in Text umzuwandeln, wird einmal pro Sekunde gemacht. Dieser Wert ist einfach änderbar, aber wir haben uns nach längerem testen geeinigt, dass eine Sekunde völlig ausreichen ist, um schnell Raumnummern zu erfassen. Würde der Wert kleiner werden, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, so würden schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
+
+\hfive{Rauminformationsseite}
+
+Wie der Name schon vermuten lässt, kann man auf der Rauminformationsseite alle Daten über einen Raum auslesen. Nachdem man einen Raum ausgewählt hat, entweder duch manuelle Eingabe oder duch das Einscannen der Nummer, wird man auf diese Seite umgeleitet. Aufgebaut ist die Seite aus insgesammt fünf Komponenten. So wie bei der OCR-Seite gibt es auch hier einen Link welcher zurück auf die Startseite führt. Zwei weitere Komponenten dienen als Knöpfe um eine Meldung oder Buchung zu einem Raum zu erstellen. Wenn man einen der Beiden drückt, wird man auf die jeweilige Seite, Meldung oder Buchung, umgeleitet. Die letzten zwei Komponenten auf dieser Seite sind die intersanntesten, denn sie die eignetlichen Informationen zu einem Raum an. Eine zeigt in einer aufklappbaren Auflistung die physikalischen Daten eines Raumes an, während die andere verwendet wird um einen Stundenplan dazustellen.
+
+Beispiel:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=120mm]{media/WebComponents/Rauminformationsseite_light.png}
+    \caption{Meldungsseite}
+\end{figure}
+
+\hfive{Meldungen und Buchungen}
+
+Die Meldungs und Buchungsseite sind zwei verschiedene Seiten, welche aber recht änhlich aufgebaut sind. Erreichen kann man sie nur über die Rauminformationsseite, da sie sich auf einen bestimmten Raum beziehen. Dadrucuh das sie zwei verschiedene Afgaben haben, müssen sie allerdings getrennt behandelt werden und können nicht auf eine Seite zusammengefasst werden. Beide Seiten bestehen aus zwei Komponenten: Einem Formular zur Beischreibung und Angabe der Daten und einem Link, welcher zurück zur Rauminformationsseite führt.
+  
+
+Um einen Defekt aus einem Raum zu melden braucht man eine EDU-Mailadresse, das Datum wann der Defekt das erste Mal aufgetreten ist und eine Beschreibung um das Problem kurz zu beschreiben. Wie schon beschrieben wird die Mailadresse verwendet um Schüler*innen identifiziern zu können, ohne das sie sich slebst einen Account anlegen müssen. Nach absenden des Formulares bekommt man aud die angegebene Mailadresse einen Bestätigungslink um die Meldung zu bestätigen. Somit ist das Meldesystem nicht anonym da sonst viele Falsch-Meldungen machen würden und trotzdem angehm ohne Account zu verwenden. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=120mm]{media/WebComponents/Meldungsseite_light.png}
+    \caption{Meldungsseite}
+\end{figure}
+
+Eine Buchungsanfrage für einen Raum zu erstellen geht genaso einfach, wie Defekte zu melden. Hierfür braucht man den Tag an dem man den Raum ausborgen will, die Unterrichtsstunde in der man startet und die Anzahl an Stunden die man den Raum besetzen möchte. Wie beim Melden gibt man auch hier eine EDU-Mailadresse an und zusätzlich dazu sollte man noch einen Buchungsgrund angeben, um kurz zu schildern wofür man den Raum benötigt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=120mm]{media/WebComponents/Buchungsseite_light.png}
+    \caption{Meldungsseite}
+\end{figure}
+
+
+\hfive{"Admin Login und Dashboard"}
+
+% TODO: Bild von der Seite
