@@ -11,7 +11,7 @@
 \newcommand{\hone}[1]{\section{#1}}
 \newcommand{\htwo}[1]{\subsection{#1}\markboth{#1}{}}
 \newcommand{\hthree}[1]{\subsubsection{#1}}
-\newcommand{\hfour}[1]{\paragraph{#1}\noindent\newline}
+\newcommand{\hfour}[1]{\paragraph{#1}\noindent}
 \newcommand{\hfive}[1]{\begin{flushleft}
     {\normalsize \textbf{\textit{#1}}} 
 \end{flushleft}}
@@ -28,7 +28,7 @@
 \newcommand{\sql}[2]{ \begin{singlespacing}\lstinputlisting[language=SQL,caption={#2},captionpos=b]{#1}\end{singlespacing}}
 
 \newcommand{\image}[2]{
-    \begin{figure}[h]
+    \begin{figure}[H]
         \centering
         \includegraphics{#1}
         \caption{#2}
