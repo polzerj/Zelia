@@ -64,7 +64,7 @@ Meist liefert der OCR-Prozess gut erkennbare Ergebnisse. Allerdings kann es auch
 
 \hfive{Rauminformationsseite}
 
-Wie der Name schon vermuten lässt, kann man auf der Rauminformationsseite alle Daten über einen Raum auslesen. Nachdem man einen Raum ausgewählt hat, entweder duch manuelle Eingabe oder duch das Einscannen der Nummer, wird man auf diese Seite umgeleitet. Aufgebaut ist die Seite aus insgesammt fünf Komponenten. So wie bei der OCR-Seite gibt es auch hier einen Link welcher zurück auf die Startseite führt. Zwei weitere Komponenten dienen als Knöpfe um eine Meldung oder Buchung zu einem Raum zu erstellen. Wenn man einen der Beiden drückt, wird man auf die jeweilige Seite, Meldung oder Buchung, umgeleitet. Die letzten zwei Komponenten auf dieser Seite sind die intersanntesten, denn sie die eignetlichen Informationen zu einem Raum an. Eine zeigt in einer aufklappbaren Auflistung die physikalischen Daten eines Raumes an, während die andere verwendet wird um einen Stundenplan dazustellen.
+Wie der Name schon vermuten lässt, kann man auf der Rauminformationsseite alle Daten über einen Raum auslesen. Nachdem man einen Raum ausgewählt hat, entweder duch manuelle Eingabe oder duch das Einscannen der Nummer, wird man auf diese Seite umgeleitet. Aufgebaut ist die Seite aus insgesammt fünf Komponenten. So wie bei der OCR-Seite gibt es auch hier einen Link welcher zurück auf die Startseite führt. Zwei weitere Komponenten dienen als Knöpfe um eine Meldung oder Buchung zu einem Raum zu erstellen. Wenn man einen der Beiden drückt, wird man auf die jeweilige Seite, Meldung oder Buchung, umgeleitet. Die letzten zwei Komponenten auf dieser Seite sind die intersanntesten, denn sie zeigen die Informationen zu einem Raum an. Die Eine zeigt eine aufklappbare Liste an, um die physikalischen Daten eines Raumes anzusehen. Die andere Komponente wird verwendet um den jeweiligen Raumstundenplan dazustellen.
 
 Beispiel:
 
@@ -98,4 +98,23 @@ Eine Buchungsanfrage für einen Raum zu erstellen geht genaso einfach, wie Defek
 
 \hfive{"Admin Login und Dashboard"}
 
-% TODO: Bild von der Seite
+Um einen Überblick über Meldungen und Buchungen zu bekommen gibt es das sogenannte "Admin Dashboard". Damit nicht jeder die Raumbuchungen und Defektmeldungen sieht, gibt es Administratorbenutzer mit denen man sich anmelden muss. Jede Buchung und Meldung ist einem Administratorbenutzer zugeteilt und kann somit von diesem abgearbeitet werden. Im Fall von ZELIA in dem Schulzentrum Ungargasse, sind Admins meist Abteilungsleiter*innen oder Lehrer*innen, die für den gemeldeten oder gebuchten Raum zuständig sind. 
+
+Wie schon gesagt muss man angemeldet sein um Zugriff auf alle Meldungen und Buchungen zu haben. Hierfür gibt es die "Admin Login"-Seite, welche über den normalen ZELIA-Webserver aufgerufen werden kann. Auf dieser Webseite findet man eine Komponente die ein Anmeldeformular anzeigt. Wenn man sich anmeldet wird die Anfrage an den Server geschickt und auf eine Antwort gewartet. Wenn der Server mit einem "JSON-Web-Token" (siehe Kapitel Authentifizierung "Json Web Token (JWT)") antwortet, wird dieser in den "Sessionstorage" (siehe Kapitel "Webspeicher") gespeichert und man wird auf die Übersichtsseite weitergeleitet.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=120mm]{media/WebComponents/Login_light.png}
+    \caption{Anmeldeseite}
+\end{figure}
+
+Landet man auf der "Admin Dashboard"-Seite wird zuerst überprüft ob ein Token im "Sessionstorage" gespeichert ist. Wenn Keiner vorhanden ist wird man sofort auf die Anmeldeseite umgeleitet. Bei einem vorhanden Token werden alle benötigten Reqeust, die den Filtereinstellungen entsprechen, vom Server abgefragt. In dieser Anfrage wird auch der Token mitgeschickt. Am Server wird geprüft ob der Token gültig ist und wenn dies der Fall ist dann bekommt der Client die angefragten Daten. Ist der Token ungültig schickt der Server dem Client den HTTP-Code 401 - "Unauthorized", woraufhin man auch auf die Anmeldeseite umgeleitet wird.
+
+Hat das Client die Buchungen und Meldungen erhalten, verwendet es zwei Komponenten um diese Anzuzeigen. Anders als auf den anderen Seiten werden mehrere Instanzen dieser beiden Komponenten erstellt um alle Daten dazustellen. Jede Buchung und Meldung ist somit in einer eigenen Instanz einer Komponente untergebracht. Beide dieser Komponenten können aufgeklapt werden um alle damit verknüpften Informationen einzusehen. Zugeklappt bestehen sie aus einer Zusammenfassung der Daten. 
+
+Die Buchungskomponente hat zwei verschiedene Knöpfe um die Buchungsanfrage zu verarbeiten. Einen zum Akzeptieren und den Anderen zum Ablehenen. Zusätzlich könnte man noch einen kurzen Informationstext schreiben, der den Buchenden mit der Buchungsbestätigung per EDU-Mailadresse gesendet wird. 
+
+Meldungen haben nur einen Knopf um den Status der Meldung auf geschlossen zu setzten. Im Hintergrund gäbe es merher Auswahlmöglichkeiten eines Status aber im Frontend ist noch nicht mehr implementiert, da wir uns darauf geinigt haben, dass es fürs erste nicht notwendig ist.
+
+% TODO: Bild von Dashbord
+TODO: Bild von Dashboard
