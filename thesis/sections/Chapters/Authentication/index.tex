@@ -13,10 +13,13 @@ Authentifizierung ist ein sehr wichtiges Thema, wenn es um Webentwicklung geht, 
 
 \hfour{Session Cookie}
 
-Die ursprüngliche Idee der sitzungsbasierten Authentifizierung bestand darin, ein so genanntes Sitzungs-"Cookie" auf dem Web-Client zu speichern, das bei jeder Anfrage mitgeschickt wird. Mit diesem Cookie als Schlüssel kann der Server auf die Sitzung mit den Benutzerdaten zugreifen. 
+Die ursprüngliche Idee der sitzungs-basierten Authentifizierung bestand darin, ein so genanntes Sitzungs-"Cookie" auf dem Web-Client zu speichern, das bei jeder Anfrage mitgeschickt wird. Mit diesem Cookie als Schlüssel kann der Server auf die Sitzung mit den Benutzerdaten zugreifen. 
 
 Ein Hauptproblem der auf Sitzungs-"Cookies" basierenden Ansätze besteht darin, dass der "Load-Balancing"-Prozess aufgrund der Sitzungen, die zwischen den verschiedenen Servern synchronisiert werden müssen, um sicherzustellen, dass der Benutzer dieselbe Antwort erhält, egal welcher Server antwortet, recht schwierig zu handhaben ist.
 
 \input{sections/Chapters/Authentication/jwt.tex}
 
-\hthree{Implementierung}
+\pagebreak
+
+
+\input{sections/Chapters/Authentication/implementation.tex}

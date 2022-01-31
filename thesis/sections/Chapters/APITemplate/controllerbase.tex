@@ -1,0 +1,30 @@
+\hthree{Die "ControllerBase"-Klasse}
+
+Die abstrakte "ControllerBase"-Klasse ist die Basisklasse eines jeden "Controllers" und stellt die grundlegenden Funktionen bereit. 
+
+Der Konstruktor der "ControllerBase" nimmt zwei Parameter entgegen:
+
+\begin{description}
+    \item["path"] Der Pfad, unter dem der Controller registriert werden soll.
+    \item["middlewareParam"] Ein Objekt, welches die Middleware-Funktionen enthält. \\ 
+        Diese werden folgenden Eigenschaften als Array mitgegeben:
+        \begin{description}
+            \item["all"] Wird bei allen Requests aufgerufen
+            \item["get"] Wird bei GET-Requests aufgerufen
+            \item["post"] Wird bei POST-Requests aufgerufen
+            \item["put"] Wird bei PUT-Requests aufgerufen
+            \item["patch"] Wird bei PATCH-Requests aufgerufen
+            \item["delete"] Wird bei DELETE-Requests aufgerufen
+        \end{description}
+\end{description}
+
+Um eine HTTP-Methode zu implementieren, gibt es in der "ControllerBase" Methoden, welche überschrieben werden müssen. Wenn eine Methode nicht implementiert wird, wird der HTTP Status-Code 405 (Method Not Allowed) zurückgegeben.
+
+Die Namen der Methoden entsprechen deren HTTP-Methoden:
+\begin{itemize}
+    \item get
+    \item post
+    \item put
+    \item path
+    \item delete
+\end{itemize}
