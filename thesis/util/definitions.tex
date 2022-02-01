@@ -3,10 +3,14 @@
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
+\setlength{\parindent}{0px}
+\setlength{\parskip}{0.75em}
 \linespread{1.5}
 \raggedbottom
 \addtocontents{toc}{\protect\setstretch{1.25}}
 
+%------------------------------------------------------------------------------
+% Headings
 \newcommand{\hnone}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}\markboth{#1}{}}
 \newcommand{\hone}[1]{\section{#1}}
 \newcommand{\htwo}[1]{\subsection{#1}\markboth{#1}{}}
@@ -15,18 +19,26 @@
 \newcommand{\hfive}[1]{\begin{flushleft}
     {\normalsize \textbf{\textit{#1}}} 
 \end{flushleft}}
+%------------------------------------------------------------------------------
 
+%------------------------------------------------------------------------------
+% Rename Fields
 \renewcommand{\figurename}{Abbildung}
 \renewcommand{\listfigurename}{Abbildungsverzeichnis}
 
 \renewcommand{\lstlistingname}{Code}
 \renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
+%------------------------------------------------------------------------------
 
-\newcommand{\typescript}[2]{\begin{minipage}{\linewidth} \begin{singlespacing}\lstinputlisting[language=TypeScript,caption={#2},captionpos=b]{#1}\end{singlespacing} \end{minipage}}
-\newcommand{\html}[2]{\begin{minipage}{\linewidth} \begin{singlespacing}\lstinputlisting[language=HTML,caption={#2},captionpos=b]{#1}\end{singlespacing} \end{minipage}}
-\newcommand{\css}[2]{\begin{minipage}{\linewidth} \begin{singlespacing}\lstinputlisting[language=CSS,caption={#2},captionpos=b]{#1}\end{singlespacing} \end{minipage}}
-\newcommand{\sql}[2]{ \begin{singlespacing}\lstinputlisting[language=SQL,caption={#2},captionpos=b]{#1}\end{singlespacing}}
+%------------------------------------------------------------------------------
+% Import Scripts
+\newcommand{\typescript}[3][1]{\begin{minipage}{\linewidth} \begin{singlespacing}\lstinputlisting[language=TypeScript,caption={#3},label={#1},captionpos=b]{#2}\end{singlespacing} \end{minipage}}
+\newcommand{\html}[3][1]{\begin{minipage}{\linewidth} \begin{singlespacing}\lstinputlisting[language=HTML,caption={#3},label={#1},captionpos=b]{#2}\end{singlespacing} \end{minipage}}
+\newcommand{\css}[3][1]{\begin{minipage}{\linewidth} \begin{singlespacing}\lstinputlisting[language=CSS,caption={#3},label={#1},captionpos=b]{#2}\end{singlespacing} \end{minipage}}
+\newcommand{\sql}[3][1]{ \begin{singlespacing}\lstinputlisting[language=SQL,caption={#3},label={#1},captionpos=b]{#2}\end{singlespacing}}
+%------------------------------------------------------------------------------
 
+%------------------------------------------------------------------------------
 \newcommand{\image}[2]{
     \begin{figure}[H]
         \centering
@@ -35,10 +47,17 @@
     \end{figure}
 }
 
-\setlength{\parindent}{0px}
-\setlength{\parskip}{0.75em}
 
+%------------------------------------------------------------------------------
+% Author handling for headers
 \newcommand{\sectionauthor}[1]{%
   \def\@sectionauthor{#1}% Store chapter authors
 }
 \sectionauthor{}
+%------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------
+% Reduces the space between itemize items
+%\let\tempone\itemize
+%\let\temptwo\enditemize
+%\renewenvironment{itemize}{\tempone[itemsep=0em]}{\temptwo}

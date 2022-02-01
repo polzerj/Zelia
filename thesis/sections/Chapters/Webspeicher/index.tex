@@ -1,10 +1,9 @@
 \htwo{Webspeicher}
 \sectionauthor{Johannes Polzer}
-% TODO: Bezug zu Zelia
 
 \hthree{Einleitung}
 
-Es gibt verschiedene Arten von Speichern in einem modernen Webbrowser, welche für unterschiedlicher Anwendungsfälle konzipiert wurden. Um riesige Webanwendungen zu entwickeln, wurde die Menge an Speicherplatz in den letzten Jahren erhöht. 
+Damit die Session gespeichert und die Website offline aufgerufen werden kann, ist es wichtig, Daten im Webbrowser abzuspeichern. Es gibt verschiedene Arten von Speichern in einem modernen Webbrowser, welche für unterschiedlicher Anwendungsfälle konzipiert wurden. Um riesige Webanwendungen zu entwickeln, wurde die Menge an Speicherplatz in den letzten Jahren erhöht. 
 
 \hfour{Speichermengen}
 
@@ -15,11 +14,10 @@ Firefox hat ein Limit von zwei Gigabyte pro Website. Insgesamt dürfen Websites 
 Apples Safari-Browser schränkt die Nutzung von Webanwendungen auf maximal ein Gigabyte ein. Wenn diese Grenze erreicht ist, wird der Benutzer gefragt, ob er zweihundert Megabyte mehr zulassen möchte. Dieses Verhalten ist jedoch von Apple nicht dokumentiert.
 
 \hfour{Same-Origin-Policy}
-s
+
 Damit nicht jede Webseite auf die gespeicherten Ressourcen der anderen Websites zugreifen können, gibt es eine "Same-Origin-Policy". Damit soll verhindert werden, dass Webseiten ausspionieren, mit welchen Accounts der User angemeldet ist und dass Websites die Daten anderer manipulieren.
 
 Dennoch kann durch Cookies Tracking durchgeführt werden. Dabei wird auf einer Webseite ein Script von z.B. Google Analytics eingebunden. Dieses Script kann dann auf die Daten der anderen Webseiten zugreifen und somit mit Tracking-Cookies das Benutzerverhalten verfolgen.
-% TODO: Wer darf wo schreiben?
 
 \hthree{Allgemeines}
 \input{sections/Chapters/Webspeicher/localstorage.tex}
