@@ -5,7 +5,7 @@
 \begin{document}
 
 \maketitle
-\pagebreak
+\cleardoublepage
 \include{sections/EE.tex}
 \include{sections/Kurzfassung.tex}
 \include{sections/Abstract.tex}
@@ -13,8 +13,10 @@
 
 \tableofcontents
 
+\cleardoublepage
 \include{sections/Chapters/Intro/index.tex}
 
+\cleardoublepage
 \hone{Frontend}
 \input{sections/Chapters/Intro/Frontend_Intro.tex}
 \include{sections/Chapters/WebComponents/index.tex}
@@ -25,6 +27,7 @@
 \include{sections/Chapters/ServiceWorker/index.tex}
 \include{sections/Chapters/Vite/index.tex}
 
+\cleardoublepage
 \hone{Server}
 
 \input{sections/Chapters/RestAPI/index.tex}
@@ -40,22 +43,24 @@
 % DB-API
 \include{sections/Chapters/WebUntis/index.tex}
 
+\cleardoublepage
 \hone{Backend-Technologien}
 
 \input{sections/Chapters/Nginx/index.tex}
 \include{sections/Chapters/DockerAndContainering/index.tex}
 \include{sections/Chapters/DockerImplementation/index.tex}
 
+\cleardoublepage
 \hone{Projektmanagement}
 
 \input{sections/Chapters/ProjectManagement/index.tex}
 
-\pagebreak
+\cleardoublepage
 \sectionauthor{}
 \listoffigures
-\pagebreak
+\cleardoublepage
 \lstlistoflistings
-\pagebreak
+\cleardoublepage
 \renewcommand{\refname}{Quellen}
 \printbibliography
 
