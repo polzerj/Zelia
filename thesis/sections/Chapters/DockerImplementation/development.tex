@@ -17,3 +17,5 @@ Der erste ist die "MariaDB"-Datenbank, die alle Daten speichert. Der zweite ist 
 Um das Datenbankschema aufzubauen und "Dummy"-Daten einzufügen, können SQL-Skripte im Verzeichnis /docker-entrypoint-initdb.d/ angelegt werden. Dort werden sie beim Start des Docker-Containers in alphabetischer Reihenfolge ausgeführt. Daher wurden sie mit Zahlen beginnend benannt, um die Reihenfolge festzulegen.
 
 Um "Secrets" wie das Passwort zur Datenbank zu schützen, werden sie aus Umgebungsvariablen übernommen. Damit es nicht notwendig ist, die "Environment"-Variablen jedes Mal manuell zu setzten, ist es bei Docker möglich, eine "Env"-Datei anzugeben, die alle Umgebungsvariablen speichert. 
+
+% todo: Add docker-compose.yml
