@@ -32,14 +32,45 @@ Heutzutage werden auch oft andere Ansätze verwendet, oder sogar eine Mischung a
 
 Oft wird auch nicht nur nach Zeichen gesucht. Gerade bei Sprachen, die mit Leerzeichen getrennt wurden wird probiert ganze Wörter zu finden die dann wieder in Zeichen zu zerlegen, aber trotzdem die fertigen Zeichen mit einem Wörterbuch zu vergleichen, ob das Ergebnis stimmen könnte.
 
+\hfour{Tesseract}
+
+Tesseract ist eine Software aus 1985, die 2005 als Open-Source-Projekt veröffentlicht wurde. Seit 2006 wird das Projekt von Google unterstützt und ist eine der bekanntesten "Optical-Character-Recognition" Software. Zusätzlich zu den oben genannten Arten der Zeichenerkennung, verwendet Tesseract ein Neurales Netz, um die Auswahl noch weiter einzuschließen. Außerdem probiert Tesseract ganze Wörter zu finden die sich aus den Zeichen ergeben könnten, um noch genauere Ergebnisse zu liefern.\cite{OCRIntro}
+
 \hthree{Implementierung}
 
 \hfour{OCR-Modul}
 
-Man kann eine Raumnummer, wie schon beschrieben, nicht nur eingeben, sondern auch mit der Kamera eines Smartphones einscannen. Um die Raumnummer aus den Bildern auszulesen brauchen wird somit OCR. Dabei wird die Bibliothek "TesseractJS" die eine Webassembly (nicht erklärt) Version von "Tesseract OCR" ist, direkt im Browser eingebunden, um die Bilder von Raumnummern zu Text zu verarbeiten.
+Man kann eine Raumnummer, wie schon beschrieben, nicht nur eingeben, sondern auch mit der Kamera eines Smartphones einscannen. Um die Raumnummer aus den Bildern auszulesen brauchen wird somit OCR. Dabei wird die Bibliothek "TesseractJS" die eine Web-Version von "Tesseract OCR" ist, direkt im Browser eingebunden, um die Bilder von Raumnummern zu Text zu verarbeiten.
 
-Unsere Wahl fiel auf Tesseract da wir am Anfang mit einer einfach verwendbaren Bibliothek testen wollten, ob OCR in unserem Fall gut genug funktioniert. Bevor Tesseract dem Bild die Zeichen entzieht, wird es auf ein Schwarz-Weiß-Bild umgewandelt und nur auf den wichtigen Teil, dort wo nichts schwarz ist, zusammengeschnitten. Mit dieser Vorbearbeitung liefert Tesseract sehr gute Ergebnisse und somit haben wir die Open-Source Bibliothek weiterverwendet.
+Um das eben Erwähnte umzusetzten, gibt es bei ZELIA eine Komponete im Komponentensystem, welche genau diese Funktionalität bewerkstelligt. Diese Komponente wird auf der OCR-Seite des Frontends eingebunden. Sie beinhaltet ein Videoelement um zu zeigen was sie scannt. Um auf die Kamera eines Gerätes aus einem Webbrowser zugreifen zu können, muss über den "Browser Navigator" angefragt ob die Kamera verwendet werden darf.
 
-\hfour{Tesseract}
+\typescript{code/OCR/nav.ts}{Zugriff auf eine Kamera im Browser}
 
-Tesseract ist eine Software aus 1985, die 2005 als Open-Source-Projekt veröffentlicht wurde. Seit 2006 wird das Projekt von Google unterstützt und ist eine der bekanntesten "Optical-Character-Recognition" Software. Zusätzlich zu den oben genannten Arten der Zeichenerkennung, verwendet Tesseract ein Neurales Netz, um die Auswahl noch weiter einzuschließen. Außerdem probiert Tesseract ganze Wörter zu finden die sich aus den Zeichen ergeben könnten, um noch genauere Ergebnisse zu liefern.\cite{OCRIntro}
+Als Parameter, bei dieser Anfrage, kann man defineren worauf man Zugriff haben möchte. Im Falle von ZELIA wird als Videoquelle die Außenkamera angefragt und Audio wird verworfen, da es nicht notwendig ist. Die Browser bestimmen dann ob die Anfrage erlaubt werden soll oder fragen die Benutzer*innen des Gerätes. Wenn der Zugriff abgelehnt wurde, wird das Videoelement, welches die Kamera anzeigen soll, ersetzt duch eine Fehlermeldung. Bekommt der Browser aber die Videoquelle, so zeigt er sie an und startet das "OCR"-Modul.
+
+Die Aufgabe des "OCR"-Moduls ist es Bilder in Text umzuwandeln. Dabei wird TesseractJS verwendet um den "Optiacal Character Recognition" Prozess durchzuführen. Unsere Wahl fiel auf Tesseract da wir am Anfang mit einer einfach verwendbaren Bibliothek testen wollten, ob OCR in unserem Fall gut funktioniert. Da es sehr gute Ergebnisse geliefert hat, wurde es weiterverwendet und ein bisschen optimiert.
+
+\typescript{code/OCR/OCRModule.ts}{Die Verwendeung von TesseractJS}
+
+TesseractJS verwendet sogennante "Worker" um Text aus einem Bild zu extrahieren und je mehr davon vorhanden sind desto schneller geht der Prozess. Nartürlch wird dadurch mehr Prozessorleitung verwendet, was auf Smartphones schnell zu einem erhöhten Energieverbrauch oder erhitzen des Gerätes führt. Somit wird bei ZELIA oft nur ein "Worker" verwendet. Da das initzialisiern dieser services recht lange dauert, gäbe es die möglichkeit mehrere gleichzeitig zu laden. Bei nur einem "Worker" macht das keinen Unterschied, aber wenn man mehrere initzialisiern würde, kann diese Optimirung viel Zeit einsparen.
+
+Zusätzlich um den eingentlichen Umwandlungsvorgang von Bild zu Text zu beschleunigen wird eine Bildoptimierung für OCR durchgeführt. Bevor Tesseract dem Bild die Zeichen entzieht, wird es somit auf ein Schwarz-Weiß-Bild umgewandelt und nur auf den wichtigen Teil, dort wo nichts schwarz ist, zusammengeschnitten. 
+
+Mit diesen Optimierungen liefert Tesseract sehr gute Ergebnisse und somit haben wir die Open-Source Bibliothek weiterverwendet.
+
+\typescript{code/OCR/compress.ts}{Bild vereinfachen bevor Text extrahiert wird}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=120mm]{media/OCR/original}
+    \caption{Aufnahme einer Smartphonekamera (Fokusbereich rot markiert)}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=120mm]{media/OCR/compressed}
+    \caption{Bild nachdem es für OCR vereinfacht wurde}
+\end{figure}
+
+% TODO: Diagnostics (wie schnell ist der Spaß :) )
