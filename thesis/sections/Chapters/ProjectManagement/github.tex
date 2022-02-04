@@ -18,7 +18,7 @@ Einem Projekt wird ein Name und eine Beschreibung zugewiesen. Außerdem muss das
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{media/ProjectManagement/EnterProjectInfo.png}
-    \caption{Eingabe der Projektinformationen}
+    \caption{Eingabe der Projektinformationen (Demo-Bild)}
     \label{fig:enterProjectInfo}
 \end{figure}
 
@@ -29,12 +29,51 @@ Im "Issues"-Tab lassen sich Meilensteine und Label erstellen. Durch Label kann m
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{media/ProjectManagement/CreateIssue.png}
-    \caption{Eingabe der Arbeitspaketinformationen}
+    \caption{Eingabe der Arbeitspaketinformationen (Demo-Bild)}
     \label{fig:createIssue}
 \end{figure}
 
 \hthree{Arbeiten an einem Arbeitspaket}
 
-%todo
+Für jedes Arbeitspaket wird ein eigener Branch mit dem Befehl {\ttfamily git checkout -b <Branch Namen>} erstellt. Dabei wird der Namen zusammengesetzt aus der "Issue ID" und dem "Issue"-Titel. Die "Issue ID" wird aus der Detailansicht eines "Issues" neben dem Titel entnommen. (Siehe Abbildung \ref{fig:issueInfo})  Dieser Branch kann mit dem Befehl {\ttfamily git push -u origin <Branch Namen>} auf Github hochgeladen werden. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{media/ProjectManagement/IssueInfo.png}
+    \caption{Detailansicht "Issue" (Demo-Bild)}
+    \label{fig:issueInfo}
+\end{figure}
+
+\hthree{Review und Merge}
+
+Wenn die gesamte Funktionalität des Arbeitspakets implementiert ist, wird ein sogenannter "Pull Request" erstellt. Dies wird im "Pull Requests"-Tab gemacht. Zunächst muss ausgewählt werden, auf welchen Branch der jeweilige Arbeits-branch zusammengefügt werden soll. (Siehe Abbildung \ref{fig:createPullRequest}) Dabei wird zunächst immer auf den Branch des jeweiligen Sprints ausgewählt. Erst am Ende eines Sprints wird ein "Pull Request" von dem Branch des Sprints auf den "main"-Branch erstellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{media/ProjectManagement/CreateProject.png}
+    \caption{Erstellen eines "Pull Requests" (Demo-Bild)}
+    \label{fig:createPullRequest}
+\end{figure}
+
+Um den "Pull Request" zu erstellen, müssen zu den im Issue schon bekannten angegebenen Feldern die Reviewer eingetragen werden. Außerdem muss in der Beschreibung des "Pull Request" "Closes \textless Issue ID\textgreater" angegeben werden. (Siehe Abbildung \ref{fig:EnterPullRequestInfo})
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{media/ProjectManagement/EnterPullInfo.png}
+    \caption{Setzten der Informationen eines "Pull Requests" (Demo-Bild)}
+    \label{fig:EnterPullRequestInfo}
+\end{figure}
+ 
+Die Reviewer können nun im "Files Changed" Tab des "Pull Requests" den Code überprüfen und daraufhin Änderungen anfordern oder des "Pull Request" freigeben. 
+
+
+Wenn alle Änderungen akzeptiert werden, wird ein "Squash and Merge" durchgeführt. (Siehe Abbildung \ref{fig:pullInfo}) \\ Dabei werden alle Commit-Nachrichten zusammengefasst zu einem Commit. Der "Issue" und der "Pull Request" werden beide automatisch geschlossen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{media/ProjectManagement/PullInfo.png}
+    \caption{Detailansicht "Pull Requests" (Demo-Bild)}
+    \label{fig:pullInfo}
+\end{figure}
 
 \cite{GithubFS}
