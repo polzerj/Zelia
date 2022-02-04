@@ -16,7 +16,9 @@ Das Event "Success" wird nach der Einrichtung der Datenbank ausgelöst, falls er
 
 \typescript{code/Webspeicher/getByPrimaryKey.ts}{Abfragen von Datensätzen mit einem Primärschlüssel}
 
-Es ist auch möglich, Daten über einen Index abzurufen. Da ein indiziertes Attribut nicht eindeutig sein kann, gibt es zwei Methoden, um die Daten zu erhalten. Die Methode get liefert die erste Übereinstimmung oder getAll liefert alle Übereinstimmungen als Array.
+Es ist auch möglich, Daten über einen Index abzurufen. Da ein indiziertes 
+% Zusammenhang methoden First/all Match
+Attribut nicht eindeutig sein muss, gibt es zwei Methoden, um die Daten zu erhalten. Die Methode get liefert die erste Übereinstimmung oder getAll liefert alle Übereinstimmungen als Array.
 
 \typescript{code/Webspeicher/getByIndex.ts}{Abfragen von Datensätzen mit einem Index}
 

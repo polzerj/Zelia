@@ -1,13 +1,13 @@
 \hthree{Standard}
 
-Web Components ermöglichen es "Client-Side"-Code wiederverwendbar zu machen. Dabei wurden drei neue Technologien eingeführt:
+Web Components ermöglichen es "Client-Side"-Code wiederverwendbar zu machen. Dabei wurden drei neue Technologien \cite{MDNWebComponents} eingeführt:
 
 \begin{itemize}
     \item Custom Elements
     \item Shadow DOM
     \item HTML Templates
 \end{itemize}
-\cite{MDNWebComponents}
+
 
 \hfour{Custom Elements}
 
@@ -30,7 +30,9 @@ Der "connectedCallback" wird aufgerufen, wenn das Element in das DOM eingefügt 
 
 \typescript{code/WebComponents/four.ts}{"connectedCallback" Beispiel}
    
-Der "disconnectedCallback" ist das Gegenstück zum "connectedCallback" und wird beim Verlassen des DOMs aufgerufen. Darin sollten etwaige "Event Listeners" entfernt werden. 
+Der "disconnectedCallback" ist das Gegenstück zum "connectedCallback" und wird beim Verlassen des DOMs aufgerufen. 
+%todo: begründen, warum entfernen
+Darin sollten etwaige "Event Listeners" entfernt werden. 
 
 \typescript{code/WebComponents/five.ts}{"disconnectedCallback" Beispiel}
 
