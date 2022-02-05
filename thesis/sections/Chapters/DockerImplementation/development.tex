@@ -1,8 +1,8 @@
-\hthree{Entwicklung}
+\hthree{Docker bei der Entwicklung}
 
-Zunächst wurde für die Entwicklung eine separate NGINX-Konfiguration erstellt, die den Entwicklungsserver, der von Vite betrieben wird, an den Client weitergibt.
+Zunächst wurde für die Entwicklung eine separate NGINX-Konfiguration (Siehe Code \ref{code:nginxDevConf}) erstellt, die den Entwicklungsserver, der von Vite betrieben wird, an den Client weitergibt.
 
-\css{code/Nginx/dev.conf}{NGINX-Konfiguration für die Entwicklung}
+\css[code:NginxDevConf]{code/Nginx/dev.conf}{NGINX-Konfiguration für die Entwicklung}
 
 Um das Gesamtprojekt bereitzustellen, werden vier verschiedene Docker-Container gestartet.
 
@@ -18,4 +18,4 @@ Um das Datenbankschema aufzubauen und "Dummy"-Daten einzufügen, können SQL-Skr
 
 Um "Secrets" wie das Passwort zur Datenbank zu schützen, werden sie aus Umgebungsvariablen übernommen. Damit es nicht notwendig ist, die "Environment"-Variablen jedes Mal manuell zu setzten, ist es bei Docker möglich, eine "Env"-Datei anzugeben, die alle Umgebungsvariablen speichert. 
 
-% todo: Add docker-compose.yml
+\css{code/Docker/dev.yaml}{Docker-YAML für die Entwicklung}
