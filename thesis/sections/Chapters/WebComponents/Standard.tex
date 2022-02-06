@@ -1,4 +1,4 @@
-\hthree{Standard}
+\hthree{Der "Web Component" Standard}
 
 Web Components ermöglichen es "Client-Side"-Code wiederverwendbar zu machen. Dabei wurden drei neue Technologien \cite{MDNWebComponents} eingeführt:
 
@@ -11,12 +11,13 @@ Web Components ermöglichen es "Client-Side"-Code wiederverwendbar zu machen. Da
 
 \hfour{Custom Elements}
 
-Custom Elements sind ES 2015 Klassen, welche vom "HTMLElement" erben. "ES 2015" ist eine Abkürzung für "ECMAScript 2015", welche ein Standard für JavaScript ist.
+\hfive{Erstellung eines Custom Elements}
+
+Custom Elements sind ES 2015 Klassen, welche vom "HTMLElement" erben.\\ "ES 2015" ist eine Abkürzung für "ECMAScript 2015", welche einen Standard von JavaScript darstellt.
 
 \typescript{code/WebComponents/one.ts}{Erstellung einer Custom Element Klasse}
 
-Dadurch können sie als Custom Element registriert werden. Dabei muss ein Name vergeben werden, welcher einen Bindestrich enthält.
-
+Diese Klasse kann nun als Custom Element registriert werden. Dabei muss der Name des Elements vergeben werden, welcher einen Bindestrich enthalten muss.
 
 \typescript{code/WebComponents/two.ts}{Registrierung des Custom Elements}
 
@@ -24,15 +25,15 @@ Wenn das Custom Element registriert ist, kann es mit dem vergebenen Namen im HTM
 
 \html{code/WebComponents/three.html}{Verwendung des Custom Elements im HTML}
 
+\hfive{Lifecycle-Methoden \cite{MDNWebCustomElements}}
+
 Um den Lebenszyklus eines Custom Elements besser zu kontrollieren, gibt es sogenannte "lifecycle callbacks":
 
-Der "connectedCallback" wird aufgerufen, wenn das Element in das DOM eingefügt wird. Darin können zum Beispiel Event Listeners registriert werden.
+Der "connectedCallback" wird aufgerufen, wenn das Element in das DOM eingefügt wird. Darin können zum Beispiel Event-Listeners registriert werden.
 
 \typescript{code/WebComponents/four.ts}{"connectedCallback" Beispiel}
    
-Der "disconnectedCallback" ist das Gegenstück zum "connectedCallback" und wird beim Verlassen des DOMs aufgerufen. 
-%todo: begründen, warum entfernen
-Darin sollten etwaige "Event Listeners" entfernt werden. 
+Der "disconnectedCallback" ist das Gegenstück zum "connectedCallback" und wird beim Verlassen des DOMs aufgerufen. Darin sollten etwaige "Event Listeners" entfernt werden, um die nicht mehr benötigten Ressourcen freizugeben und dadurch Speicher und CPU-Zeit zu sparen.  
 
 \typescript{code/WebComponents/five.ts}{"disconnectedCallback" Beispiel}
 
@@ -44,13 +45,14 @@ Der vierte Lifecycle-Hook ist der "attributeChangedCallback". Dieser wird jedes 
     
 Der "attributeChangedCallback" nimmt drei Parameter:
 \begin{itemize}
-    \item 	Name: Name des Attibutes
+    \item 	Name: Name des Attributes
     \item 	Old Value: Den Wert vor der Änderung
     \item 	New Value: Der neue, aktuelle Wert 
 \end{itemize}
 
 \typescript{code/WebComponents/seven.ts}{"attributeChangedCallback" Beispiel}
 
+\pagebreak
 \hfour{Shadow DOM}
 
 Ein Shadow DOM ist ein DOM Subtree, welcher separat von der restlichen Seite gerendert wird. Dadurch kann auch auf Custom Elements ein Style in Style-Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen.
@@ -59,9 +61,10 @@ Um einen Shadow Root zu erstellen, muss lediglich die Methode "attachShadow" auf
 
 \typescript{code/WebComponents/eight.ts}{Erstellung eines Shadow Roots}
 
-Der Mode muss auf open gesetzt werden, damit der "ShadowRoot" befüllt werden kann. Nun kann mit "this.shadowRoot" auf den "ShadowRoot" innerhalb des Custom Components zugegriffen werden.
+Der "Mode" muss auf "open" gesetzt werden, damit der "ShadowRoot" befüllt werden kann. Nun kann mit "this.shadowRoot" auf den "ShadowRoot" innerhalb des Custom Components zugegriffen werden.
 \cite{MDNShadowRoot}
 
+\pagebreak
 \hfour{HTML Templates}
 
 Um das Custom Element mit Inhalten zu füllen, gibt es in HTML den "template"-Tag, welcher nicht im DOM gerendert wird, aber trotzdem mit Javascript referenziert werden kann. 
@@ -76,10 +79,13 @@ Um nun das Template in ein Custom Element zu rendern, muss der Content in das Cu
 Um den Inhalt der Components dynamisch zu machen, gibt es den HTML Slot-Tag. Dieser ermöglicht es Inhalte an die Components weiterzugeben. Dafür muss allerdings der Shadow DOM verwendet werden. Ein Slot wird immer mit seinem Namen referenziert. Wenn bei einer Child-Node eines Custom Elements kein Slotname angegeben ist, dann wird diese Node im Slot ohne Namen gerendert. Wird für einen Slot kein Node gesetzt, dann wird der Inhalt des Slots als Standardwert verwendet. 
 \cite{MDNSlots}
 
-\typescript{code/WebComponents/eleven.ts}{Web Component Beispiel (JavaScript)}
+\pagebreak
+\hfive{Beispiel eines Webcomponents mit Slots und Shadow DOM}
+
+\typescript[code:WebComponentExampleJS]{code/WebComponents/eleven.ts}{Web Component Beispiel (JavaScript)}
 
 
-\html{code/WebComponents/twelve.html}{Web Component Beispiel (HTML)}
+\html[code:WebComponentExampleHTML]{code/WebComponents/twelve.html}{Web Component Beispiel (HTML)}
 
-Ausgabe: \\
+Das Beispiel von Code \ref{code:WebComponentExampleJS} und \ref{code:WebComponentExampleHTML} wird folgende Ausgabe generiert: \\
 Hi Universe!!
