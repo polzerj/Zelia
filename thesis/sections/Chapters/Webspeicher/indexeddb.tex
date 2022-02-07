@@ -12,13 +12,13 @@ Auf dem Open Request Objekt gibt es mehrere Events. Das Event "upgradeneeded" wi
 
 \typescript{code/Webspeicher/createDB.ts}{Erstellen und ändern des Datenbankschemas}
 
-Das Event "Success" wird nach der Einrichtung der Datenbank ausgelöst, falls erforderlich. Nach dem Success Event sind alle Arten von Manipulationen und Abfragen der Daten möglich. Um Daten aus der Indexed DB abzurufen, muss eine Transaktion unter Verwendung des Indexed Database Objekts erstellt werden. Das Indexed Database Objekt ist als Ergebnis des Open Request abrufbar.
+Das Event "Success" wird nach der vollständigen Initialisierung der Datenbank ausgelöst, falls erforderlich. Nach dem Success Event sind alle Arten von Manipulationen und Abfragen der Daten möglich. Um Daten aus der Indexed DB abzurufen, muss eine Transaktion unter Verwendung des Indexed Database Objekts erstellt werden. Das Indexed Database Objekt ist als Ergebnis des Open Request abrufbar.
 
 \typescript{code/Webspeicher/getByPrimaryKey.ts}{Abfragen von Datensätzen mit einem Primärschlüssel}
 
 Es ist auch möglich, Daten über einen Index abzurufen. Da ein indiziertes 
 % Zusammenhang methoden First/all Match
-Attribut nicht eindeutig sein muss, gibt es zwei Methoden, um die Daten zu erhalten. Die Methode get liefert die erste Übereinstimmung oder getAll liefert alle Übereinstimmungen als Array.
+Attribut nicht eindeutig sein muss, gibt es zwei Methoden, um die Daten zu erhalten. Die Methode "get" liefert die erste Übereinstimmung und die Methode "getAll" liefert alle Übereinstimmungen als Array.
 
 \typescript{code/Webspeicher/getByIndex.ts}{Abfragen von Datensätzen mit einem Index}
 
