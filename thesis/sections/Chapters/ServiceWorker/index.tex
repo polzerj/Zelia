@@ -37,10 +37,9 @@ Das Push Event wird getriggert, wenn der Server ein Push Event sendet, auf das d
 Ein Service Worker kann über das "serviceWorker" Objekt des "navigator" Objekts registriert werden. Da Service Worker nicht in allen Browsern unterstützt werden, muss davor überprüft werden, ob der Browser ein Service Worker unterstützt, um Fehler zu vermeiden.
 
 \typescript{code/ServiceWorker/register.ts}{Registrieren eines Service Workers}
-\pagebreak
 
 \hthree{Implementierung eines Caches}\label{sec:cacheImpl}
 
 Der folgende Code zeigt, wie ein Service Worker mit der Cache-API zur Verwendung eines statischen und dynamischen Cache programmiert wird:
 
-\typescript{code/ServiceWorker/cache.ts}{Verwendung der Cache-API in einem Service Worker}
+\typescript[code:cache]{code/ServiceWorker/cache.ts}{Verwendung der Cache-API in einem Service Worker}
