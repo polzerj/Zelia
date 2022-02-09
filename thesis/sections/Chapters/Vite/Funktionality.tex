@@ -1,12 +1,25 @@
 \hthree{Funktionalität}
 
-\hfour{NPM Dependency Resolving}
+\hfour{NPM Abhängigkeits Auflösung}
 
-\hfour{Hot Module Replacement}
+Mit Vite ist es möglich Module, welche mit NPM installiert wurden zu importieren. Die ES import Anweisungen unterstützen nicht die Angabe von Modulen. Vite wandelt die importierten CommonJS-Module in ES-Module (ESM) um. CommonJS beschreibt eine Art von Modulen, welche bei NodeJS verwendet wird. Außerdem werden mit Vite die "import"-Anweisungen auf im Browser verwendbare URL umgeschrieben. \cite{ViteFeatures}
 
+\typescript{code/Vite/ModulResolving.ts}{Beispiel, wie Vite Abhängigkeiten von NPM Modulen auflöst}
+
+\hfour{"Hot Module Replacement"}
+
+Durch die Funktion des "Hot Module Replacements" ist es möglich einzelne Module der Seite zu aktualisieren, ohne dabei die ganze Webseite neu zu laden und die darin gespeicherten "application states" zu verlieren. "Hot Module Replacement" kann beispielsweise mit Vue und React genutzt werden. \cite{ViteFeatures}
+  
 \hfour{TypeScript}
 
+Vite vereinfacht außerdem die Verwendung von TypeScript, da es automatisch transpiliert wird. Dabei wird esbuild\cite{esbuild} verwendet, wodurch der Typkompilierungsprozess um einiges schneller ist als beim tsc (TypeScript Compiler). \cite{ViteFeatures}
+
+Bei Zeitmessungen sind hat der tsc Compiler bis zu 80\% länger gebraucht, als esbuild. Der Zeitunterschied bei den Versuchen ist zwar mit ca. einer Sekunde sehr gering, allerdings macht dies bei ständiger Durchführung der Transpilierung, bei jeder Speicherung, spürbare Unterschiede.
+
 \hfour{CSS}
+
+Vite unterstützt außerdem, die Verwendung von CSS-Modulen, PostCSS, sowie auch "CSS Pre-processors". \cite{ViteFeatures}
+
 
 
 %todo: eventuell WebAssembly und Service Worker
