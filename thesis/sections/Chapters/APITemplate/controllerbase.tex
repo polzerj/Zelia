@@ -6,17 +6,20 @@ Der Konstruktor der "ControllerBase" nimmt zwei Parameter entgegen:
 
 \begin{description}
     \item["path"] Der Pfad, unter dem der Controller registriert werden soll.
-    \item["middlewareParam"] Ein Objekt, welches die Middleware-Funktionen enthält. \\ 
-        Diese werden folgenden Eigenschaften als Array mitgegeben:
-        \begin{description}
-            \item["all"] Wird bei allen Requests aufgerufen
-            \item["get"] Wird bei GET-Requests aufgerufen
-            \item["post"] Wird bei POST-Requests aufgerufen
-            \item["put"] Wird bei PUT-Requests aufgerufen
-            \item["patch"] Wird bei PATCH-Requests aufgerufen
-            \item["delete"] Wird bei DELETE-Requests aufgerufen
-        \end{description}
+    \item["middlewareParam"] Ein Objekt, welches das Interface "MiddlewareParam" implementiert und dabei die folgenden Parameter enthält:
+    \begin{description}
+        \item["all"] Wird bei allen Requests aufgerufen
+        \item["get"] Wird bei GET-Requests aufgerufen
+        \item["post"] Wird bei POST-Requests aufgerufen
+        \item["put"] Wird bei PUT-Requests aufgerufen
+        \item["patch"] Wird bei PATCH-Requests aufgerufen
+        \item["delete"] Wird bei DELETE-Requests aufgerufen
+    \end{description}
 \end{description}
+
+\typescript{code/APITemplate/MiddlewareParam.ts}{Interface "MiddlewareParam"}
+
+"Middlewares" sind im Kapitel \ref{sec:middleware} beschrieben.
 
 Um eine HTTP-Methode zu implementieren, gibt es in der "ControllerBase" Methoden, welche überschrieben werden müssen. Wenn eine Methode nicht implementiert wird, wird der HTTP Status-Code 405 (Method Not Allowed) zurückgegeben.
 
@@ -28,3 +31,8 @@ Die Namen der Methoden entsprechen deren HTTP-Methoden:
     \item path
     \item delete
 \end{itemize}
+
+
+Der Zusammenhang zwischen der "App"-Klasse und der "ControllerBase"-Klasse ist in der Abbildung \ref{fig:apiUML} dargestellt.
+
+\typescript{code/APITemplate/ControllerBase.ts}{"ControllerBase"-Klasse}

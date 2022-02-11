@@ -2,12 +2,13 @@
 \sectionauthor{Johannes Polzer}
 % todo: eventuell einzelne Punkte genauer ausformulieren
 
-Um den Servercode besser zu strukturieren gibt es ein speziellen Wrapper von ExpressJs. Diese Grundstruktur erlaubt es, alle Endpunkte in einzelnen sogenannten "Controller"-Klassen zu implementiert. Um das Template zu nutzen, muss eine Instanz der "App"-Klasse erstellt werden.
+Um den Servercode besser zu strukturieren gibt es ein speziellen Wrapper von ExpressJs. Diese Grundstruktur erlaubt es, alle Endpunkte in einzelnen sogenannten "Controller"-Klassen zu implementiert. Die Architektur der API besteht aus einigen Verzeichnissen, welche in der Abbildung \ref{fig:apiStructure} dargestellt werden. Um diesen Wrapper zu nutzen, muss eine Instanz der "App"-Klasse erstellt werden.
 
 \begin{figure}[H]
     \centering
     \includegraphics{media/APITemplate/ProjectStructure.png}
     \caption{Projektstruktur}
+    \label{fig:apiStructure}
 \end{figure}
 
 \pagebreak
@@ -19,3 +20,4 @@ Um den Servercode besser zu strukturieren gibt es ein speziellen Wrapper von Exp
 \input{sections/Chapters/APITemplate/models.tex}
 \input{sections/Chapters/APITemplate/services.tex}
 \input{sections/Chapters/APITemplate/data.tex}
+

@@ -1,1 +1,1 @@
-function middleware(req: Request, res: Response, next: () => void) => void {}
+function middleware(req: Request, res: Response, next: () => void) => void 
