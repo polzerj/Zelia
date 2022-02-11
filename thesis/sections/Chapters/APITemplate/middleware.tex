@@ -1,6 +1,6 @@
 \hthree{Middleware}\label{sec:middleware}
 
-Eine Middleware ist eine Funktion, die eine bestimmte Signatur hat (siehe Code \ref{code:middlewareSignature}), welche vor dem Controller aufgerufen wird. Diese nimmt die aus "ExpressJS" bekannten Parameter "Request", "Response" und "Next". Middlewares können sowohl für die gesamte API im App-Konstruktor registriert werden als auch für einzelne Controller, bzw. einzelne Methoden in Controllern.
+Eine Middleware ist eine Funktion, die eine bestimmte Signatur hat (siehe Code \ref{code:middlewareSignature}), welche vor dem Controller aufgerufen wird. Diese nimmt die aus "ExpressJS" bekannten Parameter "Request", "Response" und "Next". Middlewares können sowohl für die gesamte API im App-Konstruktor registriert werden als auch für einzelne Controller, bzw. einzelne Methoden in Controllern. Wichtig ist, dass die "Next"-Funktion aufgerufen wird, wenn die Middleware fertig ist, da ansonsten die nachfolgenden Middlewares und der eigentliche "Handler" des Endpunktes nicht aufgerufen werden.
 
 \typescript[code:middlewareSignature]{code/APITemplate/middleware.ts}{Signatur einer Middleware}
 
