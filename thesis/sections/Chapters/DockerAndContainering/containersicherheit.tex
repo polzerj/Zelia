@@ -1,5 +1,68 @@
 \hthree{Containersicherheit}
 
-Containertechnologie ist eine außerordentlich praktische Erfindung, welche das Leben für Entwickelter deutlich leichter macht. Doch gerade im Bereich der Sicherheit, wird man für manche Herausforderungen gestellt und es gibt ein paar Dinge zu beachten.
+Unter dem Überbegriff "Containersicherheit", versteht man den den Schutz eines Container in einem System und hierbei die Abwicklungen eines Prozesses oder Services, aber auch die gesamte Systeminfrastruktur des Services. \cite{ContainerSecurity}
 
-Eine dieser Herausforderungen ist, dass sich Sicherheitsrichtlinien und Checklisten für die jeweiligen Container nicht anpassen oder skalieren lassen. Weiteres stehen Teams vor dem Problem oder der Notwendigkeit, dass sie ihre Anforderungen in Bezug auf die Abhängigkeiten und die Struktur der Container ausgleichen müssen. \cite{ContainerSecurity}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{media/DockerAndContainering/Containersicherheit.png}
+    \caption{Containersicherheit \cite{ContainerSecurity}}
+\end{figure}
+
+\hfour{Imagesicherheit}
+
+Container oder besser gesagt Services, welche in Containern laufen gelassen werden, werden über sogenannte "Images" bereitgestellt. Dies bietet aber auch die Möglichkeit, direkt über das schädliche "Image" Schadsoftware oder Sicherheitslücken direkt beim initialisieren des Systems mitzuinstallieren, oder zu öffnen. Wichtig ist daher, dass das "Basisimage", also der Ausgangspunkt für weitere "Images" und Services sicher und geschützt ist.
+
+Es ist daher wichtig, dass die Entwickler*innen nur "Images" verwenden, welche vertrauenswürdig und sicher sind. Jedoch hat man aber auch dann keine 100\% Sicherheit, da durch das Verändern der Konfiguration oder dem Hinzufügen von neuen Anwendungen wieder Sicherheitslücken entstehen können.
+
+Ein sicherer Ort für das Auswählen und Verwenden von "Images" ist der "Docker Hub", da im Menü auf der rechten Seite ausgewählt werden kann, ob der Ersteller des "Images" ein verifizierter Nutzer sein muss. \cite{ContainerSecurity}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{media/DockerAndContainering/DockerHub.png}
+    \caption{"Docker Hub" \cite{DockerHub}}
+\end{figure}
+
+Zusammengefasst kann gesagt werden, dass sich vor der Auswahl eines "Images" die Entwickler*innen folgende Fragen stellen sollten:
+
+\begin{itemize}
+    \item "Sind diese Images signiert bzw. stammen Sie aus vertrauenswürdigen Quellen?" \cite{ContainerSecurity}
+    \item "Sind Runtime- und Betriebssystemschichten aktuell?" \cite{ContainerSecurity}
+    \item "Wie schnell und häufig werden die Container aktualisiert?" \cite{ContainerSecurity}
+    \item "Wird auf bekannte Probleme überwacht, und wann ja, wie?" \cite{ContainerSecurity}
+\end{itemize}
+
+\hfour{Zugriffsverwaltung}
+
+Nach dem der Container nun mit dem gewünschten "Image" richtig aufgesetzt wurde ist es nun wichtig den Zugriff auf diesen abzusichern, egal ob der Container nun entwickelt wird (zum Beispiel ein Datenbankcontainer) oder einen Service zum Herunterladen bereitstellt. Der Zugriff auf den Container kann durch eine sogenannte \textbf{"Private Registry"} rollenbasiert geregelt werden. Über \textbf{"Metadaten"} kann die Kontrolle von den Daten auf welche zugegriffen werden soll kontrolliert werden. Bei \textbf{"Metadaten"} werden beispielsweise schon bekannte Sicherheitslücken weiterverfolgt, oder nach neu auftretenden gesucht. Durch \textbf{"Private Registry"} werden beispielsweise globale Richtlinien für Container und deren "Images" automatisch bereitgestellt. Dies hat den Vorteil, dass menschliches Versagen im Bereich der Richtlinien minimiert werden kann. \cite{ContainerSecurity}
+
+Die Entwickler*innen sollten sich im Bereich der Zugriffsverwaltung Antworten zu folgende Vier Fragen überlegen:
+
+\begin{itemize}
+    \item "Welche rollenbasierten Kontrollen können Sie für das Management von Container Images nutzen?" \cite{ContainerSecurity}
+    \item "Stehen Tagging- oder Kennzeichnungsfunktionen zur Unterstützung der Image-Sortierung zur Verfügung? Können Sie Images separat für Entwicklung, Prüfung und Produktion als genehmigt kennzeichnen?" \cite{ContainerSecurity}
+    \item "Bietet die Registry sichtbare Metadaten, mit denen Sie auf bekannte Schwachstellen überwachen können?" \cite{ContainerSecurity}
+    \item "Lässt sie sich zur Zuweisung und Automatisierung von Richtlinien (z. B. Prüfung von Signaturen, Codierung von Scans etc.) einsetzen?" \cite{ContainerSecurity}
+\end{itemize}
+
+\hfour{Deployment}
+
+In diesem Schritt geht es nun darum das fertige Endservice fortlaufend auf Sicherheitslücken zu prüfen. Sollte eine Lücke entdeckt worden sein, kann man diese entweder durch einen "Patch" oder einen "Rebuild" lösen. "Patches" werden eher nicht gemacht, sondern anhand automatischer Prüfungen Lücken entdeckt und durch automatische Updates und einen "Rebuild" geschlossen werden. Außerdem bleibt das komplette Neuaufsetzen eines Containers inklusive Service. \cite{ContainerSecurity}
+
+Bei der Sicherheit im Deploymentbereich sollten die Entwickler*innen folgende Frage beantworten:
+
+\begin{itemize}
+    \item "Wie können Sie das Patching ausgeführter Container vermeiden und sie stattdessen per Trigger mithilfe automatischer Updates neu erstellen bzw. ersetzen?" \cite{ContainerSecurity}
+\end{itemize}
+
+\hfour{Infrastruktur}
+
+Um in diesem Bereich Sicherheit zu bekommen ist auf das Betriebssystem der Hostmaschine der angewiesen. Es ist wichtig, dass das Betriebssystem eine hohe Isolierung zwischen den einzelnen Containern bietet und damit Sicherheit bringt. Jedoch kann man über "Netzwerk-Namespaces" beispielsweise eine gemeinsame Nutzung von Speicher zwischen den Containern ermögliche. Es sollte aber jede Anwendung auch die nötigen Sicherheitsvorkehrungen (Authentifizierung, Autorisierung, Durchsatzbeschränkungen, usw.) schon zu implementiert haben um sich nicht rein auf den Containersicherheit oder die Infrastruktursicherheit zu verlassen.
+
+Die Entwickler*innen sollten sich aber im Bereich der Infrastruktursicherheit bei der Implementierung folgende Fragen stellen:
+
+\begin{itemize}
+    \item "Welche Container müssen aufeinander zugreifen können? Wie können sich Container gegenseitig ermitteln?" \cite{ContainerSecurity}
+    \item "Wie sollen der Zugriff auf und das Management von gemeinsamen Ressourcen (z. B. Netzwerk und Storage) kontrolliert werden?" \cite{ContainerSecurity}
+    \item "Wie werden Host-Updates verwaltet? Müssen all Ihre Container gleichzeitig aktualisiert werden?" \cite{ContainerSecurity}
+    \item "Wie überwachen Sie den Container-Zustand?" \cite{ContainerSecurity}
+\end{itemize}
