@@ -3,9 +3,11 @@
 \sectionauthor{Julian Kusternigg}
 
 \hfour{Einleitung}
+
 Wie ein der Rest von ZELIA ist auch der Code im Frontend in Typescript geschrieben, um einen besseren Überblick zu behalten. Zusätzlich bringt es noch Vorteile bei der Implementierung des Komponentensystems. Wie schon gesagt ist das Komponentensystem, neben dem Client-Side-Router, der zweite Teil unserer Frontend Bibliothek, den wir selbst entworfen haben, um unsere Webseite dazustellen zu können. Somit müssen wir uns nicht auf andere Frameworks verlassen, die in den meisten Fällen nicht so performant sind, da unsere Bibliothek perfekt an die Bedürfnisse von ZELIA angepasst ist.
 
 \hfour{Architektur}
+
 Wie eben im Standard beschrieben muss es eine Klasse geben, welche von "HTMLElement" erbt, um als "Custom HTML Element" verwendet werden zu können. So gibt es in der ZELIA Implementierung die abstrakte Klasse "Component", von der alle anderen Komponenten erben.
 
 \typescript{code/WebComponents/BaseInterfaces.ts}{Schnittstellen der Basiskomponente}
@@ -15,6 +17,7 @@ Die jeweils dazugehörige HTML Quelle wird vom sogenannten "Component Loader", w
 Mit Hilfe von "States" kann man Text dynamisch ersetzen, wie es auch in anderen Bibliotheken gemacht wird.
 
 \html{code/WebComponents/State.html}{Ersetzungsmechanismus (HTML)}
+
 \typescript{code/WebComponents/State.ts}{Ersetzungsmechanismus (Javascript)}
 
 Dadurch können zum Beispiel nachgeladene Daten eingefügt werden, aber auch die Sprache der Seite kann schnell geändert werden.
