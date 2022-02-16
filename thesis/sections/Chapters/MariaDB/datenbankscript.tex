@@ -1,12 +1,12 @@
 \hfour{Datenbankscript}
 
-\sql{code/MariaDB/DatabaseScript.sql}{Script zur Implementierung der Datenbankstruktur}
+\sql{code/MariaDb/DatabaseScript.sql}{Script zur Implementierung der Datenbankstruktur}
 
 Durch den Befehl "CREATE DATABASE" wird eine neue MariaDB Datenbank erstellt. In unserem Fall trägt sie den Namen "Zelia". In Verwendung gebracht wird die Tabelle durch den Befehl "USE" und gefolgt von dem gewünschten Datenbanknamen. Dies ist zwingend notwendig um Tabellen von erstellen, da Tabellen sonst ins Nichts erstellt werden.
 
 Die folgenden Zeilen dienen zur Verdeutlichung:
 
-\sql{code/MariaDB/Erstellen.sql}{Erstellen und Verwenden der Datenbank}
+\sql{code/MariaDb/Erstellen.sql}{Erstellen und Verwenden der Datenbank}
 
 Um nun Tabellen in dieser relationalen Datenbank zu erstellen, verwendet man das Kommando "CREATE TABLE" und hängt nachher den gewünschten Namen dran.
 
@@ -16,10 +16,10 @@ Außerdem muss ein Datentyp angegeben werden und pro Tabelle muss ein Primärsch
 
 Als Beispiel kann man folgende Zeile Code aus der Tabelle "Room" zur Hand nehmen:
 
-\sql{code/MariaDB/Room.sql}{Erstellen der Tabelle Room}
+\sql{code/MariaDb/Room.sql}{Erstellen der Tabelle Room}
 
 Weiters kann durch das Schlüsselwort "CONSTRAINT" gefolgt vom Namen und "FOREIGN KEY" ein Fremdschlüssel auf eine andere Tabelle gelegt werden. Als Beispiel hierfür kann man sich die Tabelle "RoomReservation" genauer ansehen. Hier erstellet man eine eigene Spalte für die RoomId. Diese soll durch einen Fremdschlüssel auf die Spalte "Id", welche sich in der Tabelle "Room" befindet referenziert werden. Mit den Schlüsselwörtern "ON DELTE" und "ON UPDATE" kann man festlegen, was nach Verändern oder Löschen der Daten passieren soll.
 
 Die passiert durch folgende Zeilen:
 
-\sql{code/MariaDB/ForeignKey.sql}{Erstellen eines Fremdschlüssels}
+\sql{code/MariaDb/ForeignKey.sql}{Erstellen eines Fremdschlüssels}
