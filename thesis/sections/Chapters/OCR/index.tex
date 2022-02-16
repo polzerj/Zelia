@@ -42,7 +42,7 @@ Tesseract ist eine Software-Bibliothek aus 1985, die 2005 als Open-Source-Projek
 
 Wie schon beschrieben, kann man eine Raumnummer, nicht nur eingeben, sondern auch mit der Kamera eines Smartphones einscannen. Um die Raumnummer aus den Bildern auszulesen brauchen wird somit einen "Optical Character Recognition"-Prozess. Dabei wird die Bibliothek "TesseractJS", eine Web-Version von "Tesseract OCR", direkt im Browser eingebunden, um die Bilder von Raumnummern zu Text zu verarbeiten.
 
-Um das eben Erwähnte umzusetzten, gibt es bei ZELIA im Komponentensystem eine Komponete, welche genau diese Funktionalität bewerkstelligt. Diese Komponente wird auf der OCR-Seite des Frontends eingebunden. Sie beinhaltet ein Videoelement, um zu zeigen was sie scannt. Um auf die Kamera eines Gerätes aus einem Webbrowser zugreifen zu können, muss über den "Browser Navigator" angefragt ob die Kamera verwendet werden darf.
+Um das eben Erwähnte umzusetzten, gibt es bei ZELIA im Komponentensystem eine Komponete, welche genau diese Funktionalität bewerkstelligt. Diese Komponente wird auf der OCR-Seite des Frontends eingebunden. Sie beinhaltet ein Videoelement, um zu zeigen was sie scannt. Um auf die Kamera eines Gerätes aus einem Webbrowser zugreifen zu können, muss über den "Browser Navigator" angefragt ob die Kamera verwendet werden darf. (siehe unten)
 
 \typescript{code/OCR/nav.ts}{Zugriff auf eine Kamera im Browser}
 
@@ -54,13 +54,13 @@ Die Aufgabe des "OCR"-Moduls ist es Bilder in Text umzuwandeln. Dabei wird Tesse
 
 \typescript{code/OCR/OCRModule.ts}{Die Verwendeung von TesseractJS}
 
-TesseractJS verwendet sogennante "Worker" um Text aus einem Bild zu extrahieren und je mehr davon vorhanden sind desto schneller geht der Prozess. Nartürlch wird dadurch mehr Prozessorleitung verwendet, was auf Smartphones schnell zu einem erhöhten Energieverbrauch oder erhitzen des Gerätes führt. Somit wird bei ZELIA standartmäßig nur ein "Worker" verwendet. Da das initzialisiern dieser Services recht lange dauert, ca. 2-3 Sekunden, gäbe es die Möglichkeit mehrere "Worker" gleichzeitig zu laden. Bei nur einem "Worker" macht das keinen Unterschied, aber wenn man mehrere initzialisiern würde, kann diese Optimierung viel Zeit einsparen.
+TesseractJS verwendet sogennante "Worker" um Text aus einem Bild zu extrahieren und je mehr davon vorhanden sind desto schneller geht der Prozess. Natürlich wird dadurch mehr Prozessorleitung verwendet, was auf Smartphones schnell zu einem erhöhten Energieverbrauch oder Erhitzen des Gerätes führt. Somit wird bei ZELIA standartmäßig nur ein "Worker" verwendet. Da das Initialisiern dieser Services recht lange dauert, ca. 2-3 Sekunden, gäbe es die Möglichkeit mehrere "Worker" gleichzeitig zu laden. Bei nur einem "Worker" macht das keinen Unterschied, aber wenn man mehrere initialisiern würde, kann diese Optimierung viel Zeit einsparen.
 
-Zusätzlich um den eingentlichen Umwandlungsvorgang von Bild zu Text zu beschleunigen wird eine Bildoptimierung für OCR durchgeführt. Bevor Tesseract dem Bild die Zeichen entzieht, wird es somit auf ein Schwarz-Weiß-Bild umgewandelt und nur auf den wichtigen Teil, dort wo nichts schwarz ist, zusammengeschnitten. 
+Zusätzlich, um dem eigentlichen Umwandlungsvorgang von Bild zu Text zu beschleunigen wird eine Bildoptimierung für OCR durchgeführt. Bevor Tesseract dem Bild die Zeichen entzieht, wird es in ein Schwarz-Weiß-Bild umgewandelt und nur auf den wichtigen Teil, dort wo nichts schwarz ist, zusammengeschnitten. (siehe Abbildung \ref{ocroptimised})
 
-Nachdem das Bild verinfacht wurde, wird der OCR Prozess durchgeführt. Im besten Fall kommt nur die gewünschte Raumnummer als Ergebnis heraus. In der Realität werden aber auch andere Zeichen, wie Besitriche, Rufzeichen und manchmal, bei schlecht beleuchteten Bildern, sogar Buchstaben gefunden, die eingentlich gar nicht vorhanden sein sollten. Das ist im Fall von ZELIA allerdings kein so großes Problem, denn alle Ruamnummern sind gleich aufgebaut. Somit wird mit "Regular Expressions" der gesuchte Teil herausgefiltert und falls es eine Raumnummer gibt, wird geprüft ob ein Raum mit dieser Nummer existiert.
+Nachdem das Bild vereinfacht wurde, wird der OCR Prozess durchgeführt. Im besten Fall kommt nur die gewünschte Raumnummer als Ergebnis heraus. In der Realität werden aber auch andere Zeichen, wie Besitriche, Rufzeichen und manchmal, bei schlecht beleuchteten Bildern, sogar Buchstaben gefunden, die eingentlich gar nicht vorhanden sein sollten. Das ist im Fall von ZELIA allerdings kein so großes Problem, denn alle Raumnummern sind gleich aufgebaut. Somit wird mit "Regular Expressions" der gesuchte Teil herausgefiltert und falls es eine Raumnummer gibt, wird geprüft ob ein Raum mit dieser Nummer existiert.
 
-Mit diesen Optimierungen liefert Tesseract sehr gute Ergebnisse und somit haben wir die Open-Source Bibliothek weiterverwendet.
+Mit diesen Optimierungen liefert Tesseract sehr gute Ergebnisse, ein Grund weshalb wir die Open-Source Bibliothek weiterverwendet.
 
 \typescript{code/OCR/compress.ts}{Bild vereinfachen bevor Text extrahiert wird}
 
@@ -74,7 +74,8 @@ Mit diesen Optimierungen liefert Tesseract sehr gute Ergebnisse und somit haben 
 \begin{figure}
     \centering
     \includegraphics[width=120mm]{media/OCR/compressed}
-    \caption{Bild nachdem es für OCR vereinfacht wurde}
+    \caption{Bild nachdem es für das OCR-Modul vereinfacht wurde}
+    \label{ocroptimised}
 \end{figure}
 
 % S 2410   Lehrsaal 1 AHITN -> regex filter
