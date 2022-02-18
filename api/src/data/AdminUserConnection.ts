@@ -1,17 +1,4 @@
-import {
-  Sequelize,
-  Model,
-  ModelDefined,
-  DataTypes,
-  HasManyGetAssociationsMixin,
-  HasManyAddAssociationMixin,
-  HasManyHasAssociationMixin,
-  Association,
-  HasManyCountAssociationsMixin,
-  HasManyCreateAssociationMixin,
-  Optional,
-  and,
-} from "sequelize";
+import { Model, DataTypes } from "sequelize";
 
 import AdminUserEntity from "./entities/AdminUserEntity";
 
