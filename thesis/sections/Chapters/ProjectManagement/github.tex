@@ -63,11 +63,12 @@ Um den "Pull Request" zu erstellen, müssen zu den im Issue schon bekannten ange
     \caption{Setzten der Informationen eines "Pull Requests" (Demo-Bild)}
     \label{fig:EnterPullRequestInfo}
 \end{figure}
- 
+
 Die Reviewer können nun im "Files Changed" Tab des "Pull Requests" den Code überprüfen und daraufhin Änderungen anfordern oder des "Pull Request" freigeben. 
 
 
 Wenn alle Änderungen akzeptiert werden, wird ein "Squash and Merge" durchgeführt. (Siehe Abbildung \ref{fig:pullInfo}) \\ Dabei werden alle Commit-Nachrichten zusammengefasst zu einem Commit. Der "Issue" und der "Pull Request" werden beide automatisch geschlossen.
+\cite{GithubFS}
 
 \begin{figure}[H]
     \centering
@@ -76,4 +77,26 @@ Wenn alle Änderungen akzeptiert werden, wird ein "Squash and Merge" durchgefüh
     \label{fig:pullInfo}
 \end{figure}
 
-\cite{GithubFS}
+\hthree{Wiki}
+
+In dem Wiki-Tab können Informationen über das Projekt abgelegt werden. Diese Seiten werden in Markdown geschrieben. Markdown bietet eine einfache Syntax, um Überschriften, Links, Listen, Code-Auszeichnungen und mehr zu erstellen. In der Seitenleiste kann zu Überschriften navigiert werden. (Siehe Abbildung \ref{fig:Projektantrag}) Allerdings kann diese Seitenleiste auch selber überschrieben werden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{media/ProjectManagement/Wiki.png}
+    \caption{Projektantrag in Github-Wiki}
+    \label{fig:Projektantrag}
+\end{figure}
+
+Diese Seiten sind auch offline bearbeitbar. Dabei muss lediglich "wiki." vor "git" im Pfad des Repositories eingefügt werden, um das Wiki Repository zu clonen. Das heißt, aus {\ttfamily git@github.com:polzerj/Zelia.git} wird {\ttfamily git@github.com:polzerj/Zelia.wiki.git}. 
+
+\hthree{Insights}
+
+Die Insights ermöglichen es Statistiken über das Projekt auszulesen. Darin sind zum Beispiel die "Contributions" der einzelnen Personen aufgeführt. (Siehe Abbildung \ref{fig:insights})
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{media/ProjectManagement/Insights.png}
+    \caption{Statistik des Entwicklungsbeitrages der einzelnen Projektteilnehmer}
+    \label{fig:insights}
+\end{figure}
