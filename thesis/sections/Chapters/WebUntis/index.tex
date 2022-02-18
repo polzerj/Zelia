@@ -19,9 +19,11 @@ Untis wurde am 7.Jänner 1970 von den beiden Programmierern, Bernhard Gruber und
 
 Um den Wrapper überhaupt verwenden zu können, benötigt man zuerst das WebUntis-Package, welches man sich wie folgt runterlädt und installiert:
 
+
+
 \emph{npm i webuntis}
 
-Durch den Wrapper hat man die Möglichkeit auf nicht nur den Stundenplan und gewisse Informationen zu diesem zu gewinnen, sondern auch zum Beispiel Informationen zur besuchten Fachabteilung oder das Anzeigen von Hausübungen. In diesem Fall benötigen wir aber nur folgende Methoden, die teilweise mit anderen Methoden verwendet werden, um auf unser Wunschergebnis zu kommen:
+Durch den Wrapper hat man die Möglichkeit auf nicht nur den Stundenplan und gewisse Informationen zuzugreifen, sondern auch zum Beispiel Informationen zur besuchten Fachabteilung oder das Anzeigen von zu erledigenden Hausübungen. In diesem Fall benötigen wir aber nur folgende Methoden, die teilweise mit anderen Methoden verwendet werden, um auf unser Wunschergebnis zu kommen:
 
 
 \typescript{code/WebUntis/constructor.ts}{Konstruktor von der WebUntis API}
@@ -78,7 +80,7 @@ Das allererste Problem ist, dass gewisse Räume mit mehreren Namen beziehungswei
 
 Die Methode bekommt einen Wert des Typen "RoomNumber" übergeben. Gleichzeitig beschaffen wir uns mit der Methode getRoomList() alle eingetragenen Klassen und gehen in einer for-Schleife durch jedes Element durch. Die Vorgehensweise scheint zwar unprofessionell, doch während der Implementierung ist aufgefallen, dass der vollständige Klassenname nicht immer im Longname oder im Shortname abgespeichert, sondern eher rein zufällig in einem der beiden Parametern beinhaltet ist. Deswegen prüfen wir auf Nummer sicher beide Parameter ab und geben bei einer Übereinstimmung die dazu vorhandene Raum-ID mit, diese ist einzigartig dennoch können wie schon zuvor gesagt, mehrere IDs auf einen Raum zeigen, was in dem Fall kein allzu großes Problem darstellt.
 
-Des Weiteren gab es das Problem, das WebUntis einen Token eingebaut hat, welcher nach einer gewissen Zeit abläuft und die momentane Sitzung als "ungültig" deklariert.In diesem Fall können wir mit der Methode validateSession() abprüfen, ob der Token zum Zeitpunkt der Abfrage schon abgelaufen oder noch gültig ist. 
+Des Weiteren gab es das Problem, dass WebUntis einen Token eingebaut hat, welcher nach einer gewissen Zeit abläuft und die momentane Sitzung als "ungültig" deklariert.In diesem Fall können wir mit der Methode validateSession() abprüfen, ob der Token zum Zeitpunkt der Abfrage schon abgelaufen oder noch gültig ist. 
 
 \typescript{code/WebUntis/validateSession.ts}{Abfrage eines "gültigen" Tokens}
 
