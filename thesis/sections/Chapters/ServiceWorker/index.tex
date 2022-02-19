@@ -3,7 +3,7 @@
 
 \hthree{Allgemeines}
 
-Web-Worker sind JavaScript-Skripte, die als Background-Task ausgeführt werden. Sie können zum Beispiel dazu verwendet werden, um eine Webseite offlinefähig zu machen oder Push-Notifications zu implementieren.  Um einen Web-Worker zu starten, ist es empfehlenswert zu prüfen, ob der Browser Web-Worker unterstützt.
+Web-Worker sind JavaScript-Skripte, die als Background-Task ausgeführt werden. Sie können zum Beispiel dazu verwendet werden, um eine Webseite offlinefähig zu machen oder Push-Notifications zu implementieren. Um einen Web-Worker zu starten, ist es empfehlenswert zu prüfen, ob der Browser Web-Worker unterstützt.
 
 \hfour{Life Cycle Events} 
 
@@ -11,11 +11,11 @@ Ein Service Worker hat verschiedene Events:
 
 \hfive{"Install event"}
 
-Das Install-Event wird getriggert, nachdem der Service Worker registriert wurde. Dort werden normalerweise die Abhängigkeiten installiert. Z.B.: der statische Cache wird dort gefüllt 
+Das Install-Event wird getriggert, nachdem der Service Worker registriert wurde. Dort werden normalerweise die Abhängigkeiten installiert - \zb: der statische Cache wird dort gefüllt 
 
 \hfive{"Activated event"}
 
-Bei der Erstinstallation wird das Activated Event unmittelbar nach der Installation ausgelöst. Wenn es einen neuen Service Worker für dieselbe Seite gibt, wird dieser nur installiert. Die Aktivierung erfolgt jedoch erst in der nächsten Sitzung. Das Activated Event wird in der Regel dazu verwendet, alte Ressourcen aufzuräumen. Z.B.: die Caches des vorherigen Service Workers werden geleert
+Bei der Erstinstallation wird das Activated Event unmittelbar nach der Installation ausgelöst. Wenn es einen neuen Service Worker für dieselbe Seite gibt, wird dieser nur installiert. Die Aktivierung erfolgt jedoch erst in der nächsten Sitzung. Das Activated Event wird in der Regel dazu verwendet, alte Ressourcen aufzuräumen. \zb: die Caches des vorherigen Service Workers werden geleert
 
 \hfive{"Fetch event"}
 
