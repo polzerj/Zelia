@@ -9,9 +9,10 @@ export default class Login extends ControllerBase {
   async post(req: Request, res: Response) {
     let user = req.body.username;
     let pwd = req.body.password;
-    //let hash = crypto.createHash("md5").update(pwd).digest("hex");
+    let hash = crypto.createHash("sha256").update(pwd).digest("hex");
+
     try {
-      let data = await getAdminUserByNameAndPw(user, pwd);
+      let data = await getAdminUserByNameAndPw(user, hash);
       let token = jwt.sign({ user }, JWT_SECRET, {
         algorithm: "HS256",
       });
