@@ -48,7 +48,12 @@ Um das eben Erwähnte umzusetzten, gibt es bei ZELIA im Komponentensystem eine K
 
 Als Parameter, bei dieser Anfrage, kann man defineren worauf man Zugriff haben möchte. Im Falle von ZELIA wird als Videoquelle die Außenkamera angefragt. Audioaufnahmen werden verworfen, da sie nicht notwendig sind. Die Browser bestimmen dann ob die Anfrage erlaubt werden soll oder fragen die Benutzer*innen des Gerätes. Wenn der Zugriff abgelehnt wurde, wird das Videoelement, welches die Kamera anzeigen soll, ersetzt duch eine Fehlermeldung. Darf der Browser aber die Videoquelle verwenden, so zeigt er sie an und startet das "OCR"-Modul.
 
-%bild von kamera berechiting im browser
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=120mm]{media/OCR/cam_access_light.jpg}
+    \caption{Abfragen des Kamerazugriffs}
+\end{figure}
+
 
 Die Aufgabe des "OCR"-Moduls ist es Bilder in Text umzuwandeln. Dabei wird TesseractJS verwendet um den "Optiacal Character Recognition" Prozess durchzuführen. Unsere Wahl fiel auf Tesseract da wir am Anfang mit einer einfach verwendbaren Bibliothek testen wollten, ob OCR in unserem Fall gut funktioniert. Da es sehr gute Ergebnisse geliefert hat, wurde es optimiert und weiterverwendet.
 
@@ -78,14 +83,15 @@ Mit diesen Optimierungen liefert Tesseract sehr gute Ergebnisse, ein Grund wesha
     \label{ocroptimised}
 \end{figure}
 
+
+\hfour{Geschwindigkeiten von OCR}
+% TODO:
 % S 2410   Lehrsaal 1 AHITN -> regex filter
-
-% TODO: Diagnostics (wie schnell ist der Spaß :) )
-% mein handy:
-% 1 worker -> 2.3s - 3.4s ~2.7s
-% ocr ->  659ms - 689ms ~667ms
-
+% 4298 4396 4583 4342 -> uncomprimiert am handy
+% fokus balken -> 1321  1654 1254 1369
+% bild optimieren -> 13ms - 44ms ~27ms (schwarz weiß nicht notwendig für ocr aber wichitg für uns weil daraus bild zusammengeschnitten wird).
+% mit komprimierung -> 659ms - 689ms ~667ms 
+% 1 worker inizialisieren -> 2.3s - 3.4s ~2.7s
 % 2 worker -> 3.3s - 3.9s ~3.4s
 % ocr ->  620ms - 663ms ~634ms
-
-% bild optimieren -> 13ms - 44ms ~27ms
+% zahlt sich nicht wirklich aus 

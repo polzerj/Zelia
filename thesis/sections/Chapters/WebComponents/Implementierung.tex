@@ -61,7 +61,12 @@ Beispiel:
 
 Auf dieser Seite können alle Geräte, die eine Kamera haben, mittels "Optical Character Recognition" (siehe Kapitel Optical Character Recognition), die Raumnummer abscannen, zum Beispiel von Raumschildern, die vor den Räumen hängen. Aufgebaut ist die Seite mit einer Komponente, welche anzeigt was die Kamera sieht und einer Zweiten die als Link dient, um zurück zur Startseite zu kommen. Die Komponente, welche den Scanner anzeigt, ist auch zuständig um den OCR-Service (Tesseract) zu starten und mit Hilfe von diesem den Text aus den Bildern auszulesen. Bevor das Bild an den OCR-Service übergeht, wird es auf 2 Farben komprimiert und so klein zusammengeschnitten, dass nur mehr der markierte Fokusteil der Kamera weiter zu verabreiten bleibt.
 
-% TODO: Bild von der Seite
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=80mm]{media/WebComponents/OCRSeite_light.jpg}
+    \caption{OCR-Seite}
+\end{figure}
+
 
 Meist liefert der OCR-Prozess gut erkennbare Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist wichtig, dass nachdem das Bild in Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, der Bilder in Text umwandelt, wird einmal pro Sekunde gemacht. Dieser Wert ist einfach änderbar, aber wir haben uns nach längerem Testen dazu entschieden, dass eine Sekunde völlig ausreichen ist, um schnell Raumnummern zu erfassen. Würde der Wert kleiner werden, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, so würden schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Mehr zu OCR und unseren Messungen später (siehe Kapitel "Optical Character Recognition"). Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
 
@@ -119,5 +124,8 @@ Die Buchungskomponente hat zwei verschiedene Knöpfe um die Buchungsanfrage zu v
 
 Meldungen haben nur einen Knopf um den Status der Meldung auf "geschlossen" zu setzten. Im Hintergrund gäbe es mehrere Auswahlmöglichkeiten eines Status aber im Frontend ist noch nicht mehr implementiert, da wir uns darauf geinigt haben, dass es fürs erste nicht notwendig ist.
 
-% TODO: Bild von Dashbord
-TODO: Bild von Dashboard
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=120mm]{media/WebComponents/AdminSeite_light.png}
+    \caption{Admin Dashboard}
+\end{figure}

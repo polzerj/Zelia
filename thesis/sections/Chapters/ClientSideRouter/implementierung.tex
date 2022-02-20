@@ -19,7 +19,6 @@ Der erste Parameter ist der Pfad und der Zweite ist der Controller, welcher ausg
 
 \typescript{code/CSRouter/hw_example.ts}{Beispiel einer "Hello World"-Seite}
 
-% Code und Ref statt Bild 20 
 In dem Codebeispiel (Code \ref{initRoutes}) wird in den Zeilen 5. bis 7. der Pfadeintrag "/room/:roomNumber" verwendet. Der Router leitet somit alle "/room/..." auf den verknüpften Controller um und wenn dieser Aufgerufen wird, bekommt er als Parameter die Werte von dem Platzhaltern mitgeliefert:
 
 \typescript{code/CSRouter/placeholder.ts}{Beispiel "Controller" mit Platzhalter}
@@ -37,5 +36,3 @@ Im  Hintergrund wird jedes Mal beim Umleiten ein Eintrag in den Verlauf gemacht.
 Im Codebeispiel \ref{code:routerhistory} steht das Zweite Argument für "Silent History", womit kein Eintrag in den Verlauf gemacht wird.
 
 Mit all den oben beschriebenen Maßnahmen kann der ZELIA Client-Service zwischen verschiedenen Seiten logisch wechseln ohne jemals die eigentliche Seite zu verlassen.
-
-% TODO: Diagnostics (wie schnell ist der Router)
