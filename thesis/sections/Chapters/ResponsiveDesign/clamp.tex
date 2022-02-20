@@ -1,6 +1,8 @@
 \hfour{Clamp Funktion}
 
-Mit der Clamp-Funktion ist es noch einfacher, Responsive Design zu schreiben. Die Clamp Funktion in CSS übernimmt drei Parameter. Der erste ist der Minimalwert. Dieser wird in einer fixen Einheit, wie z.B. Pixel (px), angegeben. Der zweite Parameter gibt den optimalen Wert an. Dieser wird in einer Einheit angegeben, welche abhängig von der Breite des Bildschirms bzw. dem übergeordneten HTML-Element ist. Der dritte Parameter ist die Maximalbreite. Diese funktioniert, so wie die Minimalbreite.
+Die Clamp-Funktion ermöglicht es, ein Element dynamisch zu skalieren, ohne dafür Media-Queries zu verwenden. Dazu übernimmt sie drei Parameter. Der erste ist der Minimalwert. Dieser wird in einer fixen Einheit, wie \zb\ Pixel (px), angegeben. Der zweite Parameter gibt den optimalen Wert an. Dieser wird in einer Einheit angegeben, welche abhängig von der Breite des Bildschirms (vw) bzw. dem übergeordneten HTML-Element (\%) ist. Der dritte Parameter ist die Maximalbreite. Diese funktioniert, so wie die Minimalbreite. 
+
+Die Einheit vw steht für "Viewport Width" und gibt prozentuell die Breite relativ zum Viewport an. Der Viewport ist die Größe des zu sehenden Bereiches der Web-App. Mit \% kann die Größe relativ zum übergeordneten Element angegeben werden
 
 Das folgende Element skaliert von mindestens 100 Pixel mit 80-prozentiger Bildschirmbreite bis zu 800px Breite.
 

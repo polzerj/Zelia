@@ -1,3 +1,14 @@
 \hfour{Cache API}
 
-Die Cache-API ermöglicht das Zwischenspeichern von Websites für eine Offline-Nutzung. Sie werden meist in PWAs verwendet. Der Code für die Zwischenspeicherung wird in einem Service Worker geschrieben, der ein JavaScript ist, das auf einem separaten Thread läuft. Die Verwendung der Cache-API wird im Beispiel (Code \ref{code:cache}) vom Service Worker Kapitel \ref{sec:cacheImpl} gezeigt.
+Die Cache-API ermöglicht das Zwischenspeichern von Websites für eine Offline-Nutzung.
+Sie werden meist in PWAs (Progressive Web Apps) verwendet. Eine PWA ist eine spezielle Webanwendung, welche und kann anhand ihrer Eigenschaft erkannt werden. Dazu gehören die folgenden Eigenschaften \cite{datacodedesignPWA}:
+\begin{itemize}
+    \item Offline-Fähigkeit (Es wird auch eine Seite geladen, wenn der Browser keine Internetverbindung hat)
+    \item Installierbarkeit 
+    \item Ein Icon für die Seite
+    \item Ein Responsive Design
+    \item Sicherheit (Die Webseite verwendet HTTPS)
+\end{itemize}
+% zu viel PWA? 
+
+Der Code für die Zwischenspeicherung wird in einem Service Worker geschrieben, der ein JavaScript ist, welches in einem separaten Thread läuft. Die Verwendung der Cache-API wird im Beispiel (Code \ref{code:cache}) vom Service Worker Kapitel \ref{sec:cacheImpl} gezeigt.

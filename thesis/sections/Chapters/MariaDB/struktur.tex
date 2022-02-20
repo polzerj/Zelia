@@ -6,11 +6,11 @@
     \caption{Entity Relationship Diagramm (ERD) des Projeks ZELIA}
 \end{figure}
 
-Die Architektur der Datenbank im Projekt ZELIA ist so gewählt, dass die Daten, welche die Benutzer*innen eingeben oder auslesen wollen sicher und vor Allem konsistent abgespeichert werden können. Sie gesamte Datenbankstruktur besteht aus fünf Tabellen, welche in Beziehungen zueinander stehen.
+Die Architektur der Datenbank im Projekt ZELIA ist so gewählt, dass die Daten, welche die Benutzer*innen eingeben oder auslesen wollen sicher und vor allem konsistent abgespeichert werden können. Die gesamte Datenbankstruktur besteht aus fünf Tabellen, welche in Beziehungen zueinander stehen.
 
 \hfive{Tabelle AdminUser}
 
-Die Tabelle, welche sich in der Hierarchie befindet ist die Tabelle "AdminUser". In ihr werden Benutzer angelegt, welche zum Beispiel im "Admindashboard" alle Meldungen oder Buchungen vorfinden und verwalten können. Außerdem werden in ihr verantwortliche Personen für gewisse Räume eingetragen.
+Die Tabelle, welche sich in der Hierarchie befindet ist die Tabelle "AdminUser". In ihr werden Benutzer angelegt, welche im "Admin-Dashboard" alle Meldungen oder Buchungen vorfinden und verwalten können. Außerdem werden in ihr verantwortliche Personen für gewisse Räume eingetragen.
 
 \begin{figure}[H]
     \centering
@@ -20,7 +20,7 @@ Die Tabelle, welche sich in der Hierarchie befindet ist die Tabelle "AdminUser".
 
 \hfive{Tabelle Room}
 
-Eine Ebene weiter oben befindet sich eine zentrale Tabelle im gesamten Produkt, nämlich die Tabelle "Room". Sie enthält alle Räume und dazugehörige Infos zu ihnen (Unterschiedlichen Infospalten siehe unten). Wenn man im ERD nach unten blickt, hat sie hat eine Beziehung zur Tabelle AdminUser. Diese ist notwendig um einem Raum einen bestimmten "AdminUser" zuordnen zu können und um so den Überblick über die jeweilig verantwortliche Person zu behalten (Kardinalität 1:n).
+Eine Ebene weiter oben befindet sich eine der zentralsten Tabellen im gesamten Produkt, nämlich die Tabelle "Room". Sie enthält alle Räume und dazugehörige Infos zu ihnen (Unterschiedlichen Infospalten siehe unten). Wenn man im ERD nach unten blickt, hat sie hat eine Beziehung zur Tabelle AdminUser. Diese ist notwendig um einem Raum einen bestimmten "AdminUser" zuordnen zu können und um so den Überblick über die jeweilig verantwortliche Person zu behalten (Kardinalität 1:n).
 
 \begin{figure}[H]
     \centering
@@ -30,7 +30,7 @@ Eine Ebene weiter oben befindet sich eine zentrale Tabelle im gesamten Produkt, 
 
 \hfive{Tabelle RoomReport}
 
-Die Tabellen "RoomReport" ist für das Melden und Verwalten von Schäden in einem Raum zuständig. Deshalb ist jeder Meldungseintrag der Tabelle auch einem Raum zugeordnet und ein Raum kann mehrere Meldungen haben (Kardinalität 1:n). Außerdem hat die Tabelle eine Beziehung zur Tabelle "AdminUser" um die verantwortliche Person für die Meldung zu bestimmen (Kardinalität 1:n). Welche Details zu einer Meldung angegeben werden müssen kann aus der Abbildung unten entnommen werden. Wichtig ist aber, dass der Status einer Meldung von der verantwortlichen Person geändert werden kann. Je nachdem in welchem Status es sich befindet. Außerdem wird die Email Adresse der Person vermerkt, damit nachverfolgbar bleibt wer welche Meldung geschrieben hat.
+Die Tabellen "RoomReport" ist für das Melden und Verwalten von Schäden in einem Raum zuständig. Deshalb ist jeder Meldungseintrag der Tabelle auch einem Raum zugeordnet und ein Raum kann mehrere Meldungen enthalten (Kardinalität 1:n). Außerdem hat die Tabelle "RoomReport" eine Beziehung zur Tabelle "AdminUser" um die verantwortliche Person für die Meldung zu bestimmen (Kardinalität 1:n). Welche Details zu einer Meldung angegeben werden müssen kann aus der Abbildung unten entnommen werden. Wichtig ist aber, dass der Status einer Meldung von der verantwortlichen Person geändert werden kann. Je nachdem in welcher Phase sich die Meldung befindet. Außerdem wird die Email Adresse der Person vermerkt, damit nachverfolgbar bleibt wer welche Meldung aufgegeben hat.
 
 \begin{figure}[H]
     \centering
@@ -50,7 +50,7 @@ In der Tabelle "RoomReservation" werden alle Buchungen, welche über ZELIA getä
 
 \hfive{Tabelle Lessons}
 
-Die Tabelle "Lessons" kommt im aktuellen Projekt nicht zum Einsatz, ist jedoch für eine Erweiterung oder Umstrukturierung des Produktarchitektur mitimplementiert worden. Sollte beispielsweise einmal in regelmäßigen Abständen die Daten von "WebUntis" in diese Tabelle geschrieben werden wollen (Umstrukturierung des Cach) ist dies ohne eine Erweiterung des Datenbanksystems möglich. Sie enthält nur eine Beziehung zur Tabelle Room, um abzubilden in welchem Raum die aktuelle Stunde stattfindet. Die restlichen Spalteneinträge für eine Datensatz würden bei einer Verwendung der Tabelle von der API und "WebUntis" befüllt werden. Details zu dem Spaltenbezeichnungen können aus der Abbildung unten entnommen werden.
+Die Tabelle "Lessons" kommt im aktuellen Projekt nicht zum Einsatz, ist jedoch für eine Erweiterung oder Umstrukturierung der Produktarchitektur mitimplementiert worden. Sollte beispielsweise einmal in regelmäßigen Abständen die Daten von "WebUntis" in diese Tabelle geschrieben werden wollen (Umstrukturierung des Cach) ist dies ohne eine Erweiterung des Datenbanksystems möglich. Sie enthält nur eine Beziehung zur Tabelle Room, um abzubilden in welchem Raum die aktuelle Stunde stattfindet. Die restlichen Spalteneinträge für eine Datensatz würden bei einer Verwendung der Tabelle von der API und "WebUntis" befüllt werden. Details zu dem Spaltenbezeichnungen können aus der Abbildung unten entnommen werden.
 
 \begin{figure}[H]
     \centering

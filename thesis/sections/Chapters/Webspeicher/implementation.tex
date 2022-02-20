@@ -1,10 +1,10 @@
 \hfour{Speicherung des JWT}
 
-Um den JSON Web Token sicher zu speichern, ist es wichtig, dass dieser nicht mit unbegrenzter Gültigkeit gespeichert wird. Darüber hinaus soll der Administrator beim Schließen des Tabs ausgeloggt werden. Deshalb wurde dieser Token im Sessionstorage. Dadurch wird der Token nach der Sitzung gelöscht und der User muss sich beim nächsten Besuch von dem Adminpanel neu anmelden.
+Um den JSON Web Token sicher zu speichern, ist es wichtig, dass dieser nicht mit unbegrenzter Gültigkeit gespeichert wird. Darüber hinaus soll der Administrator beim Schließen des Adminpanel ausgeloggt werden. Deshalb wurde dieser Token im Session-Storage abgelegt. Dadurch wird der Token nach der Sitzung gelöscht und der Administrator muss sich beim nächsten Besuch des Adminpanels neu anmelden.
 
 \hfour{Chache für schnelle Ladezeiten}
 
-Damit die Anwendung alle Voraussetzungen erfüllt um als PWA installiert zu werden, muss die Webseite im Cache gespeichert werden. Somit kann die Webseite bzw. die installierte PWA offline genauso geöffnet werden. Allerdings wird bei der offline-Nutzung eine Meldung angezeigt, dass keine Rauminformationen verfügbar sind.
+Damit die Anwendung alle Voraussetzungen erfüllt um als PWA installiert zu werden, muss die Webseite im Cache gespeichert werden. Somit kann die Webseite bzw. die installierte PWA offline genauso geöffnet werden. Allerdings wird bei der offline-Nutzung eine Meldung angezeigt, dass keine Rauminformationen verfügbar sind, da die API-Anfragen eine Aktive Internetverbindung benötigen.
 
 Ein Beispiel für die Implementierung des Caches (Code \ref{code:cache}) befindet sich im Kapitel \ref{sec:cacheImpl}.
  

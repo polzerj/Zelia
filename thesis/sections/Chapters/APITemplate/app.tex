@@ -1,6 +1,6 @@
 \hthree{Die "App"-Klasse}\label{sec:app}
 
-Die "App"-Klasse ist die Klasse, welche die alle Endpunkte verwaltet.  
+Die "App"-Klasse übernimmt die Verwaltung aller Endpunkte.  
 
 \begin{figure}[H]
     \centering
@@ -8,6 +8,8 @@ Die "App"-Klasse ist die Klasse, welche die alle Endpunkte verwaltet.
     \caption{UML Diagramm der API-Architektur}
     \label{fig:apiUML}
 \end{figure}
+
+\pagebreak
 
 Im Konstruktor der App-Klasse können verschiedene Optionen mitgegeben werden:
 
@@ -27,8 +29,6 @@ Dies ist ein Array an Middlewares, welche bei jedem Request ausgeführt werden. 
 
 Durch diesen String kann der Root-Pfad definiert werden. Standardmäßig ist diese auf "/" gesetzt. Bei Zelia ist diese auf "/api" konfiguriert worden, da alle API bezogenen Anfragen auf den Pfad "/api" gehen.
 
-Die "listen"-Methode muss aufgerufen werden, um die "App" zu starten.
-Verwendung der "App"
-Um eine Instanz der App-Klasse zu erstellen, muss diese importiert werden. Danach kann die "App" mit ihren registrierten "Controllern" und "Middlewares" instanziiert werden. Damit die "App” auf dem angegebenen Port gestartet wird, wir die listen Methode aufgerufen.
+Um eine Instanz der App-Klasse zu erstellen, muss diese importiert werden. Danach kann die "App" mit ihren registrierten "Controllern" und "Middlewares" instanziiert werden. Damit die "App” auf dem angegebenen Port gestartet wird, muss die "listen"-Methode aufgerufen werden.
 
 \typescript{code/APITemplate/appusage.ts}{Verwendung der App-Klasse}

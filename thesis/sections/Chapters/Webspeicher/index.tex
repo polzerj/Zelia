@@ -3,21 +3,36 @@
 
 \hthree{Einleitung}
 
-Damit die Session gespeichert und die Website offline aufgerufen werden kann, ist es wichtig, Daten im Webbrowser abzuspeichern. Es gibt verschiedene Arten von Speichern in einem modernen Webbrowser, welche für unterschiedlicher Anwendungsfälle konzipiert wurden. Um riesige Webanwendungen zu entwickeln, wurde die Menge an Speicherplatz in den letzten Jahren erhöht. 
+Webspeicher (Im Englischen "Web Storage" genannt) ermöglichen den Entwicklern % tofix: Gendern? 
+Daten im Webbrowser zu speichern.
+Es gibt verschiedene Arten von Webspeichern, welche für unterschiedlicher Anwendungsfälle konzipiert wurden. Dazu zählen:
+
+\begin{itemize}
+    \item Local Storage
+    \item Session Storage
+    \item Cookies
+    \item Indexed-DB
+    \item Cache
+\end{itemize}
+
+Damit die Daten nicht von anderen Web-Apps gelesen und manipuliert werden können, gibt es die "Same-Origin-Policy".
+% Damit die Session gespeichert und die Website offline aufgerufen werden kann, ist es wichtig, Daten im Webbrowser abzuspeichern. Es gibt verschiedene Arten von Speichern in einem modernen Webbrowser Um riesige Webanwendungen zu entwickeln, wurde die Menge an Speicherplatz in den letzten Jahren erhöht. 
 
 \hfour{Speichermengen}
 
-Der Google Chrome Browser erlaubt es Webseiten, bis zu achtzig Prozent der Festplattenkapazität zu nutzen.
+Damit eine Webanwendung nicht die gesamte Festplatte vollschreiben kann, gibt es verschiedene Limitierungen. Diese sind davon abhängig, welcher Webbrowser verwendet wird.
 
-Firefox hat ein Limit von zwei Gigabyte pro Website. Insgesamt dürfen Websites bis zu 50\% des freien Speicherplatzes nutzen.
+Der Google Chrome Browser erlaubt es Webseiten bis zu achtzig Prozent der Festplattenkapazität zu nutzen.
+
+Firefox hat ein Limit von zwei Gigabyte pro Website. Insgesamt dürfen Websites bis zu 50 \% des freien Speicherplatzes nutzen.
 
 Apples Safari-Browser schränkt die Nutzung von Webanwendungen auf maximal ein Gigabyte ein. Wenn diese Grenze erreicht ist, wird der Benutzer gefragt, ob er zweihundert Megabyte mehr zulassen möchte. Dieses Verhalten ist jedoch von Apple nicht dokumentiert. \cite{WebDevStorage}
 
 \hfour{Same-Origin-Policy}
 
-Damit nicht jede Webseite auf die gespeicherten Ressourcen der anderen Websites zugreifen können, gibt es eine "Same-Origin-Policy". Dadurch soll verhindert werden, dass Webseiten ausspionieren, mit welchen Accounts der User angemeldet ist und dass Websites die Daten anderer manipulieren.
+Damit nicht jede Webseite auf die gespeicherten Ressourcen der anderen Websites zugreifen können, gibt es eine "Same-Origin-Policy". Dadurch soll verhindert werden, dass Webseiten ausspionieren, mit welchen Accounts der Benutzer auf anderen Webseiten angemeldet ist und dass Websites die Daten anderer manipulieren.
 
-Dennoch kann durch Cookies Tracking durchgeführt werden. Dabei wird auf einer Webseite ein Script von z.B. Google Analytics eingebunden. Dieses Script kann dann auf die Daten der anderen Webseiten zugreifen und somit mit Tracking-Cookies das Benutzerverhalten verfolgen.
+Dennoch kann durch Cookies Tracking durchgeführt werden. Dabei wird auf einer Webseite ein Script von \zb\ Google Analytics eingebunden. Dieses Script kann dann auf die Daten der anderen Webseiten zugreifen und somit mit Tracking-Cookies das Benutzerverhalten verfolgen.
 
 \hthree{Allgemeines}
 

@@ -27,9 +27,9 @@ Wenn das Custom Element registriert ist, kann es mit dem vergebenen Namen im HTM
 
 \hfive{Lifecycle-Methoden \cite{MDNWebCustomElements}}
 
-Um den Lebenszyklus eines Custom Elements besser zu kontrollieren, gibt es sogenannte "lifecycle callbacks":
+Um den Lebenszyklus eines Custom Elements besser zu kontrollieren, gibt es sogenannte "lifecycle callbacks". Diese "lifecycle callbacks" sind spezielle Methoden in einer Klasse, welche von Der API der Custom Elements aufgerufen werden.
 
-Der "connectedCallback" wird aufgerufen, wenn das Element in das DOM eingefügt wird. Darin können zum Beispiel Event-Listeners registriert werden.
+Der "connectedCallback" wird aufgerufen, wenn das Element in das DOM eingefügt wird. Das DOM (Document Object Model) ist eine Programmierschnittstelle über die man auf die einzelnen HTML Elemente zugreifen kann. Darin können zum Beispiel Event-Listeners registriert werden.
 
 \typescript{code/WebComponents/four.ts}{"connectedCallback" Beispiel}
    
@@ -87,5 +87,6 @@ Um den Inhalt der Components dynamisch zu machen, gibt es den HTML Slot-Tag. Die
 
 \html[code:WebComponentExampleHTML]{code/WebComponents/twelve.html}{Web Component Beispiel (HTML)}
 
-Das Beispiel von Code \ref{code:WebComponentExampleJS} und \ref{code:WebComponentExampleHTML} wird folgende Ausgabe generiert: \\
-Hi Universe!!
+Die Codebeispiele \ref{code:WebComponentExampleJS} und \ref{code:WebComponentExampleHTML} erzeugen folgende Ausgabe:
+
+{\ttfamily Hi Universe!!}
