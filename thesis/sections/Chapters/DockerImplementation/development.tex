@@ -1,6 +1,6 @@
 \hthree{Docker bei der Entwicklung}
 
-Zunächst wurde für die Entwicklung eine separate NGINX-Konfiguration (Siehe Code \ref{code:NginxDevConf}) erstellt, die den Entwicklungsserver, der von Vite betrieben wird, an den Client weitergibt.
+Zunächst wurde für die Entwicklung eine separate NGINX-Konfiguration (siehe Code \ref{code:NginxDevConf}) erstellt, die den Entwicklungsserver, der von Vite betrieben wird, an den Client weitergibt.
 
 \css[code:NginxDevConf]{code/Nginx/dev.conf}{NGINX-Konfiguration für die Entwicklung}
 
@@ -13,7 +13,7 @@ Um das Gesamtprojekt bereitzustellen, werden vier verschiedene Docker-Container 
     \item "Vite"-Entwicklungsserver (Bereitstellung der Webseite mit automatischem Neuladen)
 \end{itemize}
 
-Diese Container kommunizieren miteinander in einem Docker Netzwerk (Siehe Abbildung \ref{fig:DockerDevNetwork}). 
+Diese Container kommunizieren miteinander in einem Docker Netzwerk (siehe Abbildung \ref{fig:DockerDevNetwork}). 
 
 \begin{figure}[H]
     \centering
@@ -22,7 +22,7 @@ Diese Container kommunizieren miteinander in einem Docker Netzwerk (Siehe Abbild
     \label{fig:DockerDevNetwork}
 \end{figure}
 
-Um das Datenbankschema aufzubauen und Testdaten einzufügen, können SQL-Skripte im Verzeichnis {\ttfamily /docker-entrypoint-initdb.d/} angelegt werden. Dort werden sie beim Start des Docker-Containers in alphabetischer Reihenfolge ausgeführt. Deshalb wurden die SQL-Skripte durchnummeriert, um die Reihenfolge anzugeben (Siehe Abbildung \ref{fig:SQLScriptDir}).
+Um das Datenbankschema aufzubauen und Testdaten einzufügen, können SQL-Skripte im Verzeichnis {\ttfamily /docker-entrypoint-initdb.d/} angelegt werden. Dort werden sie beim Start des Docker-Containers in alphabetischer Reihenfolge ausgeführt. Deshalb wurden die SQL-Skripte durchnummeriert, um die Reihenfolge anzugeben (siehe Abbildung \ref{fig:SQLScriptDir}).
 
 \begin{figure}
     \centering

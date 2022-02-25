@@ -4,7 +4,7 @@ Da die tokenbasierende Authentifizierungsmethode einige Vorteile bezüglich des 
 
 \hfour{Aufbau der Sitzung}
 
-Um den Benutzer anzumelden werden die Benutzerdaten, mit den im "Body" des "HTTP-Requests" angegebenen Benutzerkenndaten, von der Datenbank abgefragt. Daraufhin wird der Token mit den Benutzerinformationen erstellt, signiert und an den Client zurückgesendet. Dazu wird ein NPM-Modul namens "jsonwebtoken" verwendet. \cite{NpmJWT} Wenn die Benutzerkenndaten nicht mit den Daten aus der Datenbank übereinstimmen, wird ein Fehler mit dem HTTP Status-Code 401 (Unauthorized) zurückgegeben. (Siehe Code \ref{code:LoginController})
+Um den Benutzer anzumelden werden die Benutzerdaten, mit den im "Body" des "HTTP-Requests" angegebenen Benutzerkenndaten, von der Datenbank abgefragt. Daraufhin wird der Token mit den Benutzerinformationen erstellt, signiert und an den Client zurückgesendet. Dazu wird ein NPM-Modul namens "jsonwebtoken" verwendet. \cite{NpmJWT} Wenn die Benutzerkenndaten nicht mit den Daten aus der Datenbank übereinstimmen, wird ein Fehler mit dem HTTP Status-Code 401 (Unauthorized) zurückgegeben (siehe Code \ref{code:LoginController}).
 
 \typescript[code:LoginController]{code/Authentication/LoginController.ts}{Implementierung des Login-Controllers}
 
