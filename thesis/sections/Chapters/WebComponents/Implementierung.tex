@@ -37,7 +37,7 @@ Wie oben kurz erwähnt, lädt der "Component Loader" die notwendigen HTML-Files 
 
 \typescript{code/WebComponents/ComponentLoader.ts}{Laden einer Komponente}
 
-Erst nachdem alle Ressourcen der Komponenten geladen wurden, wird der Client-Side-Router (siehe Kapitel Client-Side-Router) erstellt und somit die Seite gestartet. Dadurch kann sichergestellt werden, dass keine verzögerten Ladezeiten durch das Laden der Ressourcen auftreten.
+Erst nachdem alle Ressourcen der Komponenten geladen wurden, wird der Client-Side-Router (siehe Kapitel Client-Side-Router \ref{sec:csrouter}) erstellt und somit die Seite gestartet. Dadurch kann sichergestellt werden, dass keine verzögerten Ladezeiten durch das Laden der Ressourcen auftreten.
 
 \hfour{"Life-Cycle"}
 
@@ -59,7 +59,7 @@ Beispiel:
 
 \hfive{Die "OCR"-Seite}
 
-Auf dieser Seite können alle Geräte, die eine Kamera haben, mittels "Optical Character Recognition" (siehe Kapitel Optical Character Recognition), die Raumnummer abscannen, zum Beispiel von Raumschildern, die vor den Räumen hängen. Aufgebaut ist die Seite mit einer Komponente, welche anzeigt was die Kamera sieht und einer Zweiten die als Link dient, um zurück zur Startseite zu kommen. Die Komponente, welche den Scanner anzeigt, ist auch zuständig um den OCR-Service (Tesseract) zu starten und mit Hilfe von diesem den Text aus den Bildern auszulesen. Bevor das Bild an den OCR-Service übergeht, wird es auf 2 Farben komprimiert und so klein zusammengeschnitten, dass nur mehr der markierte Fokusteil der Kamera weiter zu verabreiten bleibt.
+Auf dieser Seite können alle Geräte, die eine Kamera haben, mittels "Optical Character Recognition" (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}), die Raumnummer abscannen, zum Beispiel von Raumschildern, die vor den Räumen hängen. Aufgebaut ist die Seite mit einer Komponente, welche anzeigt was die Kamera sieht und einer Zweiten die als Link dient, um zurück zur Startseite zu kommen. Die Komponente, welche den Scanner anzeigt, ist auch zuständig um den OCR-Service (Tesseract) zu starten und mit Hilfe von diesem den Text aus den Bildern auszulesen. Bevor das Bild an den OCR-Service übergeht, wird es auf 2 Farben komprimiert und so klein zusammengeschnitten, dass nur mehr der markierte Fokusteil der Kamera weiter zu verabreiten bleibt.
 
 \begin{figure}[H]
     \centering
@@ -68,7 +68,7 @@ Auf dieser Seite können alle Geräte, die eine Kamera haben, mittels "Optical C
 \end{figure}
 
 
-Meist liefert der OCR-Prozess gut erkennbare Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist wichtig, dass nachdem das Bild in Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, der Bilder in Text umwandelt, wird einmal pro Sekunde gemacht. Dieser Wert ist einfach änderbar, aber wir haben uns nach längerem Testen dazu entschieden, dass eine Sekunde völlig ausreichen ist, um schnell Raumnummern zu erfassen. Würde der Wert kleiner werden, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, so würden schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Mehr zu OCR und unseren Messungen später (siehe Kapitel "Optical Character Recognition"). Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
+Meist liefert der OCR-Prozess gut erkennbare Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist wichtig, dass nachdem das Bild in Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, der Bilder in Text umwandelt, wird einmal pro Sekunde gemacht. Dieser Wert ist einfach änderbar, aber wir haben uns nach längerem Testen dazu entschieden, dass eine Sekunde völlig ausreichen ist, um schnell Raumnummern zu erfassen. Würde der Wert kleiner werden, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, so würden schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Mehr zu OCR und unseren Messungen später (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}). Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
 
 \hfive{Rauminformationsseite}
 
@@ -108,7 +108,7 @@ Eine Buchungsanfrage für einen Raum zu erstellen geht ebenso einfach, wie Defek
 
 Um einen Überblick über Meldungen und Buchungen zu bekommen gibt es das "Admin Dashboard". Damit nicht jeder die Raumbuchungen und Defektmeldungen sieht, gibt es Administratorbenutzer mit denen man sich anmelden muss. Jede Buchung und Meldung ist einem Administratorbenutzer zugeteilt und kann somit von diesem abgearbeitet werden. Im Fall von ZELIA im Schulzentrum Ungargasse, sind Admins meist Abteilungsleiter*innen oder Lehrer*innen, die für den gemeldeten oder gebuchten Raum zuständig sind. 
 
-Wie schon gesagt muss man angemeldet sein um Zugriff auf alle Meldungen und Buchungen zu haben. Hierfür gibt es die "Admin Login"-Seite, welche über den normalen ZELIA-Webserver aufgerufen werden kann. Auf dieser Webseite findet man eine Komponente die ein Anmeldeformular anzeigt. Wenn man sich anmeldet wird die Anfrage an den Server geschickt und auf die Antwort gewartet. Wenn der Server mit einem "JSON-Web-Token" (siehe Kapitel Authentifizierung "Json Web Token (JWT)") antwortet, wird dieser im "Sessionstorage" (siehe Kapitel "Webspeicher") gespeichert und man wird auf die Übersichtsseite weitergeleitet.
+Wie schon gesagt muss man angemeldet sein um Zugriff auf alle Meldungen und Buchungen zu haben. Hierfür gibt es die "Admin Login"-Seite, welche über den normalen ZELIA-Webserver aufgerufen werden kann. Auf dieser Webseite findet man eine Komponente die ein Anmeldeformular anzeigt. Wenn man sich anmeldet wird die Anfrage an den Server geschickt und auf die Antwort gewartet. Wenn der Server mit einem "JSON-Web-Token" (siehe Kapitel Authentifizierung "Json Web Token (JWT)" \ref{sec:jwt}) antwortet, wird dieser im "Sessionstorage" (siehe Kapitel "Webspeicher" \ref{sec:webstorage}) gespeichert und man wird auf die Übersichtsseite weitergeleitet.
 
 \begin{figure}[H]
     \centering
