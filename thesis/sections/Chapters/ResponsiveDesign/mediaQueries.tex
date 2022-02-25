@@ -1,4 +1,4 @@
-\hfour{Media Queries}
+\hfour{Media Queries}\label{sec:mediaQueries}
 
 "CSS-Media-Queries" ermöglichen es dem Webentwickler, bedingte Styles für eine Website in Abhängigkeit von Medientyp, Ansichtsgröße und Ausrichtung zu schreiben. Die "View Size" ist die Größe des Inhalts, der auf einem Bildschirm gleichzeitig angezeigt werden kann, und wird in Pixeln gemessen. Es ist auch möglich, die Webseite anders zu gestalten, je nachdem, ob sie auf dem Bildschirm angezeigt oder ausgedruckt wird. Jede Media Query hat die folgende Struktur. 
 
@@ -10,6 +10,7 @@ Es gibt drei verschiedene Medien, auf die ein unterschiedliches Design angewandt
     \item print: Style wird auf die Druckfunktion angewandt 
     \item speech: CSS wird nur von Plastischen Readern verwendet, welche den Text vorlesen. 
 \end{itemize}
+
 Allerdings gibt es die Option "all", welche alle drei "media-types" beeinflusst. \cite{w3MediaQueries}
 
 Beispiele für "media-features" sind
@@ -18,4 +19,5 @@ Beispiele für "media-features" sind
     \item max-width: beeinflusst kleinere Bildschirme als die angegebene Größe
     \item min-width: beeinflusst größere Bildschirme als die angegebene Größe 
     \item orientation: prüft, ob das Gerät im horizontalen oder vertikalen Modus verwendet wird.
+    \item prefers-color-scheme: prüft, ob das Gerät ein helles oder dunkles Theme verwendet.
 \end{itemize}
