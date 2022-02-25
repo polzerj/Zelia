@@ -26,7 +26,7 @@ Um ein Projekt zu erstellen, muss zunächst ein Projekt im "Projects"-Tab (Abbil
     \label{fig:newProject}
 \end{figure}
 
-Einem Projekt wird ein Name und eine Beschreibung zugewiesen. Damit die Spalten für die agile Entwicklung erstellt werden, und die Karten darin automatisch verschoben werden, muss  "Automated kanban with reviews" beim Projekt-"template" ausgewählt werden (Siehe Abbildung \ref{fig:enterProjectInfo}).
+Einem Projekt wird ein Name und eine Beschreibung zugewiesen. Damit die Spalten für die agile Entwicklung erstellt werden, und die Karten darin automatisch verschoben werden, muss  "Automated kanban with reviews" beim Projekt-"template" ausgewählt werden (siehe Abbildung \ref{fig:enterProjectInfo}).
 
 \begin{figure}[H]
     \centering
@@ -37,7 +37,7 @@ Einem Projekt wird ein Name und eine Beschreibung zugewiesen. Damit die Spalten 
 
 \hthree{Erstellen eines Arbeitspaketes}
 
-Arbeitspaket werden im "Issues"-Tab erstellt. In jedem "Issue" wird ein Titel und eine Beschreibung eingetragen. Außerdem können Label, Meilensteine und verantwortliche Entwickler zugewiesen werden (Siehe Abbildung \ref{fig:createIssue}). 
+Arbeitspaket werden im "Issues"-Tab erstellt. In jedem "Issue" wird ein Titel und eine Beschreibung eingetragen. Außerdem können Label, Meilensteine und verantwortliche Entwickler zugewiesen werden (siehe Abbildung \ref{fig:createIssue}). 
 
 Meilensteine sind zeitliche Ziele, und können somit als das Ziel eines "Sprints" bezeichnet werden. Diese können ebenfalls im "Issues"-Tab erstellt werden.
 
@@ -57,7 +57,7 @@ Für jedes Arbeitspaket wird ein eigener Branch mit dem Befehl {\ttfamily git ch
 \zb:
 {\ttfamily 5-create-timetable-component}
 
-Die "Issue ID" wird aus der Detailansicht eines "Issues" neben dem Titel entnommen. (Siehe Abbildung \ref{fig:issueInfo})  Dieser Branch kann mit dem Befehl {\ttfamily git push -u origin <Branch Namen>} auf Github hochgeladen werden. 
+Die "Issue ID" wird aus der Detailansicht eines "Issues" neben dem Titel entnommen (siehe Abbildung \ref{fig:issueInfo}). Dieser Branch kann mit dem Befehl {\ttfamily git push -u origin <Branch Namen>} auf Github hochgeladen werden. 
 
 \begin{figure}[H]
     \centering
@@ -72,7 +72,7 @@ Wenn die gesamte Funktionalität des Arbeitspakets implementiert ist, wird ein s
 
 Ein "Pull Request" wird erstellt, um einen Arbeitsbranch eines Issues auf den Branch des jeweiligen Sprints zu integrieren (engl. merge). Davor können allerdings andere Entwickler ("Reviewer") den Code überprüfen und Kommentare hinzufügen. Erst wenn der Code akzeptiert wurde, wird der Merge durchgeführt.
 
-Zunächst muss ausgewählt werden, auf welchen Branch der jeweilige Arbeits-branch zusammengefügt werden soll. (Siehe Abbildung \ref{fig:createPullRequest}) Dabei wird zunächst immer auf den Branch des jeweiligen Sprints ausgewählt. Erst am Ende eines Sprints wird ein "Pull Request" von dem Branch des Sprints auf den "main"-Branch erstellt.
+Zunächst muss ausgewählt werden, auf welchen Branch der jeweilige Arbeits-branch zusammengefügt werden soll (siehe Abbildung \ref{fig:createPullRequest}). Dabei wird zunächst immer auf den Branch des jeweiligen Sprints ausgewählt. Erst am Ende eines Sprints wird ein "Pull Request" von dem Branch des Sprints auf den "main"-Branch erstellt.
 
 \begin{figure}[H]
     \centering
@@ -81,7 +81,7 @@ Zunächst muss ausgewählt werden, auf welchen Branch der jeweilige Arbeits-bran
     \label{fig:createPullRequest}
 \end{figure}
 
-Um den "Pull Request" zu erstellen, müssen zu den im Issue schon bekannten angegebenen Feldern die Reviewer eingetragen werden. Außerdem muss in der Beschreibung des "Pull Request" "Closes \textless Issue ID\textgreater" angegeben werden. (Siehe Abbildung \ref{fig:EnterPullRequestInfo})
+Um den "Pull Request" zu erstellen, müssen zu den im Issue schon bekannten angegebenen Feldern die Reviewer eingetragen werden. Außerdem muss in der Beschreibung des "Pull Request" "Closes \textless Issue ID\textgreater" angegeben werden (siehe Abbildung \ref{fig:EnterPullRequestInfo}).
 
 \begin{figure}[H]
     \centering
@@ -92,7 +92,7 @@ Um den "Pull Request" zu erstellen, müssen zu den im Issue schon bekannten ange
 
 Die Reviewer können nun im "Files Changed" Tab des "Pull Requests" den Code überprüfen und daraufhin Änderungen anfordern oder den "Pull Request" freigeben. 
 
-Wenn alle Änderungen akzeptiert werden, wird ein "Squash and Merge" durchgeführt. (Siehe Abbildung \ref{fig:pullInfo}) \\ Dabei werden alle Commit-Nachrichten  zu einem Commit zusammengefasst. Sowohl der "Issue" als auch der "Pull Request" werden automatisch geschlossen und in die "Done"-Spalte verschoben.
+Wenn alle Änderungen akzeptiert werden, wird ein "Squash and Merge" durchgeführt (siehe Abbildung \ref{fig:pullInfo}). \\ Dabei werden alle Commit-Nachrichten  zu einem Commit zusammengefasst. Sowohl der "Issue" als auch der "Pull Request" werden automatisch geschlossen und in die "Done"-Spalte verschoben.
 \cite{GithubFS}
 
 \begin{figure}[H]
@@ -104,7 +104,7 @@ Wenn alle Änderungen akzeptiert werden, wird ein "Squash and Merge" durchgefüh
 
 \hthree{Wiki}
 
-In dem Wiki-Tab können Informationen über das Projekt abgelegt werden. Diese Seiten werden in Markdown geschrieben. Markdown bietet eine einfache Syntax, um Überschriften, Links, Listen, Code-Auszeichnungen und mehr zu erstellen. In der Seitenleiste kann zu Überschriften navigiert werden. (Siehe Abbildung \ref{fig:Projektantrag}) Allerdings kann diese Seitenleiste auch selber überschrieben werden.
+In dem Wiki-Tab können Informationen über das Projekt abgelegt werden. Diese Seiten werden in Markdown geschrieben. Markdown bietet eine einfache Syntax, um Überschriften, Links, Listen, Code-Auszeichnungen und mehr zu erstellen. In der Seitenleiste kann zu Überschriften navigiert werden (siehe Abbildung \ref{fig:Projektantrag}). Allerdings kann diese Seitenleiste auch selber überschrieben werden.
 
 \begin{figure}[H]
     \centering
@@ -117,7 +117,7 @@ Diese Seiten sind auch offline bearbeitbar. Dabei muss lediglich "wiki." vor "gi
 
 \hthree{Insights}
 
-Die Insights ermöglichen es Statistiken über das Projekt auszulesen. Darin sind zum Beispiel die "Contributions" der einzelnen Personen aufgeführt. (Siehe Abbildung \ref{fig:insights})
+Die Insights ermöglichen es Statistiken über das Projekt auszulesen. Darin sind zum Beispiel die "Contributions" der einzelnen Personen aufgeführt (siehe Abbildung \ref{fig:insights}).
 
 \begin{figure}[H]
     \centering

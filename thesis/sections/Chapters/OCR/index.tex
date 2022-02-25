@@ -63,7 +63,7 @@ Die Aufgabe des "OCR"-Moduls ist es Bilder in Text umzuwandeln. Dabei wird Tesse
 
 TesseractJS verwendet sogennante "Worker" um Text aus einem Bild zu extrahieren und je mehr davon vorhanden sind desto schneller geht der Prozess. Natürlich wird dadurch mehr Prozessorleitung verwendet, was auf Smartphones schnell zu einem erhöhten Energieverbrauch oder Erhitzen des Gerätes führt. Somit wird bei ZELIA standartmäßig nur ein "Worker" verwendet. Da das Initialisiern dieser Services recht lange dauert, ca. 2-3 Sekunden, gäbe es die Möglichkeit mehrere "Worker" gleichzeitig zu laden. Bei nur einem "Worker" macht das keinen Unterschied, aber wenn man mehrere initialisiern würde, kann diese Optimierung viel Zeit einsparen.
 
-Zusätzlich, um dem eigentlichen Umwandlungsvorgang von Bild zu Text zu beschleunigen wird eine Bildoptimierung für OCR durchgeführt. Bevor Tesseract dem Bild die Zeichen entzieht, wird es in ein Schwarz-Weiß-Bild umgewandelt und nur auf den wichtigen Teil, dort wo nichts schwarz ist, zusammengeschnitten. (siehe Abbildung \ref{ocroptimised})
+Zusätzlich, um dem eigentlichen Umwandlungsvorgang von Bild zu Text zu beschleunigen wird eine Bildoptimierung für OCR durchgeführt. Bevor Tesseract dem Bild die Zeichen entzieht, wird es in ein Schwarz-Weiß-Bild umgewandelt und nur auf den wichtigen Teil, dort wo nichts schwarz ist, zusammengeschnitten (siehe Abbildung \ref{ocroptimised}).
 
 Nachdem das Bild vereinfacht wurde, wird der OCR Prozess durchgeführt. Im besten Fall kommt nur die gewünschte Raumnummer als Ergebnis heraus. In der Realität werden aber auch andere Zeichen, wie Besitriche, Rufzeichen und manchmal, bei schlecht beleuchteten Bildern, sogar Buchstaben gefunden, die eingentlich gar nicht vorhanden sein sollten. Das ist im Fall von ZELIA allerdings kein so großes Problem, denn alle Raumnummern sind gleich aufgebaut. Somit wird mit "Regular Expressions" der gesuchte Teil herausgefiltert und falls es eine Raumnummer gibt, wird geprüft ob ein Raum mit dieser Nummer existiert.
 
@@ -92,7 +92,14 @@ Mit diesen Optimierungen liefert Tesseract sehr gute Ergebnisse, ein Grund wesha
 
 \hfour{Messungen unserer Implementierung}
 
-Um zu überprüfen ob das OCR-Modul, für die Andwendung auf Mobilgeräten, performant genug ist, haben wir eingie Messungen gemacht. Der OCR Umwandlungsprozess von dem Bild, welches in der Abbildung \ref{fig:phonecam} zu sehen ist, daurt ohne unsere Bildvereinfachung rund 4,2 Sekunden. Für die schnelle Anwendung bei Zelia wäre diese Dauer viel zu lange. Um die Geschwindigkeiten zu verringern wird ein Fokusbereich definert auf den das Bild verkleinert wird. (siehe Abbildung 2). Allein durch diese verkleinerung des Bildes dauert der OCR-Vorgang nur noch rund 1,3 Sekunden. Dieses Ergebnis ist schon besser, jedoch wurde noch weiteroptimiert um die Dauer zu minimieren. 
+Um zu überprüfen ob das OCR-Modul, für die Andwendung auf Mobilgeräten, performant genug ist, haben wir eingie Messungen gemacht. Der OCR Umwandlungsprozess von dem Bild, welches in der Abbildung \ref{fig:phonecam} zu sehen ist, daurt ohne unsere Bildvereinfachung rund 4,2 Sekunden. Für die schnelle Anwendung bei Zelia wäre diese Dauer viel zu lange. Um die Geschwindigkeiten zu verringern wird ein Fokusbereich definert auf den das Bild verkleinert wird (siehe Abbildung \ref{fig:ocrfocus}). Allein durch diese verkleinerung des Bildes dauert der OCR-Vorgang nur noch rund 1,3 Sekunden. Dieses Ergebnis ist schon besser, jedoch wurde noch weiteroptimiert um die Dauer zu minimieren. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=80mm]{media/WebComponents/OCRSeite_light.jpg}
+    \caption{OCR-Seite}
+    \label{fig:ocrfocus}
+\end{figure}
 
 Wie oben geschrieben wandelt Zelia das Bild der Kamera in ein Schwarz-Weiß-Bild um und schneidet es so klein wie möglich zusammen bevor es dem Tesseract Prozess übergeben wird. Diese Optimierung dauert rund 27 Millisekunden und beschleunigt den gesammten Prozess, sodass den Text aus dem oben genannten Bild zu extrahieren nur noch rund 660 Millisekunden dauert. Das Bild in ein Schwarz-Weiß-Bild umzuwandeln macht für Tesseract eingentlich kaum Unterschied. Trotzdem machen wir das bei ZELIA, weil das verkleinen eines Bildes mithilfe der Äußersten schwarzen Punkte funktioniert. Diese Verkleinerung ist so wie der Fokusbereich sehr stark ausschlaggebend für schnelle Ergebnisse. 
 

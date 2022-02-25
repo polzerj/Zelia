@@ -18,7 +18,7 @@ Um mit Indexed DB arbeiten zu können muss zunächst ein sogenannter "open reque
 
 Auf dem Open Request Objekt gibt es mehrere Events. 
 Das Event "upgradeneeded" wird ausgelöst, wenn die geöffnete Datenbank noch nicht erstellt wurde oder wenn die Version erhöht wurde. 
-Innerhalb dieses Ereignisses müssen die Object Stores und die Indizes erstellt werden (Siehe Code \ref{code:createDB}). 
+Innerhalb dieses Ereignisses müssen die Object Stores und die Indizes erstellt werden (siehe Code \ref{code:createDB}). 
 Beim Erstellen des Object-Stores müssen der Name des Object-Stores und der Primärschlüssel definiert werden. Wenn der Primärschlüssel automatisch generiert werden soll, muss dies durch die Eigenschaft "autoIncrement", welche auf "true" gesetzt werden muss, angegeben werden.
 Wenn der Object-Store erstellt ist, können über Attribute Indizes erstellt werden. Dabei muss jedem Index ein Name gegeben werden und ein Attribut angegeben werden, welches durch den Index indiziert werden soll. Außerdem kann definiert werden, ob dieses Attribut einzigartig sein soll.
 

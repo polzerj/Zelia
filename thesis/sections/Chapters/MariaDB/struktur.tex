@@ -20,12 +20,13 @@ Die Tabelle, welche sich in der Hierarchie befindet ist die Tabelle "AdminUser".
 
 \hfive{Tabelle Room}
 
-Eine Ebene weiter oben befindet sich eine der zentralsten Tabellen im gesamten Produkt, nämlich die Tabelle "Room". Sie enthält alle Räume und dazugehörige Infos zu ihnen (Unterschiedlichen Infospalten siehe unten). Wenn man im ERD nach unten blickt, hat sie hat eine Beziehung zur Tabelle AdminUser. Diese ist notwendig um einem Raum einen bestimmten "AdminUser" zuordnen zu können und um so den Überblick über die jeweilig verantwortliche Person zu behalten (Kardinalität 1:n).
+Eine Ebene weiter oben befindet sich eine der zentralsten Tabellen im gesamten Produkt, nämlich die Tabelle "Room". Sie enthält alle Räume und dazugehörige Infos zu ihnen (siehe Abbildung \ref{fig:RoomTableColls}). Wenn man im ERD nach unten blickt, hat sie hat eine Beziehung zur Tabelle AdminUser. Diese ist notwendig um einem Raum einen bestimmten "AdminUser" zuordnen zu können und um so den Überblick über die jeweilig verantwortliche Person zu behalten (Kardinalität 1:n).
 
 \begin{figure}[H]
     \centering
     \includegraphics{media/MariaDB/Room.svg.pdf}
     \caption{Spalten der Tabelle "Room"}
+    \label{fig:RoomTableColls}
 \end{figure}
 
 \hfive{Tabelle RoomReport}
