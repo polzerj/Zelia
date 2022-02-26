@@ -47,7 +47,14 @@ Bevor der HTML-Text dargestellt werden kann, werden die States ersetzt. Danach w
 
 \hfour{Eingebaute Komponenten}
 
-Insgesamt besteht das komplette Frontend aus 12 Komponenten, die auf 7 Seiten verteilt sind. Zusätzlich gibt es die "Debug"-Komponente, die uns während der Entwicklung einen Logger zu Verfügung gestellt hat, der vor allem praktisch war, um auf Mobilgeräten die Hintergrundaufgaben mitverfolgen zu können.
+Insgesamt besteht das komplette Frontend aus 12 Komponenten, die auf 7, mit der Fehlerseite auf 8, Seiten verteilt sind (siehe Abbildung \ref{fig:comppageoverview}). Zusätzlich gibt es die "Debug"-Komponente, die uns während der Entwicklung einen Logger zu Verfügung gestellt hat, der vor allem praktisch war, um auf Mobilgeräten die Hintergrundaufgaben mitverfolgen zu können.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=150mm]{media/WebComponents/overview.png}
+    \caption{Übersicht über alle Komponenten und Seiten}
+    \label{fig:comppageoverview}
+\end{figure}
 
 \hfive{Die Startseite}
 \label{sec:webcompstart}
@@ -112,6 +119,7 @@ Eine Buchungsanfrage für einen Raum zu erstellen geht ebenso einfach, wie Defek
 
 
 \hfive{"Admin Login" und "Dashboard"}
+\label{sec:webcomplogdash}
 
 Um einen Überblick über Meldungen und Buchungen zu bekommen gibt es das "Admin Dashboard". Damit nicht jeder die Raumbuchungen und Defektmeldungen sieht, gibt es Administratorbenutzer mit denen man sich anmelden muss. Jede Buchung und Meldung ist einem Administratorbenutzer zugeteilt und kann somit von diesem abgearbeitet werden. Im Fall von ZELIA im Schulzentrum Ungargasse, sind Admins meist Abteilungsleiter*innen oder Lehrer*innen, die für den gemeldeten oder gebuchten Raum zuständig sind. 
 
@@ -135,4 +143,18 @@ Meldungen haben nur einen Knopf um den Status der Meldung auf "geschlossen" zu s
     \centering
     \includegraphics[width=120mm]{media/WebComponents/AdminSeite_light.png}
     \caption{Admin Dashboard}
+\end{figure}
+
+\hfive{Die Fehlerseite}
+
+Die Fehlerseite ist keine eigene Seite wie die anderen Seiten. Sie besteht nur aus der 404-"Not Found" Komponente und wird angezeigt wenn auf einen nicht vorhandernen Pfad zugriffen wird. Somit hat diese Seite keinen eigen Pfad und kann nicht wirklich aus Seite von ZELIA gezählt werden.
+
+Beispiel: 
+
+Wenn Pfad \emph{"/admin/passwords"} aufgerufen wird:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=80mm]{media/WebComponents/404.png}
+    \caption{404 Fehler Seite}
 \end{figure}
