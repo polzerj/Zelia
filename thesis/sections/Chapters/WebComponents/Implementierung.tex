@@ -50,12 +50,19 @@ Bevor der HTML-Text dargestellt werden kann, werden die States ersetzt. Danach w
 Insgesamt besteht das komplette Frontend aus 12 Komponenten, die auf 7 Seiten verteilt sind. Zusätzlich gibt es die "Debug"-Komponente, die uns während der Entwicklung einen Logger zu Verfügung gestellt hat, der vor allem praktisch war, um auf Mobilgeräten die Hintergrundaufgaben mitverfolgen zu können.
 
 \hfive{Die Startseite}
+\label{sec:webcompstart}
 
 Auf dem Root-Pfad ("/") liegt unsere Willkommensseite. Auf ihr findet man die Raum-\\eingabekomponente, die von der ZELIA-API alle möglichen Raumnummern abfragt und als Auswahlhilfe anzeigt. Auf Mobilgeräten, wie Smartphones oder Tablets, wird zusätzlich ein Knopf angezeigt, der es möglich macht, die Raumnummer mit der Kamera des Geräts einzulesen. Wenn man auf diesen Knopf drückt, wird man zur "OCR"-Seite weitergeleitet. Gibt man die Raumnummer selbst ein, so landet man auf der Rauminformationsseite. Während der manuellen Eingabe, werden alle bekannten Räume als "Dropdown" unter der Eingabebox angezeigt. Gibt man die ersten Buchstaben des Raumnamens oder Raumnummer an, so werden nur mehr Ergebnisse angezeigt, die dem angegebenen Muster entsprechen.
 
 Beispiel:
 
-\image{media/WebComponents/Startseite_light}{Startseite}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=80mm]{media/WebComponents/Startseite_light.png}
+    \caption{Startseite}
+    \label{fig:compinput}
+\end{figure}
+
 
 \hfive{Die "OCR"-Seite}
 

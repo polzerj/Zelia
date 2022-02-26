@@ -1,4 +1,4 @@
-\htwo{Server}
+\htwo{Handbuch Server}
 \hthree{Installation}
 
 Der ZELIA Server ist notwendig um den ZELIA Client zu verwenden. Da der Client eine Web-Applikation ist, muss diese von einem Server bereit gestellt werden. Diese Aufgabe übernimmt der ZELIA Server. Zusätzlich stellt dieser Server die ZELIA-API zu Verfügung, welche vom Client verwendet wird um Informationen der Räume abzufragen und zu schreiben. Die Datenbank, in der Informationen über die Räume gespeichert sind, kann auch mittels Container direkt auf diesem Server gestartet werden.
@@ -99,3 +99,5 @@ So wie im Entwicklungsmodus muss man auch hier "Docker Desktop" öffnen, um Dock
 \emph{docker-compose -f docker-compose.yaml --env-file api/.env up}
 
 Beim ersten mal wird es auch bei diesem Startvorgang etwas länger dauern, da erstens Docker die notwendigen Abbildungen herunterlädt und zweitens der NPM-Installationsvorgang durchläuft.
+
+Um zu überprüfen ob der Server erfolgreich gestartet wurde, kann man in einem Browser der Wahl probieren \emph{https://localhost/api} aufzurufen, oder im Entwicklungsmodus \emph{https://localhost:3001/api}.
