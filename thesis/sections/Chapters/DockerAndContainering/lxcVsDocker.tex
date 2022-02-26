@@ -4,7 +4,7 @@
 
 Zu Beginn und im Kern ähnelt sich die Systemarchitektur von LXC jener von Docker, da die wichtigsten verwendeten Funktionen des Linux-Kernel "cgroups" und "namespaces" sind. "Cgroups" sind hierbei für die Aufteilung von CPU, Speicher und vielem mehr im System zuständig. "Namespaces" erlauben das Erstellen von mehreren virtuellen Instanzen des Kernels. Man kann also sagen, dass sich LXC und Docker im Bereich des Systemkernels also sehr ident sind.
 
-Im Bereich der Engine, welche zwischen Anwendung und Kernel liegt, setzt LXC auf das Framework "liblxc". Docker implementierte jedoch ihre eigene Engine, welche den Namen libcontainer" trug. Diese wurde jedoch im Laufe der Jahre durch mehrere dazwischenliegende Abstraktionsschichten ergänzt.
+Im Bereich der Engine, welche zwischen Anwendung und Kernel liegt, setzt LXC auf das Framework "liblxc". Docker implementierte jedoch ihre eigene Engine, welche den Namen "libcontainer" trug. Diese wurde jedoch im Laufe der Jahre durch mehrere dazwischenliegende Abstraktionsschichten ergänzt.
 
 Die gesamte Architektur von Docker ist jedoch nicht ganz so trivial. Der grobe Ablauf beim Zugriff auf Daten sieht wie folgt aus:
 
