@@ -35,4 +35,8 @@ Im  Hintergrund wird jedes Mal beim Umleiten ein Eintrag in den Verlauf gemacht.
 
 Im Codebeispiel \ref{code:routerhistory} steht das Zweite Argument für "Silent History", womit kein Eintrag in den Verlauf gemacht wird.
 
+Wenn der Router auf einen Pfad umleiten soll den er nicht kennt, dann lädt er die 404-"Not Found" Seite. Diese Seite besteht aus einer einzelnen Komponente, nämlich der 404-Komponente.
+
+\typescript{code/CSRouter/notfound.ts}{Laden der 404 Komponente in die Fehlerseite}
+
 Mit all den oben beschriebenen Maßnahmen kann der ZELIA Client-Service zwischen verschiedenen Seiten logisch wechseln ohne jemals die eigentliche Seite zu verlassen.
