@@ -1,3 +1,21 @@
 {
-    "cSpell.words": ["Kusternigg", "openapi", "Untis", "Zelia"]
+  "cSpell.words": [
+    "Administratorbenutzer",
+    "Defektmeldungen",
+    "Fokusbereich",
+    "Komponentensystem",
+    "Kusternigg",
+    "Meldungsseite",
+    "openapi",
+    "Polzer",
+    "Sequelize",
+    "Smartphonekamera",
+    "Tesseract",
+    "Ungargasse",
+    "Untis",
+    "Willkommensseite",
+    "Zelia"
+  ],
+  "cSpell.enabled": true,
+  "cSpell.enableFiletypes": ["latex"]
 }

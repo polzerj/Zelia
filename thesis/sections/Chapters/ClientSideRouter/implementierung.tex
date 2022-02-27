@@ -4,7 +4,7 @@ Wie gerade erwähnt ist "Frontend Routing" ein bisschen komplizierter zu impleme
 
 Aufteilen kann man unsere Client Bibliothek wie schon gesagt in 2 Teile: Das Komponentensystem und den Client-Side-Router. Das Komponentensystem wurde oben schon beschrieben (siehe Kapitel WebComponents \ref{sec:webcomponents}). Beide Teile der Bibliothek haben keine Abhängigkeiten und können getrennt voneinander laufen. Sie sind beide für den Anwendungsfall in ZELIA entwickelt, können aber auch problemlos einzeln für andere Web-Applikationen verwendet werden.
 
-Wie vorhin erwähnt wird auch bei ZELIA ein einfaches "index.html" verwendet, um das Skript zu laden, welches sich um die gesamte Seite kümmert. Zusätzlich ist ein leerer Container mit dem Namen "app" definiert, der sich auf der Webpage befindet. Dieser Container wird vom Client-Side-Router verwendet um Seiten dynamisch in die Hauptseite, die nie wirklich verlassen wird, hineinzuladen. Wenn das Skript vom Browser gestartet wird, erstellt ZELIA ein Router Objekt mit folgenden Schnittstellen:
+Wie vorhin erwähnt wird auch bei ZELIA ein einfaches "index.html" verwendet, um das Skript zu laden, welches sich um die gesamte Seite kümmert. Zusätzlich ist ein leerer Container mit dem Namen "app" definiert, der sich auf der Webpage befindet. Dieser Container wird vom Client-Side-Router verwendet um Seiten dynamisch in die Hauptseite, die nie wirklich verlassen wird, hinein zu laden. Wenn das Skript vom Browser gestartet wird, erstellt ZELIA ein Router Objekt mit folgenden Schnittstellen:
 
 \typescript{code/CSRouter/interface.ts}{Schnittstellen der "Router" Klasse}
 
@@ -19,7 +19,7 @@ Der erste Parameter ist der Pfad und der Zweite ist der Controller, welcher ausg
 
 \typescript{code/CSRouter/hw_example.ts}{Beispiel einer "Hello World"-Seite}
 
-In dem Codebeispiel (Code \ref{initRoutes}) wird in den Zeilen 5. bis 7. der Pfadeintrag "/room/:roomNumber" verwendet. Der Router leitet somit alle "/room/..." auf den verknüpften Controller um und wenn dieser Aufgerufen wird, bekommt er als Parameter die Werte von dem Platzhaltern mitgeliefert:
+Im Codebeispiel \ref{initRoutes}, Zeile fünf bis sieben, wird der Pfadeintrag "/room/:roomNumber" verwendet. Der Router leitet somit alle "/room/..." auf den verknüpften Controller um und wenn dieser Aufgerufen wird, bekommt er als Parameter die Werte von dem Platzhaltern mitgeliefert:
 
 \typescript{code/CSRouter/placeholder.ts}{Beispiel "Controller" mit Platzhalter}
 
@@ -29,7 +29,7 @@ Wenn ein Link ausgewählt wird, fängt ZELIA die Anfrage an dem Server ab und ve
 
 \typescript{code/CSRouter/redirect.ts}{Umleitung in einem Event}
 
-Im  Hintergrund wird jedes Mal beim Umleiten ein Eintrag in den Verlauf gemacht. Bei diesem Eintrag wird der besuchte Pfad gespeichert. Der Browser speichert den Verlauf einer Seite als Stapel, sprich man kann nur oben hinzufügen und das oberste Element runternehmen. Somit kann man das Event "onPop" welches der Browser feuert, abfangen und selbst mit dem Router Umleiten:
+Im  Hintergrund wird jedes Mal beim Umleiten ein Eintrag in den Verlauf gemacht. Bei diesem Eintrag wird der besuchte Pfad gespeichert. Der Browser speichert den Verlauf einer Seite als Stapel, sprich man kann nur oben hinzufügen und das oberste Element herunter nehmen. Somit kann man das Event "onPop" welches der Browser feuert, abfangen und selbst mit dem Router Umleiten:
 
 \typescript[code:routerhistory]{code/CSRouter/history.ts}{Abfangen und Umleiten wenn der Verlauf geändert wird}
 
