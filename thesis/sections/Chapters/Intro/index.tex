@@ -21,7 +21,11 @@ ZELIA ist spezifisch für Schulen entwickelt und somit besteht die Zielgruppe vo
 
 Aufteilen kann man ZELIA in 3 Teile: Den Server, die Datenbank und den "Client". Jeder dieser Teile ist in sich geschlossen, einzeln geplant und implementiert worden.
 
-TODO: Skizze: server, client, db
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=120mm]{./media/Intro/client_server_arch.png}
+    \caption{Server-Client-Verbindung}
+\end{figure}
 
 \htwo{Server}
 
@@ -35,7 +39,11 @@ Der ZELIA-Server ist der Hauptteil von ZELIA. Er sammelt und stellt alle Daten z
 
 Während das Backend für den Client nur ein Server ist, besteht dieser eigentlich aus mehrern Docker-Containern. Dadurch ist es möglich, die Datenbank und die ZELIA-API am selben Server in sogenannten Containern laufen zu lassen. Ein großer Vorteil daran ist, dass man ZELIA als gesammtes System starten und verwalten kann. Gerade in der Entwicklung ist das sehr wichtig, da somit jeder von uns eine eigene ZELIA Instanz laufen lassen kann. Für diese Container macht es keinen Unterschied ob sie nebeneinander am selben Server laufen oder über die Welt verteilt sind. Verbunden sind sie miteinander über ein virtuelles Netz (mehr zu Containertechnologie und Docker in Kapitel \ref{sec:ContainerAndDocker})
 
-TODO: Skizze Server Netz - API, DB, Webuntis
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=120mm]{./media/Intro/server_arch.png}
+    \caption{Aufbau des ZELIA-Servers}
+\end{figure}
 
 Der Server ist mittels NodeJS implementiert, einer Javascript-Engine, die es ermöglicht einfach mit dem Frontend zu kommunizieren. Außerdem gibt es viele vorgefertigt Pakete um ein schnelles stabiles Backend zu entwerfen. Statt Javascript wird bei ZELIA allerdings TypeScript verwendet, welches aber in Javascript umgewandelt wird. Was genau TypeScript ist und warum wir es bei ZELIA verwenden, wird später erklärt. (siehe Kapitel TypeScript \ref{sec:TypeScript})
 
