@@ -2,9 +2,11 @@
 \label{sec:TypeScript}
 \sectionauthor{Mersed Kečo}
 
-TypeScript ist eine von Microsoft entwickelte Programmiersprache, welche auf JavaScript beziehungsweiße, dem ECMAScript-6-Standard basiert. TypeScript unterstützt mithilfe von Modulen das Kapseln von Klassen, Interfaces, Funktionen und Variablen in eigene Namensräume(Namespaces). Dabei wird zwischen internen Modulen, welche sich an den Standard anlehnen und externen Modulen, welche eine JavaScript-Bibliothek wie AMD oder CommonJS verwenden, unterschieden.
-%TODO: Was ist ein externes Modul und was ist ein internes Modul, Unterschiede
-\cite{TypeScript}
+TypeScript ist eine von Microsoft entwickelte Programmiersprache, welche auf JavaScript beziehungsweiße, dem ECMAScript-6-Standard basiert. TypeScript unterstützt mithilfe von Modulen das Kapseln von Klassen, Interfaces, Funktionen und Variablen in eigene Namensräume(Namespaces). Dabei wird zwischen internen Modulen, welche sich an den Standard anlehnen und externen Modulen, welche eine JavaScript-Bibliothek wie AMD oder CommonJS verwenden, unterschieden. Wenn über interne Module gesprochen wird, meint man eigentlich damit die sogenannten "Namespaces", die für die Organisation von Code in TypeScript verwendet werden. Namensräume sind einfacher gesagt JavaScript Objekte in den globalen Namensraum. Externe Module dienen dazu, mehrere externe JavaScript-Dateien und Code zu definieren, Abhängigkeiten zwischen Dateien zu beschreiben und diese darzustellen. Um aber überhaupt das Laden von externen Java.Script Dateien zu ermöglichen, benötigt es einen "Module Loader", der meist verwendete ist RequieJs.
+
+Der Unterschied zwischen internen und externen Modulen ist der, das externe Module Abhängigkeiten besitzen und kompakter ist, was auch die Lesbarkeit des Codes erhöht.
+
+\cite{TypeScript}\cite{IntModules}\cite{ExtModules}
 
 \typescript{code/TypeScript/jsvsts.ts}{Js vs. Ts}
 

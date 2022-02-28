@@ -88,13 +88,17 @@ Node.js wird den Entwicklern mit dem bereits eingebauten Modul namens "HTTP" ber
 
 Der Node Package Manager (NPM) ist das Paket-System von Node.js. Es ist das größte Ökosystem aller Open Source Bibliotheken der Welt, mit über einer Millionen Pakete, weitere Pakete werden täglich releast. NPM ist kostenlos und hat eine sehr große Community, des öfteren Open Source Entwickler und begeisterte Programmierer. Die Firma, die hinter NPM steht, die sogenannte NPM INC. wurde 2014 gegründet und 2020 von GitHub aufgekauft.
 NPM wird mit einem Kommandozeilenprogramm ausgeliefert. Die Möglichkeit besteht auch, auf der Webseite von NPM nach gewünschten Paketen zu suchen und diese mit einem einzigen Befehl zu installieren. Die Versionierung der Pakete und die Überprüfung von Abhängigkeiten kann eingerichtet werden. Node.js ist ein Dreh – und Angelpunkt für Entwickler vor allem wegen dem Package Support.
-Die Sicherheit von Paketen ist bei NPM durch den bereits eingebauten Sicherheits-Scanner gegeben.
-
-%TODO: Sicherheitslücken von NPM erwähnen, Bezugspunkt zu ZELIA(wie ist das Projekt aufgebaut, was verwenden wir)
-\cite{NPM} \cite{NPM2}
+Die Sicherheit von Paketen ist bei NPM durch den bereits eingebauten Sicherheits-Scanner gegeben.\cite{NPM} \cite{NPM2}
 
 \begin{figure}[H]
     \centering
     \includegraphics{media/NodeJs/NPM.png}
     \caption{NPM Logo\cite{NPMLOGO}}
 \end{figure}
+
+\hfive{Sicherheitslücken}
+Wie auch jede Anwendung hat NPM anfänglich Probleme mit Sicherheitslücken gehabt, die zum Glück behoben werden konnten. Bei der ersten bekannten Sicherheitslücke, die nach der Übernahme von NPM durch GitHub im Jahr 2021 aufgetreten ist, war das Problem das man einfach neue Verisonen von beliebigen Paketen hochladen und somit gesehen Pakete hochladen, die auch mögliche Schadsoftware beeinhalten könnte. Das genaue Datum des erstmaligen Auftreten des Fehlers ist unbekannt, man vermutet aber das es mindestens seit September 2020 schon möglich gewesen wäre, diese Sicherheitslücke zu missbrauchen. \cite{NPMSecurity}
+
+%TODO: Bezugspunkt zu ZELIA(wie ist das Projekt aufgebaut, was verwenden wir)
+
+
