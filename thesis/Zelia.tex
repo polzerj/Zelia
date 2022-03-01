@@ -1,4 +1,4 @@
-\documentclass[a4paper,twoside, 12pt]{article}
+\documentclass[a4paper,twoside, 12pt, ngerman]{article}
 
 \input{util/utils.tex}
 
@@ -56,7 +56,10 @@
 
 \input{sections/Chapters/ProjectManagement/index.tex}
 
-% Handbuch zur Bedienung
+\cleardoublepage
+\hone{Handbuch zur Bedienung}
+
+\input{sections/Chapters/Handbuch/index.tex}
 
 % Ausblick
 
@@ -69,6 +72,6 @@
 \renewcommand{\refname}{Quellen}
 \printbibliography
 % Begriffe und Abkürzungen
-
+\include{sections/Glossar.tex}
 
 \end{document}

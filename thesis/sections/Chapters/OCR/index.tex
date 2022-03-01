@@ -1,66 +1,77 @@
 \htwo{Optical Character Recognition}
+\label{sec:ocr}
 \sectionauthor{Julian Kusternigg}
 
 \hthree{Allgemeines}
 
-Wie der Name schon sagt, ist "Optical Character Recognition", kurz OCR, eine Technik um aus Bildern oder anderen Dokumentformaten (z.B.: PDF) Zeichen herauszulesen und somit in Text umzuwandeln. Diesen Text kann der Computer dann für weitere Anwendungen verwenden. Dabei ist egal ob der Text im Bild in Druckschrift oder Handschrift geschrieben ist. Ein Computer soll jeden Text, unabhängig der Schriftart, erkennen.
+"Optical Character Recognition", kurz OCR, ist eine Technik, um aus Bildern oder anderen Dokumentformaten (z.B.: PDF) Zeichen herauszulesen und in Text umzuwandeln. Diesen Text kann der Computer dann für weitere Anwendungen verwenden. Dabei ist es egal ob der Text im Bild in Druckschrift oder Handschrift geschrieben ist. Ein Computer soll jeden Text, unabhängig der Schriftart, erkennen.
+\cite{OCRIntro}
 
 \hfour{Anwendung}
 
-Schon 1914 wurden erste Schritte gemacht, um Zeichen einzulesen. Das "Optophone" ist ein Gerät welches eingelesene Zeichen in damit definierte Töne umwandelt.
+Schon 1914 wurden erste Schritte gemacht, um Zeichen einzulesen. Das "Optophone" ist ein Gerät welches eingelesene Zeichen in Töne umwandelt.
 
-1974 forschte Ray Kurzweil an einer OCR Technik die jeden Gedruckten Text, unabhängig der Schriftart, erkennt. Kurzweil entwickelte eine Maschine für Blinde oder Andere, die nicht lesen konnten, indem der eingelesene Text von der Maschine vorgelesen wird.
+1974 forschte Ray Kurzweil an einer OCR Technik die jeden gedruckten Text, unabhängig der Schriftart, erkannte. Kurzweil entwickelte eine Maschine für Blinde oder Menschen, die nicht lesen konnten, indem der eingelesene Text von der Maschine vorgelesen wurde.
 
-Heutzutage gibt es viele Anwendungen für die OCR Technologie. Zum Beispiel wird diese verwendet bei Projekt Gutenberg, eine der ältesten Digitalbibliotheken, um Bücher automatisch digitalisieren zu lassen. Aber auch im normalen Alltag stößt man öfters auf Texterkennung. So bietet zum Beispiel Google, bei ihrem Übersetzer, die Möglichkeit in Echtzeit über die Smartphone-Kamera Text übersetzten zu lassen. Auch zum Einlesen von Informationen von z.B.: einem Reisepass wird Zeichenerkennung verwendet, um das mühsame Abschreiben zu vermeiden.
+Heutzutage gibt es viele Anwendungen für die OCR Technologie. Zum Beispiel wird diese verwendet beim Projekt Gutenberg, eine der ältesten Digitalbibliotheken, um Bücher automatisch digitalisieren zu lassen. Aber auch im normalen Alltag stößt man öfters auf Texterkennung. So bietet zum Beispiel Google, bei ihrem Übersetzer, die Möglichkeit in Echtzeit über die Smartphone-Kamera Texte übersetzten zu lassen. Auch zum Einlesen von Informationen von z.B.: einem Reisepass wird Zeichenerkennung verwendet, um das mühsame Abschreiben zu vermeiden.\cite{OCRRecognition}
 
 \hfour{Funktionalität}
 
-Bevor man Text aus einem Bild auslesen kann, wird das Bild meist vereinfacht. Es wird dabei das gesamte Bild auf 2 Farben komprimiert, welche helfen sollen Text oder kein Text zu erkennen. Oft wird auch probiert das Bild zusammenzuschneiden so, dass nur mehr der wichtigste Teil mit Text vorhanden ist. Der letzte Schritt gemacht wird ist das Einteilen der Zeichen. Dabei wird probiert alles was ein Zeichen sein könnte zu finden und auszuschneiden.
+Bevor man Texte aus einem Bild auslesen kann, wird das Bild meist vereinfacht. Es wird dabei das gesamte Bild auf Grautöne komprimiert, welche helfen sollen Text oder kein Text zu erkennen. Oft wird auch probiert das Bild zusammenzuschneiden, so dass nur mehr der wichtigste Teil mit Text vorhanden ist. Der letzte Schritt der gemacht wird ist das Einteilen der Zeichen. Dabei wird probiert alles was ein Zeichen sein könnte zu finden und auszuschneiden.\cite{OCRPreProcessing}
 
-Diese Bilder von Zeichen werden dann probiert in den jeweiligen Zeichencode
-umzuwandeln. Es gibt 2 Herangehensweisen, die meist verwendet werden, um die Umwandlung durchzuführen.
+Diese Bilder von Zeichen werden dann probiert in den jeweiligen Zeichencode umgewandelt zu werden. Dafür gibt es gibt zwei Herangehensweisen, die meist verwendet werden, um diese Umwandlung durchzuführen:
 
-\hfour{Matrix oder Pattern Matching}
+\begin{itemize}
+    \item "Matrix Matching" oder auch "Pattern Matching" genannt.
+    \item "Feature Extraction"
+\end{itemize}
 
-Bei diesem Vorgang wird eines der zusammengeschnittenen Zeichenbilder Pixel für Pixel verglichen mit vorgefertigten Zeichen. Anhand von den Prozent, die übereinstimmen kann zurückgeschlossen werden welches Zeichen im Bild sein könnte. Diese Möglichkeit ist recht einfach im Vergleich zur zweiten Technik. Ein Nachteil ist aber das verschiedene Schriftarten problematisch sein könnten und manche Zeichen falsch oder gar nicht erkannt werden. Beheben kann man dieses Problem, indem man die vorgefertigten Zeichen mit denen verglichen wird, erweitert. Das macht den ganzen Vorgang aber wiederum langsamer. Somit muss das Vorgehen für jede Anwendung individuell angepasst werden.
+\hfour{Matrix/Pattern Matching}
+
+Bei diesem Vorgang wird eines der zusammengeschnittenen Zeichenbilder Pixel für Pixel verglichen mit vorgefertigten Zeichen. Anhand von den Prozent die übereinstimmen, kann zurückgeschlossen werden welches Zeichen im Bild sein könnte. Diese Möglichkeit ist recht einfach im Vergleich zur zweiten Technik. Ein Nachteil ist aber, dass verschiedene Schriftarten problematisch sein könnten und manche Zeichen falsch oder gar nicht erkannt werden. Beheben kann man dieses Problem, indem man die vorgefertigten Zeichen mit denen verglichen wird, erweitert. Das macht den ganzen Vorgang aber wiederum langsamer. Somit muss das Vorgehen für jede Anwendung individuell angepasst werden.\cite{OCRRecognition}
 
 \hfour{Feature Extraction}
 
-Hier wird, wie der Name schon sagt, nach Merkmalen gesucht. Merkmale sind sowas wie Kanten und Kurven also dinge die man braucht, um Zeichen zu beschreiben. Also werden die Merkmale eines Zeichens, welches aus dem Bild geschnitten wurde, verglichen mit einer Ansammlung von typischen Zeichenmerkmalen. Somit kann erkannt werden um welches Symbol es sich handeln könnte. Dieser Vorgang funktioniert oft besser mit verschieden Schriftarten, da nicht auf einen exakten Verglich geschaut wird.
+Hier wird, wie der Name schon sagt, nach Merkmalen gesucht. Merkmale sind \zb\ Kanten und Kurven, also Dinge die man braucht, um Zeichen zu beschreiben. Also werden die Merkmale eines Zeichens, welches aus dem Bild geschnitten wurde, verglichen mit einer Ansammlung von typischen Zeichenmerkmalen. Somit kann erkannt werden um welches Symbol es sich handeln könnte. Dieser Vorgang funktioniert oft besser mit verschieden Schriftarten, da nicht auf einen exakten Vergleich geschaut wird.\cite{OCRRecognition}
 
-Heutzutage werden auch oft andere Ansätze verwendet, oder sogar eine Mischung aus den Obigen mit Techniken mit neuen Wegen. So extrahieren viele OCR Anbieter zuerst Merkmale von den Zeichen mit Bildern und ein Neurales Netz prüft dann welches Zeichen, das sein könnte.
+Heutzutage werden auch oft andere Ansätze verwendet, oder sogar eine Mischung aus den oben erwähnten Techniken. So extrahieren viele OCR Anbieter zuerst Merkmale von den Zeichen mit Bildern und ein neurales Netz prüft dann welches Zeichen, das sein könnte.
 
-Oft wird auch nicht nur nach Zeichen gesucht. Gerade bei Sprachen, die mit Leerzeichen getrennt wurden wird probiert ganze Wörter zu finden die dann wieder in Zeichen zu zerlegen, aber trotzdem die fertigen Zeichen mit einem Wörterbuch zu vergleichen, ob das Ergebnis stimmen könnte.
+Oft wird auch nicht nur nach Zeichen gesucht. Gerade bei Sprachen, die mit Leerzeichen getrennt werden, wird probiert ganze Wörter zu finden. Diese werden dann wieder in Zeichen zerlegt, aber trotzdem als gesamtes Wort mit einem Wörterbuch verglichen. Dadurch ist es noch wahrscheinlicher die Wörter richtig zu erkennen. 
 
 \hfour{Tesseract}\label{sec:tesseract}
 
-Tesseract ist eine Software-Bibliothek aus 1985, die 2005 als Open-Source-Projekt veröffentlicht wurde. Seit 2006 wird das Projekt von Google unterstützt und gilt als eine der bekanntesten "Optical-Character-Recognition" Bibliotheken. Zusätzlich zu den oben genannten Arten der Zeichenerkennung, verwendet Tesseract ein Neurales Netz, um die Auswahl der Zeichen weiter einzuschließen. Außerdem probiert Tesseract ganze Wörter zu finden, die sich aus den Zeichen ergeben könnten, um noch genauere Ergebnisse zu liefern.\cite{OCRIntro}
+Tesseract ist eine Software-Bibliothek aus 1985, die 2005 als Open-Source-Projekt veröffentlicht wurde. Seit 2006 wird das Projekt von Google unterstützt und gilt als eine der bekanntesten "Optical-Character-Recognition" Bibliotheken. Zusätzlich zu den oben genannten Arten der Zeichenerkennung, verwendet Tesseract ein neurales Netz, um die Auswahl der Zeichen weiter einzuschließen. Außerdem probiert Tesseract ganze Wörter zu finden, die sich aus den Zeichen ergeben könnten, um noch genauere Ergebnisse zu liefern.\cite{Tesseract}
 
 \hthree{Implementierung}
 
 \hfour{OCR-Modul}
 
-Wie schon beschrieben, kann man eine Raumnummer, nicht nur eingeben, sondern auch mit der Kamera eines Smartphones einscannen. Um die Raumnummer aus den Bildern auszulesen brauchen wird somit einen "Optical Character Recognition"-Prozess. Dabei wird die Bibliothek "TesseractJS", eine Web-Version von "Tesseract OCR", direkt im Browser eingebunden, um die Bilder von Raumnummern zu Text zu verarbeiten.
+Wie schon beschrieben, kann man eine Raumnummer, nicht nur eingeben, sondern auch mit der Kamera eines Smartphones einscannen. Um die Raumnummer aus den Bildern auszulesen brauchen wird somit einen "Optical Character Recognition"-Prozess. Dabei wird die Bibliothek "TesseractJS", eine Web-Version von "Tesseract OCR", direkt im Browser eingebunden, um die Bilder von Raumnummern zu Text zu verarbeiten.\cite{TesseractJS}\cite{TesseractJSImplementation}
 
-Um das eben Erwähnte umzusetzten, gibt es bei ZELIA im Komponentensystem eine Komponete, welche genau diese Funktionalität bewerkstelligt. Diese Komponente wird auf der OCR-Seite des Frontends eingebunden. Sie beinhaltet ein Videoelement, um zu zeigen was sie scannt. Um auf die Kamera eines Gerätes aus einem Webbrowser zugreifen zu können, muss über den "Browser Navigator" angefragt ob die Kamera verwendet werden darf. (siehe unten)
+Um das eben Erwähnte umzusetzen, gibt es bei ZELIA im Komponentensystem eine Komponente, welche genau diese Funktionalität bewerkstelligt. Diese Komponente wird auf der OCR-Seite des Frontends eingebunden. Sie beinhaltet ein Videoelement, um zu zeigen was sie scannt. Um auf die Kamera eines Gerätes aus einem Webbrowser zugreifen zu können, muss über den "Browser Navigator" angefragt werden ob die Kamera verwendet werden darf. (siehe Code \ref{code:CameraAccess})
 
-\typescript{code/OCR/nav.ts}{Zugriff auf eine Kamera im Browser}
+\typescript[code:CameraAccess]{code/OCR/nav.ts}{Zugriff auf eine Kamera im Browser}
 
-Als Parameter, bei dieser Anfrage, kann man defineren worauf man Zugriff haben möchte. Im Falle von ZELIA wird als Videoquelle die Außenkamera angefragt. Audioaufnahmen werden verworfen, da sie nicht notwendig sind. Die Browser bestimmen dann ob die Anfrage erlaubt werden soll oder fragen die Benutzer*innen des Gerätes. Wenn der Zugriff abgelehnt wurde, wird das Videoelement, welches die Kamera anzeigen soll, ersetzt duch eine Fehlermeldung. Darf der Browser aber die Videoquelle verwenden, so zeigt er sie an und startet das "OCR"-Modul.
+Als Parameter, bei dieser Anfrage, kann man definieren worauf man Zugriff haben möchte. Im Falle von ZELIA wird als Videoquelle die Außenkamera angefragt. Audioaufnahmen werden verworfen, da sie nicht notwendig sind. Die Browser bestimmen dann ob die Anfrage erlaubt werden soll oder fragen die Benutzer*innen des Gerätes. Wenn der Zugriff abgelehnt wurde, wird das Videoelement, welches die Kamera anzeigen soll, ersetzt durch eine Fehlermeldung. Darf der Browser aber die Videoquelle verwenden, so zeigt er sie an und startet das "OCR"-Modul.
 
-%bild von kamera berechiting im browser
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=120mm]{media/OCR/cam_access_light.jpg}
+    \caption{Abfragen des Kamerazugriffs}
+\end{figure}
 
-Die Aufgabe des "OCR"-Moduls ist es Bilder in Text umzuwandeln. Dabei wird TesseractJS verwendet um den "Optiacal Character Recognition" Prozess durchzuführen. Unsere Wahl fiel auf Tesseract da wir am Anfang mit einer einfach verwendbaren Bibliothek testen wollten, ob OCR in unserem Fall gut funktioniert. Da es sehr gute Ergebnisse geliefert hat, wurde es optimiert und weiterverwendet.
+
+Die Aufgabe des "OCR"-Moduls ist es Bilder in Text umzuwandeln. Dabei wird TesseractJS verwendet um den "Optical Character Recognition" Prozess durchzuführen. Unsere Wahl fiel auf Tesseract da wir am Anfang mit einer einfach verwendbaren Bibliothek testen wollten, ob OCR in unserem Fall gut funktioniert. Da es sehr gute Ergebnisse geliefert hat, wurde es optimiert und weiterverwendet.
 
 \typescript{code/OCR/OCRModule.ts}{Die Verwendeung von TesseractJS}
 
-TesseractJS verwendet sogennante "Worker" um Text aus einem Bild zu extrahieren und je mehr davon vorhanden sind desto schneller geht der Prozess. Natürlich wird dadurch mehr Prozessorleitung verwendet, was auf Smartphones schnell zu einem erhöhten Energieverbrauch oder Erhitzen des Gerätes führt. Somit wird bei ZELIA standartmäßig nur ein "Worker" verwendet. Da das Initialisiern dieser Services recht lange dauert, ca. 2-3 Sekunden, gäbe es die Möglichkeit mehrere "Worker" gleichzeitig zu laden. Bei nur einem "Worker" macht das keinen Unterschied, aber wenn man mehrere initialisiern würde, kann diese Optimierung viel Zeit einsparen.
+TesseractJS verwendet sogenannte "Worker" um Text aus einem Bild zu extrahieren und je mehr davon vorhanden sind desto schneller geht der Prozess. Natürlich wird dadurch mehr Prozessorleitung verwendet, was bei Smartphones schnell zu einem erhöhten Energieverbrauch oder Erhitzen des Gerätes führt. Somit wird bei ZELIA standardmäßig nur ein "Worker" verwendet. Da das Initialisieren dieser Services recht lange dauert, ca. 2-3 Sekunden, gäbe es die Möglichkeit mehrere "Worker" gleichzeitig zu laden. Bei nur einem "Worker" macht das keinen Unterschied, aber wenn man mehrere initialisieren würde, kann diese Optimierung viel Zeit einsparen.
 
-Zusätzlich, um dem eigentlichen Umwandlungsvorgang von Bild zu Text zu beschleunigen wird eine Bildoptimierung für OCR durchgeführt. Bevor Tesseract dem Bild die Zeichen entzieht, wird es in ein Schwarz-Weiß-Bild umgewandelt und nur auf den wichtigen Teil, dort wo nichts schwarz ist, zusammengeschnitten. (siehe Abbildung \ref{ocroptimised})
+Zusätzlich, um dem eigentlichen Umwandlungsvorgang von Bild zu Text zu beschleunigen wird eine Bildoptimierung für OCR durchgeführt. Bevor Tesseract dem Bild die Zeichen entzieht, wird es in ein Schwarz-Weiß-Bild umgewandelt und nur auf den wichtigen Teil, dort wo nichts schwarz ist, zusammengeschnitten (siehe Abbildung \ref{ocroptimised}).
 
-Nachdem das Bild vereinfacht wurde, wird der OCR Prozess durchgeführt. Im besten Fall kommt nur die gewünschte Raumnummer als Ergebnis heraus. In der Realität werden aber auch andere Zeichen, wie Besitriche, Rufzeichen und manchmal, bei schlecht beleuchteten Bildern, sogar Buchstaben gefunden, die eingentlich gar nicht vorhanden sein sollten. Das ist im Fall von ZELIA allerdings kein so großes Problem, denn alle Raumnummern sind gleich aufgebaut. Somit wird mit "Regular Expressions" der gesuchte Teil herausgefiltert und falls es eine Raumnummer gibt, wird geprüft ob ein Raum mit dieser Nummer existiert.
+Nachdem das Bild vereinfacht wurde, wird der OCR Prozess durchgeführt. Im besten Fall kommt nur die gewünschte Raumnummer als Ergebnis heraus. In der Realität werden aber auch andere Zeichen, wie Beistriche, Rufzeichen und manchmal, bei schlecht beleuchteten Bildern, sogar Buchstaben gefunden, die eigentlich gar nicht vorhanden sein sollten. Das ist im Fall von ZELIA allerdings kein so großes Problem, denn alle Raumnummern sind gleich aufgebaut. Somit wird mit "Regular Expressions" der gesuchte Teil herausgefiltert und falls es eine Raumnummer gibt, wird geprüft ob ein Raum mit dieser Nummer existiert.
 
-Mit diesen Optimierungen liefert Tesseract sehr gute Ergebnisse, ein Grund weshalb wir die Open-Source Bibliothek weiterverwendet.
+Mit diesen Optimierungen liefert Tesseract sehr gute Ergebnisse, ein Grund weshalb wir die Open-Source Bibliothek weiterverwendet haben.
 
 \typescript{code/OCR/compress.ts}{Bild vereinfachen bevor Text extrahiert wird}
 
@@ -68,6 +79,7 @@ Mit diesen Optimierungen liefert Tesseract sehr gute Ergebnisse, ein Grund wesha
     \centering
     \includegraphics[width=120mm]{media/OCR/original}
     \caption{Aufnahme einer Smartphonekamera (Fokusbereich rot markiert)}
+    \label{fig:phonecam}
 \end{figure}
 
 
@@ -78,14 +90,24 @@ Mit diesen Optimierungen liefert Tesseract sehr gute Ergebnisse, ein Grund wesha
     \label{ocroptimised}
 \end{figure}
 
-% S 2410   Lehrsaal 1 AHITN -> regex filter
+% TODO show result: S 2410   Lehrsaal 1 AHITN
 
-% TODO: Diagnostics (wie schnell ist der Spaß :) )
-% mein handy:
-% 1 worker -> 2.3s - 3.4s ~2.7s
-% ocr ->  659ms - 689ms ~667ms
+\pagebreak
 
-% 2 worker -> 3.3s - 3.9s ~3.4s
-% ocr ->  620ms - 663ms ~634ms
+\hfour{Messungen unserer Implementierung}
 
-% bild optimieren -> 13ms - 44ms ~27ms
+Um zu überprüfen ob das OCR-Modul für die Anwendung auf Mobilgeräten performant genug ist, haben wir einige Messungen gemacht. Der OCR Umwandlungsprozess von dem Bild, welches in der Abbildung \ref{fig:phonecam} zu sehen ist, dauert ohne unsere Bildvereinfachung rund 4,2 Sekunden. Für die schnelle Anwendung bei Zelia wäre diese Dauer viel zu lange. Um die Geschwindigkeiten zu verringern wird ein Fokusbereich definiert auf den das Bild verkleinert wird (siehe Abbildung \ref{fig:ocrfocus}). Durch diese Verkleinerung des Bildes dauert der OCR-Vorgang nur noch rund 1,3 Sekunden. Dieses Ergebnis ist schon besser, jedoch wurde noch weiter optimiert um die Dauer zu minimieren. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=80mm]{media/WebComponents/OCRSeite_light.jpg}
+    \caption{OCR-Seite}
+    \label{fig:ocrfocus}
+\end{figure}
+
+Wie oben geschrieben wandelt Zelia das Bild der Kamera in ein Schwarz-Weiß-Bild um und schneidet es so klein wie möglich zusammen bevor es dem Tesseract Prozess übergeben wird. Diese Optimierung dauert rund 27 Millisekunden und beschleunigt den gesamten Prozess. Den Text aus dem oben genannten Bild zu extrahieren dauert dadurch nur noch rund 660 Millisekunden. Das Bild in ein Schwarzweißbild umzuwandeln macht für Tesseract eigentlich kaum einen Unterschied. Trotzdem machen wir das bei ZELIA, weil das Verkleinern eines Bildes mit Hilfe der äußersten schwarzen Punkte funktioniert. Diese Verkleinerung ist so wie der Fokusbereich sehr stark ausschlaggebend für schnelle Ergebnisse. 
+
+Der letzte Optimierungsversuch war mehrere "Worker" zu verwenden. Mit diesem Ansatz hat man allerdings kaum Zeit gewonnen, da mehrere "Worker" erst richtig performant werden, wenn man große Mengen an Text aus Bildern filtern will. Während das Initialisieren von einem OCR "Worker" rund 2,3 Sekunden dauert, brauchen zwei Worker rund 3,4 Sekunden. Dadurch das bei ZELIA die "Worker" wie oben genannt gleichzeitig erstellt werden, geht dieser Vorgang schneller als normalerweise. Trotzdem steigt die Dauer leicht an, wenn mehrere "Worker" initialisiert werden. Wenn ein OCR Prozess mit zwei "Workern" das Bild aus dem vorherigen Beispiel verarbeitet, dauert dies rund 630 Millisekunden. Diese Optimierung von rund 30 Millisekunden ist es im Fall von ZELIA nicht Wert, da es knapp über eine Sekunde länger dauert den ersten OCR Prozess zu starten.
+
+Nochmal kurz zusammengefasst: Die durchschnittlichen Zeiten die das OCR-Modul insgesamt braucht, liegen zwischen 400 und 700 Millisekunden, abhängig davon wie groß die Buchstaben in dem Fokusbereich stehen, also wie nah die Kamera vom Schild entfernt ist.
+

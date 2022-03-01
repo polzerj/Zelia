@@ -6,19 +6,28 @@ Mit Vite ist es möglich Module, welche mit NPM installiert wurden zu importiere
 
 \typescript{code/Vite/ModulResolving.ts}{Beispiel, wie Vite Abhängigkeiten von NPM Modulen auflöst}
 
+Diese Modul-Auflösung ist notwendig, um die OCR-Bibliothek Tesseract (Kapitel \ref{sec:tesseract}) einzubinden. 
+
 \hfour{"Hot Module Replacement"}
 
 Durch die Funktion des "Hot Module Replacements" ist es möglich einzelne Module der Seite zu aktualisieren, ohne dabei die ganze Webseite neu zu laden und die darin gespeicherten "application states" zu verlieren. "Hot Module Replacement" kann beispielsweise mit Vue und React genutzt werden. \cite{ViteFeatures}
   
 \hfour{TypeScript}
 
-Vite vereinfacht außerdem die Verwendung von TypeScript, da es automatisch transpiliert wird. Dabei wird esbuild\cite{esbuild} verwendet, wodurch der Typkompilierungsprozess um einiges schneller ist als beim tsc (TypeScript Compiler). \cite{ViteFeatures}
+Vite vereinfacht außerdem die Verwendung von TypeScript, da es automatisch transpiliert wird. 
+Durch das Source-Mapping wird das Debuggen des Codes ermöglicht, da ansonsten die Fehlermeldungen in Zeilen des Javascript-Codes, welcher aus dem TypeScript-Code generiert wird, angezeigt werden. 
 
-Bei Zeitmessungen sind hat der tsc Compiler bis zu 80\% länger gebraucht, als esbuild. Der Zeitunterschied bei den Versuchen ist zwar mit ca. einer Sekunde sehr gering, allerdings macht dies bei ständiger Durchführung der Transpilierung, bei jeder Speicherung, spürbare Unterschiede.
+Zum Transpilieren wird esbuild\cite{esbuild} verwendet, wodurch der TypeScript-Kompilierungsprozess um einiges schneller ist als beim tsc (TypeScript Compiler). \cite{ViteFeatures}
+
+Bei Zeitmessungen sind hat der "tsc"-Compiler bis zu 80\% länger gebraucht, als esbuild. Der Zeitunterschied bei den Versuchen mit einem Testprogramm ist mit ca. einer Sekunde gering. Damit sich alle Änderungen sofort auf die Webseite auswirken, ist es beim Webentwickeln üblich, dass der Code bei jeder Speicherung automatisch auf der lokal zur Verfügung gestellten Webseite übernommen werden. Dadurch bringen kurze Transpilierzeiten für Entwickler große Vorteile. 
 
 \hfour{CSS}
 
 Vite unterstützt außerdem, die Verwendung von CSS-Modulen, PostCSS, sowie auch "CSS Pre-processors". \cite{ViteFeatures}
+
+\hfour{Bundling}
+
+Um die Größe des Kompilierten Codes zu reduzieren, wird dieser bei der Verwendung des "build"-Befehls in eine einzelne Datei gebunden. Dabei werden Optimierungen durchgeführt. Zum Bundlen wird Rollup \cite{Rollup} verwendet.
 
 
 

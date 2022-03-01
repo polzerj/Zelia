@@ -1,6 +1,7 @@
 \htwo{Node.js}
+\label{sec:nodejs}
 \sectionauthor{Mersed Kečo}
-Node.js ist eine plattformübergreifende JavaScript-Laufzeitumgebung, die auf der V8 JS-Engine von Google basiert. Node.js wurde entwickelt, um skalierbare Netzwerkanwendungen zu erstellen. Node.js ist beeinflusst von Ruby's "Event Machine" und Pythons "Twisted" und ähnelt diesen im Design. Die aktuelle Node.js-Version ist die Version 17, während die Veröffentlichung der Version 18 für den 25. Oktober 2022 geplant ist. Laut W3Techs wird Node.Js von 1,2\% aller Webseiten genutzt. Auf das ganze Internet gerechnet sind das über 20 Millionen Webseiten, die mithilfe von Node.js betrieben werden. \cite{Node}
+Node.js ist eine plattformübergreifende Javascript-Laufzeitumgebung, die auf der V8 JS-Engine von Google basiert. Node.js wurde entwickelt, um skalierbare Netzwerkanwendungen zu erstellen. Node.js ist beeinflusst von Ruby's "Event Machine" und Pythons "Twisted" und ähnelt diesen im Design. Die aktuelle Node.js-Version ist die Version 17, während die Veröffentlichung der Version 18 für den 25. Oktober 2022 geplant ist. Laut W3Techs wird Node.Js von 1,2\% aller Webseiten genutzt. Auf das ganze Internet gerechnet sind das über 20 Millionen Webseiten, die mithilfe von Node.js betrieben werden. \cite{Node}
 
 \hfour{Die Architektur von Node.js}
 Die von Node.js verwendete Architektur der "Single Threaded Event Loop" wird dazu verwendet, mehrere Clients gleichzeitig handzuhaben. Um überhaupt dem Unterschied zwischen dieser und anderen Runtimes auf die Spuren zu kommen, ist es von oberster Priorität zu verstehen, wie Multithreaded Concurrent Clients in Java gehandhabt werden. \cite{NodeJs.dev}
@@ -62,12 +63,12 @@ Obwohl Node.js für eine Vielzahl von Anwendungen verwendet wird, sind einige An
     Bei SPAs wird die ganze Anwendung in einer Seite geladen. In der Regel bedeutet das, dass im Hintergrund gewisse Anfragen für bestimmte Komponenten gestellt werden. Die Eventschleife spielt in diesem Fall eine große Bedeutung.
     \item REST API-basierte Anwendungen
     \newline
-    JavaScript wird nicht nur im Frontend, sondern auch im Backend von Webseiten eingesetzt. Mithilfe von Node.js besitzt ein Server somit die Möglichkeit, über REST APIs mit dem Frontend zu kommunizieren. Erwähnenswert ist noch, dass über Node.js bestimmte Pakete wie zum Beispiel Express.js zur Verfügung gestellt wird, die es noch einfacher machen, Webanwendungen zu erstellen.
+    Javascript wird nicht nur im Frontend, sondern auch im Backend von Webseiten eingesetzt. Mithilfe von Node.js besitzt ein Server somit die Möglichkeit, über REST APIs mit dem Frontend zu kommunizieren. Erwähnenswert ist noch, dass über Node.js bestimmte Pakete wie zum Beispiel Express.js zur Verfügung gestellt wird, die es noch einfacher machen, Webanwendungen zu erstellen.
     \item Daten-Streaming
     \newline
     Bekannte Unternehmen wie Netflix und Disney+ nutzen Node.js für Streaming-Zwecke. Der Grund dafür ist der, dass die Laufzeitumgebung schnell und leichtgewichtig ist. Wichtig zu erwähnen ist, dass eine native Streaming-API in Node.js schon vorweg implementiert ist. Streams ermöglichen den Nutzern, Anfragen aneinander weiterzuleiten, was das Ergebnis mit sich bringt, dass die Daten direkt an ihr Ziel gestreamt werden.
     
-   \end{enumerate}
+\end{enumerate}
 \cite{Anwendungen}
 
 
@@ -83,16 +84,21 @@ In unserem Codebeispiel wird das http Modul als erstes geladen. Danach wird die 
 Node.js wird den Entwicklern mit dem bereits eingebauten Modul namens "HTTP" bereitgestellt, welches ermöglicht, Daten über das "HyperText Transfer Protocol" (HTTP) zu übertragen. \cite{HelloWorld}
 
 \hfour{NPM}
+\label{sec:npm}
 
 Der Node Package Manager (NPM) ist das Paket-System von Node.js. Es ist das größte Ökosystem aller Open Source Bibliotheken der Welt, mit über einer Millionen Pakete, weitere Pakete werden täglich releast. NPM ist kostenlos und hat eine sehr große Community, des öfteren Open Source Entwickler und begeisterte Programmierer. Die Firma, die hinter NPM steht, die sogenannte NPM INC. wurde 2014 gegründet und 2020 von GitHub aufgekauft.
 NPM wird mit einem Kommandozeilenprogramm ausgeliefert. Die Möglichkeit besteht auch, auf der Webseite von NPM nach gewünschten Paketen zu suchen und diese mit einem einzigen Befehl zu installieren. Die Versionierung der Pakete und die Überprüfung von Abhängigkeiten kann eingerichtet werden. Node.js ist ein Dreh – und Angelpunkt für Entwickler vor allem wegen dem Package Support.
-Die Sicherheit von Paketen ist bei NPM durch den bereits eingebauten Sicherheits-Scanner gegeben.
-
-%TODO: Sicherheitslücken von NPM erwähnen, Bezugspunkt zu ZELIA(wie ist das Projekt aufgebaut, was verwenden wir)
-\cite{NPM} \cite{NPM2}
+Die Sicherheit von Paketen ist bei NPM durch den bereits eingebauten Sicherheits-Scanner gegeben.\cite{NPM} \cite{NPM2}
 
 \begin{figure}[H]
     \centering
     \includegraphics{media/NodeJs/NPM.png}
     \caption{NPM Logo\cite{NPMLOGO}}
 \end{figure}
+
+\hfive{Sicherheitslücken}
+Wie auch jede Anwendung hat NPM anfänglich Probleme mit Sicherheitslücken gehabt, die zum Glück behoben werden konnten. Bei der ersten bekannten Sicherheitslücke, die nach der Übernahme von NPM durch GitHub im Jahr 2021 aufgetreten ist, war das Problem das man einfach neue Verisonen von beliebigen Paketen hochladen und somit gesehen Pakete hochladen, die auch mögliche Schadsoftware beeinhalten könnte. Das genaue Datum des erstmaligen Auftreten des Fehlers ist unbekannt, man vermutet aber das es mindestens seit September 2020 schon möglich gewesen wäre, diese Sicherheitslücke zu missbrauchen. \cite{NPMSecurity}
+
+%TODO: Bezugspunkt zu ZELIA(wie ist das Projekt aufgebaut, was verwenden wir)
+
+

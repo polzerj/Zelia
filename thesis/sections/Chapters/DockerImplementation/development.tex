@@ -1,21 +1,37 @@
 \hthree{Docker bei der Entwicklung}
 
-Zunächst wurde für die Entwicklung eine separate NGINX-Konfiguration (Siehe Code \ref{code:NginxDevConf}) erstellt, die den Entwicklungsserver, der von Vite betrieben wird, an den Client weitergibt.
+Zunächst wurde für die Entwicklung eine separate NGINX-Konfiguration (siehe Code \ref{code:NginxDevConf}) erstellt, die den Entwicklungsserver, der von Vite betrieben wird, an den Client weitergibt.
 
 \css[code:NginxDevConf]{code/Nginx/dev.conf}{NGINX-Konfiguration für die Entwicklung}
 
-Um das Gesamtprojekt bereitzustellen, werden vier verschiedene Docker-Container gestartet.
+Um das Gesamtprojekt bereitzustellen, werden vier verschiedene Docker-Container gestartet:
 
-Der erste ist die "MariaDB"-Datenbank, die alle Daten speichert. Der zweite ist die "API", die die Daten verwaltet und über unseren dritten Container, einen "NGINX"-Webserver, an die Webclients weiterleitet. Die Website selbst wird vom "Vite"-Entwicklungsserver bereitgestellt, der den vierten Container darstellt. 
+\begin{itemize}
+    \item "NGINX"-Webserver (Bereitstellung der Webseite)
+    \item "API"-Server (Verarbeitung der Daten)
+    \item "MariaDB"-Dateien (Speicherung der Daten)
+    \item "Vite"-Entwicklungsserver (Bereitstellung der Webseite mit automatischem Neuladen)
+\end{itemize}
+
+Diese Container kommunizieren miteinander in einem Docker Netzwerk (siehe Abbildung \ref{fig:DockerDevNetwork}). 
 
 \begin{figure}[H]
     \centering
     \includegraphics{media/Docker/DevNetwork.png}
     \caption{Docker-Netzwerk für die Entwicklung}
+    \label{fig:DockerDevNetwork}
 \end{figure}
 
-Um das Datenbankschema aufzubauen und "Dummy"-Daten einzufügen, können SQL-Skripte im Verzeichnis /docker-entrypoint-initdb.d/ angelegt werden. Dort werden sie beim Start des Docker-Containers in alphabetischer Reihenfolge ausgeführt. Daher wurden sie mit Zahlen beginnend benannt, um die Reihenfolge festzulegen.
+Um das Datenbankschema aufzubauen und Testdaten einzufügen, können SQL-Skripte im Verzeichnis {\ttfamily /docker-entrypoint-initdb.d/} angelegt werden. Dort werden sie beim Start des Docker-Containers in alphabetischer Reihenfolge ausgeführt. Deshalb wurden die SQL-Skripte durchnummeriert, um die Reihenfolge anzugeben (siehe Abbildung \ref{fig:SQLScriptDir}).
 
-Um "Secrets" wie das Passwort zur Datenbank zu schützen, werden sie aus Umgebungsvariablen übernommen. Damit es nicht notwendig ist, die "Environment"-Variablen jedes Mal manuell zu setzten, ist es bei Docker möglich, eine "Env"-Datei anzugeben, die alle Umgebungsvariablen speichert. 
+\begin{figure}
+    \centering
+    \includegraphics{media/Docker/SQLScriptDir.png}
+    \caption{Verzeichnis für SQL-Skripte}
+    \label{fig:SQLScriptDir}
+\end{figure}
+
+Um "Secrets" wie das Passwort zur Datenbank zu schützen, werden sie aus Umgebungsvariablen übernommen.
+Damit es nicht notwendig ist, die Umgebungsariablen jedes Mal manuell zu setzten, ist es bei Docker möglich, eine "Env"-Datei anzugeben, die alle Umgebungsvariablen speichert. 
 
 \css{code/Docker/dev.yaml}{Docker-YAML für die Entwicklung}

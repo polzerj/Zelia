@@ -1,22 +1,28 @@
 \htwo{TypeScript}
+\label{sec:TypeScript}
 \sectionauthor{Mersed Kečo}
 
-TypeScript ist eine von Microsoft entwickelte Programmiersprache, welche auf JavaScript beziehungsweiße, dem ECMAScript-6-Standard basiert. TypeScript unterstützt mithilfe von Modulen das Kapseln von Klassen, Interfaces, Funktionen und Variablen in eigene Namensräume(Namespaces). Dabei wird zwischen internen Modulen, welche sich an den Standard anlehnen und externen Modulen, welche eine JavaScript-Bibliothek wie AMD oder CommonJS verwenden, unterschieden.
-%TODO: Was ist ein externes Modul und was ist ein internes Modul, Unterschiede
-\cite{TypeScript}
+TypeScript ist eine von Microsoft entwickelte Programmiersprache, welche auf Javascript beziehungsweiße, dem ECMAScript-6-Standard basiert. TypeScript unterstützt mithilfe von Modulen das Kapseln von Klassen, Interfaces, Funktionen und Variablen in eigene Namensräume(Namespaces). Dabei wird zwischen internen Modulen, welche sich an den Standard anlehnen und externen Modulen, welche eine Javascript-Bibliothek wie AMD oder CommonJS verwenden, unterschieden. Wenn über interne Module gesprochen wird, meint man eigentlich damit die sogenannten "Namespaces", die für die Organisation von Code in TypeScript verwendet werden. Namensräume sind einfacher gesagt Javascript Objekte in den globalen Namensraum. Externe Module dienen dazu, mehrere externe Javascript-Dateien und Code zu definieren, Abhängigkeiten zwischen Dateien zu beschreiben und diese darzustellen. Um aber überhaupt das Laden von externen Java.Script Dateien zu ermöglichen, benötigt es einen "Module Loader", der meist verwendete ist RequieJs.
+
+Der Unterschied zwischen internen und externen Modulen ist der, das externe Module Abhängigkeiten besitzen und kompakter ist, was auch die Lesbarkeit des Codes erhöht.
+
+\cite{TypeScript}\cite{IntModules}\cite{ExtModules}
 
 \typescript{code/TypeScript/jsvsts.ts}{Js vs. Ts}
 
 
-Aufgrund des Zieles von TypeScript, nur die Erweiterung von JavaScript zu erreichen und beide Sprachen ein und denselben Sprachkern haben, ist der Code derselbe und keine Unterschiede sind bemerkbar. 
-%TODO: Unterschied zwischen JS und TS
+Aufgrund des Zieles von TypeScript, nur die Erweiterung von Javascript zu erreichen und beide Sprachen ein und denselben Sprachkern haben, ist der Code derselbe und keine Unterschiede sind bemerkbar. 
 \cite{TypeScript}
+
+
+\hthree{Features}
+Geschriebener Code in TypeScript kann nicht direkt von Browsern interpretiert werden und wird daher in Javascript-Code übersetzt, mit welchem der Browser den Code interpretieren und ausgeben kann. Dieser Vorgang kommt aus dem Englischen und heißt "Transpiling". Der Nutzen ist sehr gut durchdacht, man nehme den Quellcode, der in einer bestimmten Programmiersprache ist und dieser wird durch einen sogenannten "Transpiler" in eine andere Sprache übersetzt. Ein weiteres Features, welches auf dem Transpiling basiert, ist die direkte Konveriterung von Javascript in TypeScript. Dies geschieht mit dem Abändern der Dateiendung, so wird die Dateiendung .js einfach zu .ts. Zu guter Letzt kann TypeScript so kompiliert werden, das der Code in jedem Browser, auf jedem Gerät und Betriebssystem lauffähig ist. \cite{Differnces}
 
 
 \hthree{Problemlösungen mithilfe von TypeScript}
 Um sicherzustellen, dass der geschrieben Code keine Fehler enthält, gibt es die Möglichkeit automatisierte Tests anzufertigen und mithilfe dieser zu überprüfen, ob der Code in dieser Art und Weise, wie er geschrieben ist, fehlerfrei ist.
-Nicht viele Unternehmen haben die Unternehmensgröße von Microsoft, doch sind die meisten Probleme, die bei der Programmierung von Code mit JavaScript auftreten, diesselben. Große Codebasen bestehen aus mehreren Tausend Dateien. Bei der Änderung eines einzelnen Wertes in einer Datei, kann sich das Verhalten dieser und aber auch anderer Dateien vollkommen verändern.
+Nicht viele Unternehmen haben die Unternehmensgröße von Microsoft, doch sind die meisten Probleme, die bei der Programmierung von Code mit Javascript auftreten, diesselben. Große Codebasen bestehen aus mehreren Tausend Dateien. Bei der Änderung eines einzelnen Wertes in einer Datei, kann sich das Verhalten dieser und aber auch anderer Dateien vollkommen verändern.
 Die Validierung von Verbindungen kann dadurch schnell zeitaufwendig werden. Eine Sprache wie TypeScript kann dies automatisch erledigen und liefert während der Entwicklung sofortiges Feedback. Mithilfe dieser Funktion, versucht TypeScript Entwicklern eine bessere Übersicht über ihren Code zu geben und spart viel Zeit bei der Validierung, um sicherzustellen, dass die Entwickler das Projekt nicht versehentlich beschädigt haben oder dieser überhaupt nach dem Fertigschreiben lauffähig ist.
 
-%TODO: Features von TypeScript, Verwendung, Bezug zu ZELIA
+%TODO: Vorteile von TypeScript im Vergleich zu Javascript, Verwendung, Bezug zu ZELIA
 \cite{ScriptWiki}

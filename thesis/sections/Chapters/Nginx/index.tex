@@ -8,18 +8,16 @@ NGINX ist ein Webserver, Reverse-Proxy und E-Mail-Proxy, der von Igor Sysoev ent
 \cite{nginx}
 
 \hthree{Anwendung}
-NGINX wird in der Datei "nginx.conf" konfiguriert, die sich im Verzeichnis "/etc/nginx/" befinden muss. 
+NGINX wird in der Datei "nginx.conf" konfiguriert, die sich im Verzeichnis \linebreak \mbox{\ttfamily "/etc/nginx/"} befinden muss. 
 
 \css[code:nginxConf]{code/Nginx/example.conf}{Beispiel einer "nginx.conf" Datei}
 
 Im Folgenden wird der Server-Teil des Codebeispiels \ref{code:nginxConf} im Abschnitt http genauer betrachtet: \\
 Dort wird definiert, auf welchem Port der Server Verbindungen erwartet und ob er SSL verwenden soll oder nicht. Wenn NGINX für die Verwendung von SSL konfiguriert ist, müssen das SSL-Zertifikat und der Zertifikatsschlüssel dort konfiguriert werden.
 
-Innerhalb der Locations wird definiert, wie NGINX die Anfragen behandeln soll. \\
-In diesem Beispiel werden alle Anfragen innerhalb des "/api"-Pfads an den auf \\
-http://api:3001 laufenden Server weitergeleitet.
+Innerhalb der Locations wird definiert, wie NGINX die Anfragen behandeln soll. In diesem Beispiel werden alle Anfragen innerhalb des {\ttfamily "/api"}-Pfads an den auf \linebreak {\ttfamily http://api:3001} laufenden Server weitergeleitet.
 
-Für alle anderen Anfragen werden die Dateien aus dem Verzeichnis "/www" bereitgestellt. 
+Für alle anderen Anfragen werden die Dateien aus dem Verzeichnis {\ttfamily "/www"} bereitgestellt. 
 
-Da das Frontend von Zelia als eine SPA mit dynamischen Komponenten entwickelt wurde, ist die einzige Datei, die für jeden Pfad ausgeliefert werden muss, die Datei index.html. Dieses Verhalten wird mit dem Schlüsselwort "try\_files" konfiguriert. In diesem Fall wird versucht, die vom Client angeforderte Datei zu erhalten. Wenn sie nicht existiert, wird die Datei index.html ausgeliefert. Daher können Dateien wie CSS- oder JS-Dateien wie üblich abgerufen werden.
+Da das Frontend von Zelia als eine SPA (Singel Page Application) mit dynamischen Komponenten entwickelt wurde, ist die einzige Datei, die für jeden Pfad ausgeliefert werden muss, die Datei {\ttfamily index.html}. Dieses Verhalten wird mit dem Schlüsselwort {\ttfamily "try\_files"} konfiguriert. In diesem Fall wird versucht, die vom Client angeforderte Datei zu erhalten. Wenn sie nicht existiert, wird die Datei index.html ausgeliefert. Daher können Dateien wie CSS- oder JS-Dateien wie üblich abgerufen werden.
 

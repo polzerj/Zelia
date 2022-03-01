@@ -1,16 +1,28 @@
 \hfour{Indexed-DB}
 
-Eine ganz neue Art der Speicherung ist Indexed DB. Indexed DB ist eine Datenbank, die in den Webbrowser eingebaut ist, um eine große Menge an Daten als Objekte zu speichern. Jede Datenbank enthält so genannte Object-Stores. Dies sind Sammlungen von Daten. Innerhalb der Object-Stores können die Objekte gespeichert werden. Für jeden Object-Store muss ein Primärschlüssel definiert sein. Dies kann entweder ein Attribut des Objekts oder eine automatisch inkrementierende Ganzzahl sein. Um Datensätze durch die Suche nach anderen Eigenschaften schneller zu finden, kann ein Index erstellt werden. Diese indizierten Attribute müssen in jedem Eintrag des Object-Stores gesetzt werden.
+Eine neueste Entwicklung zur Speicherung von großen Datenmengen ist die Indexed-DB. 
+Diese ist eine Datenbank, welches den Entwicklern ermöglicht Daten in der Form von Objekten abzuspeichern.
 
-Die Indexed DB API ist allerdings nicht so einfach wie die für die Session- oder den Local-Storage. 
+Jede Datenbank enthält so genannte Object-Stores. Diese sind Sammlungen von Daten, welche als JSON Objekte abgespeichert sind. 
+Im Gegensatz zu relationalen Datenbanken ist bei Indexed-DB kein festes Schema erforderlich. 
+Dennoch muss immer ein Primärschlüssel definiert werden, welcher in diesem Object-Store für jedes Objekt einzigartig sein muss.
+Dieser kann entweder ein Attribut des Objektes sein oder durch eine automatisch inkrementierende Ganzzahl generiert werden. 
 
-Um mit Indexed DB arbeiten zu können muss zunächst ein sogenannter open request erstellt werden:
+Um Datensätze nach einer Eigenschaft zu durchsuchen, muss ein Index erstellt werden. Ein indiziertes Attribut muss in jedem Objekt des Object-Stores vorhanden sein.
+
+Die Indexed DB API ist allerdings nicht so einfach zu implementieren wie die für den Session- oder den Local-Storage. 
+
+Um mit Indexed DB arbeiten zu können muss zunächst ein sogenannter "open request" erstellt werden:
 
 \typescript{code/Webspeicher/openRequest.ts}{Erstellen eines Indexed-DB Open-Requests}
 
-Auf dem Open Request Objekt gibt es mehrere Events. Das Event "upgradeneeded" wird ausgelöst, wenn die geöffnete Datenbank noch nicht erstellt wurde oder wenn die Version erhöht wurde. Innerhalb dieses Ereignisses müssen die Object Stores und die Indizes erstellt werden: 
+Auf dem Open Request Objekt gibt es mehrere Events. 
+Das Event "upgradeneeded" wird ausgelöst, wenn die geöffnete Datenbank noch nicht erstellt wurde oder wenn die Version erhöht wurde. 
+Innerhalb dieses Ereignisses müssen die Object Stores und die Indizes erstellt werden (siehe Code \ref{code:createDB}). 
+Beim Erstellen des Object-Stores müssen der Name des Object-Stores und der Primärschlüssel definiert werden. Wenn der Primärschlüssel automatisch generiert werden soll, muss dies durch die Eigenschaft "autoIncrement", welche auf "true" gesetzt werden muss, angegeben werden.
+Wenn der Object-Store erstellt ist, können über Attribute Indizes erstellt werden. Dabei muss jedem Index ein Name gegeben werden und ein Attribut angegeben werden, welches durch den Index indiziert werden soll. Außerdem kann definiert werden, ob dieses Attribut einzigartig sein soll.
 
-\typescript{code/Webspeicher/createDB.ts}{Erstellen und ändern des Datenbankschemas}
+\typescript[code:createDB]{code/Webspeicher/createDB.ts}{Erstellen und ändern des Datenbankschemas}
 
 Das Event "Success" wird nach der vollständigen Initialisierung der Datenbank ausgelöst, falls erforderlich. Nach dem Success Event sind alle Arten von Manipulationen und Abfragen der Daten möglich. Um Daten aus der Indexed DB abzurufen, muss eine Transaktion unter Verwendung des Indexed Database Objekts erstellt werden. Das Indexed Database Objekt ist als Ergebnis des Open Request abrufbar.
 
