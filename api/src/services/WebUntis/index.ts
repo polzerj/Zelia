@@ -6,19 +6,9 @@ export let isValidLogin = false;
 import { NoConnectionException } from "../../data/Exceptions/NoConnectionException";
 import { RoomNotFoundException } from "../../data/Exceptions/RoomNotFoundException";
 
-const {
-    WEBUNTIS_SCHOOL,
-    WEBUNTIS_USERNAME,
-    WEBUNTIS_PASSWORD,
-    WEBUNTIS_BASE_URL,
-} = process.env;
+const { WEBUNTIS_SCHOOL, WEBUNTIS_USERNAME, WEBUNTIS_PASSWORD, WEBUNTIS_BASE_URL } = process.env;
 
-const untis = new WebUntis(
-    WEBUNTIS_SCHOOL,
-    WEBUNTIS_USERNAME,
-    WEBUNTIS_PASSWORD,
-    WEBUNTIS_BASE_URL
-);
+const untis = new WebUntis(WEBUNTIS_SCHOOL, WEBUNTIS_USERNAME, WEBUNTIS_PASSWORD, WEBUNTIS_BASE_URL);
 
 const cache = new WebUntisCache();
 
@@ -26,12 +16,10 @@ export async function login() {
     await untis.login();
 }
 
-export async function getTimetableByRoomNumber(
-    roomNum: string
-): Promise<Lesson[]> {
+export async function getTimetableByRoomNumber(roomNum: string): Promise<Lesson[]> {
     var table;
     if (/^([A-Z]|[a-z])/.test(roomNum)) roomNum = roomNum.substr(1);
-    let date = new Date();
+    let date = new Date("02/28/2022");
     let roomId = await getIDbyRoomNumber(roomNum);
 
     if (cache.timetableAvailable(roomId)) {
@@ -141,10 +129,7 @@ async function getIDbyRoomNumber(RoomNumber: string) {
 
 function stringifyDate(date: number) {
     let dateStr = `${date}`;
-    return `${dateStr.substr(6, 2)}.${dateStr.substr(4, 2)}.${dateStr.substr(
-        0,
-        4
-    )}`;
+    return `${dateStr.substr(6, 2)}.${dateStr.substr(4, 2)}.${dateStr.substr(0, 4)}`;
 }
 
 function stringifyTime(time: number) {

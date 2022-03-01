@@ -37,11 +37,51 @@ export default class OCR extends Component<SearchElements> {
         this.virtualScreen = document.createElement("canvas");
 
         this.elements.canvas.style.width = "100%";
+
+        //this.inject();
+    }
+
+    async inject() {
+        this.link = async (stream: MediaStream) => {
+            let img = this.shadowRoot?.querySelector("#img") as HTMLImageElement;
+
+            console.log(img);
+            this.virtualCamera = img;
+
+            //let ratio = videoWidth / videoHeight; S 2410   Lehrsaal 1 AHITN
+            this.elements.canvas.width = img.width; //646 × 218
+            this.elements.canvas.height = img.height;
+
+            //this.elements.canvas.style.width = "100%";
+
+            //let centerY = this.elements.canvas.height / 2;
+
+            let ctx = this.elements.canvas.getContext("2d")!;
+
+            const render = () => {
+                ctx.drawImage(img, 0, 0);
+
+                ctx.fillStyle = "rgba(0,0,0,0.5)";
+                ctx.fillRect(0, 0, this.elements.canvas.width, centerY - 100);
+                ctx.fillRect(0, centerY + 100, this.elements.canvas.width, this.elements.canvas.height);
+
+                requestAnimationFrame(render);
+            };
+            requestAnimationFrame(render);
+
+            // start ocr interval
+            this.virtualScreen.width = this.elements.canvas.width;
+            this.virtualScreen.height = this.elements.canvas.height;
+
+            this.ocrIntervalCancelToken.id = setInterval(this.doOcr.bind(this), this.ocrInterval) as any;
+
+            document.body.append(this.virtualScreen);
+        };
+        await this.workerTask;
     }
 
     removeEventListenerCallback() {
-        if (this.ocrIntervalCancelToken.id)
-            clearInterval(this.ocrIntervalCancelToken.id);
+        if (this.ocrIntervalCancelToken.id) clearInterval(this.ocrIntervalCancelToken.id);
         this.stream?.getTracks().forEach((track) => {
             track.stop();
         });
@@ -71,6 +111,7 @@ export default class OCR extends Component<SearchElements> {
 
     async link(stream: MediaStream) {
         this.stream = stream;
+        let img = this.shadowRoot?.querySelector("#img") as HTMLImageElement;
 
         this.virtualCamera.srcObject = stream;
         await this.workerTask;
@@ -79,6 +120,8 @@ export default class OCR extends Component<SearchElements> {
 
         // create canvas and show borders
         let { videoWidth, videoHeight } = this.virtualCamera;
+
+        logger.log(videoWidth, videoHeight);
 
         //let ratio = videoWidth / videoHeight;
         this.elements.canvas.width = videoWidth;
@@ -91,16 +134,11 @@ export default class OCR extends Component<SearchElements> {
         let ctx = this.elements.canvas.getContext("2d")!;
 
         const render = () => {
-            ctx.drawImage(this.virtualCamera, 0, 0);
+            ctx.drawImage(img, -250, 0);
 
             ctx.fillStyle = "rgba(0,0,0,0.5)";
             ctx.fillRect(0, 0, this.elements.canvas.width, centerY - 100);
-            ctx.fillRect(
-                0,
-                centerY + 100,
-                this.elements.canvas.width,
-                this.elements.canvas.height
-            );
+            ctx.fillRect(0, centerY + 100, this.elements.canvas.width, this.elements.canvas.height);
 
             requestAnimationFrame(render);
         };
@@ -110,30 +148,24 @@ export default class OCR extends Component<SearchElements> {
         this.virtualScreen.width = this.elements.canvas.width;
         this.virtualScreen.height = 200;
 
-        this.ocrIntervalCancelToken.id = setInterval(
-            this.doOcr.bind(this),
-            this.ocrInterval
-        ) as any;
+        this.ocrIntervalCancelToken.id = setInterval(this.doOcr.bind(this), this.ocrInterval) as any;
     }
     doOcr() {
-        this.virtualScreen
-            .getContext("2d")
-            ?.drawImage(
-                this.virtualCamera,
-                0,
-                -(this.elements.canvas.height - 200) / 2
-            );
+        this.virtualScreen.getContext("2d")?.drawImage(this.virtualCamera, 0, 600);
 
         let area = compress(this.virtualScreen);
 
+        let end = logger.time("ocr" + Math.random());
         this.ocr.convert(this.virtualScreen, area).then((s) => {
             logger.log(s);
+
+            end();
 
             // TODO: check for room number and route to site :)
             let num = getMatchingPart(s) ?? "";
             if (isRoomNumberValid(num)) {
                 logger.info("found:" + num);
-                router.redirect("/room/" + num);
+                //router.redirect("/room/" + num);
             }
         });
     }
@@ -148,9 +180,10 @@ export default class OCR extends Component<SearchElements> {
 }
 
 function compress(virtualScreen: HTMLCanvasElement) {
-    let imgData = virtualScreen
-        .getContext("2d")!
-        .getImageData(0, 0, virtualScreen.width, virtualScreen.height);
+    //return { top: 0, left: 0, width: virtualScreen.width, height: virtualScreen.height };
+
+    let end = logger.time("compress" + Math.random());
+    let imgData = virtualScreen.getContext("2d")!.getImageData(0, 0, virtualScreen.width, virtualScreen.height);
 
     let data = imgData.data;
 
@@ -185,6 +218,8 @@ function compress(virtualScreen: HTMLCanvasElement) {
     }
 
     virtualScreen.getContext("2d")!.putImageData(imgData, 0, 0);
+
+    end();
 
     return {
         top: leftTopPoint.y,

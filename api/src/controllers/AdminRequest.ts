@@ -9,35 +9,41 @@ import { DatabaseNotAvailableException } from "../data/Exceptions/DatabaseNotAva
 import { NoAdminUsersFoundException } from "../data/Exceptions/NoAdminUsersFoundException";
 
 export default class AdminRequest extends ControllerBase {
-    constructor() {
-        super("/admin/requests", { get: [AuthenticationMiddleware] });
-    }
+  constructor() {
+    super("/admin/requests", { get: [AuthenticationMiddleware] });
+  }
 
-    async get(req: Request, res: Response) {
-        try {
-            let reqs = [...(await getAllRoomReports()), ...(await getAllRoomReservations())];
+  async get(req: Request, res: Response) {
+    try {
+      console.log("OKOK");
 
-            let toSend = [];
-            for (const req of reqs) {
-                if (req instanceof RoomReport) {
-                    toSend.push(Report.fromDB(req));
-                } else if (req instanceof RoomReservation) {
-                    toSend.push(Booking.fromDB(req));
-                }
-            }
-            res.json(toSend);
-        } catch (e) {
-            if (e instanceof NoAdminUsersFoundException) {
-                res.status(401).send("Invalid Login Name|Password");
-                return;
-            }
+      let reqs = [...(await getAllRoomReports()), ...(await getAllRoomReservations())];
 
-            if (e instanceof DatabaseNotAvailableException) {
-                res.status(500).send("Database not available");
-                return;
-            }
+      console.log(reqs);
 
-            res.status(501).send("Other Server error");
+      let toSend = [];
+      for (const req of reqs) {
+        if (req instanceof RoomReport) {
+          toSend.push(Report.fromDB(req));
+        } else if (req instanceof RoomReservation) {
+          toSend.push(Booking.fromDB(req));
         }
+      }
+      res.json(toSend);
+    } catch (e) {
+      console.log(e);
+
+      if (e instanceof NoAdminUsersFoundException) {
+        res.status(401).send("Invalid Login Name|Password");
+        return;
+      }
+
+      if (e instanceof DatabaseNotAvailableException) {
+        res.status(500).send("Database not available");
+        return;
+      }
+
+      res.status(501).send("Other Server error");
     }
+  }
 }

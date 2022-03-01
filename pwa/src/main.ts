@@ -107,12 +107,12 @@ function main() {
 }
 
 function notFoundPage() {
-    const testComponent = document.createElement("not-found");
+    const testComponent = new NotFoundError();
     app.append(testComponent);
 }
 function rootPage() {
     const testComponent = document.createElement("test-component");
-    const roomInput = document.createElement("zelia-room-input");
+    const roomInput = new RoomInput();
 
     app.append(testComponent);
     app.append(roomInput);
@@ -157,10 +157,7 @@ function reportPage(variables?: PathVariables) {
     if (variables?.roomNumber) report.roomNumber = variables?.roomNumber;
 
     if (variables?.roomNumber) {
-        appendLink(
-            "<- Back to " + variables?.roomNumber,
-            "/room/" + variables?.roomNumber
-        );
+        appendLink("<- Back to " + variables?.roomNumber, "/room/" + variables?.roomNumber);
     }
     app.append(report);
 }
@@ -172,10 +169,7 @@ function bookingPage(variables?: PathVariables) {
     if (variables?.roomNumber) report.roomNumber = variables?.roomNumber;
 
     if (variables?.roomNumber) {
-        appendLink(
-            "<- Back to " + variables?.roomNumber,
-            "/room/" + variables?.roomNumber
-        );
+        appendLink("<- Back to " + variables?.roomNumber, "/room/" + variables?.roomNumber);
     }
     app.append(report);
 }
@@ -188,9 +182,7 @@ function appendLink(text: string, path: string) {
 }
 
 function adminPage() {
-    const adminLogin = document.createElement(
-        "zelia-admin-login"
-    ) as AdminLogin;
+    const adminLogin = document.createElement("zelia-admin-login") as AdminLogin;
     app.append(adminLogin);
 }
 
@@ -200,8 +192,6 @@ function dashboardPage() {
         return;
     }
 
-    const adminDashboard = document.createElement(
-        "zelia-admin-dashboard"
-    ) as Dashboard;
+    const adminDashboard = document.createElement("zelia-admin-dashboard") as Dashboard;
     app.append(adminDashboard);
 }
