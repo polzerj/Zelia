@@ -1,8 +1,4 @@
-import {
-    getTimetableViewOfTimegridAndTimetable,
-    simplifyLesson,
-    timetableToSortedTimetable,
-} from "../services/mapper/timetable";
+import { getTimetableViewOfTimegridAndTimetable, simplifyLesson, timetableToSortedTimetable } from "../services/mapper/timetable";
 import { getTimeGrid } from "../services/timegrid";
 import Timegrid from "../services/timegrid/Timegrid";
 import { getTimetableByRoomNumber } from "../services/timetable";
@@ -54,26 +50,27 @@ export default class Timetable extends Component<SearchElements> {
     private async createTimetableElements(lessons: Lesson[]) {
         let table = timetableToSortedTimetable(lessons);
         const grid = await this.timegrid;
-        const griddedTimeTable = getTimetableViewOfTimegridAndTimetable(
-            table,
-            grid[0]
-        );
-        for (const lessonName in griddedTimeTable) {
-            const lesson = griddedTimeTable[lessonName];
+        const griddedTimeTable = getTimetableViewOfTimegridAndTimetable(table, grid[0]);
+        const lessonNames = Object.keys(griddedTimeTable);
+
+        for (let i = 0; i < lessonNames.length; i++) {
+            const lesson = griddedTimeTable[lessonNames[i]];
+            if (this.elements.view.children.length == 0 && !lesson) continue;
+
             let lessonID = document.createElement("div");
-            lessonID.textContent = lessonName;
+            lessonID.textContent = lessonNames[i];
             lessonID.classList.add("lessonID");
+
             this.elements.view.append(lessonID);
 
             let subject = document.createElement("div");
             if (lesson) {
                 const simplifiedLesson = simplifyLesson(lesson);
                 subject.classList.add("subject");
-                subject.textContent = `${simplifiedLesson.subject[0]} - ${
-                    simplifiedLesson.class[0]
-                } - ${simplifiedLesson.teacher.join(", ")}`;
+                subject.textContent = `${simplifiedLesson.subject[0]} - ${simplifiedLesson.class[0]} - ${simplifiedLesson.teacher.join(
+                    ", "
+                )}`;
             }
-
             this.elements.view.append(subject);
         }
 
