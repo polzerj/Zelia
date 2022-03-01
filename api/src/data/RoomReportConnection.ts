@@ -1,18 +1,4 @@
-import {
-  Sequelize,
-  Model,
-  ModelDefined,
-  DataTypes,
-  HasManyGetAssociationsMixin,
-  HasManyAddAssociationMixin,
-  HasManyHasAssociationMixin,
-  Association,
-  HasManyCountAssociationsMixin,
-  HasManyCreateAssociationMixin,
-  Optional,
-  where,
-  IntegerDataType,
-} from "sequelize";
+import { Model, DataTypes } from "sequelize";
 
 import RoomReportEntity from "./entities/RoomReportEntity";
 import { Room } from "./RoomConnection";
