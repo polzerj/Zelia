@@ -1,18 +1,18 @@
 \hfour{Indexed-DB}
 
-Eine neueste Entwicklung zur Speicherung von großen Datenmengen ist die Indexed-DB. 
-Diese ist eine Datenbank, welches den Entwicklern ermöglicht Daten in der Form von Objekten abzuspeichern.
+Eine neue Entwicklung zur Speicherung von großen Datenmengen ist die Indexed-DB. 
+Diese ist eine Datenbank, welche den Entwicklern ermöglicht Daten in der Form von Objekten abzuspeichern.
 
 Jede Datenbank enthält so genannte Object-Stores. Diese sind Sammlungen von Daten, welche als JSON Objekte abgespeichert sind. 
-Im Gegensatz zu relationalen Datenbanken ist bei Indexed-DB kein festes Schema erforderlich. 
+Im Gegensatz zu relationalen Datenbanken ist bei der Indexed-DB kein festes Schema erforderlich. 
 Dennoch muss immer ein Primärschlüssel definiert werden, welcher in diesem Object-Store für jedes Objekt einzigartig sein muss.
 Dieser kann entweder ein Attribut des Objektes sein oder durch eine automatisch inkrementierende Ganzzahl generiert werden. 
 
 Um Datensätze nach einer Eigenschaft zu durchsuchen, muss ein Index erstellt werden. Ein indiziertes Attribut muss in jedem Objekt des Object-Stores vorhanden sein.
 
-Die Indexed DB API ist allerdings nicht so einfach zu implementieren wie die für den Session- oder den Local-Storage. 
+Die Indexed-DB-API ist allerdings nicht so einfach zu implementieren wie die für den Session- oder den Local-Storage. 
 
-Um mit Indexed DB arbeiten zu können muss zunächst ein sogenannter "open request" erstellt werden:
+Um mit Indexed-DB arbeiten zu können muss zunächst ein sogenannter "open request" erstellt werden:
 
 \typescript{code/Webspeicher/openRequest.ts}{Erstellen eines Indexed-DB Open-Requests}
 
@@ -24,7 +24,7 @@ Wenn der Object-Store erstellt ist, können über Attribute Indizes erstellt wer
 
 \typescript[code:createDB]{code/Webspeicher/createDB.ts}{Erstellen und ändern des Datenbankschemas}
 
-Das Event "Success" wird nach der vollständigen Initialisierung der Datenbank ausgelöst, falls erforderlich. Nach dem Success Event sind alle Arten von Manipulationen und Abfragen der Daten möglich. Um Daten aus der Indexed DB abzurufen, muss eine Transaktion unter Verwendung des Indexed Database Objekts erstellt werden. Das Indexed Database Objekt ist als Ergebnis des Open Request abrufbar.
+Das Event "Success" wird nach der vollständigen Initialisierung der Datenbank ausgelöst, falls erforderlich. Wenn die Datenbank bereits initialisiert wurde, wird das sofort ausgelöst. Nach dem Success Event sind alle Arten von Manipulationen und Abfragen der Daten möglich. Um Daten aus der Indexed-DB abzurufen, muss eine Transaktion unter Verwendung des "Indexed Database Objekts" erstellt werden. Das "Indexed Database Objekt" ist als Ergebnis des "Open Request" abrufbar.
 
 \typescript{code/Webspeicher/getByPrimaryKey.ts}{Abfragen von Datensätzen mit einem Primärschlüssel}
 
@@ -34,6 +34,6 @@ Attribut nicht eindeutig sein muss, gibt es zwei Methoden, um die Daten zu erhal
 
 \typescript{code/Webspeicher/getByIndex.ts}{Abfragen von Datensätzen mit einem Index}
 
-Die Add-Methode des Object Stores erlaubt es Objekte hinzuzufügen und die Put-Methode überschreibt bestehende.
+Die Add-Methode des Object Stores erlaubt es Objekte hinzuzufügen.Die Put-Methode überschreibt bestehende Objekte.
 \cite{MDNIndexedDB}
 \cite{MDNUsingIndexedDB}
