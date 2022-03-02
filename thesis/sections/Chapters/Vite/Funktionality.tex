@@ -2,7 +2,8 @@
 
 \hfour{NPM Abhängigkeits Auflösung}
 
-Mit Vite ist es möglich Module, welche mit NPM installiert wurden zu importieren. Die ES import Anweisungen unterstützen nicht die Angabe von Modulen. Vite wandelt die importierten CommonJS-Module in ES-Module (ESM) um. CommonJS beschreibt eine Art von Modulen, welche bei NodeJS verwendet wird. Außerdem werden mit Vite die "import"-Anweisungen auf im Browser verwendbare URL umgeschrieben. \cite{ViteFeatures}
+Mit Vite ist es möglich Module, welche mit NPM (Siehe Kapitel \ref{sec:npm}) installiert wurden zu importieren. 
+Die ES import Anweisungen im Browser unterstützen nicht die Angabe von NPM-Modulen. Vite wandelt die importierten CommonJS-Module in ES-Module (ESM) um. CommonJS beschreibt eine Art von Modulen, welche bei NodeJS verwendet wird. Außerdem werden mit Vite die "import"-Anweisungen auf im Browser verwendbare URL umgeschrieben. \cite{ViteFeatures}
 
 \typescript{code/Vite/ModulResolving.ts}{Beispiel, wie Vite Abhängigkeiten von NPM Modulen auflöst}
 
@@ -15,20 +16,26 @@ Durch die Funktion des "Hot Module Replacements" ist es möglich einzelne Module
 \hfour{TypeScript}
 
 Vite vereinfacht außerdem die Verwendung von TypeScript, da es automatisch transpiliert wird. 
-Durch das Source-Mapping wird das Debuggen des Codes ermöglicht, da ansonsten die Fehlermeldungen in Zeilen des Javascript-Codes, welcher aus dem TypeScript-Code generiert wird, angezeigt werden. 
+Durch das transpilieren von TypeScript werden verschieben sich die Zeilen im Javascript-Code, da Typescript-spezifische Syntax wegfällt. 
+Damit die Fehlermeldungen dennoch an der richtigen Stelle angezeigt werden, bietet Vite die Funktion der "Source Maps". 
+Dabei werden beim Transpilieren Dateien erstellt, welche die nötige Informationen beinhalten, um Debuggen zu ermöglichen.
 
 Zum Transpilieren wird esbuild\cite{esbuild} verwendet, wodurch der TypeScript-Kompilierungsprozess um einiges schneller ist als beim tsc (TypeScript Compiler). \cite{ViteFeatures}
 
-Bei Zeitmessungen sind hat der "tsc"-Compiler bis zu 80\% länger gebraucht, als esbuild. Der Zeitunterschied bei den Versuchen mit einem Testprogramm ist mit ca. einer Sekunde gering. Damit sich alle Änderungen sofort auf die Webseite auswirken, ist es beim Webentwickeln üblich, dass der Code bei jeder Speicherung automatisch auf der lokal zur Verfügung gestellten Webseite übernommen werden. Dadurch bringen kurze Transpilierzeiten für Entwickler große Vorteile. 
+Bei Zeitmessungen braucht der "tsc"-Compiler bis zu 80\% länger als esbuild. Der Zeitunterschied bei den Versuchen mit einem Testprogramm scheint mit ca. einer Sekunde gering. Damit sich alle Änderungen sofort auf die Webseite auswirken, ist es beim Webentwickeln üblich, dass der Code bei jeder Speicherung automatisch auf die lokal zur Verfügung gestellten Webseite übernommen wird. Dadurch bringen kurze Transpilierzeiten für Entwickler große Vorteile. 
 
 \hfour{CSS}
 
 Vite unterstützt außerdem, die Verwendung von CSS-Modulen, PostCSS, sowie auch "CSS Pre-processors". \cite{ViteFeatures}
 
-\hfour{Bundling}
+\begin{minipage}{\textwidth}
 
-Um die Größe des Kompilierten Codes zu reduzieren, wird dieser bei der Verwendung des "build"-Befehls in eine einzelne Datei gebunden. Dabei werden Optimierungen durchgeführt. Zum Bundlen wird Rollup \cite{Rollup} verwendet.
+    \hfour{Bundling}
+    
+    Um die Größe des Kompilierten Codes zu reduzieren, wird dieser bei der Verwendung des "build"-Befehls in eine einzelne Datei gebunden. Dabei werden Optimierungen durchgeführt. Zum Bundlen wird Rollup \cite{Rollup} verwendet.
 
-
+\end{minipage}
+    
+    
 
 %todo: eventuell WebAssembly und Service Worker
