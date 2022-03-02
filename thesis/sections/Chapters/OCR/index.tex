@@ -48,7 +48,7 @@ Tesseract ist eine Software-Bibliothek aus 1985, die 2005 als Open-Source-Projek
 
 Wie schon beschrieben, kann man eine Raumnummer, nicht nur eingeben, sondern auch mit der Kamera eines Smartphones einscannen. Um die Raumnummer aus den Bildern auszulesen brauchen wird somit einen "Optical Character Recognition"-Prozess. Dabei wird die Bibliothek "TesseractJS", eine Web-Version von "Tesseract OCR", direkt im Browser eingebunden, um die Bilder von Raumnummern zu Text zu verarbeiten.\cite{TesseractJS}\cite{TesseractJSImplementation}
 
-Um das eben Erwähnte umzusetzen, gibt es bei ZELIA im Komponentensystem eine Komponente, welche genau diese Funktionalität bewerkstelligt. Diese Komponente wird auf der OCR-Seite des Frontends eingebunden. Sie beinhaltet ein Videoelement, um zu zeigen was sie scannt. Um auf die Kamera eines Gerätes aus einem Webbrowser zugreifen zu können, muss über den "Browser Navigator" angefragt werden, ob die Kamera verwendet werden darf. (siehe Code \ref{code:CameraAccess})
+Um das eben Erwähnte umzusetzen, gibt es bei ZELIA im Komponentensystem eine Komponente, welche genau diese Funktionalität bewerkstelligt. Diese Komponente wird auf der OCR-Seite des Frontends eingebunden. Sie beinhaltet ein Videoelement, um zu zeigen was sie scannt. Um auf die Kamera eines Gerätes aus einem Webbrowser zugreifen zu können, muss über den "Browser Navigator" angefragt werden, ob die Kamera verwendet werden darf (siehe Code \ref{code:CameraAccess}).
 
 \typescript[code:CameraAccess]{code/OCR/nav.ts}{Zugriff auf eine Kamera im Browser}
 
