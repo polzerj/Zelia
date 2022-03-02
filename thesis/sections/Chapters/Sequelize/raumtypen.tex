@@ -4,8 +4,10 @@ Um Informationen über einen Raum korrekt anzeigen zu können ist es wichtig, da
 
 Im Code wird das folgendermaßen realisiert:
 
-Zuerst wird wieder das Schlüsselwort "export" angegeben, um den Typ in allen File zugreifbar zu haben. Danach wird der Name angegeben und nach einem Ist gleich und einer runden Klammer auf werden nun die einzelnen Werte angegeben und dabei unter doppelte Hochkommer gestellt. Sollte man mehrere Werte auswählen können, so ist es erforderlich, nach dem Schließen der runden Klammer eckige Klammern zu machen, um dadurch ein Array zu generieren, welches eine Mehrauswahl zulässt.
+Zuerst wird wieder das Schlüsselwort "export" angegeben, um den Typ in allen File zugreifbar zu haben. Weiters muss diesem Typ einen Name bekommen. Die einzelnen Werte des Typen eingetragen werden. Im nachfolgenden Beispiel wird dadurch festgelegt, dass ein Raum nur einen der folgenden Werte annehmen darf.
 
 \typescript{code/Sequelize/einfach.ts}{Einfachauswahl eines Raumtypen}
+
+Eine Mehrfachauswahl wird durch ein Array zum Schluss ermöglicht.
 
 \typescript{code/Sequelize/mehrfach.ts}{Mehrfachauswahl einer Verbindungsmöglichkeit für den Beamer}

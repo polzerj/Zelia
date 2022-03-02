@@ -1,19 +1,17 @@
-\hfour{Datenbankinsertscript}
+\hfour{Script zum Erzeugen von Daten zu Testzwecken}
+
+Um unterschiedliche Softwaretests des Produkts durchführen zu können, wurden Testdaten in das Datenbanksystem eingebunden.
 
 \sql{code/MariaDb/DatabaseInsertScript.sql}{Script zum Einfügen von Dummydaten}
 
-Um die Datenbank dann auch mit Testdaten für diverseste Testszenarien zu befüllen ist folgendes zu tun:
-
-Im ersten Schritt müssen wir wieder eine Datenbank auswählen, welche vorher schon angelegt wurde. Wie oben in beiden Skripten ausgeführt ist das Schlüsselwort "USE" gefolgt vom Datenbanknamen dafür zuständig.
+Die Datenbank muss in Verwendung gebracht werden. Hierfür wird der Befehl "USE" verwendet.
 
 \sql{code/MariaDb/use.sql}{Verwenden einer Datenbank}
 
-Nun müssen die Datensätze in die Datenbank eingeben werden. Zu Beginn wird hierfür das Kommando "INSERT INTO" nachfolgend von der gewünschten Tabelle, welche vorher ebenfalls erstellt werden muss. Weiters werden nachher zwischen runden Klammern die verschiedene Spaltennamen aufgelistet, welche die Tabelle beinhalten muss. Folgender Code ist dient zur besseren Verständlichkeit:
+Durch den Befehl "INSERT INTO" können Datensätze in einer Tabelle angelegt werden. Die Tabelle muss im Vorhinein schon durch "CREATE TABLE" angelegt worden sein.
 
 \sql{code/MariaDb/insertAdminUser.sql}{Aufrufen von "INSERT INTO"}
 
-Zu guter Letzt müssen nur noch die Datensätze eingefügt werden. Hierbei muss nach den vorher angeführten Codezeilen das Schlüsselwort "VALUES" verwendet werden. Nachher werden erneut in runden Klammern die Werte angeführt und mit einem Beistrich voneinander getrennt. Die jeweiligen Datensätze werden ebenfalls mit einem Beistrich voneinander getrennt. Nach dem letzten angeführten Datensatz folgt ein Strichpunkt als Abschluss.
-
-Der folgende Code dient zur besseren Verständlichkeit:
+Mit dem Befehl "VALUES" werden dann die Datenwerte zum dazugehörigen Datensatz angegeben.
 
 \sql{code/MariaDb/insertValues.sql}{Einfügen von Werten in eine Tabelle}

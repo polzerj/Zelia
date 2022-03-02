@@ -1,13 +1,13 @@
 \hthree{Installation von Sequelize}
 
-Um Sequelize in seiner Gesamtheit und all seinen Vorteilen nutzen zu können, ist es erforderlich die Bibliothek zu installieren. Um die Installation erfolgreich abzuschließen, erleichtert der Node Package Manager (NPM), wo Sequelize vorhanden ist, dem Entwickler einiges, da man durch folgenden Befehl die Bibliothek unkompliziert installieren kann:
+Um "Sequelize" in einem Softwareprojekt nutzen zu können, ist ein erforderlich die Bibliothek zu installieren. Hierfür kann der "Node Package Manager" (siehe Kapitel \ref{sec:npm} NPM) verwendet werden.
 
 \typescript{code/Sequelize/install.bash}{Installation von Sequelize}
 
 \cite{Sequelize}
 
-Jedoch ist es auch wichtig, dass der Entwickler die Treiber für das verwendete und implementierte Datenbanksystem händisch nachinstalliert. Diese sind im Fall von ZELIA die Treiber für MariaDB. Sequelize würde aber Fünf Datenbanksysteme unterstützen, darunter auch den Microsoft SQL-Server. Die Treiber für MariaDB werden durch die folgende Zeile installiert:
+Außerdem müssen Treiber für das jeweils verwendete Datenbanksystem nachinstalliert werden. Im nachfolgenden Beispiel werden Treiber für "MariaDB" installiert. "Sequelize" würde aber mehrere Datenbanksysteme unterstützen, unter anderem auch den Microsoft SQL-Server.
 
-\typescript{code/Sequelize/installMariaDb.bash}{Installation der MariaDB Treiber}
+\typescript{code/Sequelize/installMariaDb.bash}{Installation der MariaDB Treiber \label{code:SeqMaria}}
 
 \cite{SequInstall}
