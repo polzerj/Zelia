@@ -22,11 +22,11 @@ Ein Service Worker hat verschiedene Events \cite{MDNCacheAPI}:
 
 \hfive{"Install event"}
 
-Das Install-Event wird getriggert, nachdem der Service Worker registriert wurde. Dort werden normalerweise die Abhängigkeiten installiert - \zb: der statische Cache wird dort gefüllt 
+Das "Install"-Event wird getriggert, nachdem der Service Worker registriert wurde. Dort werden normalerweise die Abhängigkeiten installiert - \zb: der statische Cache wird dort gefüllt 
 
 \hfive{"Activated event"}
 
-Bei der Erstinstallation wird das Activated Event unmittelbar nach der Installation ausgelöst. Wenn es einen neuen Service Worker für dieselbe Seite gibt, wird dieser nur installiert. Die Aktivierung erfolgt jedoch erst in der nächsten Sitzung. Das Activated Event wird in der Regel dazu verwendet, alte Ressourcen aufzuräumen. \zb: die Caches des vorherigen Service Workers werden geleert
+Bei der Erstinstallation wird das "Activated"-Event unmittelbar nach der Installation ausgelöst. Wenn es einen neuen Service Worker für dieselbe Seite gibt, wird dieser nur installiert. Die Aktivierung erfolgt jedoch erst in der nächsten Sitzung. Das "Activated"-Event wird in der Regel dazu verwendet, alte Ressourcen aufzuräumen. \zb: die Caches des vorherigen Service Workers werden geleert
 
 \hfive{"Fetch event"}
 
@@ -49,7 +49,7 @@ Ein Service Worker kann über das "serviceWorker" Objekt des "navigator" Objekts
 
 \typescript{code/ServiceWorker/register.ts}{Registrieren eines Service Workers}
 
-\hthree{Implementierung eines Caches}\label{sec:cacheImpl}
+\hthree{Implementierung eines Cache}\label{sec:cacheImpl}
 
 Der folgende Code zeigt, wie ein Service Worker mit der Cache-API zur Verwendung eines statischen und dynamischen Cache programmiert wird:
 

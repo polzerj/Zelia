@@ -1,8 +1,8 @@
 \hthree{Beispiele}
 \hfour{Vergleich: Light- und Dark-Theme}
 
-Die Zelia App lässt sich sowohl im Light- als auch im Dark-Theme anzeigen (siehe Abbildung \ref{fig:theme}). Dafür werden Media-Queries (siehe Kapitel \ref{sec:mediaQueries}) verwendet, welche das Theme des Browsers abfragen (siehe Code \ref{code:theme}). 
-Die jeweiligen Farben werden in CSS-Variablen gespeichert. Dadurch müssen die Farben nur einmal in einer Media-Query angepasst werden und können nun für jedes Element verwendet werden. 
+Die Zelia App lässt sich sowohl im Light- als auch im Dark-Theme anzeigen (siehe Abbildung \ref{fig:theme}). Dafür werden Media Queries (siehe Kapitel \ref{sec:mediaQueries}) verwendet, welche das Theme des Browsers abfragen (siehe Code \ref{code:theme}). 
+Die jeweiligen Farben werden in CSS-Variablen gespeichert. Dadurch müssen die Farben nur einmal in einer Media Query angepasst werden und können nun für jedes Element verwendet werden. 
 
 \begin{figure}[H]
     \begin{subfigure}[c]{0.5\textwidth}
@@ -24,7 +24,7 @@ Die jeweiligen Farben werden in CSS-Variablen gespeichert. Dadurch müssen die F
 \clearpage
 \hfour{Vergleich: Mobil und Desktop}
 
-Da Zelia sowohl am Desktop als auch am Mobil genutzt verwendbar sein soll, wird mithilfe der Clamp-Funktion (siehe Kapitel \ref{sec:clamp}) das Design für die verschiedenen Bildschirmgrößen angepasst (siehe Abbildung \ref{fig:info}).
+Da Zelia sowohl am Computer als auch am Smartphone oder Tablet genutzt werden soll, wird mithilfe der Clamp-Funktion (siehe Kapitel \ref{sec:clamp}) das Design für die verschiedenen Bildschirmgrößen angepasst (siehe Abbildung \ref{fig:info}).
 
 
 \begin{figure}[H]
@@ -42,13 +42,14 @@ Da Zelia sowohl am Desktop als auch am Mobil genutzt verwendbar sein soll, wird 
     \label{fig:info}
 \end{figure}
 
-Damit die Raumnummer auf den Mobilgeräten mittels OCR (siehe Kapitel \ref{sec:ocr}) eingelesen werden kann, wird der "Kamera öffnen"-Button (siehe Abbildung \ref{fig:homeMobile}) dafür angezeigt oder ausgeblendet, je nach dem, ob das Gerät ein Mobilgerät ist (siehe Abbildung \ref{fig:home}).
+Wenn ZELIA auf einem Mobilgerät verwendet wird, dann wird der "Kamera öffnen"-Button (siehe Abbildung \ref{fig:homeMobile}) dafür angezeigt, damit die Raumnummer mittels OCR (siehe Kapitel \ref{sec:ocr}) eingelesen werden kann. Auf der Desktop-Version wird dieser Button nicht angezeigt (siehe Abbildung \ref{fig:homeDesktop}).
 
 \begin{figure}[H]
     \begin{subfigure}[c]{0.65\textwidth}
         \centering
         \includegraphics[width=\textwidth]{media/ResponsiveDesign/ZeliaHome.png}
         \caption{Startseite (Desktop)}
+        \label{fig:homeDesktop}
     \end{subfigure} \hfill
     \begin{subfigure}[c]{0.35\textwidth}
         \centering
@@ -56,6 +57,6 @@ Damit die Raumnummer auf den Mobilgeräten mittels OCR (siehe Kapitel \ref{sec:o
         \caption{Startseite (Mobil)}
         \label{fig:homeMobile}
     \end{subfigure}
-    \caption{Vergleich von Desktop- und Mobile-Versionen der Startseite}
+    \caption{Vergleich von Desktop- und Mobile-Version der Startseite}
     \label{fig:home}
 \end{figure}

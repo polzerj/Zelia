@@ -13,7 +13,7 @@ Web Components ermöglichen es "Client-Side"-Code wiederverwendbar zu machen. Da
 
 \hfive{Erstellung eines Custom Elements}
 
-Custom Elements sind ES6 Klassen, welche von der Klasse "HTMLElement" erben. "ES6" steht für "ECMA Script 6" und ist der Standard, welcher Klassen in Javascript hinzugefügt hat.\cite{MDNes6Classes}
+Custom Elements sind ES6 Klassen, welche von der Klasse "HTMLElement" erben. "ES6", ausgeschrieben "ECMA Script 6", ist der Standard, welcher Klassen in Javascript hinzugefügt hat.\cite{MDNes6Classes}
 
 \typescript{code/WebComponents/one.ts}{Erstellung einer Custom Element Klasse}
 
@@ -21,7 +21,7 @@ Diese Klasse kann nun als Custom Element registriert werden. Dabei muss der Name
 
 \typescript{code/WebComponents/two.ts}{Registrierung des Custom Elements}
 
-Wenn das Custom Element registriert ist, kann es mit dem vergebenen Namen im HTML verwendet werden
+Wenn das Custom Element registriert ist, kann es mit dem vergebenen Namen im HTML verwendet werden.
 
 \html{code/WebComponents/three.html}{Verwendung des Custom Elements im HTML}
 
@@ -41,7 +41,7 @@ Der "adoptedCallback" wird jedes Mal aufgerufen, wenn das Element auf eine neue 
 
 \typescript{code/WebComponents/six.ts}{"adoptedCallback" Beispiel}
 
-Der "attributeChangedCallback" Lifecycle-Hook wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. Allerdings müssen dafür eine Liste an Attributnamen von der statischen Eigenschaft "observedAttributes" zurückgegeben werden. 
+Der "attributeChangedCallback" Lifecycle-Hook wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. Allerdings muss dafür eine Liste an Attributnamen von der statischen Eigenschaft "observedAttributes" zurückgegeben werden. 
     
 Der "attributeChangedCallback" nimmt drei Parameter:
 \begin{itemize}
@@ -55,7 +55,9 @@ Der "attributeChangedCallback" nimmt drei Parameter:
 \pagebreak
 \hfour{Shadow DOM}
 
-Ein Shadow DOM ist ein DOM Subtree, welcher separat von der restlichen Seite gerendert wird. Dadurch kann auch auf Custom Elements ein Style in Style-Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen. \cite{MDNShadowRoot}
+Unter DOM (Document Object Model) versteht man die Programmierschnittstelle, mit der auf die Elemente einer Webseite zugegriffen werden kann, um deren Inhalt und Darstellung zu verändern. \cite{MDNDOM}
+
+Ein Shadow DOM ist ein Ast im DOM-Baum innerhalb der Webseite, welcher separat von der restlichen Seite gerendert wird. Dadurch kann auch auf Custom Elements ein Style in Style-Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen. \cite{MDNShadowRoot}
 
 Um einen Shadow Root zu erstellen, muss lediglich die Methode "attachShadow" aufgerufen werden. \cite{MDNShadowRoot}
 
@@ -67,15 +69,21 @@ Der "Mode" muss auf "open" gesetzt werden, damit der "ShadowRoot" befüllt werde
 \pagebreak
 \hfour{HTML Templates}
 
-Um das Custom Element mit Inhalten zu füllen, gibt es in HTML den "template"-Tag, welcher nicht im DOM gerendert wird, aber trotzdem mit Javascript referenziert werden kann. \cite{MDNtemplate}
+Um das Custom Element mit Inhalten zu füllen, gibt es in HTML den "template"-Tag. Dieser wird nicht im DOM gerendert, kann aber trotzdem mit Javascript referenziert werden. \cite{MDNtemplate}
 
-\html{code/WebComponents/nine.html}{Erstellung eines HTML Templates}
+\html{code/WebComponents/nine.html}{Erstellung eines HTML Template}
 
-Damit das Template in ein Custom Element zu gerendert wird, muss der Content in das Custom Element, oder dessen Shadow DOM kopiert werden.
+Damit das Template als Custom Element gerendert wird, muss der Content in das dieses, oder dessen Shadow DOM kopiert werden.
 
-\typescript{code/WebComponents/ten.ts}{Kopieren des Templates in das Custom Element}
+\typescript{code/WebComponents/ten.ts}{Kopieren des Template in das Custom Element}
 
-Um den Inhalt der Components dynamisch zu machen, gibt es den HTML Slot-Tag. Dieser ermöglicht es Inhalte an die Components weiterzugeben. Dafür muss allerdings der Shadow DOM verwendet werden. Ein Slot wird immer mit seinem Namen referenziert. Wenn bei einer Child-Node eines Custom Elements kein Slotname angegeben ist, dann wird diese Node im Slot ohne Namen gerendert. Wird für einen Slot kein Node gesetzt, dann wird der Inhalt des Slots als Standardwert verwendet. 
+Um den Inhalt der Components dynamisch zu machen, gibt es den HTML "Slot"-Tag. 
+Dieser ermöglicht es Inhalte an die Components weiterzugeben. 
+Dafür muss allerdings ein Shadow DOM verwendet werden. 
+Ein Slot wird immer mit seinem Namen referenziert. 
+Wenn bei einem Child-Node eines Custom Elements kein Slotname angegeben ist, dann wird dieses Node im Slot ohne Namen gerendert. 
+Ein Node versteht sowohl ein HTML-Element, als auch ein Text-Node, welches direkt in das Element eingefügt wird. 
+Wird für einen Slot kein Node gesetzt, dann wird der Inhalt des Slots als Standardwert verwendet. 
 \cite{MDNSlots}
 
 \pagebreak
