@@ -13,7 +13,7 @@ Um das Gesamtprojekt bereitzustellen, werden vier verschiedene Docker-Container 
     \item "Vite"-Entwicklungsserver (Bereitstellung der Webseite mit automatischem Neuladen)
 \end{itemize}
 
-Diese Container kommunizieren miteinander in einem Docker Netzwerk (siehe Abbildung \ref{fig:DockerDevNetwork}). 
+Diese Container kommunizieren miteinander in einem virtuellen Docker Netzwerk (siehe Abbildung \ref{fig:DockerDevNetwork}). 
 
 \begin{figure}[H]
     \centering
@@ -22,7 +22,7 @@ Diese Container kommunizieren miteinander in einem Docker Netzwerk (siehe Abbild
     \label{fig:DockerDevNetwork}
 \end{figure}
 
-Um das Datenbankschema aufzubauen und Testdaten einzufügen, können SQL-Skripte im Verzeichnis {\ttfamily /docker-entrypoint-initdb.d/} angelegt werden. Dort werden sie beim Start des Docker-Containers in alphabetischer Reihenfolge ausgeführt. Deshalb wurden die SQL-Skripte durchnummeriert, um die Reihenfolge anzugeben (siehe Abbildung \ref{fig:SQLScriptDir}).
+Um das Datenbankschema aufzubauen und Testdaten einzufügen, können SQL-Skripte im Verzeichnis {\ttfamily /docker-entrypoint-initdb.d/} angelegt werden. Dort werden sie beim Start des Docker-Containers in alphabetischer Reihenfolge ausgeführt. Deshalb wurden die SQL-Skripte durchnummeriert, um die Reihenfolge festzulegen (siehe Abbildung \ref{fig:SQLScriptDir}).
 
 \begin{figure}
     \centering
@@ -32,6 +32,6 @@ Um das Datenbankschema aufzubauen und Testdaten einzufügen, können SQL-Skripte
 \end{figure}
 
 Um "Secrets" wie das Passwort zur Datenbank zu schützen, werden sie aus Umgebungsvariablen übernommen.
-Damit es nicht notwendig ist, die Umgebungsariablen jedes Mal manuell zu setzten, ist es bei Docker möglich, eine "Env"-Datei anzugeben, die alle Umgebungsvariablen speichert. 
+Damit es nicht notwendig ist, die Umgebungsvariablen jedes Mal manuell zu setzten, ist es bei Docker möglich, eine ".env"-Datei anzugeben, die alle Umgebungsvariablen speichert. 
 
 \css{code/Docker/dev.yaml}{Docker-YAML für die Entwicklung}

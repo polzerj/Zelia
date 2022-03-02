@@ -3,7 +3,8 @@
 
 \hthree{Allgemeines}
 
-NGINX ist ein Webserver, Reverse-Proxy und E-Mail-Proxy, der von Igor Sysoev entwickelt und unter der BSD-Lizenz veröffentlicht wurde. Er kann auch für "Load Balancing" und Media Streaming verwendet werden.
+NGINX ist ein Webserver, "Reverse"-Proxy und E-Mail-Proxy, der von Igor Sysoev entwickelt und unter der BSD-Lizenz veröffentlicht wurde. 
+Er kann auch für "Load Balancing" und Media Streaming verwendet werden.
 \cite{WikiNginx}
 \cite{nginx}
 
@@ -12,12 +13,17 @@ NGINX wird in der Datei "nginx.conf" konfiguriert, die sich im Verzeichnis \line
 
 \css[code:nginxConf]{code/Nginx/example.conf}{Beispiel einer "nginx.conf" Datei}
 
-Im Folgenden wird der Server-Teil des Codebeispiels \ref{code:nginxConf} im Abschnitt http genauer betrachtet: \\
-Dort wird definiert, auf welchem Port der Server Verbindungen erwartet und ob er SSL verwenden soll oder nicht. Wenn NGINX für die Verwendung von SSL konfiguriert ist, müssen das SSL-Zertifikat und der Zertifikatsschlüssel dort konfiguriert werden.
+Im Folgenden wird der Server-Teil des Codebeispiels \ref{code:nginxConf} im Abschnitt "{\ttfamily http}" genauer betrachtet: \\
+Dort wird definiert, auf welchem Port der Server Verbindungen erwartet und ob er SSL verwenden soll oder nicht. 
+Wenn NGINX für die Verwendung von SSL konfiguriert ist, müssen das SSL-Zertifikat und der Zertifikatsschlüssel dort konfiguriert sein.
 
-Innerhalb der Locations wird definiert, wie NGINX die Anfragen behandeln soll. In diesem Beispiel werden alle Anfragen innerhalb des {\ttfamily "/api"}-Pfads an den auf \linebreak {\ttfamily http://api:3001} laufenden Server weitergeleitet.
+Innerhalb der "Locations" wird definiert, wie NGINX die Anfragen verarbeiten soll. In diesem Beispiel werden alle Anfragen innerhalb des "{\ttfamily /api}"-Pfads an den auf \mbox{"{\ttfamily http://api:3001}"} laufenden Server weitergeleitet.
 
-Für alle anderen Anfragen werden die Dateien aus dem Verzeichnis {\ttfamily "/www"} bereitgestellt. 
+Für alle anderen Anfragen werden die Dateien aus dem Verzeichnis "{\ttfamily /www}" bereitgestellt. 
 
-Da das Frontend von Zelia als eine SPA (Singel Page Application) mit dynamischen Komponenten entwickelt wurde, ist die einzige Datei, die für jeden Pfad ausgeliefert werden muss, die Datei {\ttfamily index.html}. Dieses Verhalten wird mit dem Schlüsselwort {\ttfamily "try\_files"} konfiguriert. In diesem Fall wird versucht, die vom Client angeforderte Datei zu erhalten. Wenn sie nicht existiert, wird die Datei index.html ausgeliefert. Daher können Dateien wie CSS- oder JS-Dateien wie üblich abgerufen werden.
+Da das Frontend von ZELIA als eine SPA ("Single Page Application") mit dynamischen Komponenten entwickelt wurde, ist die einzige Datei, die für jeden Pfad ausgeliefert werden muss, die Datei "{\ttfamily index.html}". 
+Dieses Verhalten wird mit dem Schlüsselwort "{\ttfamily try\_files}" konfiguriert. 
+In diesem Fall wird versucht, die vom Client angeforderte Datei zu erhalten. 
+Wenn diese nicht existiert, wird die "{\ttfamily index.html}"-Datei ausgeliefert. 
+Daher können Dateien wie CSS- oder JS-Dateien wie üblich abgerufen werden.
 

@@ -1,10 +1,13 @@
-\hthree{Middleware}\label{sec:middleware}
+\hthree{"Middleware"}\label{sec:middleware}
 
-Eine Middleware ist eine Funktion, die eine bestimmte Signatur hat (siehe Code \ref{code:middlewareSignature}), welche vor dem Controller aufgerufen wird. Diese nimmt die aus "ExpressJS" bekannten Parameter "Request", "Response" und "Next". Middlewares können sowohl für die gesamte API im App-Konstruktor registriert werden als auch für einzelne Controller, bzw. einzelne Methoden in Controllern. Wichtig ist, dass die "Next"-Funktion aufgerufen wird, wenn die Middleware fertig ist, da ansonsten die nachfolgenden Middlewares und der eigentliche "Handler" des Endpunktes nicht aufgerufen werden.
+Eine "Middleware" ist eine Funktion, die eine bestimmte Signatur hat (siehe Code \ref{code:middlewareSignature}), welche vor dem "Controller" aufgerufen wird. 
+Diese nimmt die aus "ExpressJS" bekannten Parameter "Request", "Response" und "Next". 
+"Middlewares" können sowohl für die gesamte API im App-Konstruktor registriert werden als auch für einzelne "Controller", bzw. einzelne Methoden im "Controller". 
+Wichtig ist, dass die "Next"-Funktion aufgerufen wird, wenn die "Middleware" fertig ist, da ansonsten die nachfolgenden "Middlewares" und der eigentliche "Handler" des Endpunktes nicht aufgerufen werden.
 
 \typescript[code:middlewareSignature]{code/APITemplate/middleware.ts}{Signatur einer Middleware}
 
-Eine Middleware könnte zum Beispiel Informationen über die "Requests" loggen. 
+Eine "Middleware" könnte zum Beispiel Informationen über die "Requests" loggen. 
 
 \begin{figure}[H]
     \centering
@@ -12,7 +15,7 @@ Eine Middleware könnte zum Beispiel Informationen über die "Requests" loggen.
     \caption{Aufrufreihenfolge Beispiel Log-Middleware} 
 \end{figure}
 
-Allerdings können Middlewares auch benutzt werden, um Nutzer auf bestimme Controller zu Autorisieren. Dabei wird in der Middleware geprüft, ob der Nutzer auf diesen "Endpoint" zugreifen darf. Wenn ja, wird die "Next"-Funktion aufgerufen. Wenn nicht, wird eine "Unauthorised-Response" geschickt.
+Allerdings können "Middlewares" auch benutzt werden, um Nutzer auf bestimme "Controller" zu Autorisieren. Dabei wird in der "Middleware" geprüft, ob der Nutzer auf diesen "Endpoint" zugreifen darf. Wenn ja, wird die "Next"-Funktion aufgerufen. Wenn nicht, wird eine "Unauthorised-Response" geschickt.
 
 \begin{figure}[H]
     \centering

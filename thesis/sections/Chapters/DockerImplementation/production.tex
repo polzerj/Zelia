@@ -1,8 +1,11 @@
 \hthree{Docker in der Produktion}
 
-Für die Produktion wird die Webseite für den Client einmal erstellt und als statische Dateien von NGINX bereitgestellt. Daher wird der Docker-Container für den Entwicklungs-Vite-Server nicht benötigt. Um die Daten der Datenbank zu persistieren, werden sie in einem Docker-Volume gespeichert. 
+Für die Produktion werden die Webseiten für den Client einmal erstellt und als statische Dateien von NGINX bereitgestellt. 
+Daher wird der Docker-Container für den Entwicklungs-Vite-Server nicht benötigt. 
+Um die Daten der Datenbank zu persistieren, werden sie in einem Docker-Volume gespeichert. 
 
-Allerdings werden für die Produktion Docker Images für die Rest API und den NGINX Webserver gebaut. Dabei werden alle Dependencies installiert und der TypeScript-Code zu Javascript transpiliert. Dadurch muss zum Starten nur mehr ein Container mit dem erstellten Image gestartet werden. Dabei ist es wichtig, dass alle erforderlichen Umgebungsvariablen gesetzt sind.
+Allerdings werden für die Produktion Docker-Images für die Rest API und den NGINX Webserver gebaut. Dabei werden alle Abhängigkeiten installiert und der TypeScript-Code wird zu Javascript-Code transpiliert. Dadurch muss zum Starten nur mehr ein Container mit dem erstellten Image erzeugt werden. 
+Dabei ist es wichtig, dass alle erforderlichen Umgebungsvariablen gesetzt sind.
 
 \begin{figure}[H]
     \centering
@@ -10,7 +13,7 @@ Allerdings werden für die Produktion Docker Images für die Rest API und den NG
     \caption{Docker-Netzwerk für die Produktion}
 \end{figure}
 
-Da alle Container innerhalb des Zelia Docker Netzwerks liegen, ist es nicht möglich, dass direkt auf die Datenbank zugegriffen werden kann, da der einzig offene Port auf den NGINX Webserver verweist. 
+Da alle Container innerhalb des ZELIA-Docker-Netzwerks liegen, ist es nicht möglich, dass direkt auf die Datenbank zugegriffen werden kann, da der einzig offene Port auf den NGINX Webserver verweist. 
 
 \css{code/Nginx/prod.conf}{NGINX-Konfiguration für die Produktion}
 
