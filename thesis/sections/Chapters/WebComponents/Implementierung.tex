@@ -4,7 +4,7 @@
 
 \hfour{Einleitung}
 
-Wie der Rest von ZELIA ist auch der Code im Frontend in Typescript geschrieben, um einen Überblick über die Datentypen zu behalten. Zusätzlich bringt es noch Vorteile bei der Implementierung des Komponentensystems. Wie schon erwähnt ist das Komponentensystem, neben dem Client-Side-Router, der zweite Teil unserer Frontend Bibliothek, den wir selbst entworfen haben, um unsere Webseite darstellen zu können. Somit müssen wir uns nicht auf andere Frameworks verlassen, die in den meisten Fällen nicht so performant sind, da unsere Bibliothek perfekt an die Bedürfnisse von ZELIA angepasst ist.
+Das Komponentensystem ist der erste Teil der ZELIA-Frontend-Bibliothek, der entworfen wurde, um den Inhalt der Webseiten darstellen zu können. Wie der Rest von ZELIA ist auch der Code im Frontend in Typescript geschrieben, um einen Überblick über die Datentypen zu behalten. 
 
 \hfour{Architektur}
 
@@ -83,7 +83,7 @@ Auf dieser Seite können alle Geräte, die eine Kamera haben, mittels "Optical C
 \end{figure}
 
 
-Meist liefert der OCR-Prozess gut erkennbare Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist wichtig, dass nachdem das Bild in Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, der Bilder in Text umwandelt, wird einmal pro Sekunde gemacht. Dieser Wert ist einfach änderbar, aber wir haben uns nach längerem testen dazu entschieden, dass eine Sekunde völlig ausreichend ist, um schnell Raumnummern zu erfassen. Würde der Wert kleiner werden, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, so würden schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Mehr zu OCR und unseren Messungen später (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}). Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
+Meist liefert der OCR-Prozess gut erkennbare Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist wichtig, dass nachdem das Bild in Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, der Bilder in Text umwandelt, wird einmal pro Sekunde gemacht. Dieser Wert ist einfach änderbar, wurde aber auf einer Sekunde belassen, da das völlig ausreichend ist, um schnell Raumnummern zu erfassen. Würde der Wert kleiner werden, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, so würden schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Mehr zu OCR und unseren Messungen später (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}). Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
 
 \hfive{Rauminformationsseite}
 
@@ -138,7 +138,7 @@ Hat der Client die Buchungen und Meldungen erhalten, werden zwei Komponenten ver
 
 Die Buchungskomponente hat zwei verschiedene Knöpfe, um die Buchungsanfrage zu verarbeiten. Einen zum "Akzeptieren" und den anderen zum "Ablehnen". Zusätzlich könnte man noch einen kurzen Informationstext schreiben, der den Buchenden mit der Buchungsbestätigung per EDU-Mailadresse gesendet wird. 
 
-Die Komponente, welche Meldungen anzeigt, hat nur einen Knopf um den Status der Meldung auf "geschlossen" zu setzten. Im Hintergrund gäbe es mehrere Auswahlmöglichkeiten eines Status aber im Frontend ist noch nicht mehr implementiert, da wir uns darauf geeinigt haben, dass es fürs Erste nicht notwendig ist.
+Die Komponente, welche Meldungen anzeigt, hat nur einen Knopf um den Status der Meldung auf "geschlossen" zu setzten. Im Hintergrund gäbe es mehrere Auswahlmöglichkeiten eines Status, welche nicht im Frontend implementiert sind.
 
 \begin{figure}[H]
     \centering

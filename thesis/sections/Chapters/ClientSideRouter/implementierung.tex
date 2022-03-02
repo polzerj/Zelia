@@ -1,8 +1,8 @@
 \hthree{Implementierung}
 
-Wie gerade erwähnt ist "Frontend Routing" ein bisschen komplizierter zu implementieren. Wenn man kein Framework wie \zb: Angular verwendet, muss man praktisch alles selbst implementieren. Wir haben uns aber trotzdem dazu entschieden kein Framework zu verwenden und unser eigenes, kleines "Frontend Service" zu schreiben. Im Rahmen von Tests haben wir in Erfahrung gebracht, dass die meisten Frontend-Frameworks viel zu groß und komplex sind für unsere Anforderungen.
+Wie gerade erwähnt ist "Frontend Routing" ein bisschen komplizierter zu implementieren. Wenn man kein Framework wie \zb: Angular verwendet, muss man praktisch alles selbst implementieren. Trotzdem wurde bei ZELIA kein Framework verwendet, sondern  ein eigenes kleines "Frontend Service" geschrieben, um perfekt an die Bedürfnisse von ZELIA angepasst zu sein.
 
-Aufteilen kann man unsere Client Bibliothek wie schon gesagt in zwei Teile: Das Komponentensystem und den Client-Side-Router. Das Komponentensystem wurde vorher schon beschrieben (siehe Kapitel WebComponents \ref{sec:webcomponents}). Beide Teile der Bibliothek haben keine Abhängigkeiten und können getrennt voneinander laufen. Sie sind beide für den Anwendungsfall in ZELIA entwickelt, können aber auch problemlos einzeln für andere Web-Applikationen verwendet werden.
+Aufteilen kann man die Client Bibliothek wie schon gesagt in zwei Teile: Das Komponentensystem und den Client-Side-Router. Das Komponentensystem wurde vorher schon beschrieben (siehe Kapitel WebComponents \ref{sec:webcomponents}). Beide Teile der Bibliothek haben keine Abhängigkeiten und können getrennt voneinander laufen. Sie sind beide für den Anwendungsfall in ZELIA entwickelt, können aber auch problemlos einzeln für andere Web-Applikationen verwendet werden.
 
 Wie vorhin erwähnt wird bei ZELIA ein einfaches "index.html" verwendet, um das Skript zu laden, welches sich um die gesamte Seite kümmert. Zusätzlich ist ein leerer Container mit dem Namen "app" definiert, der sich auf der Webpage befindet. Dieser Container wird vom Client-Side-Router verwendet um Seiten dynamisch in die Hauptseite, die nie wirklich verlassen wird, hineinzuladen. Wenn das Skript vom Browser gestartet wird, erstellt ZELIA ein Router Objekt mit folgenden Schnittstellen:
 
@@ -15,7 +15,7 @@ Nachdem der Router erstellt wurde, werden die notwendigen Routen initialisiert:
 \typescript[initRoutes]{code/CSRouter/init.ts}{Initialisierung der Routen}
 
 
-Der erste Parameter ist der Pfad und der Zweite ist der Controller, welcher ausgeführt wird, wenn der Pfad aufgerufen wird. Ein Controller ist in unserem Fall eine einfache Methode, welche den App-Container befüllt.
+Der erste Parameter ist der Pfad und der Zweite ist der Controller, welcher ausgeführt wird, wenn der Pfad aufgerufen wird. Ein Controller ist in diesem Fall eine einfache Methode, welche den App-Container befüllt.
 
 \typescript{code/CSRouter/hw_example.ts}{Beispiel einer "Hello World"-Seite}
 
@@ -23,7 +23,7 @@ Im Codebeispiel \ref{initRoutes}, Zeile fünf bis sieben, wird der Pfadeintrag "
 
 \typescript{code/CSRouter/placeholder.ts}{Beispiel "Controller" mit Platzhalter}
 
-Am Ende, nachdem alle Routen initialisiert wurden, sagen wir dem Router, wohin er Routen soll, also welcher Controller ausgeführt werden soll, um die nötigen Inhalte darzustellen. Dafür wird der Pfad verwendet, welcher in der Eingabezeile des Browsers mitgegeben wird. Somit ist es möglich, dass man den Pfad manuell eingeben kann und nicht immer auf der Anfangsroute "{\ttfamily /}" startet.
+Am Ende, nachdem alle Routen initialisiert wurden, führt der Router den Controller der mit dem aktuellen Pfad verknüpft ist aus. Damit werden alle  Inhalte der angeforderten Seite dargestellt. Dafür wird der Pfad verwendet, welcher in der Eingabezeile des Browsers mitgegeben wird. Somit ist es möglich, dass man den Pfad manuell eingeben kann und nicht immer auf der Anfangsroute "{\ttfamily /}" startet.
 
 Wenn ein Link ausgewählt wird, fängt ZELIA die Anfrage an den Server ab und verwaltet das Umleiten selbst:
 
