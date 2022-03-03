@@ -11,14 +11,14 @@
 
 %------------------------------------------------------------------------------
 % Headings
-\newcommand{\hnone}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}\markboth{#1}{}}
-\newcommand{\hone}[1]{\section{#1}}
-\newcommand{\htwo}[1]{\subsection{#1}\markboth{#1}{}}
-\newcommand{\hthree}[1]{\subsubsection{#1}}
-\newcommand{\hfour}[1]{\paragraph{#1}\noindent}
+\newcommand{\hnone}[1]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}\markboth{#1}{}}
+\newcommand{\hone}[1]{\chapter{#1}}
+\newcommand{\htwo}[1]{\section{#1}\markboth{#1}{}}
+\newcommand{\hthree}[1]{\subsection{#1}}
+\newcommand{\hfour}[1]{\subsubsection{#1}}
 \newcommand{\hfive}[1]{\begin{flushleft}
     {\normalsize \textbf{\textit{#1}}} 
-\end{flushleft}}
+\end{flushleft}} % todo: fix this
 %------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------
@@ -63,4 +63,13 @@
 
 \newcommand{\zb}{\mbox{z.\hspace{0.3em}B.}}
 
+% Set Quote Symbol
 \MakeOuterQuote{"}
+
+\hypersetup{
+     colorlinks=true,
+     linkcolor=black,
+     filecolor=black,
+     citecolor = black,      
+     urlcolor=black,
+}

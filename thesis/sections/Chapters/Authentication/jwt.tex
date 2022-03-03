@@ -1,7 +1,10 @@
 \hthree{Json Web Token (JWT)}\label{sec:jwt}
 
-Der JWT speichert die Benutzerdaten verschlüsselt im Token selbst. Dieses Token wird wie ein Sitzungs-"Cookie" bei jeder Anfrage mitgeschickt. Da die Sitzungsdaten jedoch im Token gespeichert sind, müssen die Server die Sitzungen nicht synchronisieren. Es ist außerdem möglich, einen eigenen Server nur für die Authentifizierung zu verwenden. 
-Die einzige Voraussetzung ist, dass sowohl der Authentifizierungsserver als auch der eigentliche Webserver das gleiche JWT-"Secret" verwenden. Um sicherzustellen, dass das Token nicht manipuliert wird, haben nur die Server den Schlüssel, um das Token zu signieren und die darin enthaltenen Daten zu manipulieren. 
+Der JWT speichert die Benutzerdaten verschlüsselt im Token selbst. Dieses Token wird wie ein Sitzungs-"Cookie" bei jeder Anfrage mitgeschickt. 
+Da die Sitzungsdaten jedoch im Token gespeichert sind, müssen die Server die Sitzungen nicht synchronisieren. 
+Es ist außerdem möglich, einen anderen Server nur für die Authentifizierung zu verwenden. 
+Die einzige Voraussetzung ist, dass sowohl der Authentifizierungsserver als auch der eigentliche Webserver das gleiche JWT-"Secret" verwenden. 
+Um sicherzustellen, dass das Token nicht manipuliert wird, haben nur die Server den Schlüssel, um das Token zu signieren und die darin enthaltenen Daten zu manipulieren. 
 
 Das JWT ist im RFC7519 definiert. Jedes JWT ist in drei Abschnitte unterteilt. 
 
@@ -13,7 +16,7 @@ Das JWT ist im RFC7519 definiert. Jedes JWT ist in drei Abschnitte unterteilt.
 
 Im Header befinden sich meist zwei Felder. 
 Der Typ des Tokens (typ) und der\linebreak"Signing"-Algorithmus (alg). 
-Diese standardisierten Felder sind in der Regel drei Zeichen lang, um das "Token" möglichst kompakt zu halten.
+Diese standardisierten Felder sind in der Regel drei Zeichen lang, um das Token möglichst kompakt zu halten.
 
 Die "Payload" besteht in der Regel aus Benutzerdaten. Diese nennt man "Claims". Es gibtes drei Arten von "Claims": 
 
@@ -30,7 +33,7 @@ Die "Payload" besteht in der Regel aus Benutzerdaten. Diese nennt man "Claims". 
 
 Sowohl Header als auch "Payload" werden mit Base64 kodiert.
 
-Die "Signature" wird erstellt durch Verschlüsseln der Base64Url kodierten Abschnitte "Header" und "Payload" und einem "Secret". 
+Die "Signature" wird erstellt durch das Verschlüsseln der Base64 Url kodierten Abschnitte "Header", "Payload" und einem "Secret". 
 Dabei wird der im Header spezifizierten Verschlüsselungsalgorithmus verwendet.
 
 Die Abschnitte des JWT werden durch einen Punkt getrennt zusammengeführt. 

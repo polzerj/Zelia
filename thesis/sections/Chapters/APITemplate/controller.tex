@@ -1,9 +1,13 @@
 \hthree{Controller}\label{sec:controller}
 
-Ein Controller behandelt alle "Requests" auf einem Pfad. 
-Controller sind Klassen, welche von der "ControllerBase" erben. Im Super-Konstruktor des Controllers muss der Pfad der Requests angegeben werden, welche vom Controller verarbeitet werden sollen. Zusätzlich kann ein Objekt mit zusätzlichen Middlewares übergeben werden. Um eine HTTP-Methode zu implementieren, müssen lediglich die Methoden "get", "post", "put", "patch" oder "delete" überschrieben werden. Diese nehmen die von "ExpressJS" bekannten Parameter "Request" und "Response". 
+Ein "Controller" verarbeitet alle "Requests" auf einem Pfad. 
+"Controller" sind Klassen, welche von der "ControllerBase"-Klasse erben. 
+Im Super-Konstruktor des "Controllers" muss der Pfad der Requests angegeben werden, welche vom "Controller" verarbeitet werden sollen. 
+Zusätzlich kann ein Objekt mit Middlewares übergeben werden, welche nur vor diesem Controller aufgerufen werden. 
+Um eine HTTP-Methode zu implementieren, müssen lediglich die Methoden "get", "post", "put", "patch" oder "delete" überschrieben werden. 
+Diese nehmen die von "ExpressJS" bekannten Parameter "Request" und "Response". 
 
-Im folgenden ist ein Beispiel eines Controllers, welcher auf dem Pfad "/hello" registriert wird und beim Aufruf der Methode "get" ein Objekt zurückgibt, welches in der Eigenschaft "hello" den Text "world" beinhaltet:
+Im folgenden ist ein Beispiel eines "Controllers", welcher auf dem Pfad "/hello" registriert wird und beim Aufruf der Methode "get" ein Objekt zurückgibt, welches in der Eigenschaft "hello" den Text "world" beinhaltet:
 
 \typescript{code/APITemplate/helloWorldController.ts}{Beispiel-Controller}
 

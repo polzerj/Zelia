@@ -2,24 +2,20 @@
 
 \sql{code/MariaDb/DatabaseScript.sql}{Script zur Implementierung der Datenbankstruktur}
 
-Durch den Befehl "CREATE DATABASE" wird eine neue MariaDB Datenbank erstellt. In unserem Fall trägt sie den Namen "Zelia". In Verwendung gebracht wird die Tabelle durch den Befehl "USE" und gefolgt von dem gewünschten Datenbanknamen. Dies ist zwingend notwendig um Tabellen von erstellen, da Tabellen sonst ins Nichts erstellt werden.
+Mit dem Befehl "CREATE DATABASE" wird eine neue Datenbank im System angelegt.
 
-Die folgenden Zeilen dienen zur Verdeutlichung:
+Durch den Befehl "USE" wird diese in Verwendung gebracht und alle weiter folgenden Kommandos werden auf die ausgewählte Datenbank angewandt.
 
 \sql{code/MariaDb/Erstellen.sql}{Erstellen und Verwenden der Datenbank}
 
-Um nun Tabellen in dieser relationalen Datenbank zu erstellen, verwendet man das Kommando "CREATE TABLE" und hängt nachher den gewünschten Namen dran.
+Mit dem Befehl "CREATE TABLE" kann in einer Datenbank eine neue Tabelle erzeugt werden.
 
-Zu guter Letzt wird nach dem Tabellennamen und runden Klammern auf die verschiedenen Spaltennamen genannt, welche in der jeweiligen Tabelle enthalten sind.
-
-Außerdem muss ein Datentyp angegeben werden und pro Tabelle muss ein Primärschlüssel definiert werden. Hierbei bietet sich in jeder Tabelle eine Spalte "Id" an, welche eindeutig durchnummeriert wird.
-
-Als Beispiel kann man folgende Zeile Code aus der Tabelle "Room" zur Hand nehmen:
+Wichtig ist auch, dass pro Tabelle ein eindeutiger Primärschlüssel definiert wird. Hierfür bietet sich eine eigene Spalte "Id", welche eindeutig durchnummeriert wird.
 
 \sql{code/MariaDb/Room.sql}{Erstellen der Tabelle Room}
 
-Weiters kann durch das Schlüsselwort "CONSTRAINT" gefolgt vom Namen und "FOREIGN KEY" ein Fremdschlüssel auf eine andere Tabelle gelegt werden. Als Beispiel hierfür kann man sich die Tabelle "RoomReservation" genauer ansehen. Hier erstellet man eine eigene Spalte für die RoomId. Diese soll durch einen Fremdschlüssel auf die Spalte "Id", welche sich in der Tabelle "Room" befindet referenziert werden. Mit den Schlüsselwörtern "ON DELTE" und "ON UPDATE" kann man festlegen, was nach Verändern oder Löschen der Daten passieren soll.
+Mit "FOREIGN KEY" wird kann ein neuer Fremdschlüssel auf eine andere Tabelle definiert werden.
 
-Die passiert durch folgende Zeilen:
+Durch "ON DELETE" und "ON UPDATE" wird festgelegte, wie nach dem Löschen oder Verändern von Daten mit der Referenz auf die andere Tabelle umgegangen wird.
 
 \sql{code/MariaDb/ForeignKey.sql}{Erstellen eines Fremdschlüssels}

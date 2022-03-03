@@ -48,7 +48,7 @@ Tesseract ist eine Software-Bibliothek aus 1985, die 2005 als Open-Source-Projek
 
 Wie schon beschrieben, kann man eine Raumnummer, nicht nur eingeben, sondern auch mit der Kamera eines Smartphones einscannen. Um die Raumnummer aus den Bildern auszulesen brauchen wird somit einen "Optical Character Recognition"-Prozess. Dabei wird die Bibliothek "TesseractJS", eine Web-Version von "Tesseract OCR", direkt im Browser eingebunden, um die Bilder von Raumnummern zu Text zu verarbeiten.\cite{TesseractJS}\cite{TesseractJSImplementation}
 
-Um das eben Erwähnte umzusetzen, gibt es bei ZELIA im Komponentensystem eine Komponente, welche genau diese Funktionalität bewerkstelligt. Diese Komponente wird auf der OCR-Seite des Frontends eingebunden. Sie beinhaltet ein Videoelement, um zu zeigen was sie scannt. Um auf die Kamera eines Gerätes aus einem Webbrowser zugreifen zu können, muss über den "Browser Navigator" angefragt werden, ob die Kamera verwendet werden darf. (siehe Code \ref{code:CameraAccess})
+Um das eben Erwähnte umzusetzen, gibt es bei ZELIA im Komponentensystem eine Komponente, welche genau diese Funktionalität bewerkstelligt. Diese Komponente wird auf der OCR-Seite des Frontends eingebunden. Sie beinhaltet ein Videoelement, um zu zeigen was sie scannt. Um auf die Kamera eines Gerätes aus einem Webbrowser zugreifen zu können, muss über den "Browser Navigator" angefragt werden, ob die Kamera verwendet werden darf (siehe Code \ref{code:CameraAccess}).
 
 \typescript[code:CameraAccess]{code/OCR/nav.ts}{Zugriff auf eine Kamera im Browser}
 
@@ -61,7 +61,7 @@ Als Parameter, bei dieser Anfrage, kann man definieren, worauf man Zugriff haben
 \end{figure}
 
 
-Die Aufgabe des "OCR"-Moduls ist es Bilder in Text umzuwandeln. Dabei wird TesseractJS verwendet um den "Optical Character Recognition" Prozess durchzuführen. Unsere Wahl fiel auf Tesseract da wir am Anfang mit einer einfach verwendbaren Bibliothek testen wollten, ob OCR in unserem Fall gut funktioniert. Da es sehr gute Ergebnisse geliefert hat, wurde es optimiert und weiterverwendet.
+Die Aufgabe des "OCR"-Moduls ist es Bilder in Text umzuwandeln. Dabei wird TesseractJS verwendet um den "Optical Character Recognition" Prozess durchzuführen. Unsere Wahl fiel auf Tesseract da am Anfang nach einer einfach verwendbaren Bibliothek gesucht wurde um testen zu können, ob OCR in diesem Fall gut funktioniert. Da es sehr gute Ergebnisse geliefert hat, wurde es optimiert und weiterverwendet.
 
 \typescript{code/OCR/OCRModule.ts}{Die Verwendeung von TesseractJS}
 
@@ -71,7 +71,7 @@ Zusätzlich, um dem eigentlichen Umwandlungsvorgang von Bild zu Text zu beschleu
 
 Nachdem das Bild vereinfacht wurde, wird der OCR Prozess durchgeführt. Im besten Fall kommt nur die gewünschte Raumnummer als Ergebnis heraus. In der Realität werden aber auch andere Zeichen, wie Beistriche, Rufzeichen und manchmal, bei schlecht beleuchteten Bildern, sogar Buchstaben gefunden, die eigentlich gar nicht vorhanden sein sollten. Das ist im Fall von ZELIA allerdings kein so großes Problem, denn alle Raumnummern sind gleich aufgebaut. Somit wird mit "Regular Expressions" der gesuchte Teil herausgefiltert und falls es eine Raumnummer gibt, wird geprüft, ob ein Raum mit dieser Nummer existiert.
 
-Mit diesen Optimierungen liefert Tesseract sehr gute Ergebnisse, ein Grund weshalb wir die Open-Source Bibliothek weiterverwendet haben.
+Mit diesen Optimierungen liefert Tesseract sehr gute Ergebnisse, ein Grund weshalb bei ZELIA die Open-Source Bibliothek weiterverwendet wird.
 
 \typescript{code/OCR/compress.ts}{Bild vereinfachen, bevor Text extrahiert wird}
 
@@ -94,9 +94,9 @@ Mit diesen Optimierungen liefert Tesseract sehr gute Ergebnisse, ein Grund wesha
 
 \pagebreak
 
-\hfour{Messungen unserer Implementierung}
+\hfour{Messungen der OCR Implementierung}
 
-Um zu überprüfen ob das OCR-Modul für die Anwendung auf Mobilgeräten performant genug ist, haben wir einige Messungen gemacht. Der OCR Umwandlungsprozess von dem Bild, welches in der Abbildung \ref{fig:phonecam} zu sehen ist, dauert ohne unsere Bildvereinfachung rund 4,2 Sekunden. Für die schnelle Anwendung bei Zelia wäre diese Dauer viel zu lange. Um die Geschwindigkeiten zu verringern wird ein Fokusbereich definiert, auf den das Bild verkleinert wird (siehe Abbildung \ref{fig:ocrfocus}). Durch diese Verkleinerung des Bildes dauert der OCR-Vorgang nur noch rund 1,3 Sekunden. Dieses Ergebnis ist schon besser, jedoch wurde noch weiter optimiert, um die Dauer zu minimieren. 
+Um zu überprüfen ob das OCR-Modul für die Anwendung auf Mobilgeräten performant genug ist, wurden einige Messungen gemacht. Der OCR Umwandlungsprozess von dem Bild, welches in der Abbildung \ref{fig:phonecam} zu sehen ist, dauert ohne die Bildvereinfachung rund 4,2 Sekunden. Für die schnelle Anwendung bei ZELIA wäre diese Dauer viel zu lange. Um die Geschwindigkeiten zu verringern wird ein Fokusbereich definiert, auf den das Bild verkleinert wird (siehe Abbildung \ref{fig:ocrfocus}). Durch diese Verkleinerung des Bildes dauert der OCR-Vorgang nur noch rund 1,3 Sekunden. Dieses Ergebnis ist schon besser, jedoch wurde noch weiter optimiert, um die Dauer zu minimieren. 
 
 \begin{figure}[H]
     \centering
@@ -105,7 +105,7 @@ Um zu überprüfen ob das OCR-Modul für die Anwendung auf Mobilgeräten perform
     \label{fig:ocrfocus}
 \end{figure}
 
-Wie oben geschrieben wandelt Zelia das Bild der Kamera in ein Schwarz-Weiß-Bild um und schneidet es so klein wie möglich zusammen, bevor es dem Tesseract Prozess übergeben wird. Diese Optimierung dauert rund 27 Millisekunden und beschleunigt den gesamten Prozess. Den Text aus dem oben genannten Bild zu extrahieren, dauert dadurch nur noch rund 660 Millisekunden. Das Bild in ein Schwarzweißbild umzuwandeln, macht für Tesseract eigentlich kaum einen Unterschied. Trotzdem machen wir das bei ZELIA, weil das Verkleinern eines Bildes mit Hilfe der äußersten schwarzen Punkte funktioniert. Diese Verkleinerung ist so wie der Fokusbereich sehr stark ausschlaggebend für schnelle Ergebnisse. 
+Wie oben geschrieben wandelt ZELIA das Bild der Kamera in ein Schwarz-Weiß-Bild um und schneidet es so klein wie möglich zusammen, bevor es dem Tesseract Prozess übergeben wird. Diese Optimierung dauert rund 27 Millisekunden und beschleunigt den gesamten Prozess. Den Text aus dem oben genannten Bild zu extrahieren, dauert dadurch nur noch rund 660 Millisekunden. Das Bild in ein Schwarzweißbild umzuwandeln, macht für Tesseract eigentlich kaum einen Unterschied. Trotzdem wird das gemacht, weil das Verkleinern eines Bildes mit Hilfe der äußersten schwarzen Punkte funktioniert. Diese Verkleinerung ist so wie der Fokusbereich sehr stark ausschlaggebend für schnelle Ergebnisse. 
 
 Der letzte Optimierungsversuch war mehrere "Worker" zu verwenden. Mit diesem Ansatz hat man allerdings kaum Zeit gewonnen, da mehrere "Worker" erst richtig performant werden, wenn man große Mengen an Text aus Bildern filtern will. Während das Initialisieren von einem OCR "Worker" rund 2,3 Sekunden dauert, brauchen zwei Worker rund 3,4 Sekunden. Dadurch das bei ZELIA die "Worker" wie oben genannt gleichzeitig erstellt werden, geht dieser Vorgang schneller als normalerweise. Trotzdem steigt die Dauer leicht an, wenn mehrere "Worker" initialisiert werden. Wenn ein OCR Prozess mit zwei "Workern" das Bild aus dem vorherigen Beispiel verarbeitet, dauert dies rund 630 Millisekunden. Diese Optimierung von rund 30 Millisekunden ist es im Fall von ZELIA nicht wert, da es knapp über eine Sekunde länger dauert den ersten OCR Prozess zu starten.
 

@@ -1,8 +1,8 @@
 \htwo{Überblick}
 
-Wie schon erwähnt ist der ZELIA Client eine Web-Anwendung welche in HTML, CSS und Typescript von Grund auf selbst geschrieben ist. Es wird nur eine externe Bibliothek für die Funktionalität der Webseite verwendet, nämlich TesseractJS. Das Tesseract-Projekt ist ein "Open Source"-Softwareprojekt, welches Texte aus Bildern extrahiert. Bei ZELIA wird das benötigt um mit der Smartphonekamera die Raumnummern, zum Beispiel von Türschildern, einzuscannen. (Mehr dazu im Kapitel Optical Character Recognition)
+Wie schon erwähnt ist der ZELIA Client eine Web-Anwendung welche in HTML, CSS und Typescript von Grund auf selbst geschrieben ist. Es wird nur eine externe Bibliothek für die Funktionalität der Webseite verwendet, nämlich TesseractJS. Das Tesseract-Projekt ist ein "Open Source"-Softwareprojekt, welches Texte aus Bildern extrahiert. Bei ZELIA wird das benötigt um mit der Smartphonekamera die Raumnummern, zum Beispiel von Türschildern, einzuscannen (Mehr dazu im Kapitel Optical Character Recognition).
 
-Dadurch, dass wir sonst keine weitere Bibliothek verwenden, haben wir den Rest selbst entworfen und implementiert. Die Anforderungen dabei waren, dass man unsere Bibliothek von ZELIA trennen kann und dass sie somit für jede andere Webseite einfach wiederverwendbar ist. Die Bibliothek wurde so weit wie möglich abstrahiert und komplett unabhängig von unserem eigentlichen Projekt geplant. ZELIA ist somit eine Erweiterung dieses "Frontend Frameworks".
+Bei ZELIA wird sonst keine fremde Bibliothek verwendet. Deshalb ist die "Frontend-Engine" selbst entworfen und implementiert worden. Diese "Engine" ist eine Ansammlung an Funktionen um eine moderne Webseite zu erstellen. Die Anforderungen für diese Bibliothek waren, dass man sie von ZELIA trennen kann und dass sie somit für jede andere Webseite einfach wiederverwendbar ist. Die Bibliothek wurde so weit wie möglich abstrahiert und komplett unabhängig von dem eigentlichen Projekt geplant. ZELIA ist somit eine Erweiterung dieses "Frontend Frameworks".
 
 Die Bibliothek besteht aus 2 logischen Teilen, die nichts miteinander zu tun haben:
 \begin{itemize}

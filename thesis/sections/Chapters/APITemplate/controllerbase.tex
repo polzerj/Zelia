@@ -5,7 +5,7 @@ Die abstrakte "ControllerBase"-Klasse ist die Basisklasse eines jeden "Controlle
 Der Konstruktor der "ControllerBase" nimmt zwei Parameter entgegen:
 
 \begin{description}
-    \item["path"] Der Pfad, unter dem der Controller registriert werden soll.
+    \item["path"] Der Pfad, unter dem der "Controller" registriert werden soll.
     \item["middlewareParam"] Ein Objekt, welches das Interface "MiddlewareParam" implementiert und dabei die folgenden Parameter enthält:
     \begin{description}
         \item["all"] Wird bei allen Requests aufgerufen
@@ -21,7 +21,8 @@ Der Konstruktor der "ControllerBase" nimmt zwei Parameter entgegen:
 
 "Middlewares" sind im Kapitel \ref{sec:middleware} beschrieben.
 
-Um eine HTTP-Methode zu implementieren, gibt es in der "ControllerBase"-Klassen Methoden, welche überschrieben werden müssen. Wenn eine Methode nicht implementiert wird, wird der HTTP Status-Code 405 (Method Not Allowed) zurückgegeben.
+Um die HTTP-Methoden zu implementieren, gibt es in der "ControllerBase"-Klasse Methoden, welche überschrieben werden können. 
+Wenn eine Methode nicht implementiert wird, wird der HTTP Status-Code 405 (Method Not Allowed) zurückgegeben.
 
 Die Namen der Methoden entsprechen deren HTTP-Methoden:
 \begin{itemize}
@@ -31,7 +32,6 @@ Die Namen der Methoden entsprechen deren HTTP-Methoden:
     \item path
     \item delete
 \end{itemize}
-
 
 Der Zusammenhang zwischen der "App"-Klasse und der "ControllerBase"-Klasse ist in der Abbildung \ref{fig:apiUML} dargestellt.
 

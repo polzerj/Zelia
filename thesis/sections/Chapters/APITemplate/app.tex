@@ -19,15 +19,15 @@ Durch die Port-Option kann angegeben werden, auf welchem Port die API HTTP-Reque
 
 \hfive{"Controllers"}
 
-Die Controller werden als Array von Controller Objekten übergeben und repräsentieren einen Endpoint (siehe Kapitel "Controllers" \ref{sec:controller}).
+Die "Controller" werden als Array von "Controller"-Objekten übergeben und repräsentieren einen Endpoint (siehe Kapitel "Controllers" \ref{sec:controller}).
 
 \hfive{"Middlewares"}
 
-Dies ist ein Array an Middlewares, welche bei jedem Request ausgeführt werden (siehe Kapitel "Middleware" \ref{sec:middleware}).
+Dies ist ein Array an "Middlewares", welche bei jedem Request vor den "Controllern" ausgeführt werden (siehe Kapitel "Middleware" \ref{sec:middleware}).
 
 \hfive{"Base-URL"}
 
-Durch diesen String kann der Root-Pfad definiert werden. Standardmäßig ist diese auf "/" gesetzt. Bei Zelia ist diese auf "/api" konfiguriert worden, da alle API bezogenen Anfragen auf den Pfad "/api" gehen.
+Durch diesen String kann der Root-Pfad definiert werden. Standardmäßig ist dieser auf "{\ttfamily /}" gesetzt. Bei ZELIA ist dieser auf "{\ttfamily /api}" konfiguriert worden, da alle API bezogenen Anfragen auf den Pfad "{\ttfamily /api}" gehen.
 
 Um eine Instanz der App-Klasse zu erstellen, muss diese importiert werden. Danach kann die "App" mit ihren registrierten "Controllern" und "Middlewares" instanziiert werden. Damit die "App" auf dem angegebenen Port gestartet wird, muss die "listen"-Methode aufgerufen werden.
 
