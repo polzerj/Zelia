@@ -28,7 +28,7 @@ Durch den Wrapper hat man die Möglichkeit auf nicht nur den Stundenplan und gew
 
 \typescript{code/WebUntis/constructor.ts}{Konstruktor von der WebUntis API}
 
-Der Konstruktor muss so verwenden werden, da man sonst nicht auf das WebUntis-Objekt zugreifen kann. Bei ZELIA wird es genauso verwendet, der einzige Unterschied ist aber hierbei, dass unsere Variablen und die dazu entsprechenden Werte in einem .env-File abgespeichert sind, damit erstens, die Daten alle gesammelt an einer Stelle liegen und zweitens, da somit ein wenig Sicherheit reingebracht werden kann.
+Der Konstruktor muss so verwenden werden, da man sonst nicht auf das WebUntis-Objekt zugreifen kann. Bei \ZELIA\ wird es genauso verwendet, der einzige Unterschied ist aber hierbei, dass unsere Variablen und die dazu entsprechenden Werte in einem .env-File abgespeichert sind, damit erstens, die Daten alle gesammelt an einer Stelle liegen und zweitens, da somit ein wenig Sicherheit reingebracht werden kann.
 
 \typescript{code/WebUntis/.env.ts}{.env-Datei von ZELIA}
 
@@ -65,15 +65,15 @@ Die Methode "getTimeGrid" wird verwendet, um die Struktur des Stundeplans anzuze
 
 \typescript{code/WebUntis/getTimegrid.ts}{getTimegrid Methode}
 
-Das Ergebnis sieht bei ZELIA wie folgt aus:
+Das Ergebnis sieht bei \ZELIA\ wie folgt aus:
 
 \typescript{code/WebUntis/getTimegridAusgabe.ts}{getTimeGrid ZELIA}
 
 \hfour{Probleme}
 
-Mithilfe der API ist zwar einiges möglich, dennoch sind uns in dem Anwendungsfall ZELIA einige "Probleme" aufgefallen, die abgefangen beziehungsweise ausgebessert werden mussten.
+Mithilfe der API ist zwar einiges möglich, dennoch sind uns in dem Anwendungsfall \ZELIA\ einige "Probleme" aufgefallen, die abgefangen beziehungsweise ausgebessert werden mussten.
 
-Das allererste Problem ist, dass gewisse Räume mit mehreren Namen beziehungsweise mehreren IDs eingetragen sind und anfänglich die Frage im Raum stand, nach welchen Kriterien man den Klassenraum auffindet. Bei ZELIA ist man sich aber im Endeffekt einig geworden, nach der ID des Raumes zu suchen.
+Das allererste Problem ist, dass gewisse Räume mit mehreren Namen beziehungsweise mehreren IDs eingetragen sind und anfänglich die Frage im Raum stand, nach welchen Kriterien man den Klassenraum auffindet. Bei \ZELIA\ ist man sich aber im Endeffekt einig geworden, nach der ID des Raumes zu suchen.
 
 \typescript{code/WebUntis/getIDByRoomNumber.ts}{Raum über ID zurückbekommen}
 

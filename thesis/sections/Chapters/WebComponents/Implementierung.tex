@@ -4,11 +4,11 @@
 
 \hfour{Einleitung}
 
-Das Komponentensystem ist der erste Teil der ZELIA-Frontend-Bibliothek, der entworfen wurde, um den Inhalt der Webseiten darstellen zu können. Wie der Rest von ZELIA ist auch der Code im Frontend in Typescript geschrieben, um einen Überblick über die Datentypen zu behalten. 
+Das Komponentensystem ist der erste Teil der ZELIA-Frontend-Bibliothek, der entworfen wurde, um den Inhalt der Webseiten darstellen zu können. Wie der Rest von \ZELIA\ ist auch der Code im Frontend in Typescript geschrieben, um einen Überblick über die Datentypen zu behalten. 
 
 \hfour{Architektur}
 
-Wie bereits im Standard beschrieben, muss es eine Klasse geben, welche von "HTMLElement" erbt, um als "Custom HTML Element" verwendet werden zu können. So gibt es in der ZELIA Implementierung die abstrakte Klasse "Component" von der alle anderen Komponenten erben.
+Wie bereits im Standard beschrieben, muss es eine Klasse geben, welche von "HTMLElement" erbt, um als "Custom HTML Element" verwendet werden zu können. So gibt es in der \ZELIA\ Implementierung die abstrakte Klasse "Component" von der alle anderen Komponenten erben.
 
 \typescript{code/WebComponents/BaseInterfaces.ts}{Schnittstellen der Basiskomponente}
 
@@ -102,7 +102,7 @@ Beispiel: %selbe Seite
 Die Meldungs- und Buchungsseite sind zwei verschiedene Seiten, welche aber recht ähnlich aufgebaut sind. Erreichen kann man sie nur über die Rauminformationsseite, da sie sich auf einen bestimmten Raum beziehen. Dadurch, dass sie zwei verschiedene Aufgaben haben, müssen sie allerdings getrennt behandelt werden und können nicht auf eine Seite zusammengefasst werden. Beide Seiten bestehen aus zwei Komponenten: Einem Formular zur Beischreibung und Angabe der Daten und einem Link, welcher zurück zur Rauminformationsseite führt.
   
 
-Um einen Defekt in einem Raum zu melden, braucht man eine EDU-Mail-Adresse, das Datum und die Uhrzeit wann der Defekt das erste Mal aufgetreten ist und eine Beschreibung, um das Problem kurz zu umschreiben. Wie schon erläutert wird die Mail-Adresse verwendet um Schüler*innen identifizieren zu können, ohne dass sie sich selbst einen Account anlegen müssen. Nach Absenden des Formulars bekommt man einen Bestätigungslink auf die angegebene Mail-Adresse, um die Meldung zu bestätigen. Somit ist das Meldesystem nicht anonym, da sonst viele Falsch-Meldungen entstehen könnten und trotzdem kann ZELIA angenehm ohne Account verwendet werden. 
+Um einen Defekt in einem Raum zu melden, braucht man eine EDU-Mail-Adresse, das Datum und die Uhrzeit wann der Defekt das erste Mal aufgetreten ist und eine Beschreibung, um das Problem kurz zu umschreiben. Wie schon erläutert wird die Mail-Adresse verwendet um Schüler*innen identifizieren zu können, ohne dass sie sich selbst einen Account anlegen müssen. Nach Absenden des Formulars bekommt man einen Bestätigungslink auf die angegebene Mail-Adresse, um die Meldung zu bestätigen. Somit ist das Meldesystem nicht anonym, da sonst viele Falsch-Meldungen entstehen könnten und trotzdem kann \ZELIA\ angenehm ohne Account verwendet werden. 
 
 \begin{figure}[H]
     \centering
@@ -122,7 +122,7 @@ Eine Buchungsanfrage für einen Raum zu erstellen, geht ebenso einfach, wie Defe
 \hfive{"Admin Login" und "Dashboard"}
 \label{sec:webcomplogdash}
 
-Um einen Überblick über Meldungen und Buchungen zu bekommen, gibt es das "Admin Dashboard". Damit nicht jeder die Raumbuchungen und Defektmeldungen sieht, gibt es Administratorbenutzer, mit denen man sich anmelden muss. Jede Buchung und Meldung ist einem Administratorbenutzer zugeteilt und kann somit von diesem abgearbeitet werden. Im Fall von ZELIA im Schulzentrum Ungargasse, sind Admins meist Abteilungsleiter*innen oder Lehrer*innen, die für den gemeldeten oder gebuchten Raum zuständig sind. 
+Um einen Überblick über Meldungen und Buchungen zu bekommen, gibt es das "Admin Dashboard". Damit nicht jeder die Raumbuchungen und Defektmeldungen sieht, gibt es Administratorbenutzer, mit denen man sich anmelden muss. Jede Buchung und Meldung ist einem Administratorbenutzer zugeteilt und kann somit von diesem abgearbeitet werden. Im Fall von \ZELIA\ im Schulzentrum Ungargasse, sind Admins meist Abteilungsleiter*innen oder Lehrer*innen, die für den gemeldeten oder gebuchten Raum zuständig sind. 
 
 Wie schon beschrieben, muss man angemeldet sein, um Zugriff auf alle Meldungen und Buchungen zu haben. Hierfür gibt es die "Admin Login"-Seite, welche über den normalen ZELIA-Webserver aufgerufen werden kann. Auf dieser Webseite findet man eine Komponente, die ein Anmeldeformular anzeigt. Wenn man sich anmeldet, wird die Anfrage an den Server geschickt und auf die Antwort gewartet. Wenn der Server mit einem "JSON-Web-Token" (siehe Kapitel Authentifizierung "Json Web Token (JWT)" \ref{sec:jwt}) antwortet, wird dieser im "session storage" (siehe Kapitel "Webspeicher" \ref{sec:webstorage}) gespeichert und man wird auf die Übersichtsseite weitergeleitet.
 
@@ -148,7 +148,7 @@ Die Komponente, welche Meldungen anzeigt, hat nur einen Knopf um den Status der 
 
 \hfive{Die Fehlerseite} %TODO: Überschrift andere Seite
 
-Die Fehlerseite ist keine eigene Seite wie die anderen Seiten. Sie besteht nur aus der 404-"Not Found" Komponente und wird angezeigt wenn auf einen nicht vorhandenen Pfad zugegriffen wird. Somit hat diese Seite keinen eigenen Pfad und kann nicht wirklich als Seite von ZELIA gezählt werden.
+Die Fehlerseite ist keine eigene Seite wie die anderen Seiten. Sie besteht nur aus der 404-"Not Found" Komponente und wird angezeigt wenn auf einen nicht vorhandenen Pfad zugegriffen wird. Somit hat diese Seite keinen eigenen Pfad und kann nicht wirklich als Seite von \ZELIA\ gezählt werden.
 
 Beispiel: 
 

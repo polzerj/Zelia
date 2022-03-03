@@ -1,6 +1,6 @@
 \hfour{Verbindungsklassen für die Datenbank}
 
-Die Verbindungsklassen sind für die Kommunikation mit der Datenbank und deren unterschiedlichen Tabellen zuständig. Nach einem gewissen Initialisierungsprozess, welcher später beschrieben wird, folgen am Ende der Klasse Methoden. Diese Methoden sind für den Zugriff nach verschiedenen Kriterien zuständig (Daten nach einem gewissen Parameter auslesen, oder alle Daten auslesen). Im Projekt ZELIA gibt es vier unterschiedliche Arten von Zugriffsmethoden auf die Datenbank.
+Die Verbindungsklassen sind für die Kommunikation mit der Datenbank und deren unterschiedlichen Tabellen zuständig. Nach einem gewissen Initialisierungsprozess, welcher später beschrieben wird, folgen am Ende der Klasse Methoden. Diese Methoden sind für den Zugriff nach verschiedenen Kriterien zuständig (Daten nach einem gewissen Parameter auslesen, oder alle Daten auslesen). Im Projekt \ZELIA\ gibt es vier unterschiedliche Arten von Zugriffsmethoden auf die Datenbank.
 
 \begin{itemize}
     \item Das Auslesen aller Daten
@@ -15,7 +15,7 @@ Zu Beginn muss man aus der Sequelize-Bibliothek "Models" und "DataTypes" importi
 
 \typescript{code/Sequelize/importVerbindung.ts}{Importieren von "Models" und "DataTypes"}
 
-Im zweiten Schritt werden diverseste Datentypen aus ZELIA in die Klasse importiert, welche in weiteren Schritten benötigt werden.
+Im zweiten Schritt werden diverseste Datentypen aus \ZELIA\ in die Klasse importiert, welche in weiteren Schritten benötigt werden.
 
 In weiterer Folge müssen nun die Werte, welche in der Tabelle auf die zugegriffen werden soll definiert werden. Hierzu erstellt man eine neue Klasse, welche das "RoomReportEntity" Interface beinhaltet und implementiert. In dieser Klasse werden nun die Spalten Eigenschaften mit Zugriffsoperatoren und Datentypen versehen. Außerdem werden an alle Eigenschaften außer "Id" ein "!" angehängt. Dieses gibt da, dass es sich um ein Pflichtfeld handelt. Bei der "Id" steht ein "?". Dieses steht für eine nicht zwangläufig auszufüllende Eigenschaft.
 
@@ -61,7 +61,7 @@ Hierbei müssen Zwei Parameter mitgegeben werden, nämlich einerseits die "id" d
 
 \hfive{Hinzufügen von Datensätzen}
 
-Wenn nun von einer Person, welche sich im Schulgebäude aufhält ein Schaden in einem Raum entdeckt wird bietet ZELIA dich Möglichkeit diesen zu melden. Der neu gemeldete Schaden muss dann in der Datenbank gespeichert werden können um später darauf zugreifen zu können und ihn als verantwortliche Person bearbeiten zu können.
+Wenn nun von einer Person, welche sich im Schulgebäude aufhält ein Schaden in einem Raum entdeckt wird bietet \ZELIA\ dich Möglichkeit diesen zu melden. Der neu gemeldete Schaden muss dann in der Datenbank gespeichert werden können um später darauf zugreifen zu können und ihn als verantwortliche Person bearbeiten zu können.
 
 Sequelize stellt zum Schrieben in eine Tabelle die Methode "create" zur Verfügung, welche direkt auf das "Model" angewandt werden kann. Nachfolgend muss jeder Spalte ein Wert zugeordnet werden. Die Daten hierfür werden in dem Beispiel aus dem mitgegebenen "RoomReport" Objekt entnommen.
 

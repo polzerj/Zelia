@@ -1,10 +1,10 @@
 \hthree{Implementierung}
 
-Wie gerade erwähnt ist "Frontend Routing" ein bisschen komplizierter zu implementieren. Wenn man kein Framework wie \zb: Angular verwendet, muss man praktisch alles selbst implementieren. Trotzdem wurde bei ZELIA kein Framework verwendet, sondern  ein eigenes kleines "Frontend Service" geschrieben, um perfekt an die Bedürfnisse von ZELIA angepasst zu sein.
+Wie gerade erwähnt ist "Frontend Routing" ein bisschen komplizierter zu implementieren. Wenn man kein Framework wie \zb: Angular verwendet, muss man praktisch alles selbst implementieren. Trotzdem wurde bei \ZELIA\ kein Framework verwendet, sondern  ein eigenes kleines "Frontend Service" geschrieben, um perfekt an die Bedürfnisse von \ZELIA\ angepasst zu sein.
 
-Aufteilen kann man die Client Bibliothek wie schon gesagt in zwei Teile: Das Komponentensystem und den Client-Side-Router. Das Komponentensystem wurde vorher schon beschrieben (siehe Kapitel WebComponents \ref{sec:webcomponents}). Beide Teile der Bibliothek haben keine Abhängigkeiten und können getrennt voneinander laufen. Sie sind beide für den Anwendungsfall in ZELIA entwickelt, können aber auch problemlos einzeln für andere Web-Applikationen verwendet werden.
+Aufteilen kann man die Client Bibliothek wie schon gesagt in zwei Teile: Das Komponentensystem und den Client-Side-Router. Das Komponentensystem wurde vorher schon beschrieben (siehe Kapitel WebComponents \ref{sec:webcomponents}). Beide Teile der Bibliothek haben keine Abhängigkeiten und können getrennt voneinander laufen. Sie sind beide für den Anwendungsfall in \ZELIA\ entwickelt, können aber auch problemlos einzeln für andere Web-Applikationen verwendet werden.
 
-Wie vorhin erwähnt wird bei ZELIA ein einfaches "index.html" verwendet, um das Skript zu laden, welches sich um die gesamte Seite kümmert. Zusätzlich ist ein leerer Container mit dem Namen "app" definiert, der sich auf der Webpage befindet. Dieser Container wird vom Client-Side-Router verwendet um Seiten dynamisch in die Hauptseite, die nie wirklich verlassen wird, hineinzuladen. Wenn das Skript vom Browser gestartet wird, erstellt ZELIA ein Router Objekt mit folgenden Schnittstellen:
+Wie vorhin erwähnt wird bei \ZELIA\ ein einfaches "index.html" verwendet, um das Skript zu laden, welches sich um die gesamte Seite kümmert. Zusätzlich ist ein leerer Container mit dem Namen "app" definiert, der sich auf der Webpage befindet. Dieser Container wird vom Client-Side-Router verwendet um Seiten dynamisch in die Hauptseite, die nie wirklich verlassen wird, hineinzuladen. Wenn das Skript vom Browser gestartet wird, erstellt \ZELIA\ ein Router Objekt mit folgenden Schnittstellen:
 
 \typescript{code/CSRouter/interface.ts}{Schnittstellen der "Router" Klasse}
 
@@ -25,7 +25,7 @@ Im Codebeispiel \ref{initRoutes}, Zeile fünf bis sieben, wird der Pfadeintrag "
 
 Am Ende, nachdem alle Routen initialisiert wurden, führt der Router den Controller der mit dem aktuellen Pfad verknüpft ist aus. Damit werden alle  Inhalte der angeforderten Seite dargestellt. Dafür wird der Pfad verwendet, welcher in der Eingabezeile des Browsers mitgegeben wird. Somit ist es möglich, dass man den Pfad manuell eingeben kann und nicht immer auf der Anfangsroute "{\ttfamily /}" startet.
 
-Wenn ein Link ausgewählt wird, fängt ZELIA die Anfrage an den Server ab und verwaltet das Umleiten selbst:
+Wenn ein Link ausgewählt wird, fängt \ZELIA\ die Anfrage an den Server ab und verwaltet das Umleiten selbst:
 
 \typescript{code/CSRouter/redirect.ts}{Umleitung in einem Event}
 
@@ -39,4 +39,4 @@ Wenn der Router auf einen Pfad umleiten soll den er nicht kennt, dann lädt er d
 
 \typescript{code/CSRouter/notfound.ts}{Laden der 404 Komponente in die Fehlerseite}
 
-Mit all den oben beschriebenen Maßnahmen kann der ZELIA Client-Service zwischen verschiedenen Seiten logisch wechseln, ohne jemals die eigentliche Seite zu verlassen.
+Mit all den oben beschriebenen Maßnahmen kann der \ZELIA\ Client-Service zwischen verschiedenen Seiten logisch wechseln, ohne jemals die eigentliche Seite zu verlassen.
