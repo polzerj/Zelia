@@ -1,37 +1,39 @@
 \hfour{Verbindung zur Datenbank aufbauen}
 
-Durch das Arbeiten mit Type Script in ZELIA ist es erforderlich Sequelize nach den Standards von Type Script zu implementieren. Um die Verbindung mit dem Datenbankserver herstzustellen ist folgendes notwendig:
+\typescript{code/Sequelize/datenbankverb.ts}{Verbindung zur Datenbank herstellen}{}
 
-Zu Beginn muss das Sequelize Framework eingebunden werden. Dies passiert durch das normale Importieren in Type Script.
+Um die Verbindung mit dem Datenbankserver herstzustellen ist folgendes notwendig:
 
-\typescript{code/Sequelize/import.ts}{Importieren von Sequelize}
+Zu Beginn muss das Sequelize Framework eingebunden werden.
 
-Um eine Verbindung aufzubauen braucht man Paramenter, welche bei ZELIA in einem eigenen ".env" File ausgelagert ist. Folgende Parameter sind für den Aufbau erforderlich:
+\typescriptsub{code/Sequelize/datenbankverb.ts}{Importieren von Sequelize}{1}{1}
+
+Um eine Verbindung aufzubauen werden Parameter benötigt, welche bei \ZELIA\ in einer eigenen ".env"-Datei ausgelagert ist. Folgende Parameter sind für den Aufbau erforderlich:
 
 \begin{itemize}
-    \item "DB\_SERVER": Gibt an, über welcher Adresse der Datenbank Server erreichbar ist (Bei ZELIA = localhost)
-    \item "DB\_USER": Gibt an, über welchen User, welcher schon im Datenbanksystem angelegt sein muss, man sich zum Server verbindet (Bei ZELIA = root)
+    \item "DB\_SERVER": Gibt an, über welcher Adresse der Datenbank Server erreichbar ist.
+    \item "DB\_USER": Gibt an, über welchen User, welcher schon im Datenbanksystem angelegt sein muss, man sich zum Server verbindet.
     \item "DB\_PASSWORD": Gibt das passende Passwort zum angegebenen User mit.
-    \item "DB\_DATABASE": Gibt die Datenbank an, auf welche zugegriffen werden soll. Diese muss aber ebenfalls schon im System angelegt worden sein (Bei ZELIA = Zelia).
+    \item "DB\_DATABASE": Gibt die Datenbank an, auf welche zugegriffen werden soll. Diese muss schon im Datenbanksystem angelegt worden sein.
 \end{itemize}
 
-Nun speichert man die jeweiligen Variablen in eine lokal angelegte Konstante. Zugegriffen wird auf die ".env" Datei mit "process.env".
+Nun werden die jeweiligen Variablen in eine lokal angelegte Konstante gespeichert. Zugegriffen wird auf die ".env"-Datei mit "{\ttfamily process.env}".
 
-\typescript{code/Sequelize/const.ts}{Erstellen einer Konstante für die Umgebungsvariablen}
+\typescriptsub{code/Sequelize/datenbankverb.ts}{Erstellen einer Konstante für die Umgebungsvariablen}{3}{3}
 
-Nachher legt man eine lokale Variable namens "sequelize" vom Datentyp "Sequelize" an, welchen man durch den Import vom Sequelize verfügbar hat.
+Weiters wird eine lokale Variable namens "sequelize" von der Klasse "Sequelize" angelegt. Diese Klasse wird durch das Importieren von "Sequelize" in der verwendeten Datei verfügbar.
 
-\typescript{code/Sequelize/let.ts}{Lokale Variable vom Datentyp Sequelize}
+\typescriptsub{code/Sequelize/datenbankverb.ts}{Lokale Variable von der Klasse Sequelize}{4}{4}
 
-Diese lokale Variable wird nun mit "= new Sequelize" zu einem neuen Sequelize Objekt. Der Konstruktor von Sequelize, welcher in ZELIA verwendet wird benötigt 3 Parameter, nämlich einen Datenbanknamen, welcher ein String sein muss, den Datenbankuser, welcher auch als String mitgegeben wird und zu guter Letzt das Passwort, welches ebenfalls ein String sein muss. Nachher können außerdem diverseste Optionen angegeben werden. Im Projekt ZELIA verwendet man jedoch zwei Optionen, nämlich den "Host", bei welchem die Adresse des Datenbankserver mitgegeben wird und den "dialect", welcher sagt, welcher Datenbankserver verwendet wird. Nach dem Aufruf der Option muss ein Doppelpunkt folgen. Außerdem werden die Optionen in geschwungenen Klammern angegeben, welche sich aber noch immer im Aufruf des Konstruktors befinden. Die Optionen werden mit einem Beistrich voneinander getrennt.
+Diese lokale Variable wird nun mit "{\ttfamily = new Sequelize}" zu einem neuen Sequelize Objekt. Der Konstruktor von Sequelize, welcher in \ZELIA\ verwendet wird benötigt drei Parameter, nämlich einen Datenbanknamen, den Datenbankuser und das Passwort für den vorher angegebenen User. 
 
-Die unterschiedlichsten Parameternamen oder Optionennamen hat man durch die lokal angelegt Konstante, welches aus der ".env" Datei ausgelesen wird bereits in dem File verfügbar. Deshalb kann man einfach den Namen des Parameters z.B "DB\_DATABASE" im Konstruktor von Sequelize angeben.
+Nachfolgend können außerdem diverseste Optionen angegeben werden. Im Projekt \ZELIA\ werden zwei Optionen verwendet, nämlich der "Host", bei welchem die Adresse des Datenbankserver mitgegeben wird, und den "dialect". Dieser gibt an auf welches Datenbanksystem zugegriffen werden soll.
 
 Folgender Code ist für das oben beschriebene zuständig:
 
-\typescript{code/Sequelize/neuesObjekt.ts}{Erzeugen eines neuen Sequelizeobjekts}
+\typescriptsub{code/Sequelize/datenbankverb.ts}{Erzeugen eines neuen Sequelizeobjekts}{6}{9}
 
-Zum Schluss verwendet man das Schlüsselwort "export", da so das Sequelizeobjekt nun auch in anderen Dateinen aufgerufen werden kann. Das ist für den weiteren Datenbankzugriff und die Verbindungsklassen wichtig.
+Außerdem wird das Schlüsselwort "export" verwendet, da so das "Sequelize-Objekt" nun auch in anderen Dateien aufgerufen werden kann. Dies ist für den weiteren Datenbankzugriff und in weiterer folge die Verbindungsklassen wichtig.
 
-\typescript{code/Sequelize/export.ts}{Exportieren des Sequelizeobjekts}
+\typescriptsub{code/Sequelize/datenbankverb.ts}{Exportieren des Sequelizeobjekts}{11}{11}
 
