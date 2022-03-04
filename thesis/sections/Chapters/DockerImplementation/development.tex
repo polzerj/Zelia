@@ -1,4 +1,4 @@
-\hthree{Docker bei der Entwicklung}
+\hthree{Docker bei der Entwicklung} \label{sec:dockerDevImpl}
 
 Zunächst wurde für die Entwicklung eine separate NGINX-Konfiguration (siehe Code \ref{code:NginxDevConf}) erstellt, die den Entwicklungsserver, der von Vite betrieben wird, an den Client weitergibt.
 
@@ -32,6 +32,6 @@ Um das Datenbankschema aufzubauen und Testdaten einzufügen, können SQL-Skripte
 \end{figure}
 
 Um "Secrets" wie das Passwort zur Datenbank zu schützen, werden sie aus Umgebungsvariablen übernommen.
-Damit es nicht notwendig ist, die Umgebungsvariablen jedes Mal manuell zu setzten, ist es bei Docker möglich, eine ".env"-Datei anzugeben, die alle Umgebungsvariablen speichert. 
+Damit es nicht notwendig ist, die Umgebungsvariablen jedes Mal manuell zu setzten, ist es bei Docker mit der Option "{\ttfamily --env-file}" möglich, eine ".env"-Datei anzugeben, die alle Umgebungsvariablen speichert. \label{par:dockerEnvFile} 
 
 \css{code/Docker/dev.yaml}{Docker-YAML für die Entwicklung}
