@@ -2,7 +2,11 @@ import { Request, Response, NextMethod } from "../types";
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 
-export default function (req: Request, res: Response, next: NextMethod): void {
+export default function authenticationMiddleware(
+  req: Request,
+  res: Response,
+  next: NextMethod
+): void {
   var token = req.headers["authorization"].trim().split(" ")[1].trim();
   if (!token) {
     res.status(403).send("A token is required for authentication");
