@@ -1,6 +1,6 @@
 \hthree{Die "App"-Klasse}\label{sec:app}
 
-Die "App"-Klasse übernimmt die Verwaltung aller Endpunkte, und damit das Routing zu den verfügbaren Pfaden der URL. 
+Die "App"-Klasse übernimmt die Verwaltung aller Endpunkte, und damit das Routing zu den verfügbaren Pfaden der URL. Das bedeutet, dass hier alle Pfade definiert werden müssen. Ein Pfad wird dabei durch eine sogenannte "Controller" Klasse abgebildet (siehe Kapitel \ref{sec:controller}, S. \pageref{sec:controller}). Wenn ein Request an die API gestellt wird, wird mit Hilfe des NPM-Modul "express" die passende "Handler"-Methode des jeweiligen "Controllers" aufgerufen. Diese Methode bearbeitet die Anfrage und sendet eine Antwort zurück.
 
 \begin{figure}[H]
     \centering
@@ -11,6 +11,8 @@ Die "App"-Klasse übernimmt die Verwaltung aller Endpunkte, und damit das Routin
 
 \pagebreak
 
+\hfour{Der "App"-Konstruktor}\label{sec:appConstructor}
+
 Im Konstruktor der App-Klasse können verschiedene Optionen mitgegeben werden:
 
 \hfive{"Port"}
@@ -19,15 +21,17 @@ Durch die Port-Option kann angegeben werden, auf welchem Port die API HTTP-Reque
 
 \hfive{"Controllers"}
 
-Die "Controller" werden als Array von "Controller"-Objekten übergeben und repräsentieren einen Endpoint (siehe Kapitel "Controllers" \ref{sec:controller}).
+Die "Controller" werden als Array von "Controller"-Objekten übergeben und repräsentieren einen Endpunkt (siehe Kapitel "Controllers" \ref{sec:controller}, S. \pageref{sec:controller}).
 
 \hfive{"Middlewares"}
 
-Dies ist ein Array an "Middlewares", welche bei jedem Request vor den "Controllern" ausgeführt werden (siehe Kapitel "Middleware" \ref{sec:middleware}).
+Dies ist ein Array an "Middlewares", welche bei jedem Request vor den "Controllern" ausgeführt werden (siehe Kapitel "Middleware" \ref{sec:middleware}, S. \pageref{sec:middleware}).
 
 \hfive{"Base-URL"}
 
 Durch diesen String kann der Root-Pfad definiert werden. Standardmäßig ist dieser auf "{\ttfamily /}" gesetzt. Bei \ZELIA\ ist dieser auf "{\ttfamily /api}" konfiguriert worden, da alle API bezogenen Anfragen auf den Pfad "{\ttfamily /api}" gehen.
+
+\hfour{Verwendung der APP-Klasse}\label{sec:appUsage}
 
 Um eine Instanz der App-Klasse zu erstellen, muss diese importiert werden. Danach kann die "App" mit ihren registrierten "Controllern" und "Middlewares" instanziiert werden. Damit die "App" auf dem angegebenen Port gestartet wird, muss die "listen"-Methode aufgerufen werden.
 
