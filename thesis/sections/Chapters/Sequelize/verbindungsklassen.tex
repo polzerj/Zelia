@@ -9,21 +9,26 @@ Die Verbindungsklassen sind für die Kommunikation mit der Datenbank und deren u
     \item Das hinzufügen von Datensätzen in die Datenbank
 \end{itemize}
 
-Um die Struktur einer Verbindungsklasse besser zu verstehen, kann man sich das Klasse "RoomReportConnection" ansehen.
+Um die Struktur einer Verbindungsklasse besser zu verstehen, kann die Klasse "RoomReportConnection" angesehen werden.
 
-Zu Beginn muss aus der Sequelize-Bibliothek "Models" und "DataTypes" importiert werden. Folgender Code ist dafür zuständig:
+Zu Beginn muss aus der Sequelize-Bibliothek "Models" und "DataTypes" importiert werden um verschiedenste Methoden und Funktionen von "Sequelize" nutzen zu können. 
+
+Folgender Code ist dafür zuständig:
 
 \typescript{code/Sequelize/importVerbindung.ts}{Importieren von "Models" und "DataTypes"}
 
 Im zweiten Schritt werden diverseste Datentypen aus \ZELIA\ in die Klasse importiert, welche in weiteren Schritten benötigt werden.
 
-In weiterer Folge müssen nun die Werte, welche in der Tabelle auf die zugegriffen werden soll definiert werden. Hierzu erstellt man eine neue Klasse, welche das "RoomReportEntity" Interface beinhaltet und implementiert. In dieser Klasse werden nun die Spalten Eigenschaften mit Zugriffsoperatoren und Datentypen versehen. Außerdem werden an alle Eigenschaften außer "Id" ein "!" angehängt. Dieses gibt da, dass es sich um ein Pflichtfeld handelt. Bei der "Id" steht ein "?". Dieses steht für eine nicht zwangläufig auszufüllende Eigenschaft.
+In weiterer Folge müssen nun die Werte, welche in der Tabelle, auf die zugegriffen werden soll, definiert werden. Hierzu erstellt man eine neue Klasse, welche das "RoomReportEntity" Interface beinhaltet und implementiert. In dieser Klasse werden nun die Eigenschaften mit Zugriffsoperatoren und Datentypen versehen. 
+
+Außerdem werden an alle Eigenschaften außer "Id" ein "!" angehängt. Dieses gibt da, dass es sich um ein Pflichtfeld handelt. Bei der "Id" steht ein "?". Dieses steht für eine nicht zwangläufig auszufüllende Eigenschaft.
 
 \typescript{code/Sequelize/class.ts}{Klasse "RoomReport"}
 
 Diese Klasse, welche das "Entityinterface" nun implementiert muss nun nach den Sequelizestandard initialisiert werden. Hierbei wird auf die gewünschte Klasse die von Sequelize zur Verfügung gestellte Methode "init" angewandt. Nachfolgend wird nun jeder Eigenschaft aus der Klasse (in diesem Fall RoomReport) mehrere Attribute mitgegeben (zum Beispiel ein "type" oder "allow null").
 
-Außerdem werden Eigenschaften, welche in der Datenbank über einen Fremdschlüssel referenziert werden mit dem Schlüsselwort "references" auf eine Spalte einer anderen Tabelle referenziert. Hierbei muss nachher noch das "Model" angegeben werden auf welches Bezug genommen wird und der Schlüssel, welcher referenziert werden soll.
+Außerdem werden Eigenschaften, welche in der Datenbank über einen Fremdschlüssel referenziert werden mit dem Schlüsselwort "references" auf eine Spalte einer anderen Tabelle referenziert. Hierbei muss nachher noch das "Model" angegeben werden,
+auf welches Bezug genommen wird und der Schlüssel, welcher referenziert werden soll.
 
 Zum Schluss wird noch der Name der Tabelle angegeben, auf welche Bezug genommen wird und das Sequelizeobjekt wird mitgegeben.
 
