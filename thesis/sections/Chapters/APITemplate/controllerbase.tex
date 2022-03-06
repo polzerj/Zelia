@@ -19,20 +19,8 @@ Der Konstruktor der "ControllerBase" nimmt zwei Parameter entgegen:
 
 \typescript{code/APITemplate/MiddlewareParam.ts}{Interface "MiddlewareParam"}
 
-"Middlewares" sind im Kapitel \ref{sec:middleware} beschrieben.
+"Middlewares" sind im Kapitel \ref{sec:middleware} auf Seite \pageref{sec:middleware} beschrieben.
 
-Um die HTTP-Methoden zu implementieren, gibt es in der "ControllerBase"-Klasse Methoden, welche überschrieben werden können. 
-Wenn eine Methode nicht implementiert wird, wird der HTTP Status-Code 405 (Method Not Allowed) zurückgegeben.
-
-Die Namen der Methoden entsprechen deren HTTP-Methoden:
-\begin{itemize}
-    \item get
-    \item post
-    \item put
-    \item path
-    \item delete
-\end{itemize}
-
-Der Zusammenhang zwischen der "App"-Klasse und der "ControllerBase"-Klasse ist in der Abbildung \ref{fig:apiUML} dargestellt.
+Der Zusammenhang zwischen der "App"-Klasse und der "ControllerBase"-Klasse ist in der Abbildung \ref{fig:apiUML} auf Seite \pageref{fig:apiUML} dargestellt.
 
 \typescript{code/APITemplate/ControllerBase.ts}{"ControllerBase"-Klasse}

@@ -1,13 +1,17 @@
-\hfour{Typen für Rauminfos in ZELIA}
+\hfour{Typen für Rauminfos in ZELIA}\label{sec:roomtype}
 
-Um Informationen über einen Raum korrekt anzeigen zu können ist es wichtig, dass gewisse Eigenschaften nur gewisse Werte annehmen können. So gibt es dies etwas für den Raumtyp, den Tafeltyp, die Art des Beamers und die Verbindungsmöglichkeiten für den Beamer.
+Um Informationen über einen Raum korrekt anzeigen zu können ist es wichtig, dass gewisse Eigenschaften nur gewisse Werte annehmen können. Dies gibt es in \ZELIA\ etwa für den Raumtyp, den Tafeltyp, die Art des Projektors und die Verbindungsmöglichkeiten für den Projektor.
 
 Im Code wird das folgendermaßen realisiert:
 
-Zuerst wird wieder das Schlüsselwort "export" angegeben, um den Typ in allen File zugreifbar zu haben. Weiters muss diesem Typ einen Name bekommen. Die einzelnen Werte des Typen eingetragen werden. Im nachfolgenden Beispiel wird dadurch festgelegt, dass ein Raum nur einen der folgenden Werte annehmen darf.
+Das Schlüsselwort "export" angegeben, um den Typ in allen Dateien zugreifbar zu machen. Weiters muss dieser Typ einen Name bekommen und die einzelnen Werte des Typen eingetragen werden. 
+
+Das nachfolgende Beispiel zeigt, dass es ein Raum nur einen der eingetragenen Raumtypen annehmen darf.
 
 \typescript{code/Sequelize/einfach.ts}{Einfachauswahl eines Raumtypen}
 
-Eine Mehrfachauswahl wird durch ein Array zum Schluss ermöglicht.
+Bei einem Projektor gibt es in der Regel mehrere Möglichkeiten eine Verbindung aufzubauen. Deshalb gibt es hier eine Mehrfachauswahl.
 
-\typescript{code/Sequelize/mehrfach.ts}{Mehrfachauswahl einer Verbindungsmöglichkeit für den Beamer}
+Die Auswahl mehrerer Werte wird durch ein Array zum Schluss ermöglicht.
+
+\typescript{code/Sequelize/mehrfach.ts}{Mehrfachauswahl einer Verbindungsmöglichkeit für den Projektor}
