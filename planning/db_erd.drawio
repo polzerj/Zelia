@@ -1,0 +1,25 @@
+<mxfile host="65bd71144e">
+    <diagram id="_w-i1lTGdEReaCJkL7Mf" name="Page-1">
+        <mxGraphModel dx="762" dy="362" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Lesson" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="300" y="130" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Room" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="460" y="140" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="RoomReport" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="520" y="40" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="RoomReservation" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="380" y="40" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="AdminUser" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="310" y="210" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

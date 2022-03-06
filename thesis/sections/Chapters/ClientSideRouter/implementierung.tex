@@ -4,7 +4,7 @@ Wie gerade erwähnt ist "Frontend Routing" ein bisschen komplizierter zu impleme
 
 Aufteilen kann man die Client Bibliothek wie schon gesagt in zwei Teile: Das Komponentensystem und den Client-Side-Router. Das Komponentensystem wurde vorher schon beschrieben (siehe Kapitel WebComponents \ref{sec:webcomponents}). Beide Teile der Bibliothek haben keine Abhängigkeiten und können getrennt voneinander laufen. Sie sind beide für den Anwendungsfall in \ZELIA\ entwickelt, können aber auch problemlos einzeln für andere Web-Applikationen verwendet werden.
 
-Wie vorhin erwähnt wird bei \ZELIA\ ein einfaches "index.html" verwendet, um das Skript zu laden, welches sich um die gesamte Seite kümmert. Zusätzlich ist ein leerer Container mit dem Namen "app" definiert, der sich auf der Webpage befindet. Dieser Container wird vom Client-Side-Router verwendet um Seiten dynamisch in die Hauptseite, die nie wirklich verlassen wird, hineinzuladen. Wenn das Skript vom Browser gestartet wird, erstellt \ZELIA\ ein Router Objekt mit folgenden Schnittstellen:
+Wie vorhin erwähnt wird bei \ZELIA\ ein einfaches "index.html" verwendet, um das Skript zu laden, welches sich um die gesamte Seite kümmert. Zusätzlich ist ein leerer Container mit dem Namen "app" definiert, der sich auf der Webseite befindet. Dieser Container wird vom Client-Side-Router verwendet um Seiten dynamisch in die Hauptseite, die nie wirklich verlassen wird, hineinzuladen. Wenn das Skript vom Browser gestartet wird, erstellt \ZELIA\ ein Router Objekt mit folgenden Schnittstellen:
 
 \typescript{code/CSRouter/interface.ts}{Schnittstellen der "Router" Klasse}
 
@@ -23,13 +23,13 @@ Im Codebeispiel \ref{initRoutes}, Zeile fünf bis sieben, wird der Pfadeintrag "
 
 \typescript{code/CSRouter/placeholder.ts}{Beispiel "Controller" mit Platzhalter}
 
-Am Ende, nachdem alle Routen initialisiert wurden, führt der Router den Controller der mit dem aktuellen Pfad verknüpft ist aus. Damit werden alle  Inhalte der angeforderten Seite dargestellt. Dafür wird der Pfad verwendet, welcher in der Eingabezeile des Browsers mitgegeben wird. Somit ist es möglich, dass man den Pfad manuell eingeben kann und nicht immer auf der Anfangsroute "{\ttfamily /}" startet.
+Am Ende, nachdem alle Routen initialisiert wurden, führt der Router den Controller aus der mit dem aktuellen Pfad verknüpft ist. Damit werden alle  Inhalte der angeforderten Seite dargestellt. Dafür wird der Pfad verwendet, welcher in der Eingabezeile des Browsers mitgegeben wird. Somit ist es möglich, dass man den Pfad manuell eingeben kann und nicht immer auf der Anfangsroute "{\ttfamily /}" startet.
 
 Wenn ein Link ausgewählt wird, fängt \ZELIA\ die Anfrage an den Server ab und verwaltet das Umleiten selbst:
 
 \typescript{code/CSRouter/redirect.ts}{Umleitung in einem Event}
 
-Im  Hintergrund wird jedes Mal beim Umleiten ein Eintrag in den Verlauf gemacht. Bei diesem Eintrag wird der besuchte Pfad gespeichert. Der Browser speichert den Verlauf einer Seite als Stapel, sprich man kann nur oben hinzufügen und das oberste Element herunternehmen. Somit kann man das Event "onPop" welches der Browser feuert, abfangen und selbst mit dem Router umleiten:
+Im  Hintergrund wird jedes Mal beim Umleiten ein Eintrag in den Verlauf gemacht. Bei diesem Eintrag wird der besuchte Pfad gespeichert. Der Browser speichert den Verlauf einer Seite als Stapel. Dadurch kann man nur oben Elemente hinzufügen oder das Oberste herunternehmen. Somit kann man das Event "onPop" welches der Browser feuert, abfangen und selbst mit dem Router umleiten:
 
 \typescript[code:routerhistory]{code/CSRouter/history.ts}{Abfangen und Umleiten, wenn der Verlauf geändert wird}
 
@@ -39,4 +39,4 @@ Wenn der Router auf einen Pfad umleiten soll den er nicht kennt, dann lädt er d
 
 \typescript{code/CSRouter/notfound.ts}{Laden der 404 Komponente in die Fehlerseite}
 
-Mit all den oben beschriebenen Maßnahmen kann der \ZELIA\ Client-Service zwischen verschiedenen Seiten logisch wechseln, ohne jemals die eigentliche Seite zu verlassen.
+Mit all den oben beschriebenen Maßnahmen kann der \ZELIA\ Client-Service zwischen verschiedenen logischen Seiten wechseln, ohne jemals die eigentliche Seite zu verlassen.

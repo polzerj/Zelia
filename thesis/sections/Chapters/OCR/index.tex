@@ -19,7 +19,7 @@ Heutzutage gibt es viele Anwendungen für die OCR Technologie. Zum Beispiel wird
 
 Bevor man Texte aus einem Bild auslesen kann, wird das Bild meist vereinfacht. Es wird dabei das gesamte Bild auf Grautöne komprimiert, welche helfen sollen Text oder kein Text zu erkennen. Oft wird auch probiert das Bild zusammenzuschneiden, so dass nur mehr der wichtigste Teil mit Text vorhanden ist. Der letzte Schritt der gemacht wird ist das Einteilen der Zeichen. Dabei wird probiert alles was ein Zeichen sein könnte zu finden und auszuschneiden.\cite{OCRPreProcessing}
 
-Diese Bilder von Zeichen werden dann probiert in den jeweiligen Zeichencode umgewandelt zu werden. Dafür gibt es gibt zwei Herangehensweisen, die meist verwendet werden, um diese Umwandlung durchzuführen:
+Diese Bildausschnitte von Zeichen werden dann probiert in den jeweiligen Zeichencode umgewandelt zu werden. Dafür gibt es gibt zwei Herangehensweisen, die meist verwendet werden, um diese Umwandlung durchzuführen:
 
 \begin{itemize}
     \item "Matrix Matching" oder auch "Pattern Matching" genannt.
@@ -48,7 +48,7 @@ Tesseract ist eine Software-Bibliothek aus 1985, die 2005 als Open-Source-Projek
 
 Wie schon beschrieben, kann man eine Raumnummer, nicht nur eingeben, sondern auch mit der Kamera eines Smartphones einscannen. Um die Raumnummer aus den Bildern auszulesen brauchen wird somit einen "Optical Character Recognition"-Prozess. Dabei wird die Bibliothek "TesseractJS", eine Web-Version von "Tesseract OCR", direkt im Browser eingebunden, um die Bilder von Raumnummern zu Text zu verarbeiten.\cite{TesseractJS}\cite{TesseractJSImplementation}
 
-Um das eben Erwähnte umzusetzen, gibt es bei \ZELIA\ im Komponentensystem eine Komponente, welche genau diese Funktionalität bewerkstelligt. Diese Komponente wird auf der OCR-Seite des Frontends eingebunden. Sie beinhaltet ein Videoelement, um zu zeigen was sie scannt. Um auf die Kamera eines Gerätes aus einem Webbrowser zugreifen zu können, muss über den "Browser Navigator" angefragt werden, ob die Kamera verwendet werden darf (siehe Code \ref{code:CameraAccess}).
+Für diese Aufgabe gibt es bei \ZELIA\ im Komponentensystem eine Komponente. Diese Komponente wird auf der OCR-Seite des Frontends eingebunden. Sie beinhaltet ein Videoelement, um zu zeigen was sie scannt. Um auf die Kamera eines Gerätes aus einem Webbrowser zugreifen zu können, muss über den "Browser Navigator" angefragt werden, ob die Kamera verwendet werden darf (siehe Code \ref{code:CameraAccess}).
 
 \typescript[code:CameraAccess]{code/OCR/nav.ts}{Zugriff auf eine Kamera im Browser}
 
@@ -61,7 +61,7 @@ Als Parameter, bei dieser Anfrage, kann man definieren, worauf man Zugriff haben
 \end{figure}
 
 
-Die Aufgabe des "OCR"-Moduls ist es Bilder in Text umzuwandeln. Dabei wird TesseractJS verwendet um den "Optical Character Recognition" Prozess durchzuführen. Unsere Wahl fiel auf Tesseract da am Anfang nach einer einfach verwendbaren Bibliothek gesucht wurde um testen zu können, ob OCR in diesem Fall gut funktioniert. Da es sehr gute Ergebnisse geliefert hat, wurde es optimiert und weiterverwendet.
+Die Aufgabe des "OCR"-Moduls ist es Bilder in Text umzuwandeln. Dabei wird TesseractJS verwendet um den "Optical Character Recognition" Prozess durchzuführen. TesseractJS ist eine einfach verwendbare Bibliothek, die verwendet wurde um testen zu können, ob OCR in diesem Fall gut funktioniert. Da diese Tests gute Ergebnisse geliefert haben, wurde die Einsatzweise optimiert und weiterverwendet.
 
 \typescript{code/OCR/OCRModule.ts}{Die Verwendeung von TesseractJS}
 
