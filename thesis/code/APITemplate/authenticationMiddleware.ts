@@ -9,15 +9,17 @@ export default function authenticationMiddleware(
 ): void {
   var token = req.headers["authorization"].trim().split(" ")[1].trim();
   if (!token) {
+    // Token does not exist -> send HTTP 403
     res.status(403).send("A token is required for authentication");
     return;
   }
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
   } catch (e) {
-    console.log(e);
+    // Token is invalid -> send HTTP 401
     res.status(401).send("Invalid token");
     return;
   }
+  // Token is valid -> continue with the request
   next();
 }

@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 
-export default class Login extends ControllerBase {
+export default class LoginController extends ControllerBase {
   constructor() {
     super("/admin/login");
   }
