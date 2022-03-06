@@ -4,14 +4,14 @@ Die Verbindungsklassen sind für die Kommunikation mit der Datenbank und deren u
 
 \begin{itemize}
     \item Das Auslesen aller Daten
-    \item Das Auslesen von Daten nach gewissen Kriterien (zum Beispiel nach mitgegebener Raumnummer)
+    \item Das Auslesen von Daten nach mitgegebener Raumnummer
     \item Das Verändern von vorhandenen Datensätzen in der Datenbank
     \item Das hinzufügen von Datensätzen in die Datenbank
 \end{itemize}
 
 Um die Struktur einer Verbindungsklasse besser zu verstehen, kann man sich das Klasse "RoomReportConnection" ansehen.
 
-Zu Beginn muss man aus der Sequelize-Bibliothek "Models" und "DataTypes" importieren. Folgender Code ist dafür zuständig:
+Zu Beginn muss aus der Sequelize-Bibliothek "Models" und "DataTypes" importiert werden. Folgender Code ist dafür zuständig:
 
 \typescript{code/Sequelize/importVerbindung.ts}{Importieren von "Models" und "DataTypes"}
 
@@ -53,16 +53,16 @@ Die Struktur ist der Methode zum Auslesen aller "RoomReports" ähnlich, jedoch m
 
 \hfive{Verändern von vorhandenen Datensätzen}
 
-Gerade beim Melden von Schäden in Räumen ist es wichtig, Datensätze welche schon vorhanden sind wieder zu verändern, da beim Eintrag in die Datenbank der Status einer Meldung darauf eingestellt ist, dass er noch nicht in Arbeit ist. Sobald er in Arbeit ist, kann eine Administrator*in den Status auf "in Arbeit" ändern, damit die Schüler*innen erkennen, dass sich um ihr gemeldetes Problem gekümmert wird. Zum Abschluss wird der Status auf "Erledigt" gesetzt.
+Gerade beim Melden von Schäden in Räumen ist es wichtig, dass Datensätze welche schon vorhanden sind zu verändern. In diesem Beispiel wird ein neuer Datensatz zu Beginn also noch nicht in Arbeit abgespeichert. Sobald der Schaden sich in Bearbeitung befindet kann eine Administrator*in den Status auf "in Arbeit" ändern, damit die Schüler*innen erkennen, dass sich um ihr gemeldetes Problem gekümmert wird. Zum Abschluss wird der Status auf "Erledigt" gesetzt.
 
-Hierbei müssen Zwei Parameter mitgegeben werden, nämlich einerseits die "id" des Datensatzes als Zahl und der neue "ReportStatus" als Text. Nun kann mit der von Sequelize bereitgestellten Methode "update" der Datensatz verändert werden. Hierbei muss zuerst der Spaltenname und der neue Status, welcher als Parameter mitgegeben wurde angegeben werden und nachher mit einem "where" der richtige Datensatz anhand der mitgegebenen "id" gefunden werden.
+Hierbei müssen Zwei Parameter mitgegeben werden, nämlich einerseits die "id" des Datensatzes als Zahl und der neue "ReportStatus" als Text. Nun kann mit der von "Sequelize" bereitgestellten Methode "update" der Datensatz verändert werden. Hierbei muss zuerst der Spaltenname und der neue Status, welcher als Parameter mitgegeben wurde angegeben werden und nachher mit einem "where" der richtige Datensatz anhand der mitgegebenen "id" gefunden werden.
 
 \typescript{code/Sequelize/change.ts}{Ändern der Spalte "ReportDescription" in der Tabelle "RoomReport"}
 
 \hfive{Hinzufügen von Datensätzen}
 
-Wenn nun von einer Person, welche sich im Schulgebäude aufhält ein Schaden in einem Raum entdeckt wird bietet \ZELIA\ dich Möglichkeit diesen zu melden. Der neu gemeldete Schaden muss dann in der Datenbank gespeichert werden können um später darauf zugreifen zu können und ihn als verantwortliche Person bearbeiten zu können.
+Wenn nun von einer Person, welche sich im Schulgebäude aufhält ein Schaden in einem Raum entdeckt wird bietet \ZELIA\ die Möglichkeit diese zu melden. Der neu gemeldete Schaden muss dann in der Datenbank gespeichert werden können um später darauf zugreifen zu können und ihn als verantwortliche Person bearbeiten zu können.
 
-Sequelize stellt zum Schrieben in eine Tabelle die Methode "create" zur Verfügung, welche direkt auf das "Model" angewandt werden kann. Nachfolgend muss jeder Spalte ein Wert zugeordnet werden. Die Daten hierfür werden in dem Beispiel aus dem mitgegebenen "RoomReport" Objekt entnommen.
+"Sequelize" stellt zum Schrieben in eine Tabelle die Methode "create" zur Verfügung, welche direkt auf das "Model" angewandt werden kann.
 
 \typescript{code/Sequelize/new.ts}{Hinzufügen eines neuen Datensatzes}
