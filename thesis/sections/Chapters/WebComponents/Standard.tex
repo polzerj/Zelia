@@ -3,9 +3,9 @@
 Web Components ermöglichen es den gleichen Code des Clients an mehreren Stellen zu verwenden. Dazu wurden drei neue Technologien \cite{MDNWebComponents} eingeführt:
 
 \begin{itemize}
-    \item Custom Elements
-    \item Shadow DOM
-    \item HTML Templates
+    \item Custom Elements - Selbstdefinierte HTML-Elemente
+    \item Shadow DOM - Ein unabhängig gerenderter DOM-Baum
+    \item HTML Templates - Ein HTML-Tag, der nicht angezeigt wird, um dessen Inhalt von Javascript zu referenzieren
 \end{itemize}
 
 
@@ -29,21 +29,22 @@ Wenn das Custom Element registriert ist, kann es mit dem vergebenen Namen im HTM
 
 Um den Lebenszyklus eines Custom Elements besser zu kontrollieren, gibt es sogenannte "lifecycle callbacks". Diese "lifecycle callbacks" sind spezielle Methoden in einer Klasse, welche von der API der Custom Elements aufgerufen werden.
 
-Der "connectedCallback" wird aufgerufen, wenn das Element in das DOM eingefügt wird. Das DOM (Document Object Model) ist eine Programmierschnittstelle über die man auf die einzelnen HTML Elemente zugreifen kann. \cite{MDNDOM} Darin können zum Beispiel Event-Listeners registriert werden.
+Der "{\ttfamily connectedCallback}" wird aufgerufen, wenn das Element in das DOM eingefügt wird. Das DOM (Document Object Model) ist eine Programmierschnittstelle über die man auf die einzelnen HTML Elemente zugreifen kann. \cite{MDNDOM} Im "{\ttfamily connectedCallback}" können zum Beispiel Event-Listeners registriert werden.
 
 \typescript{code/WebComponents/four.ts}{"connectedCallback" Beispiel}
    
-Der "disconnectedCallback" ist das Gegenstück zum "connectedCallback" und wird beim Verlassen des DOMs aufgerufen. Darin sollten etwaige "Event Listeners" entfernt werden, um die nicht mehr benötigten Ressourcen freizugeben und dadurch Speicher und CPU-Zeit zu sparen.  
+Der "{\ttfamily disconnectedCallback}" ist das Gegenstück zum "{\ttfamily connectedCallback}" und wird beim Verlassen des DOMs aufgerufen. Darin sollten etwaige "Event Listeners" entfernt werden, um die nicht mehr benötigten Ressourcen freizugeben und dadurch Speicher und CPU-Zeit zu sparen. 
+Dadurch wird sichergestellt, dass die Anwendung auch nach längerer Nutzung performant funktioniert.
 
 \typescript{code/WebComponents/five.ts}{"disconnectedCallback" Beispiel}
 
-Der "adoptedCallback" wird jedes Mal aufgerufen, wenn das Element auf eine neue Seite verschoben wird.
+Der "{\ttfamily adoptedCallback}" wird jedes Mal aufgerufen, wenn das Element auf eine neue Seite verschoben wird.
 
 \typescript{code/WebComponents/six.ts}{"adoptedCallback" Beispiel}
 
-Der "attributeChangedCallback" Lifecycle-Hook wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. Allerdings muss dafür eine Liste an Attributnamen von der statischen Eigenschaft "observedAttributes" zurückgegeben werden. 
+Der "{\ttfamily attributeChangedCallback}" Lifecycle-Hook wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. Allerdings muss dafür eine Liste an Attributnamen von der statischen Eigenschaft "{\ttfamily observedAttributes}" zurückgegeben werden. 
     
-Der "attributeChangedCallback" nimmt drei Parameter:
+Der "{\ttfamily attributeChangedCallback}" nimmt drei Parameter:
 \begin{itemize}
     \item Name: Name des Attributes
     \item Old Value: Den Wert vor der Änderung
@@ -59,11 +60,11 @@ Unter DOM (Document Object Model) versteht man die Programmierschnittstelle, mit
 
 Ein Shadow DOM ist ein Ast im DOM-Baum innerhalb der Webseite, welcher separat von der restlichen Seite gerendert wird. Dadurch kann auch auf Custom Elements ein Style in Style-Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen. \cite{MDNShadowRoot}
 
-Um einen Shadow Root zu erstellen, muss lediglich die Methode "attachShadow" aufgerufen werden. \cite{MDNShadowRoot}
+Um einen "Shadow Root" zu erstellen, muss lediglich die Methode "{\ttfamily attachShadow}" aufgerufen werden. \cite{MDNShadowRoot}
 
 \typescript{code/WebComponents/eight.ts}{Erstellung eines Shadow Roots}
 
-Der "Mode" muss auf "open" gesetzt werden, damit der "ShadowRoot" befüllt werden kann. Nun kann mit "this.shadowRoot" auf den "ShadowRoot" innerhalb des Custom Components zugegriffen werden.
+Der "Mode" muss auf "{\ttfamily open}" gesetzt werden, damit der "ShadowRoot" befüllt werden kann. Nun kann mit "{\ttfamily this.shadowRoot}" auf den "ShadowRoot" innerhalb des Custom Components zugegriffen werden.
 \cite{MDNShadowRoot}
 
 \pagebreak
@@ -76,6 +77,8 @@ Um das Custom Element mit Inhalten zu füllen, gibt es in HTML den "template"-Ta
 Damit das Template als Custom Element gerendert wird, muss der Content in das dieses, oder dessen Shadow DOM kopiert werden.
 
 \typescript{code/WebComponents/ten.ts}{Kopieren des Template in das Custom Element}
+
+\hfive{Slots}
 
 Um den Inhalt der Components dynamisch zu machen, gibt es den HTML "Slot"-Tag. 
 Dieser ermöglicht es Inhalte an die Components weiterzugeben. 
