@@ -24,7 +24,15 @@ Um eine Meldung oder Buchung zu tätigen, muss man eine E-Mail-Adresse von sich 
 
 ZELIA ist spezifisch für Schulen entwickelt und somit besteht die Zielgruppe vor allem aus Schüler*innen und Lehrer*innen, die täglich in mehreren Lehrräumen unterwegs sind. Für diese ist es praktisch zu sehen in welchem Raum sie später vielleicht sein werden und welche technischen Mittel dort zur Verfügung stehen. Aber auch für Besucher*innen einer Schule, zum Beispiel an einem "Tag der offenen Tür", könnte \ZELIA\ von Nutzen sein. So könnte man selbst, ohne Begleitung, durch die Schule gehen und Informationen über Räume und \zb\ Projekte in diesen, erfahren.
 
-Aufteilen kann man \ZELIA\ in drei Teile: Den Server, die Datenbank und den "Client". Jeder dieser Teile ist in sich geschlossen, einzeln geplant und implementiert worden.
+\begin{minipage}{\textwidth}
+    Aufteilen kann man \ZELIA\ in drei Teile: 
+    \begin{itemize}
+        \item Den Server
+        \item Die Datenbank
+        \item Den Client
+    \end{itemize}
+    Jeder dieser Teile ist in sich geschlossen, einzeln geplant und implementiert worden.
+\end{minipage}
 
 \begin{figure}[H]
     \centering
@@ -42,7 +50,7 @@ Der ZELIA-Server ist der Hauptteil von ZELIA. Er sammelt und stellt alle Daten z
     \item Der dritte Teil kümmert sich um die Abfragen von WebUntis, um Zugriff auf aktuelle Stundenpläne jeweiliger Räume zu bekommen.
 \end{itemize}
 
-Während das Backend für den Client nur ein Server ist, besteht dieser eigentlich aus mehreren Docker-Containern. Dadurch ist es möglich, die Datenbank und die ZELIA-API am selben Server in sogenannten Containern laufen zu lassen. Ein großer Vorteil daran ist, dass man \ZELIA\ als gesamtes System starten und verwalten kann. Gerade in der Entwicklung ist das sehr wichtig, da somit auf jedem beliebigen Computer eine eigene \ZELIA\ Instanz gestartet werden kann. Für diese Container macht es keinen Unterschied, ob sie nebeneinander am selben Server laufen oder über die Welt verteilt sind. Sie sind miteinander über ein virtuelles Netz verbunden (mehr zu Containertechnologie und Docker in Kapitel \ref{sec:ContainerAndDocker}, Seite \pageref{sec:ContainerAndDocker})
+Während das Backend für den Client nur ein Server ist, besteht dieser eigentlich aus mehreren Docker-Containern. Dadurch ist es möglich, die Datenbank und die ZELIA-API am selben Server in sogenannten Containern laufen zu lassen. Ein großer Vorteil daran ist, dass man \ZELIA\ als gesamtes System starten und verwalten kann. Gerade in der Entwicklung ist das sehr wichtig, da somit auf jedem beliebigen Computer eine eigene \ZELIA\ Instanz gestartet werden kann. Für diese Container macht es keinen Unterschied, ob sie nebeneinander am selben Server laufen oder nicht. Sie sind miteinander über ein virtuelles Netz verbunden (mehr zu Containertechnologie und Docker in Kapitel \ref{sec:ContainerAndDocker}, Seite \pageref{sec:ContainerAndDocker})
 
 \begin{figure}[H]
     \centering
@@ -51,25 +59,25 @@ Während das Backend für den Client nur ein Server ist, besteht dieser eigentli
     \label{fig:server_arch}
 \end{figure}
 
-Der \ZELIA-API Server ist mittels NodeJS implementiert, einer Javascript-Engine, die es ermöglicht einfach mit dem Frontend zu kommunizieren. Außerdem gibt es viele vorgefertigte Pakete, um schnell ein stabiles Backend zu entwerfen. Statt Javascript wird bei \ZELIA\ allerdings TypeScript verwendet, welches aber in Javascript umgewandelt wird. Was genau TypeScript ist und warum es bei \ZELIA\ verwendet wird, ist in Kapitel TypeScript \ref{sec:TypeScript} (Seite \pageref{sec:TypeScript}) erläutert.
+Der \ZELIA-API Server ist mittels NodeJS implementiert, ein Javascript-Framework, dies ermöglicht einfach mit dem Frontend zu kommunizieren. Außerdem gibt es viele vorgefertigte Pakete, um schnell ein stabiles Backend zu entwerfen. Statt Javascript wird bei \ZELIA\ allerdings TypeScript verwendet, welches aber in Javascript umgewandelt wird. Was genau TypeScript ist und warum es bei \ZELIA\ verwendet wird, ist in Kapitel TypeScript \ref{sec:TypeScript} (Seite \pageref{sec:TypeScript}) erläutert.
 
 \htwo{Datenbank}
 
-Wie schon geschrieben ist die \ZELIA\ Datenbank physisch gesehen ein Teil des \ZELIA\ Servers (siehe Abbildung \ref{fig:server_arch}). Alle Informationen zu Räumen, wie die Anzahl von Plätzen oder Computern, werden in ihr gespeichert. Dort sind auch Meldungen und Buchungen von Räumen abgelegt, damit später darauf zurückgegriffen werden kann. Diese Meldungen und Buchungen können von Administratorbenutzern abgefragt werden. Diese Administratoren sind auch in der Datenbank gespeichert. Die Datenbank steht abgeschottet in einem privaten Netz, welches mittels Containertechnologien (siehe Kapitel Containertechnologie und Docker \ref{sec:ContainerAndDocker}) bewerkstelligt wird und kann nur über definierte Schnittstellen vom Server angesprochen und abgefragt werden. Verwendet wird die Datenbank "MariaDB" (siehe Kapitel MariaDB \ref{sec:MariaDB}). Am Datenbankteil des ZELIA-Servers wird "Sequelize" verwendet, um Abfragen zu machen (siehe Kapitel Sequelize \ref{sec:sequelize}).
+Die \ZELIA\ Datenbank ist physisch gesehen ein Teil des \ZELIA\ Servers (siehe Abbildung \ref{fig:server_arch}). Alle Informationen zu Räumen, wie die Anzahl von Plätzen oder Computern, werden in ihr gespeichert. Dort sind auch Meldungen und Buchungen von Räumen abgelegt, damit später darauf zurückgegriffen werden kann. Diese Meldungen und Buchungen können von Administratorbenutzern abgefragt werden. Diese Administratoren sind auch in der Datenbank gespeichert. Die Datenbank steht abgeschottet in einem privaten Netz, welches mittels Containertechnologien (siehe Kapitel Containertechnologie und Docker \ref{sec:ContainerAndDocker}) bewerkstelligt wird und kann nur über definierte Schnittstellen vom Server angesprochen und abgefragt werden. Verwendet wird die Datenbank "MariaDB" (siehe Kapitel MariaDB \ref{sec:MariaDB}). Am Datenbankteil des ZELIA-Servers wird "Sequelize" verwendet, um Abfragen zu machen (siehe Kapitel Sequelize \ref{sec:sequelize}).
 
 
 \htwo{Client}
 
-Damit \ZELIA\ einfach zu verwenden ist, baut der Client auf modernen Web-Techniken auf. Somit ist der \ZELIA\ Client eine Web-Anwendung,  die von jedem Gerät verwendet werden kann, egal ob Computer, Tablet oder Smartphone. Da \ZELIA\ mobil sein muss, ist die Web-Applikation so optimiert, dass sie auch auf leistungsschwächeren Geräten und Smartphones gut funktioniert. Das Frontend wurde mit Fokus auf eine einfache Verwendung auf Smartphones entwickelt, da es durch die Außenkameras dieser Endgeräte ein wichtiges Feature gibt. Normalerweise, also auf Geräten ohne Außenkamera, muss man die Raumnummer selbst eingeben, um die Informationen von einem Raum zu bekommen. Durch die Außenkamera von Smartphones gibt es allerdings die Möglichkeit Raumnummern, zum Beispiel von Türschildern, einzuscannen. 
+Damit \ZELIA\ einfach zu verwenden ist, baut der Client auf modernen Web-\linebreak Technologien auf. Somit ist der \ZELIA-Client eine Web-Anwendung,  die von jedem Gerät verwendet werden kann, egal ob Computer, Tablet oder Smartphone. Da \ZELIA\ mobil sein muss, ist die Web-Applikation so optimiert, dass sie auch auf leistungsschwächeren Geräten und Smartphones gut funktioniert. Das Frontend wurde mit Fokus auf eine einfache Verwendung auf Smartphones entwickelt, da es durch die Außenkameras dieser Endgeräte ein wichtiges Feature gibt. Normalerweise, also auf Geräten ohne Außenkamera, muss man die Raumnummer selbst eingeben, um die Informationen von einem Raum zu bekommen. Durch die Außenkamera von Smartphones gibt es allerdings die Möglichkeit Raumnummern, zum Beispiel von Türschildern, einzuscannen. 
 
-Nachdem man auf der Startseite eine Raumnummer eingegeben hat, egal ob manuell oder gescannt, sieht man die jeweiligen Informationen eines Raumes. Wie schon erwähnt, gibt es auch die Möglichkeit Räume zu buchen oder Informationen über diese zu melden. Meldungen und Buchungen können im sogenannten "Admin Dashboard" angesehen und nach Relevanz gefiltert werden. Auf diese Administratorübersicht kann auch über die Web-Anwendung zugegriffen werden. Allerdings ist dafür ein gültiger Benutzername und Passwort eines verifizierten Administrators, welcher in der Datenbank gespeichert ist, nötig.
+Nachdem man auf der Startseite eine Raumnummer eingegeben hat, egal ob manuell oder gescannt, sieht man die jeweiligen Informationen eines Raumes. Wie schon erwähnt, gibt es auch die Möglichkeit Räume zu buchen oder Informationen über diese zu melden. Meldungen und Buchungen können im sogenannten "Admin Dashboard" angesehen und nach Relevanz gefiltert werden. Auf diese Administratorübersicht kann auch über die Web-Anwendung zugegriffen werden. Allerdings ist dafür ein gültiger Benutzername und Passwort eines Administrators, welcher in der Datenbank gespeichert ist, nötig.
 
-Realisiert ist das Frontend von \ZELIA\ von Grund auf mit HTML5 und CSS. Statt Javascript wird auch hier TypeScript verwendet, welches aber in normales vom Browser interpretierbares Javascript umgewandelt wird. 
+Realisiert ist das Frontend von \ZELIA\ von Grund auf mit HTML5 und CSS3. Statt Javascript wird auch hier TypeScript verwendet, welches aber in normales vom Browser interpretierbares Javascript umgewandelt wird. 
 
-Das Frontend läuft mit Ausnahme von TesseractJS (siehe Kapitel Tesseract \ref{sec:tesseract}), welches ermöglicht die Kamera zum Einlesen einer Raumnummer zu verwenden, ohne fremde Bibliotheken. Dies wurde aus zwei Gründen so implementiert:
+Das Frontend läuft mit Ausnahme von der Bibliothek TesseractJS (siehe Kapitel Tesseract \ref{sec:tesseract}), welche verwendet wird um Text aus Bildern auszulesen, ohne fremde Bibliotheken. Dies wird benötigt um mit der Kamera eines Endgerätes Raumschilder einscannen zu können. Aus zwei Gründen wurden keine anderen Bibliotheken verwendet:
 \begin{itemize}
     \item Bibliotheken, wie zum Beispiel Angular, sind für den Anwendungsfall an ZELIA sehr groß. Dadurch könnte die Webseite schnell zu komplex und langsam werden.
-    \item Wir wollten herausfinden, wie man eine eigene einfache Bibliothek entwickeln kann, welche nicht nur für eine Anwendung konzipiert ist
+    \item Um herausfinden, wie man eine eigene einfache Bibliothek entwickeln kann, welche nicht nur für eine Anwendung konzipiert ist
 \end{itemize}
 
 Somit wurden zwei separate Teile entwickelt, auf denen das ZELIA-Client basiert. 

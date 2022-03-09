@@ -4,7 +4,7 @@
 
 \hfour{Einleitung}
 
-Das Komponentensystem ist der erste Teil der ZELIA-Frontend-Bibliothek, der entworfen wurde, um den Inhalt der Webseiten darstellen zu können. Wie der Rest von \ZELIA\ ist auch der Code im Frontend in Typescript geschrieben, um einen Überblick über die Datentypen zu behalten. 
+Das Komponentensystem ist der erste Teil der ZELIA-Frontend-Bibliothek, der entworfen wurde, um den Inhalt der Webseiten darstellen zu können. Wie die anderen Teile von \ZELIA\ ist auch der Code im Frontend in Typescript geschrieben, um einen Überblick über die Datentypen zu behalten. 
 
 \hfour{Architektur}
 
@@ -26,7 +26,7 @@ Zusätzlich kann sich das Komponentensystem automatisch Referenzen auf "HTML Ele
 
 \typescript[code:kompref]{code/WebComponents/AutoRef.ts}{Erstellen einer Komponente und suchen einer Referenz}
 
-In diesem Beispiel wird das Element "button" gesucht. Dieses Element ist vom Typ "HTMLButtonElement" und kann mit "{\ttfamily \#btnInfo}" gefunden werden. Die Raute im Suchfeld besagt, dass der nachfolgende Text die ID von dem HTML-Element ist. Somit würde der Suchtext für das folgende Beispiel zutreffen:
+In diesem Beispiel wird das Element "{\ttfamily button}" gesucht. Dieses Element ist vom Typ "{\ttfamily HTMLButtonElement}" und kann mit "{\ttfamily \#btnInfo}" gefunden werden. Die Raute im Suchfeld besagt, dass der nachfolgende Text die ID von dem HTML-Element ist. Somit würde der Suchtext für das folgende Beispiel zutreffen:
 
 \html{code/WebComponents/IDButton.html}{Beispiel eines HTML Knopfes mit ID}
 
@@ -42,7 +42,7 @@ Erst nachdem alle Ressourcen der Komponenten geladen wurden, wird der Client-Sid
 \begin{minipage}{\textwidth}
     \hfour{"Life-Cycle"}
     
-    Wenn nun ein eigenes Element erstellt wird, hat der "Loader" die HTML-Ressource bereits geladen. Während der Initialisierung des Elements holt sich dieser die HTML-Ressource als Text. Im Konstruktor der Basiskomponente gibt es neben dem "query"-Parameter, welcher für die automatische Referenzierung verwendet wird, noch die "autoRender" und "useShadowRoot" Argumente. Standardmäßig sind beide Werte auf wahr gesetzt. Das heißt die Komponente wird, sobald sie auf die Seite hinzugefügt wird, ihr HTML anzeigen und in ein "ShadowRoot" eingebunden werden. Durch das "ShadowRoot" wird es als eigenes Dokument angezeigt, unabhängig von dem wo es eingebunden wird, was Überschneidungen von verschieden CSS-Styles behebt. Somit sieht die Komponente jedes Mal gleich aus, unabhängig von der restlichen Seite.
+    Wenn nun ein eigenes Element erstellt wird, hat der "Loader" die HTML-Ressource bereits geladen. Während der Initialisierung des Elements holt sich dieser die HTML-Ressource als Text. Im Konstruktor der Basiskomponente gibt es neben dem "query"-Parameter, welcher für die automatische Referenzierung verwendet wird, noch die "autoRender" und "useShadowRoot" Argumente. Standardmäßig sind beide Werte auf {\ttfamily true} gesetzt. Das heißt die Komponente wird, sobald sie auf die Seite hinzugefügt wird, ihr HTML anzeigen und in ein "ShadowRoot" eingebunden werden. Durch das "ShadowRoot" wird es als eigenes Dokument angezeigt, unabhängig von dem wo es eingebunden wird, was Überschneidungen von verschieden CSS-Styles behebt. Somit sieht die Komponente jedes Mal gleich aus, unabhängig von der restlichen Seite.
 \end{minipage}
 
 
@@ -55,7 +55,7 @@ Insgesamt besteht das komplette Frontend aus zwölf Komponenten, die auf sieben,
 \begin{figure}[H]
     \centering
     \includegraphics[width=150mm]{media/WebComponents/overview.svg.pdf}
-    \caption{Übersicht über alle Komponenten und Seiten}
+    \caption{Übersicht über alle Komponenten und Seiten (Komponenten: Blau, Seiten: Weiß)}
     \label{fig:comppageoverview}
 \end{figure}
 
@@ -87,7 +87,7 @@ Auf dieser Seite können alle Geräte, die eine Kamera haben, eine Raumnummer ei
 \end{figure}
 
 
-Meist liefert der OCR-Prozess gut erkennbare Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist wichtig, dass nachdem das Bild in Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, der Bilder in Text umwandelt, wird einmal pro Sekunde gemacht. Dieser Wert ist einfach änderbar, wurde aber auf einer Sekunde belassen, da das völlig ausreichend ist, um schnell Raumnummern zu erfassen. Würde der Wert kleiner werden, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, so würden schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Mehr zu OCR und unseren Messungen später (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}). Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
+Meist liefert der OCR-Prozess eindeutige Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist wichtig, dass nachdem das Bild in Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, der Bilder in Text umwandelt, wird einmal pro Sekunde durchgeführt. Dieser Wert ist einfach änderbar, wurde aber auf einer Sekunde belassen, da das völlig ausreichend ist, um schnell Raumnummern zu erfassen. Würde der Wert kleiner werden, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, so würden schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Mehr zu OCR und unseren Messungen später (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}). Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
 
 \hfive{Rauminformationsseite}
 
@@ -101,7 +101,7 @@ Wie der Name schon vermuten lässt, kann man auf der Rauminformationsseite alle 
 
 \hfive{Meldungen und Buchungen}
 
-Die Meldungs- und Buchungsseite sind zwei verschiedene Seiten, welche aber recht ähnlich aufgebaut sind. Erreichen kann man sie nur über die Rauminformationsseite, da sie sich auf einen bestimmten Raum beziehen. Dadurch, dass sie zwei verschiedene Aufgaben haben, müssen sie getrennt behandelt werden und können nicht auf eine Seite zusammengefasst werden. Beide Seiten bestehen aus zwei Komponenten:
+Die Meldungs- und Buchungsseite sind zwei verschiedene Seiten, welche allerdings ähnlich aufgebaut sind. Erreichen kann man sie nur über die Rauminformationsseite, da sie sich auf einen bestimmten Raum beziehen. Dadurch, dass sie zwei verschiedene Aufgaben haben, müssen sie getrennt behandelt werden und können nicht auf eine Seite zusammengefasst werden. Beide Seiten bestehen aus zwei Komponenten:
 \begin{itemize}
     \item Einem Formular zur Beischreibung und Angabe der Daten
     \item Einem Link, welcher zurück zur Rauminformationsseite führt.
@@ -115,7 +115,13 @@ Um einen Defekt in einem Raum zu melden, braucht man eine EDU-Mail-Adresse, das 
     \caption{Meldungsseite}
 \end{figure}
 
-Eine Buchungsanfrage für einen Raum zu erstellen, geht ebenso einfach, wie Defekte zu melden. Hierfür gibt man drei Dinge an: Den Tag an dem man den Raum ausborgen will, die Unterrichtsstunde, in der man startet und die Anzahl an Stunden, die man den Raum nutzen möchte. Wie beim Melden, gibt man auch hier eine EDU-Mailadresse an und zusätzlich dazu sollte man noch einen Buchungsgrund angeben, um kurz zu beschreiben, wofür man den Raum benötigt.
+Eine Buchungsanfrage für einen Raum zu erstellen, geht ebenso einfach, wie Defekte zu melden. Hierfür gibt man drei Dinge an: 
+\begin{itemize}
+    \item Den Tag an dem man den Raum ausborgen will
+    \item Die Unterrichtsstunde in der man startet
+    \item Die Anzahl an Stunden, die man den Raum nutzen möchte
+\end{itemize} 
+Wie beim Melden, gibt man auch hier eine EDU-Mailadresse an und zusätzlich dazu sollte man noch einen Buchungsgrund angeben, um kurz zu beschreiben, wofür man den Raum benötigt.
 
 \begin{figure}[H]
     \centering
@@ -158,7 +164,7 @@ Die Komponente, welche Meldungen anzeigt, hat nur einen Knopf um den Status der 
     Die Fehlerseite ist keine eigene Seite wie die anderen Seiten. Sie besteht nur aus der 404-"Not Found" Komponente und wird angezeigt wenn auf einen nicht vorhandenen Pfad zugegriffen wird. Somit hat diese Seite keinen eigenen Pfad und kann nicht wirklich als Seite von \ZELIA\ gezählt werden.
 \end{minipage}
 
-So kommt \zb\ wenn der Pfad \emph{"/admin/passwords"} aufgerufen wird:
+So kommt \zb\ wenn der Pfad "{\ttfamily /admin/passwords}" aufgerufen wird:
     
 \begin{figure}[H]
     \centering

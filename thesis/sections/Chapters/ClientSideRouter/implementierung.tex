@@ -1,6 +1,6 @@
 \hthree{Implementierung}
 
-Wie gerade erwähnt ist "Frontend Routing" ein bisschen komplizierter zu implementieren. Wenn man kein Framework wie \zb: Angular verwendet, muss man praktisch alles selbst implementieren. Trotzdem wurde bei \ZELIA\ kein Framework verwendet, sondern  ein eigenes kleines "Frontend Service" geschrieben, um perfekt an die Bedürfnisse von \ZELIA\ angepasst zu sein.
+"Frontend Routing" ist, wie gerade erwähnt, ein bisschen komplizierter zu implementieren. Wenn man kein Framework wie \zb: Angular verwendet, muss man praktisch alles selbst implementieren. Trotzdem wurde bei \ZELIA\ kein Framework verwendet, sondern  ein eigenes kleines "Frontend Service" geschrieben, um perfekt an die Bedürfnisse von \ZELIA\ angepasst zu sein.
 
 Aufteilen kann man die Client Bibliothek wie schon gesagt in zwei Teile: Das Komponentensystem und den Client-Side-Router. Das Komponentensystem wurde vorher schon beschrieben (siehe Kapitel WebComponents \ref{sec:webcomponents}). Beide Teile der Bibliothek haben keine Abhängigkeiten und können getrennt voneinander laufen. Sie sind beide für den Anwendungsfall in \ZELIA\ entwickelt, können aber auch problemlos einzeln für andere Web-Applikationen verwendet werden.
 
@@ -29,7 +29,7 @@ Wenn ein Link ausgewählt wird, fängt \ZELIA\ die Anfrage an den Server ab und 
 
 \typescript{code/CSRouter/redirect.ts}{Umleitung in einem Event}
 
-Im  Hintergrund wird jedes Mal beim Umleiten ein Eintrag in den Verlauf gemacht. Bei diesem Eintrag wird der besuchte Pfad gespeichert. Der Browser speichert den Verlauf einer Seite als Stapel. Dadurch kann man nur oben Elemente hinzufügen oder das Oberste herunternehmen. Somit kann man das Event "onPop" welches der Browser feuert, abfangen und selbst mit dem Router umleiten:
+Im  Hintergrund wird jedes Mal beim Umleiten ein Eintrag in den Verlauf hinzugefügt. Bei diesem Eintrag wird der besuchte Pfad gespeichert. Der Browser speichert den Verlauf einer Seite als Stack. Dadurch kann man nur oben Elemente hinzufügen oder das Oberste herunternehmen. Somit kann man das Event "onPop" welches der Browser feuert, abfangen und selbst mit dem Router umleiten:
 
 \typescript[code:routerhistory]{code/CSRouter/history.ts}{Abfangen und Umleiten, wenn der Verlauf geändert wird}
 
