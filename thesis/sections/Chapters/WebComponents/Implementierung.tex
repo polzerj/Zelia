@@ -42,7 +42,7 @@ Erst nachdem alle Ressourcen der Komponenten geladen wurden, wird der Client-Sid
 \begin{minipage}{\textwidth}
     \hfour{"Life-Cycle"}
     
-    Wenn nun ein eigenes Element erstellt wird, hat der "Loader" die HTML-Ressource bereits geladen. Während der Initialisierung des Elements holt sich dieser die HTML-Ressource als Text. Im Konstruktor der Basiskomponente gibt es neben dem "query"-Parameter, welcher für die automatische Referenzierung verwendet wird, noch die "autoRender" und "useShadowRoot" Argumente. Standardmäßig sind beide Werte auf {\ttfamily true} gesetzt. Das heißt die Komponente wird, sobald sie auf die Seite hinzugefügt wird, ihr HTML anzeigen und in ein "ShadowRoot" eingebunden werden. Durch das "ShadowRoot" wird es als eigenes Dokument angezeigt, unabhängig von dem wo es eingebunden wird, was Überschneidungen von verschieden CSS-Styles behebt. Somit sieht die Komponente jedes Mal gleich aus, unabhängig von der restlichen Seite.
+    Wenn nun ein eigenes Element erstellt wird, hat der "Loader" die HTML-Ressource bereits geladen. Während der Initialisierung des Elements holt sich dieser die HTML-Ressource als Text. Im Konstruktor der Basiskomponente gibt es neben dem "query"-Parameter, welcher für die automatische Referenzierung verwendet wird, noch die "autoRender" und "useShadowRoot" Argumente. Standardmäßig sind beide Werte auf {\ttfamily true} gesetzt. Das heißt die Komponente wird, sobald sie auf die Seite hinzugefügt wird, ihr HTML anzeigen und in ein "ShadowRoot" eingebunden werden. Durch das "ShadowRoot" wird es als eigenes Dokument angezeigt, unabhängig von dem wo es eingebunden wird. Dies behebt Überschneidungen von verschieden CSS-Styles. Somit sieht die Komponente jedes Mal gleich aus, unabhängig von der restlichen Seite.
 \end{minipage}
 
 
@@ -63,7 +63,7 @@ Insgesamt besteht das komplette Frontend aus zwölf Komponenten, die auf sieben,
     \hfive{Die Startseite}
     \label{sec:webcompstart}
     
-    Auf dem Root-Pfad ("/") liegt unsere Willkommensseite. Auf ihr findet man die Raumeingabekomponente, die von der ZELIA-API alle möglichen Raumnummern abfragt und als Auswahlhilfe anzeigt. Auf Mobilgeräten, wie Smartphones oder Tablets, wird zusätzlich ein Knopf angezeigt, der es möglich macht, die Raumnummer mit der Kamera des Geräts einzulesen. Wenn man auf diesen Knopf drückt, wird man zur "OCR"-Seite weitergeleitet. Gibt man die Raumnummer selbst ein, so landet man auf der Rauminformationsseite. Während der manuellen Eingabe, werden alle bekannten Räume als "Dropdown" unter der Eingabebox angezeigt. Gibt man die ersten Buchstaben des Raumnamens oder Raumnummer an, so werden nur mehr Ergebnisse angezeigt, die dem angegebenen Muster entsprechen.
+    Auf dem Root-Pfad ("/") liegt unsere Willkommensseite. Auf ihr findet man die Raumeingabekomponente, die von der ZELIA-API alle möglichen Raumnummern abfragt und als Auswahlhilfe anzeigt. Auf Mobilgeräten, wie Smartphones oder Tablets, wird zusätzlich ein Knopf angezeigt, der es möglich macht, die Raumnummer mit der Kamera des Geräts einzulesen. Wenn man auf diesen Knopf drückt, wird man zur "OCR"-Seite weitergeleitet. Gibt man die Raumnummer selbst ein, so landet man auf der Rauminformationsseite. Während der manuellen Eingabe werden alle bekannten Räume als "Dropdown" unter der Eingabebox angezeigt. Gibt man die ersten Buchstaben des Raumnamens oder Raumnummer an, so werden nur mehr Ergebnisse angezeigt, die dem angegebenen Muster entsprechen.
 \end{minipage}
 
 Beispiel:
@@ -87,11 +87,11 @@ Auf dieser Seite können alle Geräte, die eine Kamera haben, eine Raumnummer ei
 \end{figure}
 
 
-Meist liefert der OCR-Prozess eindeutige Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist wichtig, dass nachdem das Bild in Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, der Bilder in Text umwandelt, wird einmal pro Sekunde durchgeführt. Dieser Wert ist einfach änderbar, wurde aber auf einer Sekunde belassen, da das völlig ausreichend ist, um schnell Raumnummern zu erfassen. Würde der Wert kleiner werden, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, so würden schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Mehr zu OCR und unseren Messungen später (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}). Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
+Meist liefert der OCR-Prozess eindeutige Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist wichtig, dass nachdem das Bild in Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, der Bilder in Text umwandelt, wird einmal pro Sekunde durchgeführt. Dieses Intervall kann einfach verändert werden. Im Fall von ZELIA ist es jedoch auf einer Sekunde belassen, da dies völlig ausreichend ist um schnell Raumnummern zu erfassen. Würde dieses Intervall kleiner werden, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, so würden schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Mehr zu OCR und unseren Messungen später (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}). Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
 
 \hfive{Rauminformationsseite}
 
-Wie der Name schon vermuten lässt, kann man auf der Rauminformationsseite alle Daten über einen Raum auslesen. Nachdem man einen Raum, entweder durch manuelle Eingabe oder durch das Einscannen der Nummer, ausgewählt hat, wird man auf die jeweilige Rauminformationsseite umgeleitet. Aufgebaut ist die Seite aus insgesamt fünf Komponenten. So wie bei der OCR-Seite gibt es auch hier einen Link, welcher zurück auf die Startseite führt. Zwei weitere Komponenten dienen als Knöpfe um eine Meldung oder Buchung zu einem Raum zu erstellen. Wenn man einen der beiden drückt, wird man auf die jeweilige Seite, Meldung oder Buchung, umgeleitet. Die letzten zwei Komponenten auf dieser Seite sind die interessantesten, denn sie zeigen die Informationen zu einem Raum an. Die eine Komponente zeigt eine aufklappbare Liste an, um die physikalischen Daten eines Raumes anzusehen. Die andere Komponente wird verwendet, um den jeweiligen Raumstundenplan dazustellen.
+Wie der Name schon vermuten lässt, kann man auf der Rauminformationsseite alle Daten über einen Raum auslesen. Nachdem man einen Raum, entweder durch manuelle Eingabe oder durch das Einscannen der Nummer, ausgewählt hat, wird man auf die jeweilige Rauminformationsseite umgeleitet. Aufgebaut ist die Seite aus insgesamt fünf Komponenten. So wie bei der OCR-Seite gibt es auch hier einen Link, welcher zurück auf die Startseite führt. Zwei weitere Komponenten dienen als Knöpfe, um eine Meldung oder Buchung zu einem Raum zu erstellen. Wenn man einen der beiden drückt, wird man auf die jeweilige Seite, Meldung oder Buchung umgeleitet. Die letzten zwei Komponenten auf dieser Seite sind die interessantesten, denn sie zeigen die Informationen zu einem Raum an. Die eine Komponente zeigt eine aufklappbare Liste an, um die physikalischen Daten eines Raumes anzusehen. Die andere Komponente wird verwendet um den jeweiligen Raumstundenplan dazustellen.
 
 \begin{figure}[H]
     \centering
@@ -101,13 +101,13 @@ Wie der Name schon vermuten lässt, kann man auf der Rauminformationsseite alle 
 
 \hfive{Meldungen und Buchungen}
 
-Die Meldungs- und Buchungsseite sind zwei verschiedene Seiten, welche allerdings ähnlich aufgebaut sind. Erreichen kann man sie nur über die Rauminformationsseite, da sie sich auf einen bestimmten Raum beziehen. Dadurch, dass sie zwei verschiedene Aufgaben haben, müssen sie getrennt behandelt werden und können nicht auf eine Seite zusammengefasst werden. Beide Seiten bestehen aus zwei Komponenten:
+Die Meldungs- und Buchungsseite sind zwei verschiedene Seiten, welche allerdings ähnlich aufgebaut sind. Erreichen kann man sie nur über die Rauminformationsseite, da sie sich auf einen bestimmten Raum beziehen. Dadurch, dass sie zwei verschiedene Aufgaben haben, müssen sie getrennt behandelt werden und können nicht auf einer Seite zusammengefasst werden. Beide Seiten bestehen aus zwei Komponenten:
 \begin{itemize}
-    \item Einem Formular zur Beischreibung und Angabe der Daten
-    \item Einem Link, welcher zurück zur Rauminformationsseite führt.
+    \item Einem Formular, zur Beschreibung und Angabe der Daten
+    \item Einem Link, welcher zurück zur Rauminformationsseite führt
 \end{itemize}
 
-Um einen Defekt in einem Raum zu melden, braucht man eine EDU-Mail-Adresse, das Datum sowie Uhrzeit wann der Defekt das erste Mal aufgetreten ist und eine Beschreibung, um das Problem kurz zu schildern. Wie schon erläutert wird die Mail-Adresse verwendet um Schüler*innen identifizieren zu können, ohne dass sie sich selbst einen Account anlegen müssen. Nach Absenden des Formulars bekommt man einen Bestätigungslink auf die angegebene Mail-Adresse, um die Meldung zu bestätigen. So ist das Meldesystem nicht anonym und dadurch können Falsch-Meldungen ohne Konsequenzen vermieden werden.
+Um einen Defekt in einem Raum zu melden, braucht man eine EDU-Mail-Adresse, das Datum sowie Uhrzeit wann der Defekt das erste Mal aufgetreten ist und eine Beschreibung des Problems. Wie schon erläutert wird die Mail-Adresse verwendet um Schüler*innen identifizieren zu können, ohne dass sie sich selbst einen Account anlegen müssen. Nach Absenden des Formulars bekommt man einen Bestätigungslink auf die angegebene Mail-Adresse, um die Meldung zu bestätigen. So ist das Meldesystem nicht anonym und dadurch können Falsch-Meldungen ohne Konsequenzen vermieden werden.
 
 \begin{figure}[H]
     \centering
@@ -117,8 +117,8 @@ Um einen Defekt in einem Raum zu melden, braucht man eine EDU-Mail-Adresse, das 
 
 Eine Buchungsanfrage für einen Raum zu erstellen, geht ebenso einfach, wie Defekte zu melden. Hierfür gibt man drei Dinge an: 
 \begin{itemize}
-    \item Den Tag an dem man den Raum ausborgen will
-    \item Die Unterrichtsstunde in der man startet
+    \item Den Tag, an dem man den Raum ausborgen will
+    \item Die Unterrichtsstunde, in der man startet
     \item Die Anzahl an Stunden, die man den Raum nutzen möchte
 \end{itemize} 
 Wie beim Melden, gibt man auch hier eine EDU-Mailadresse an und zusätzlich dazu sollte man noch einen Buchungsgrund angeben, um kurz zu beschreiben, wofür man den Raum benötigt.
@@ -143,11 +143,11 @@ Wie schon beschrieben, muss man angemeldet sein, um Zugriff auf alle Meldungen u
     \caption{Anmeldeseite}
 \end{figure}
 
-Landet man auf der "Admin Dashboard"-Seite wird zuerst überprüft, ob ein Token im "session storage" gespeichert ist. Wenn keiner vorhanden ist, wird man sofort auf die Anmeldeseite umgeleitet. Bei einem vorhandenen Token werden alle Meldungen und Buchungen, die den Filtereinstellungen entsprechen, vom Server abgefragt. In dieser Anfrage wird auch der Token mitgeschickt. Am Server wird geprüft ob der Token gültig ist und wenn dies der Fall ist, bekommt der Client die angefragten Daten. Ist der Token ungültig schickt der Server dem Client den HTTP-Code 401 "Unauthorized", woraufhin man zurück auf die Anmeldeseite umgeleitet wird.
+Landet man auf der "Admin Dashboard"-Seite wird zuerst überprüft, ob ein Token im "session storage" gespeichert ist. Wenn keiner vorhanden ist, wird man sofort auf die Anmeldeseite umgeleitet. Bei einem vorhandenen Token werden alle Meldungen und Buchungen, die den Filtereinstellungen entsprechen, vom Server abgefragt. In dieser Anfrage wird auch der Token mitgeschickt. Am Server wird geprüft ob der Token gültig ist und wenn dies der Fall ist, bekommt der Client die angefragten Daten. Ist der Token ungültig schickt der Server dem Client den HTTP-Code 401 "Unauthorized" und man wird zurück auf die Anmeldeseite umgeleitet.
 
 Hat der Client die Buchungen und Meldungen erhalten, werden zwei Komponenten verwendet, um diese anzuzeigen. Anders als auf den anderen Seiten werden mehrere Instanzen dieser beiden Komponenten erstellt, um alle Daten darzustellen. Jede Buchung und Meldung ist somit in einer eigenen Instanz einer Komponente untergebracht. Beide dieser Komponenten können aufgeklappt werden, um alle damit verknüpften Informationen einzusehen. Zugeklappt bestehen sie aus einer Zusammenfassung der Daten (siehe Abbildung \ref{fig:admindashboard}).
 
-Die Buchungskomponente hat zwei verschiedene Knöpfe, um die Buchungsanfrage zu verarbeiten. Einen zum "Akzeptieren" und den anderen zum "Ablehnen". Zusätzlich könnte man noch einen kurzen Informationstext schreiben, der den Buchenden mit der Buchungsbestätigung per EDU-Mailadresse gesendet wird. 
+Die Buchungskomponente hat zwei verschiedene Knöpfe, um die Buchungsanfrage zu verarbeiten. Einen zum "Akzeptieren" und den anderen zum "Ablehnen". Zusätzlich könnte man noch einen kurzen Informationstext schreiben, der den Buchenden mit der Buchungsbestätigung gesendet wird. 
 
 Die Komponente, welche Meldungen anzeigt, hat nur einen Knopf um den Status der Meldung auf "geschlossen" zu setzten. Im Hintergrund gäbe es mehrere Auswahlmöglichkeiten eines Status, welche nicht im Frontend implementiert sind.
 
