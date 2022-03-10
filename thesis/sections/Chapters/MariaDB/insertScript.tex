@@ -2,16 +2,18 @@
 
 Um unterschiedliche Softwaretests des Produkts durchführen zu können, wurden Testdaten in das Datenbanksystem eingebunden.
 
-\sql{code/MariaDb/DatabaseInsertScript.sql}{Script zum Einfügen von Dummydaten}
-
 Die Datenbank wird erneut in Verwendung gebracht um die Daten in die gewünschten Tabellen, welche sich in der Datenbank befinden, zu erstellen. Hierfür wird der Befehl "USE" verwendet.
 
-\sql{code/MariaDb/use.sql}{Verwenden einer Datenbank}
+\sqlsub{code/MariaDb/DatabaseInsertScript.sql}{Verwenden einer Datenbank}{1}{1}
 
-Durch den Befehl "INSERT INTO" können Datensätze in einer Tabelle angelegt werden. Die Tabelle muss im Vorhinein schon durch "CREATE TABLE" erstellt worden sein.
+Durch den Befehl "INSERT INTO" können Datensätze in einer Tabelle angelegt werden. Die Tabelle sollte im Vorhinein schon durch "CREATE TABLE" erstellt worden sein.
 
-\sql{code/MariaDb/insertAdminUser.sql}{Aufrufen von "INSERT INTO"}
+\sqlsub{code/MariaDb/DatabaseInsertScript.sql}{Aufrufen von "INSERT INTO"}{3}{4}
 
 Mit dem Befehl "VALUES" werden dann die Datenwerte zum dazugehörigen Datensatz angegeben.
 
-\sql{code/MariaDb/insertValues.sql}{Einfügen von Werten in eine Tabelle}
+\sqlsub{code/MariaDb/DatabaseInsertScript.sql}{Einfügen von Werten in eine Tabelle}{5}{7}
+
+\hfive{Gesamtes Script}
+
+\sql{code/MariaDb/DatabaseInsertScript.sql}{Script zum Einfügen von Dummydaten}
