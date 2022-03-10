@@ -10,9 +10,9 @@ Unter dem Überbegriff "Containersicherheit", versteht man den den Schutz eines 
 
 \hfour{Imagesicherheit}
 
-Container oder besser gesagt Services, welche in Containern laufen gelassen werden, werden über sogenannte "Images" bereitgestellt. Dies bietet aber auch die Möglichkeit, direkt über das schädliche "Image" Schadsoftware oder Sicherheitslücken direkt beim initialisieren des Systems mitzuinstallieren, oder zu öffnen. Wichtig ist daher, dass das "Basisimage", also der Ausgangspunkt für weitere "Images" und Services sicher und geschützt ist.
+Container oder besser gesagt Services, welche in Containern laufen gelassen werden, werden über sogenannte "Images" bereitgestellt. Dies bietet aber auch die Möglichkeit, direkt über das schädliche "Image" Schadsoftware oder Sicherheitslücken direkt beim initialisieren des Systems mitzuinstallieren, oder zu öffnen. Wichtig ist daher, dass das "Basisimage", also der Ausgangspunkt für weitere "Images" und Services sicher und geschützt ist. \cite{ContainerSecurity}
 
-Es ist daher wichtig, dass die Entwickler*innen nur "Images" verwenden, welche vertrauenswürdig und sicher sind. Jedoch hat man aber auch dann keine 100\% Sicherheit, da durch das Verändern der Konfiguration oder dem Hinzufügen von neuen Anwendungen wieder Sicherheitslücken entstehen können.
+Es ist daher wichtig, dass die Entwickler*innen nur "Images" verwenden, welche vertrauenswürdig und sicher sind. Jedoch hat man aber auch dann keine 100\% Sicherheit, da durch das Verändern der Konfiguration oder dem Hinzufügen von neuen Anwendungen wieder Sicherheitslücken entstehen können. \cite{ContainerSecurity}
 
 Ein sicherer Ort für das Auswählen und Verwenden von "Images" ist der "Docker Hub", da im Menü auf der rechten Seite ausgewählt werden kann, ob der Ersteller des "Images" ein verifizierter Nutzer sein muss. \cite{ContainerSecurity}
 
@@ -54,9 +54,11 @@ Bei der Sicherheit im Deploymentbereich sollten die Entwickler*innen folgende Fr
     \item "Wie können Sie das Patching ausgeführter Container vermeiden und sie stattdessen per Trigger mithilfe automatischer Updates neu erstellen bzw. ersetzen?" \cite{ContainerSecurity}
 \end{itemize}
 
+\cite{ContainerSecurity}
+
 \hfour{Infrastruktur}
 
-Um in diesem Bereich Sicherheit zu bekommen ist auf das Betriebssystem der Hostmaschine der angewiesen. Es ist wichtig, dass das Betriebssystem eine hohe Isolierung zwischen den einzelnen Containern bietet und damit Sicherheit bringt. Jedoch kann man über "Netzwerk-Namespaces" beispielsweise eine gemeinsame Nutzung von Speicher zwischen den Containern ermögliche. Es sollte aber jede Anwendung auch die nötigen Sicherheitsvorkehrungen (Authentifizierung, Autorisierung, Durchsatzbeschränkungen, usw.) schon zu implementiert haben um sich nicht rein auf den Containersicherheit oder die Infrastruktursicherheit zu verlassen.
+Um in diesem Bereich Sicherheit zu bekommen ist auf das Betriebssystem der Hostmaschine der angewiesen. Es ist wichtig, dass das Betriebssystem eine hohe Isolierung zwischen den einzelnen Containern bietet und damit Sicherheit bringt. Jedoch kann man über "Netzwerk-Namespaces" beispielsweise eine gemeinsame Nutzung von Speicher zwischen den Containern ermögliche. Es sollte aber jede Anwendung auch die nötigen Sicherheitsvorkehrungen (Authentifizierung, Autorisierung, Durchsatzbeschränkungen, usw.) schon zu implementiert haben um sich nicht rein auf den Containersicherheit oder die Infrastruktursicherheit zu verlassen. \cite{ContainerSecurity}
 
 Die Entwickler*innen sollten sich aber im Bereich der Infrastruktursicherheit bei der Implementierung folgende Fragen stellen:
 
