@@ -15,7 +15,7 @@ Zu Beginn muss aus der Sequelize-Bibliothek "Models" und "DataTypes" importiert 
 
 Folgender Code ist dafür zuständig:
 
-\typescript{code/Sequelize/importVerbindung.ts}{Importieren von "Models" und "DataTypes"}
+\typescriptsub{code/Sequelize/RoomReport.ts}{Importieren von "Models" und "DataTypes"}{1}{8}
 
 Im zweiten Schritt werden diverseste Datentypen aus \ZELIA\ in die Klasse importiert, welche in weiteren Schritten benötigt werden.
 
@@ -23,7 +23,7 @@ In weiterer Folge müssen nun die Werte, welche in der Tabelle, auf die zugegrif
 
 Außerdem werden an alle Eigenschaften außer "Id" ein "!" angehängt. Dieses gibt da, dass es sich um ein Pflichtfeld handelt. Bei der "Id" steht ein "?". Dieses steht für eine nicht zwangläufig auszufüllende Eigenschaft.
 
-\typescript{code/Sequelize/class.ts}{Klasse "RoomReport"}
+\typescriptsub{code/Sequelize/RoomReport.ts}{Klasse "RoomReport"}{10}{24}
 
 Diese Klasse, welche das "Entityinterface" nun implementiert, muss nun nach den Sequelizestandard initialisiert werden. Hierbei wird auf die gewünschte Klasse die von Sequelize zur Verfügung gestellte Methode "init" angewandt. Nachfolgend wird nun jeder Eigenschaft aus der Klasse (in diesem Fall RoomReport) mehrere Attribute mitgegeben (zum Beispiel ein "type" oder "allow null").
 
@@ -32,11 +32,11 @@ auf welches Bezug genommen wird und der Schlüssel, welcher referenziert werden 
 
 Zum Schluss wird noch der Name der Tabelle angegeben, auf welche Bezug genommen wird und das Sequelizeobjekt wird mitgegeben.
 
-\typescript{code/Sequelize/init.ts}{Initialisierung einer Zugriffsklasse auf die Datenbank}
+\typescriptsub{code/Sequelize/RoomReport.ts}{Initialisierung einer Zugriffsklasse auf die Datenbank}{26}{76}
 
 Der Prozess zum Setzten eines Fremdschlüssels ist jedoch noch nicht abgeschlossen, da man angeben muss, dass die Tabelle auf die referenziert wird viele unserer Objekte beinhalten. Umgekehrt aber nur eines der anderen Objekte auf unseres zutrifft. Im vorliegenden Beispiel bedeutet das: Ein "Room" kann mehrere "RoomReports" beinhalten. Ein "RoomReport" ist aber immer einem gewissen "Room" zugeordnet.
 
-\typescript{code/Sequelize/fremdSchluessel.ts}{Finalisieren einer Fremdbeziehung zwischen Zwei Tabellen}
+\typescriptsub{code/Sequelize/RoomReport.ts}{Finalisieren einer Fremdbeziehung zwischen Zwei Tabellen}{78}{79}
 
 Bei den tatsächlichen Zugriffsmethoden gibt es wie oben schon erwähnt vier unterschiedliche Arten.
 
@@ -46,7 +46,7 @@ Mit dieser Methode werden alle Datensätze einer Tabelle ausgelesen und in eine 
 
 Hierbei ist es auch nicht erforderlich, dass der Server eine Raumnummer als Parameter mitgibt. Die von Sequelize implementierte Methode "findAll" greift dann auf die Tabelle zu. Diese kann jedoch auch mit mehreren Attributen versehen werden. Als Beispiel kann das nicht zurückliefern von bestimmten Spalten nennen. Sollte ein Fremdschlüssel gesetzt sein, was in diesem Beispiel der Fall ist, ist es außerdem notwendig das "Model" der zu referenzierenden Tabelle anzugeben und die Eigenschaft "required" auf "true" zu setzten. Zum Schluss wird die Konstante mit den Werten zurückgegeben.
 
-\typescript{code/Sequelize/getAll.ts}{Zurückliefern aller Datensätze der Tabelle "RoomeReport"}
+\typescriptsub{code/Sequelize/RoomReport.ts}{Zurückliefern aller Datensätze der Tabelle "RoomReport"}{109}{130}
 
 \hfive{Auslesen von Datensätzen nach Raumnummer gefiltert}
 
@@ -54,15 +54,15 @@ Mit dieser Methode werden nur einzelne Datensätze für einen bestimmten Raum au
 
 Die Struktur ist der Methode zum Auslesen aller "RoomReports" ähnlich, jedoch mit dem Unterschied, dass ein Parameter mit der Raumnummer mitgegeben werden muss. Nun wird als zusätzliches Attribut ein "where" hinzugefügt um die Datensätze nach einer gewissen Raumnummer zu filtern.
 
-\typescript{code/Sequelize/getRoomNumber.ts}{Auslesen von bestimmten Datensätzen (nach Raumnummer gefiltert)}
+\typescriptsub{code/Sequelize/RoomReport.ts}{Auslesen von bestimmten Datensätzen nach Raumnummer gefiltert}{81}{92}
 
 \hfive{Verändern von vorhandenen Datensätzen}
 
-Gerade beim Melden von Schäden in Räumen ist es wichtig, dass Datensätze welche schon vorhanden sind zu verändern. In diesem Beispiel wird ein neuer Datensatz zu Beginn also noch nicht in Arbeit abgespeichert. Sobald der Schaden sich in Bearbeitung befindet kann eine Administrator*in den Status auf "in Arbeit" ändern, damit die Schüler*innen erkennen, dass sich um ihr gemeldetes Problem gekümmert wird. Zum Abschluss wird der Status auf "Erledigt" gesetzt.
+Gerade beim Melden von Schäden in Räumen ist es wichtig, dass Datensätze welche schon vorhanden sind auch zu verändern. In diesem Beispiel wird ein neuer Datensatz zu Beginn also noch nicht in Arbeit abgespeichert. Sobald der Schaden sich in Bearbeitung befindet kann eine Administrator*in den Status auf "in Arbeit" ändern, damit die Schüler*innen erkennen, dass sich um ihr gemeldetes Problem gekümmert wird. Zum Abschluss wird der Status auf "Erledigt" gesetzt.
 
 Hierbei müssen Zwei Parameter mitgegeben werden, nämlich einerseits die "id" des Datensatzes als Zahl und der neue "ReportStatus" als Text. Nun kann mit der von "Sequelize" bereitgestellten Methode "update" der Datensatz verändert werden. Hierbei muss zuerst der Spaltenname und der neue Status, welcher als Parameter mitgegeben wurde angegeben werden und nachher mit einem "where" der richtige Datensatz anhand der mitgegebenen "id" gefunden werden.
 
-\typescript{code/Sequelize/change.ts}{Ändern der Spalte "ReportDescription" in der Tabelle "RoomReport"}
+\typescriptsub{code/Sequelize/RoomReport.ts}{Ändern von Spalten in der Tabelle "RoomReport"}{132}{144}
 
 \hfive{Hinzufügen von Datensätzen}
 
@@ -70,4 +70,4 @@ Wenn nun von einer Person, welche sich im Schulgebäude aufhält ein Schaden in 
 
 "Sequelize" stellt zum Schrieben in eine Tabelle die Methode "create" zur Verfügung, welche direkt auf das "Model" angewandt werden kann.
 
-\typescript{code/Sequelize/new.ts}{Hinzufügen eines neuen Datensatzes}
+\typescriptsub{code/Sequelize/RoomReport.ts}{Hinzufügen eines neuen Datensatzes}{94}{107}

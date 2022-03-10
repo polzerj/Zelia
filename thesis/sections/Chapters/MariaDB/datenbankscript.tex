@@ -1,21 +1,23 @@
 \hfour{Datenbankscript}
 
-\sql{code/MariaDb/DatabaseScript.sql}{Script zur Implementierung der Datenbankstruktur}
-
 Mit dem Befehl "CREATE DATABASE" wird eine neue Datenbank im System angelegt.
 
 Durch den Befehl "USE" wird diese in Verwendung gebracht und alle weiter folgenden Kommandos werden auf die ausgewählte Datenbank angewandt.
 
-\sql{code/MariaDb/Erstellen.sql}{Erstellen und Verwenden der Datenbank}
+\sqlsub{code/MariaDb/DatabaseScript.sql}{Erstellen und Verwenden der Datenbank}{1}{2}
 
 Mit dem Befehl "CREATE TABLE" kann in einer Datenbank eine neue Tabelle erzeugt werden.
 
 Wichtig ist auch, dass pro Tabelle ein eindeutiger Primärschlüssel definiert wird. Hierfür bietet sich eine eigene Spalte "Id" an, welche eindeutig durchnummeriert wird.
 
-\sql{code/MariaDb/Room.sql}{Erstellen der Tabelle Room}
+\sqlsub{code/MariaDb/DatabaseScript.sql}{Erstellen der Tabelle Room}{13}{35}
 
 Mit "FOREIGN KEY" kann ein neuer Fremdschlüssel auf eine andere Tabelle definiert werden.
 
 Durch "ON DELETE" und "ON UPDATE" wird festgelegt, wie nach dem Löschen oder Verändern von Daten mit der Referenz auf die andere Tabelle umgegangen wird.
 
-\sql{code/MariaDb/ForeignKey.sql}{Erstellen eines Fremdschlüssels}
+\sqlsub{code/MariaDb/DatabaseScript.sql}{Erstellen eines Fremdschlüssels}{31}{34}
+
+\hfive{Gesamtes Script}
+
+\sql{code/MariaDb/DatabaseScript.sql}{Script zur Implementierung der Datenbankstruktur}
