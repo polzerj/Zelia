@@ -1,10 +1,10 @@
 \htwo{Node.js}
 \label{sec:nodejs}
 \sectionauthor{Mersed Kečo}
-Node.js ist eine plattformübergreifende Javascript-Laufzeitumgebung, die auf der V8 JS-Engine von Google basiert. Node.js wurde entwickelt um skalierbare Netzwerkanwendungen zu erstellen. Node.js ist beeinflusst von Ruby's "Event Machine" und Pythons "Twisted" und ähnelt diesen im Design. Die aktuelle Node.js-Version ist die Version 17, während die Veröffentlichung der Version 18 für den 25. Oktober 2022 geplant ist. Laut W3Techs wird Node.Js von 1,2\% aller Webseiten genutzt. Auf das ganze Internet gerechnet sind das über 20 Millionen Webseiten, die mithilfe von Node.js betrieben werden. \cite{Node}
+Node.js ist eine plattformübergreifende Javascript-Laufzeitumgebung, die auf der V8 JS-Engine von Google basiert. Node.js wurde entwickelt um skalierbare Netzwerkanwendungen zu erstellen. Node.js ist beeinflusst von Ruby's "Event Machine" und Pythons "Twisted" und ähnelt diesen im Design. Die aktuelle Node.js-Version ist die Version 17, während die Veröffentlichung der Version 18 für den 25. Oktober 2022 geplant ist. Laut "W3Techs" wird Node.Js von 1,2\% aller Webseiten genutzt. Auf das ganze Internet gerechnet sind das über 20 Millionen Webseiten, die mithilfe von Node.js betrieben werden. \cite{Node}
 
-\hfour{Die Architektur von Node.js}
-Die von Node.js verwendete Architektur der "Single Threaded Event Loop" wird dazu verwendet, mehrere Clients gleichzeitig handzuhaben. Um überhaupt dem Unterschied zwischen dieser und anderen Runtimes auf die Spuren zu kommen, ist es von oberster Priorität zu verstehen, wie Multithreaded Concurrent Clients in Java gehandhabt werden. \cite{NodeJs.dev}
+\hfour{Architektur von Node.js}
+Die von Node.js verwendete Architektur der "Single Threaded Event Loop" wird dazu verwendet, mehrere Clients gleichzeitig handzuhaben. Um überhaupt dem Unterschied zwischen dieser und anderen Runtimes auf die Spuren zu kommen, ist es von oberster Priorität zu verstehen, wie "Multithreaded Concurrent Clients" in Java gehandhabt werden. \cite{NodeJs.dev}
 
 
 Das Modell des "Multithreaded Request/Response" versendet Anfragen an verschiedene Clients, worauf der Server jede einzelne verarbeitet bevor dieser darauf eine Antwort versendet. Das Problem liegt aber jedoch daran, dass mehrere Threads verwendet werden, um gleichzeitige Aufrufe zu verarbeiten. Verwendete Threads sind in einem Thread-Pool definiert und werden einkommenden Anfragen zugewiesen, um diese zu bearbeiten. \cite{Arocom}
@@ -32,19 +32,19 @@ Node.js erlaubt nur eine begrenzte Anzahl an Threads in dem Threadpool, welche A
 
 Sobald Anfragen reinkommen, werden diese von Node.js in eine Warteschlange namens "Event Queue" eingeordnet. 
 
-Die Kernkomponente der Architektur kommt an diesem Punkt zum Einsatz – die Single Threaded "Event Loop". Dieser Thread wartet auf unbestimmte Zeit auf eingehende Anfragen.
+Die Kernkomponente der Architektur kommt an diesem Punkt zum Einsatz, nämlich die Single Threaded "Event Loop". Dieser Thread wartet auf unbestimmte Zeit auf eingehende Anfragen.
 
-Bei einer eingehenden Anfrage holt die Loop diese aus der Queue und prüft, ob diese eine blockierende Eingabe/Ausgabe-Operation benötigt. Falls dies nicht der Fall ist, wird die Anfrage verarbeitet und eine Antwort auf gesendet. 
+Bei einer eingehenden Anfrage holt die " Event Loop" diese aus der Queue und prüft, ob diese eine blockierende Eingabe/Ausgabe-Operation benötigt. Falls dies nicht der Fall ist, wird die Anfrage verarbeitet und eine Antwort gesendet. 
 
 Wenn die eingehende Anfrage aber eine blockierende Eingabe/Ausgabe-Operation benötigt, verweist die "Event Loop" auf einen internen Thread aus seinem Threadpool, um diese Anfrage zu bearbeiten. Die Gruppe von Threads, die in solchen Situationen einspringen, wird Workergroup genannt.
 
 Die Schleife verfolgt blockierende Anfragen und stellt solche in die Warteschlange. Jene Anfrage wird abgearbeitet, sobald davor auftretende blockierende Operationen abgearbeitet sind. Dies ist die Art und Weise, wie der Lebenszyklus von Nodes.js auf dem Laufenden gehalten werden kann.
 
-Aufgrund der Verwendung von einer kleineren Anzahl von Threads, werden weniger Ressourcen beziehungsweise weniger Speicher verbraucht, welches sich auf die schnellere Ausführung von Anfragen ausübt. Wenn datenintensive Aufgaben verarbeitet werden müssen, dann ist die Verwendung von Multi-Threaded-Sprachen wie Java sinnvoller. In unserem Fall ist aber die Verwendung von Node.js die sinnvollste Wahl. \cite{Arocom}
+Aufgrund der Verwendung von einer kleineren Anzahl von Threads, werden weniger Ressourcen beziehungsweise weniger Speicher verbraucht. Dies übt sich spürbar auf die schnellere Ausführung von Anfragen aus. Wenn datenintensive Aufgaben verarbeitet werden müssen, dann ist die Verwendung von Multi-Threaded-Sprachen wie Java sinnvoller. In Fall vom \ZELIA\ ist aber die Verwendung von Node.js die sinnvollste Wahl. \cite{Arocom}
 
 \hfour{Anwendungen von Node.js}
 
-Obwohl Node.js für eine Vielzahl von Anwendungen verwendet wird, sind einige Anwendungsfälle sehr beliebt und Node.js eine sehr gute Wahl dafür.
+Da Node.js für eine Vielzahl von Anwendungen verwendet wird, sind einige Anwendungsfälle sehr beliebt und Node.js eine sehr gute Wahl dafür.
 
 \begin{figure}[H]
     \centering
@@ -54,19 +54,19 @@ Obwohl Node.js für eine Vielzahl von Anwendungen verwendet wird, sind einige An
 
 \begin{enumerate}
     \item Chats in Echtzeit
-    \newline Die Node.js Architektur bietet eine gute Basis, um Echtzeit-Kommunikation zu verarbeiten. Durch die leichte Skalierbarkeit wird die Laufzeitumgebung oft bei der Entwicklung von Chatbots verwendet. Des weiteren wird es einem Entwickler leicht gemacht, zusätzliche Chat-Funktionen wie Multi-Person-Chats und Push-Benachrichtigungen zu erstellen.\cite{Anwendungen}
+    \newline Die Node.js Architektur bietet eine gute Basis, um Echtzeit-Kommunikation zu verarbeiten. Durch die leichte Skalierbarkeit wird die Laufzeitumgebung oft bei der Entwicklung von Chatbots verwendet. Des weiteren wird es einem Entwickler leicht gemacht, zusätzliche Chat-Funktionen wie "Multi-Person-Chats" und Push-Benachrichtigungen zu erstellen.\cite{Anwendungen}
     \item Internet of Things
     \newline
-    IoT-Anwendungen bestehen in den meisten Fällen aus mehreren Sensoren, die oftmals häufig, kleine Datenpakete senden, die sich mit der Zeit zu einer großen Anzahl von Anfragen anhäufen können. Node.js eignet sich aufgrund der schnellen, gleichzeitigen Verarbeitung von Anfragen dafür umso mehr.\cite{Anwendungen}
+    IoT-Anwendungen bestehen in den meisten Fällen aus mehreren Sensoren, die häufig, kleine Datenpakete senden, die sich mit der Zeit zu einer großen Anzahl von Anfragen anhäufen können. Node.js eignet sich aufgrund der schnellen und gleichzeitigen Verarbeitung von Anfragen dafür umso mehr.\cite{Anwendungen}
     \item Komplexe Single-Page-Anwendungen (SPAs)
     \newline
     Bei SPAs wird die ganze Anwendung in einer Seite geladen. In der Regel bedeutet das, dass im Hintergrund gewisse Anfragen für bestimmte Komponenten gestellt werden. Die Eventschleife spielt in diesem Fall eine große Bedeutung.\cite{Anwendungen}
     \item REST API-basierte Anwendungen
     \newline
-    Javascript wird nicht nur im Frontend, sondern auch im Backend von Webseiten eingesetzt. Mithilfe von Node.js besitzt ein Server somit die Möglichkeit, über REST APIs mit dem Frontend zu kommunizieren. Erwähnenswert ist noch, dass über Node.js bestimmte Pakete wie zum Beispiel Express.js zur Verfügung gestellt wird, die es noch einfacher machen, Webanwendungen zu erstellen.\cite{Anwendungen}
+    Javascript wird nicht nur im Frontend, sondern auch im Backend von Webseiten eingesetzt. Mithilfe von Node.js besitzt ein Server somit die Möglichkeit, über REST APIs mit dem Frontend zu kommunizieren. Erwähnenswert ist noch, dass über Node.js bestimmte Pakete wie zum Beispiel Express.js zur Verfügung gestellt werden, die es noch einfacher machen, Webanwendungen zu erstellen.\cite{Anwendungen}
     \item Daten-Streaming
     \newline
-    Bekannte Unternehmen wie Netflix und Disney+ nutzen Node.js für Streaming-Zwecke. Der Grund dafür ist der, dass die Laufzeitumgebung schnell und leichtgewichtig ist. Wichtig zu erwähnen ist, dass eine native Streaming-API in Node.js schon vorweg implementiert ist. Streams ermöglichen den Nutzern, Anfragen aneinander weiterzuleiten, was das Ergebnis mit sich bringt, dass die Daten direkt an ihr Ziel gestreamt werden.\cite{Anwendungen}
+    Bekannte Unternehmen wie "Netflix" und "Disney+" nutzen Node.js für Streamingzwecke. Der Grund dafür ist der, dass die Laufzeitumgebung schnell und leichtgewichtig ist. Wichtig zu erwähnen ist, dass eine native Streaming-API in Node.js schon vorweg implementiert ist. Streams ermöglichen den Nutzern, Anfragen aneinander weiterzuleiten, was das Ergebnis mit sich bringt, dass die Daten direkt an ihr Ziel gestreamt werden.\cite{Anwendungen}
     
 \end{enumerate}
 
@@ -75,19 +75,19 @@ Obwohl Node.js für eine Vielzahl von Anwendungen verwendet wird, sind einige An
 
 \hfour{Hello World in Node.js}
 
-Um in die neu entdeckte Programmiersprache reinzuwachsen ist es oft so, dass man bei jeder neuen Programmiersprache ein "Hello World"-Programm schreibt. Dies sieht bei Node.js folgendermaßen aus:
+Um in die neu entdeckte Programmiersprache reinzuwachsen ist es oft so, dass man bei jeder neuen Programmiersprache ein netzwerkbasiertes "Hello World"-Programm schreibt. Dies sieht bei Node.js folgendermaßen aus:
 
 \typescript{code/NodeJs/HelloWorld.ts}{HelloWorld in Node.js}
 
-In unserem Codebeispiel wird das http Modul als erstes geladen. Danach wird die Methode "createServer" aufgerufen, um eine Anfrage anzunehmen und eine Antwort mit einem Statuscode zurückgibt. Letztendlich wird auf einen Port, der vordefiniert ist, gehört, ob Informationen an den Port gesendet werden.
+Im oben genannten Codebeispiel wird das http Modul als erstes geladen. Danach wird die Methode "createServer" aufgerufen, um eine Anfrage anzunehmen und eine Antwort mit einem Statuscode zurückzugeben. Letztendlich wird auf einen Port, der vordefiniert ist, gehört, ob Informationen an den Port gesendet werden.
 
 Node.js wird den Entwicklern mit dem bereits eingebauten Modul namens "HTTP" bereitgestellt, welches ermöglicht, Daten über das "HyperText Transfer Protocol" (HTTP) zu übertragen. \cite{HelloWorld}
 
 \hfour{NPM}
 \label{sec:npm}
 
-Der Node Package Manager (NPM) ist das Paket-System von Node.js. Es ist das größte Ökosystem aller Open Source Bibliotheken der Welt, mit über einer Millionen Pakete, weitere Pakete werden täglich releast. NPM ist kostenlos und hat eine sehr große Community, des öfteren Open Source Entwickler und begeisterte Programmierer. Die Firma, die hinter NPM steht, die sogenannte NPM INC. wurde 2014 gegründet und 2020 von GitHub aufgekauft.
-NPM wird mit einem Kommandozeilenprogramm ausgeliefert. Die Möglichkeit besteht auch, auf der Webseite von NPM nach gewünschten Paketen zu suchen und diese mit einem einzigen Befehl zu installieren. Die Versionierung der Pakete und die Überprüfung von Abhängigkeiten kann eingerichtet werden. Node.js ist ein Dreh – und Angelpunkt für Entwickler vor allem wegen dem Package Support.
+Der Node Package Manager (NPM) ist das Paket-System von Node.js. Es ist das größte "Ecosystem" aller Open-Source Bibliotheken der Welt, mit über einer Millionen Pakete, weitere Pakete werden täglich releast. NPM ist kostenlos und hat eine sehr große Community, des öfteren Open Source Entwickler und begeisterte Programmierer. Die Firma, die hinter NPM steht, die sogenannte NPM INC., wurde 2014 gegründet und 2020 von GitHub aufgekauft.
+NPM wird mit einem Kommandozeilenprogramm ausgeliefert. Die Möglichkeit besteht auch, auf der Webseite von NPM nach gewünschten Paketen zu suchen und diese mit einem einzigen Befehl zu installieren. Die Versionierung der Pakete und die Überprüfung von Abhängigkeiten kann eingerichtet werden. Node.js ist ein Dreh– und Angelpunkt für Entwickler*innen vor allem wegen dem "Package Support".
 Die Sicherheit von Paketen ist bei NPM durch den bereits eingebauten Sicherheits-Scanner gegeben.\cite{NPM} \cite{NPM2}
 
 \begin{figure}[H]
@@ -97,8 +97,6 @@ Die Sicherheit von Paketen ist bei NPM durch den bereits eingebauten Sicherheits
 \end{figure}
 
 \hfive{Sicherheitslücken}
-Wie auch jede Anwendung hat NPM anfänglich Probleme mit Sicherheitslücken gehabt, die zum Glück behoben werden konnten. Bei der ersten bekannten Sicherheitslücke, die nach der Übernahme von NPM durch GitHub im Jahr 2021 aufgetreten ist, war das Problem, das man einfach neue Verisonen von beliebigen Paketen hochladen und somit gesehen Pakete hochladen, die auch mögliche Schadsoftware beeinhalten könnte. Das genaue Datum des erstmaligen Auftretens des Fehlers ist unbekannt, man vermutet aber das es mindestens seit September 2020 schon möglich gewesen wäre, diese Sicherheitslücke zu missbrauchen. \cite{NPMSecurity}
-
-%TODO: Bezugspunkt zu ZELIA(wie ist das Projekt aufgebaut, was verwenden wir)
+Wie jede Anwendung hat auch NPM anfänglich Probleme mit Sicherheitslücken gehabt, die zum Glück behoben werden konnten. Bei der ersten bekannten Sicherheitslücke, die nach der Übernahme von NPM durch GitHub im Jahr 2021 aufgetreten ist, war das Problem, dass neue Verisonen von beliebigen Paketen hochgeladen- und somit gesehen Pakete erschienen sind, die auch mögliche Schadsoftware beeinhalten könnten. Das genaue Datum des erstmaligen Auftretens des Fehlers ist unbekannt, jedoch wird vermutet, dass es mindestens seit September 2020 schon möglich gewesen wäre, diese Sicherheitslücke zu missbrauchen. \cite{NPMSecurity}
 
 
