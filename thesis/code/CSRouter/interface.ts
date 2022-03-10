@@ -6,7 +6,8 @@ class Router {
    * Redirect Page
    * @param path path to redirect to.
    * E.g.: "/login"
-   * When path not known -> render 404 page * @param silentHistory Set to true when
+   * When path not known -> render 404 page
+   * @param silentHistory Set to true when
    */
   public redirect(path: string, silentHistory?: boolean): void;
   /**

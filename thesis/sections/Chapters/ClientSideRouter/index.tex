@@ -15,34 +15,34 @@ In diesen Fällen wären "{\ttfamily /home}" und "{\ttfamily /room/S1308}" zwei 
     \begin{lstlisting}
 www/
 > home/
-  > room/
-    > S1308/
-    > ...
+> room/
+  > S1308/
+  > ...
     \end{lstlisting}
     \caption{Ordnerstruktur eines Webservers}
 \end{figure}
 
-Diese Art von Webserver stellt statische Websites zur Verfügung. Statisch, weil die Daten, \zb: das "{\ttfamily index.html}", nicht geändert werden, sondern so wie sie am Server liegen dem Client geschickt werden. Dies hat den Vorteil, dass der Server kaum Ressourcen verbraucht. In jedem dieser Verzeichnisse kann man ein "{\ttfamily index.html}" finden, welches der Webserver schickt, wenn einer dieser Pfade vom Browser angefragt wird. Da gibt es schon das erste Problem: Es muss für jeden Raum ein fertiges "{\ttfamily index.html}" im richtigen Pfad geben, um darauf zugreifen zu können.
+Diese Art von Webserver stellt statische Webseiten zur Verfügung. Statisch, weil die Daten, \zb: das "{\ttfamily index.html}", nicht geändert werden, sondern so wie sie am Server liegen dem Client geschickt werden. Dies hat den Vorteil, dass der Server kaum Ressourcen verbraucht. In jedem dieser Verzeichnisse kann man ein "{\ttfamily index.html}" finden, welches der Webserver schickt, wenn einer dieser Pfade vom Browser angefragt wird. Da gibt es schon das erste Problem: Es muss für jeden Raum ein fertiges "{\ttfamily index.html}" im richtigen Pfad geben, um darauf zugreifen zu können.
 
-Als Lösung dafür gibt es sogenannte Router, die wissen was zu tun ist, wenn eine Route angefragt wird. Somit kann man diese statische Hierarchie auflösen und auf jede Anfrage individuell reagieren. In der Webentwicklung werden diese Steuerungsprogramme, die auf Anfragen reagieren, meist Controller genannt. Ein Controller bekommt somit eine Anfrage und liefert eine Antwort, welche im Zusammenhang von vorher das "{\ttfamily index.html}" ist. Dabei ist aber wichtig zu erwähnen, dass der Inhalt des "{\ttfamily index.html}", also der Antworttext, modifiziert werden kann. So kann ein Router beispielsweise alle Routen die aus "{\ttfamily /room/...}" bestehen an einen Controller weitergeben, der dem Client jeweils andere Informationen zurückgibt.
+Als Lösung dafür gibt es sogenannte Router, die wissen was zu tun ist, wenn eine Route angefragt wird. Somit kann man diese statische Hierarchie auflösen und auf jede Anfrage individuell reagieren. In der Webentwicklung werden diese Steuerungsprogramme, die auf Anfragen reagieren, meist "Controller" genannt. Ein "Controller" bekommt somit eine Anfrage und liefert eine Antwort, welche im Zusammenhang von vorher das "{\ttfamily index.html}" ist. Dabei ist aber wichtig zu erwähnen, dass der Inhalt des "{\ttfamily index.html}", also der Antworttext, modifiziert werden kann. So kann ein Router beispielsweise alle Routen die aus "{\ttfamily /room/...}" bestehen an einen "Controller" weitergeben, der dem Client jeweils andere Informationen zurückgibt.
 
-Nochmal kurz zusammengefasst: Router sind in der Webentwicklung dazu da, um Routen (Pfade) aufzulösen und an den richtigen Controller weiterzureichen. Controller liefern dann individuelle Ergebnisse auf jeweilige Anfragen.
+Nochmal kurz zusammengefasst: Router sind in der Webentwicklung dazu da, um Routen (Pfade) aufzulösen und an den richtigen "Controller" weiterzureichen. "Controller" liefern dann individuelle Ergebnisse auf jeweilige Anfragen.
 
 \hfour{Backend Routing}
 
-Backend Routing wird der Vorgang genannt bei dem das Routing im Backend der Applikation, also Serverseitig, passiert. Beispiele dafür wären wie oben genannt, statische Webserver oder dynamische Webserver, welche mit Controllern arbeiten.
+Backend Routing wird der Vorgang genannt bei dem das Routing im Backend der Applikation, also Serverseitig, gemacht wird. Beispiele dafür wären wie oben genannt, statische Webserver oder dynamische Webserver, welche mit "Controllern" arbeiten.
 
 \hfour{Frontend Routing}
 
-Frontend Routing, auch "Client-Side-Routing" genannt, ist, wenn das Routing zum Client verschoben wird, also im Browser abgefertigt wird. So muss ein Webserver nur eine einzige Seite zur Verfügung stellen der Client lädt diese. Zusätzlich holt er sich die notwendigen Informationen, die er braucht, um eine Seite darzustellen.
+Frontend Routing, auch "Client-Side-Routing" genannt, ist, wenn das Routing zum Client verschoben wird, also wenn die Anfragen im Browser verarbeitet werden. So muss ein Webserver nur eine einzige Seite zur Verfügung stellen die der Client lädt.
 
-Im Beispiel von vorhin, müsste der Webserver nur ein "{\ttfamily index.html}" hosten welches der Client, egal welche Route er besucht, herunterlädt. Das ist meist eine minimale HTML Seite, die eine Javascript Datei einbindet. Dieses Skript schaut dann auf welchem Pfad es sich befindet und holt Informationen, die benötigt werden von einer API, um eine Seite aufzubauen. Das "{\ttfamily index.html}" wird nur einmal zu Beginn, wenn die Website besucht wird, also wenn man die URL manuell im Browser eingibt, heruntergeladen. Bei jedem Link auf der Website werden nur die notwendigen Infos nachgeladen und angezeigt. Zusätzlich wird mit Hilfe der "History-API" ein Eintrag in den Verlauf gemacht, so dass man mit der "Zurücktaste", im Browser, auf die zuvor besuchten Pfade zurückspringen kann.
+Im Beispiel von vorhin, müsste der Webserver nur ein "{\ttfamily index.html}" hosten welches der Client, egal welche Route er besucht, herunterlädt. Das ist meist eine minimale HTML Seite, die eine Javascript-Datei einbindet. Dieses Skript schaut dann auf welchem Pfad es sich befindet und holt fall nötig Informationen, von einer API, um eine Seite aufzubauen. Das "{\ttfamily index.html}" wird nur einmal zu Beginn heruntergeladen, wenn die Webseite besucht wird bzw. wenn man die URL manuell im Browser eingibt. Bei jedem Link auf der Webseite werden nur die notwendigen Infos nachgeladen und angezeigt. Zusätzlich wird mit Hilfe der "History-API" ein Eintrag in den Verlauf gemacht, sodass man mit der "Zurücktaste", im Browser, auf die zuvor besuchten Pfade zurückspringen kann.
 
 Obwohl die Seite eigentlich nie verlassen wird, ändert der Browser den Verlauf und den Pfad, der in der URL-Eingabe Box steht. Somit ist es möglich das Routing komplett in den Browser zu verschieben.
 
 \hfour{Vorteile des Client-Side-Routers}
 
-Einer der größten Vorteile ist, dass die eigentliche Webpage, also das "{\ttfamily index.html}", praktisch überall bereitgestellt werden kann, da es wie schon gesagt kaum Ressourcen benötigt, um so einfache statische Seiten zur Verfügung zu stellen. Die Browser auf den Geräten, mit denen die Seite aufgerufen wird, haben eine komplexere Aufgabe, aber mit heutigen Computern ist das auch kein Problem mehr.
+Einer der größten Vorteile ist, dass die eigentliche Webseite, also das "{\ttfamily index.html}", praktisch überall bereitgestellt werden kann, da es wie schon gesagt kaum Ressourcen benötigt, statische Seiten zur Verfügung zu stellen. Die Browser auf den Geräten, mit denen die Seite aufgerufen wird, haben eine komplexere Aufgabe, aber mit heutigen Computern und Smartphones ist das auch kein Problem mehr.
 
 Außerdem ist es oft schneller, nur notwendige Infos nachzuladen, vor allem wenn man im Browser heruntergeladene Daten in Caches zwischenspeichert. Somit müssen am Anfang meist mehr Daten geladen werden, dafür hat man dann beim Wechseln der Seite kaum Ladezeiten. Zusätzlich kann man Musterwerte verwenden oder einen Ladebildschirm anzeigen, wenn die individuellen Werte noch nachgeladen werden. So kann der Browser schon mal Inhalte darstellen und es muss nicht gewartet werden, bis eine gesamte Seite am Server zusammengestellt und geschickt wird.
 
