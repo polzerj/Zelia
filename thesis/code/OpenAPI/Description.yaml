@@ -1,0 +1,10 @@
+openapi: 3.1.0
+info:
+  title: openapi
+  version: "1.0"
+  contact:
+    name: Johannes Polzer
+    email: johannes.polzer@edu.szu.at
+  description: API for ZELIA
+servers:
+  - url: http://localhost:3000
