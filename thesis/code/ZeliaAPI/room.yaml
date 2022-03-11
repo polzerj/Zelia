@@ -1,0 +1,22 @@
+/api/room:
+  parameters: []
+  get:
+    summary: Get list of available rooms
+    tags: []
+    operationId: get-room-numbers
+    parameters: []
+    description: Get list of available rooms
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              description: ""
+              minItems: 1
+              uniqueItems: true
+              items:
+                type: string
+      "500":
+        description: Internal Server Error

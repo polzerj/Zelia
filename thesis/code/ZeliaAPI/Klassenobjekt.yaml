@@ -1,0 +1,21 @@
+UClass:
+  description: ""
+  type: object
+  properties:
+    id:
+      type: number
+    name:
+      type: string
+      minLength: 1
+    longname:
+      type: string
+      minLength: 1
+  required:
+    - id
+    - name
+    - longname
+  x-examples:
+    example-1:
+      id: 943
+      name: 3AFITN
+      longname: FS Informationstechnik (NWTK)

@@ -1,0 +1,99 @@
+"/api/room/{roomNumber}":
+  parameters:
+    - schema:
+        type: string
+      name: roomNumber
+      in: path
+      required: true
+  get:
+    summary: Your GET endpoint
+    tags: []
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              description: ""
+              minItems: 1
+              uniqueItems: true
+              x-examples:
+                example-1:
+                  - roomNumber: S1308
+                    name: 5AHITN
+                    description: Klassenraum der 5A/BHITN
+                    type: Class
+                    isWheelchairAccessible: true
+                    hasTeacherComputer: true
+                    projector: normal
+                    projectorConnectors:
+                      - HDMI
+                      - " VGA"
+                    hasWater: false
+                    boards:
+                      - normal
+                    numberOfComputers: 1
+                    numberOfSeats: 26
+              items:
+                type: object
+                properties:
+                  roomNumber:
+                    type: string
+                    minLength: 1
+                  name:
+                    type: string
+                    minLength: 1
+                  description:
+                    type: string
+                    minLength: 1
+                  type:
+                    type: string
+                    minLength: 1
+                  isWheelchairAccessible:
+                    type: boolean
+                  hasTeacherComputer:
+                    type: boolean
+                  projector:
+                    type: string
+                    minLength: 1
+                  projectorConnectors:
+                    type: array
+                    items:
+                      type: string
+                  hasWater:
+                    type: boolean
+                  boards:
+                    type: array
+                    items:
+                      type: string
+                  numberOfComputers:
+                    type: number
+                  numberOfSeats:
+                    type: number
+                required:
+                  - roomNumber
+                  - name
+                  - description
+                  - type
+                  - isWheelchairAccessible
+                  - hasTeacherComputer
+                  - projector
+                  - projectorConnectors
+                  - hasWater
+                  - boards
+                  - numberOfComputers
+                  - numberOfSeats
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      "404":
+        description: Not Found
+      "500":
+        description: Internal Server Error
+    operationId: get-api-room-roomNumber

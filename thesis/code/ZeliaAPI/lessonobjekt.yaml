@@ -1,0 +1,49 @@
+properties:
+        id:
+          type: number
+        date:
+          type: number
+        startTime:
+          type: number
+        endTime:
+          type: number
+        kl:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/UClass'
+        te:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/UTeacher'
+        su:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/USubject'
+        ro:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/URoom'
+        lsnumber:
+          type: number
+        activityType:
+          type: string
+          minLength: 1
+      required:
+        - id
+        - date
+        - startTime
+        - endTime
+        - kl
+        - te
+        - su
+        - ro
+        - lsnumber
+        - activityType

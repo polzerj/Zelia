@@ -1,0 +1,41 @@
+'/api/room/{roomNumber}/book':
+    parameters:
+      - schema:
+          type: string
+        name: roomNumber
+        in: path
+        required: true
+    post:
+      summary: Post booking
+      operationId: post-api-room-roomNumber-book
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: string
+                purpose:
+                  type: string
+                from:
+                  type: integer
+                until:
+                  type: integer
+                roomNumber:
+                  type: string
+                date:
+                  type: integer
+              required:
+                - user
+                - purpose
+                - from
+                - until
+                - date
+      description: ''
+

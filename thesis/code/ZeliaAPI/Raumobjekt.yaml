@@ -1,0 +1,21 @@
+URoom:
+  description: ""
+  type: object
+  properties:
+    id:
+      type: number
+    name:
+      type: string
+      minLength: 1
+    longname:
+      type: string
+      minLength: 1
+  required:
+    - id
+    - name
+    - longname
+  x-examples:
+    example-1:
+      id: 305
+      name: EDV 2406a
+      longname: Teilungsraum zu EDV 2406 (vormals EDV6)

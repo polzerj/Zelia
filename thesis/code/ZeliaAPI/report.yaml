@@ -1,0 +1,32 @@
+"/api/room/{roomNumber}/report":
+  parameters:
+    - schema:
+        type: string
+      name: roomNumber
+      in: path
+      required: true
+  post:
+    summary: ""
+    operationId: post-api-room-roomNumber-report
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: string
+                firstDetected:
+                  type: integer
+                information:
+                  type: string
+                roomNumber:
+                  type: string
+              required:
+                - user
+                - firstDetected
+                - information
+      "400":
+        description: Bad Request

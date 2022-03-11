@@ -1,0 +1,24 @@
+"/api/room/{roomNumber}/timetable":
+  parameters:
+    - schema:
+        type: string
+      name: roomNumber
+      in: path
+      required: true
+  get:
+    summary: Get room by room number
+    operationId: get-room-room-number
+    description: Get timetable by room Number
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/ULesson"
+      "404":
+        description: Not Class Found
+      "500":
+        description: Internal Server Error
