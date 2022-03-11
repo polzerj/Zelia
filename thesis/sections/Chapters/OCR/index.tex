@@ -11,15 +11,15 @@
 
 Schon 1914 wurden erste Schritte gemacht, um Zeichen einzulesen. Das "Optophone" ist ein Gerät welches eingelesene Zeichen in Töne umwandelt.\cite{OCRRecognition}
 
-1974 forschte Ray Kurzweil an einer OCR Technik die jeden gedruckten Text, unabhängig der Schriftart, erkannte. Kurzweil entwickelte eine Maschine für Blinde oder Menschen, die nicht lesen konnten, indem der eingelesene Text von der Maschine vorgelesen wurde.\cite{OCRRecognition}
+1974 forschte Ray Kurzweil an einer OCR Technik die jeden gedruckten Text, unabhängig der Schriftart, erkannte. Kurzweil entwickelte eine Maschine für Blinde und Menschen, die nicht lesen konnten, indem der eingelesene Text von der Maschine vorgelesen wurde.\cite{OCRRecognition}
 
-Heutzutage gibt es viele Anwendungen für die OCR Technologie. Zum Beispiel wird diese verwendet beim Projekt Gutenberg, eine der ältesten Digitalbibliotheken, um Bücher automatisch digitalisieren zu lassen. Aber auch im normalen Alltag stößt man öfters auf Texterkennung. So bietet zum Beispiel Google, bei ihrem Übersetzer, die Möglichkeit in Echtzeit über die Smartphone-Kamera Texte übersetzten zu lassen. Auch zum Einlesen von Informationen von \zb: einem Reisepass wird Zeichenerkennung verwendet, um das mühsame Abschreiben zu vermeiden.\cite{OCRRecognition}
+Heutzutage gibt es viele Anwendungen für die OCR Technologie. Zum Beispiel wird diese verwendet beim Projekt Gutenberg, eine der ältesten Digitalbibliotheken, um Bücher automatisch digitalisieren zu lassen. Aber auch im normalen Alltag stößt man öfters auf Texterkennung. So bietet zum Beispiel Google, bei ihrem Übersetzer, die Möglichkeit in Echtzeit über die Smartphone-Kamera Texte übersetzten zu lassen. Auch zum Einlesen von Informationen \zb: von einem Reisepass (wie bei "Lead Horizon"), wird Zeichenerkennung verwendet, um das mühsame Abschreiben zu vermeiden.\cite{OCRRecognition}
 
 \hfour{Funktionalität}
 
-Bevor man Texte aus einem Bild auslesen kann, wird das Bild meist vereinfacht. Es wird dabei das gesamte Bild auf Grautöne komprimiert, welche helfen sollen Text oder kein Text zu erkennen. Oft wird auch probiert das Bild zusammenzuschneiden, sodass nur mehr der wichtigste Teil mit Text vorhanden ist. Der letzte Schritt der gemacht wird ist das Einteilen der Zeichen. Dabei wird probiert alles was ein Zeichen sein könnte zu finden und auszuschneiden.\cite{OCRPreProcessing}
+Bevor man Texte aus einem Bild auslesen kann wird das Bild meist vereinfacht. Es wird dabei das gesamte Bild auf Grautöne komprimiert, welche helfen sollen Text oder kein Text zu erkennen. Oft wird auch probiert das Bild zusammenzuschneiden, sodass nur mehr der wichtigste Teil mit Text vorhanden ist. Der letzte Schritt der gemacht wird ist das Einteilen der Zeichen. Dabei wird probiert alles was ein Zeichen sein könnte zu finden und auszuschneiden.\cite{OCRPreProcessing}
 
-Diese Bildausschnitte von Zeichen werden dann probiert in den jeweiligen Zeichencode umgewandelt zu werden. Dafür gibt es gibt zwei Herangehensweisen, die meist verwendet werden, um diese Umwandlung durchzuführen:
+Diese Bildausschnitte von Zeichen werden dann probiert in den jeweiligen Zeichencode umgewandelt zu werden. Dafür gibt es gibt zwei Herangehensweisen, um diese Umwandlung durchzuführen:
 
 \begin{itemize}
     \item "Matrix Matching" oder auch "Pattern Matching" genannt.
@@ -28,15 +28,15 @@ Diese Bildausschnitte von Zeichen werden dann probiert in den jeweiligen Zeichen
 
 \hfour{Matrix/Pattern Matching}
 
-Bei diesem Vorgang wird eines der zusammengeschnittenen Zeichenbilder Pixel für Pixel verglichen mit vorgefertigten Zeichen. Anhand der Prozent die übereinstimmen, kann zurückgeschlossen werden welches Zeichen im Bild sein könnte. Diese Möglichkeit ist recht einfach im Vergleich zur zweiten Technik. Ein Nachteil ist aber, dass verschiedene Schriftarten problematisch sein könnten und manche Zeichen falsch oder gar nicht erkannt werden. Beheben kann man dieses Problem, indem man die vorgefertigten Zeichen mit denen verglichen wird, erweitert. Das macht den ganzen Vorgang aber wiederum langsamer. Somit muss das Vorgehen für jede Anwendung individuell angepasst werden.\cite{OCRRecognition}
+Bei diesem Vorgang wird eines der zusammengeschnittenen Zeichenbilder Pixel für Pixel verglichen, mit vorgefertigten Zeichen. Anhand der Prozent die übereinstimmen, kann zurückgeschlossen werden welches Zeichen im Bild sein könnte. Diese Möglichkeit ist recht einfach im Vergleich zur zweiten Technik. Ein Nachteil ist aber, dass verschiedene Schriftarten problematisch sein könnten und manche Zeichen falsch oder gar nicht erkannt werden. Beheben kann man dieses Problem, indem man die vorgefertigten Zeichen mit denen verglichen wird, erweitert. Das macht den ganzen Vorgang aber wiederum langsamer. Somit muss das Vorgehen für jede Anwendung individuell angepasst werden.\cite{OCRRecognition}
 
 \hfour{Feature Extraction}
 
-Hier wird, wie der Name schon sagt, nach Merkmalen gesucht. Merkmale sind \zb\ Kanten und Kurven, also Dinge, die man braucht, um Zeichen zu beschreiben. Also werden die Merkmale eines Zeichens, welches aus dem Bild geschnitten wurde, verglichen mit einer Ansammlung von typischen Zeichenmerkmalen. Somit kann erkannt werden um welches Symbol es sich handeln könnte. Dieser Vorgang funktioniert oft besser mit verschieden Schriftarten, da nicht so wie bei Matrix Matching auf einen exakten Vergleich geschaut wird.\cite{OCRRecognition}
+Hier wird, wie der Name schon sagt, nach Merkmalen gesucht. Merkmale sind \zb\ Kanten und Kurven die man braucht, um Zeichen zu beschreiben. Diese Merkmale werden dann verglichen mit einer Ansammlung von typischen Zeichenmerkmalen. Somit kann erkannt werden um welches Symbol es sich handeln könnte. Dieser Vorgang funktioniert oft besser mit verschieden Schriftarten, da nicht so wie bei Matrix Matching auf einen exakten Vergleich geschaut wird.\cite{OCRRecognition}
 
 \hfour{Anwendung in der Praxis}
 
-Heutzutage werden auch oft andere Ansätze verwendet. So extrahieren viele OCR Anbieter zuerst Merkmale von den Zeichen mit Bildern und ein neurales Netz prüft dann welches Zeichen, das sein könnte.
+Heutzutage werden auch oft andere Ansätze verwendet. So extrahieren viele OCR Anbieter zuerst Merkmale von den Zeichen mit Bildern und ein neurales Netz prüft dann welches Zeichen das sein könnte.
 
 Oft wird auch nicht nur nach Zeichen gesucht. Gerade bei Sprachen, die mit Leerzeichen getrennt werden, wird probiert ganze Wörter zu finden. Diese werden dann wieder in Zeichen zerlegt, aber trotzdem als gesamtes Wort mit einem Wörterbuch verglichen. Dadurch ist es noch wahrscheinlicher die Wörter richtig zu erkennen. 
 

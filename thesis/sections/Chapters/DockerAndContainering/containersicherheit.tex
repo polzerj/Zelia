@@ -1,6 +1,6 @@
 \hthree{Containersicherheit}
 
-Unter dem Überbegriff "Containersicherheit", versteht man den den Schutz eines Container in einem System und hierbei die Abwicklungen eines Prozesses oder Services, aber auch die gesamte Systeminfrastruktur des Services. \cite{ContainerSecurity}
+Unter dem Überbegriff "Containersicherheit", wird der Schutz eines Container in einem System verstanden und hierbei die Abwicklung eines Prozesses, eines Services, oder aber auch die gesamte Systeminfrastruktur des Services. \cite{ContainerSecurity}
 
 \begin{figure}[H]
     \centering
@@ -10,11 +10,11 @@ Unter dem Überbegriff "Containersicherheit", versteht man den den Schutz eines 
 
 \hfour{Imagesicherheit}
 
-Container oder besser gesagt Services, welche in Containern laufen gelassen werden, werden über sogenannte "Images" bereitgestellt. Dies bietet aber auch die Möglichkeit, direkt über das schädliche "Image" Schadsoftware oder Sicherheitslücken direkt beim initialisieren des Systems mitzuinstallieren, oder zu öffnen. Wichtig ist daher, dass das "Basisimage", also der Ausgangspunkt für weitere "Images" und Services sicher und geschützt ist. \cite{ContainerSecurity}
+Container oder besser gesagt Services, welche in Containern laufen gelassen werden, werden über sogenannte "Images" bereitgestellt. Dies bietet die Möglichkeit, direkt über ein schädliches "Image" Schadsoftware oder Sicherheitslücken direkt beim Initialisieren des Systems mitzuinstallieren, oder zu öffnen. Wichtig ist daher, dass das "Basisimage", also der Ausgangspunkt für weitere "Images" und Services sicher und geschützt ist. \cite{ContainerSecurity}
 
-Es ist daher wichtig, dass die Entwickler*innen nur "Images" verwenden, welche vertrauenswürdig und sicher sind. Jedoch hat man aber auch dann keine 100\% Sicherheit, da durch das Verändern der Konfiguration oder dem Hinzufügen von neuen Anwendungen wieder Sicherheitslücken entstehen können. \cite{ContainerSecurity}
+Es ist daher wichtig, dass die Entwickler*innen nur "Images" verwenden, welche vertrauenswürdig und sicher sind. Eine 100\% Sicherheit kann jedoch nie gewährleistet sein, da durch das Verändern der Konfiguration oder dem Hinzufügen von neuen Anwendungen wieder Sicherheitslücken entstehen können. \cite{ContainerSecurity}
 
-Ein sicherer Ort für das Auswählen und Verwenden von "Images" ist der "Docker Hub", da im Menü auf der rechten Seite ausgewählt werden kann, ob der Ersteller des "Images" ein verifizierter Nutzer sein muss. \cite{ContainerSecurity}
+Ein sicherer Ort für das Auswählen und Verwenden von "Images" ist der "Docker Hub", da im Menü auf der rechten Seite ausgewählt werden kann, ob der Ersteller des "Images" ein verifizierter Ersteller sein muss. \cite{ContainerSecurity}
 
 \begin{figure}[H]
     \centering
@@ -33,7 +33,9 @@ Zusammengefasst kann gesagt werden, dass sich vor der Auswahl eines "Images" die
 
 \hfour{Zugriffsverwaltung}
 
-Nach dem der Container nun mit dem gewünschten "Image" richtig aufgesetzt wurde ist es nun wichtig den Zugriff auf diesen abzusichern, egal ob der Container nun entwickelt wird (zum Beispiel ein Datenbankcontainer) oder einen Service zum Herunterladen bereitstellt. Der Zugriff auf den Container kann durch eine sogenannte \textbf{"Private Registry"} rollenbasiert geregelt werden. Über \textbf{"Metadaten"} kann die Kontrolle von den Daten auf welche zugegriffen werden soll kontrolliert werden. Bei \textbf{"Metadaten"} werden beispielsweise schon bekannte Sicherheitslücken weiterverfolgt, oder nach neu auftretenden gesucht. Durch \textbf{"Private Registry"} werden beispielsweise globale Richtlinien für Container und deren "Images" automatisch bereitgestellt. Dies hat den Vorteil, dass menschliches Versagen im Bereich der Richtlinien minimiert werden kann. \cite{ContainerSecurity}
+Nachdem der Container nun mit dem gewünschten "Image" richtig aufgesetzt wurde, ist es nun wichtig den Zugriff auf diesen abzusichern. Egal ob der Container nun entwickelt wird (zum Beispiel ein Datenbankcontainer) oder einen Service (beispielsweise einen Service zum Herunterladen) bereitstellt. 
+
+Der Zugriff auf den Container kann durch eine sogenannte "Private Registry" rollenbasiert geregelt werden. Über "Metadaten" kann die Kontrolle von den Daten, auf welche zugegriffen werden soll, kontrolliert werden. Bei "Metadaten" werden beispielsweise schon bekannte Sicherheitslücken weiterverfolgt, oder nach neu auftretenden gesucht. Durch "Private Registry" werden globale Richtlinien für Container und deren "Images" automatisch bereitgestellt. Dies hat den Vorteil, dass menschliches Versagen im Bereich der Richtlinien minimiert werden kann. \cite{ContainerSecurity}
 
 Die Entwickler*innen sollten sich im Bereich der Zugriffsverwaltung Antworten zu folgende vier Fragen überlegen:
 
@@ -46,7 +48,7 @@ Die Entwickler*innen sollten sich im Bereich der Zugriffsverwaltung Antworten zu
 
 \hfour{Deployment}
 
-In diesem Schritt geht es nun darum das fertige Endservice fortlaufend auf Sicherheitslücken zu prüfen. Sollte eine Lücke entdeckt worden sein, kann man diese entweder durch einen "Patch" oder einen "Rebuild" lösen. "Patches" werden eher nicht gemacht, sondern anhand automatischer Prüfungen Lücken entdeckt und durch automatische Updates und einen "Rebuild" geschlossen werden. Außerdem bleibt das komplette Neuaufsetzen eines Containers inklusive Service. \cite{ContainerSecurity}
+Im folgenden Schritt geht es nun darum, das fertige Endservice fortlaufend auf Sicherheitslücken zu prüfen. Sollte eine Lücke entdeckt worden sein, kann diese entweder durch einen "Patch" oder einen "Rebuild" geschlossen werden. "Patches" werden eher nicht gemacht. Es werden eher anhand automatischer Prüfungen Lücken entdeckt und durch automatische Updates und einen "Rebuild" geschlossen. Außerdem bleibt das komplette Neuaufsetzen eines Containers inklusive des Services. \cite{ContainerSecurity}
 
 Bei der Sicherheit im Deploymentbereich sollten die Entwickler*innen folgende Frage beantworten:
 
@@ -58,7 +60,7 @@ Bei der Sicherheit im Deploymentbereich sollten die Entwickler*innen folgende Fr
 
 \hfour{Infrastruktur}
 
-Um in diesem Bereich Sicherheit zu bekommen ist auf das Betriebssystem der Hostmaschine der angewiesen. Es ist wichtig, dass das Betriebssystem eine hohe Isolierung zwischen den einzelnen Containern bietet und damit Sicherheit bringt. Jedoch kann man über "Netzwerk-Namespaces" beispielsweise eine gemeinsame Nutzung von Speicher zwischen den Containern ermögliche. Es sollte aber jede Anwendung auch die nötigen Sicherheitsvorkehrungen (Authentifizierung, Autorisierung, Durchsatzbeschränkungen, usw.) schon zu implementiert haben um sich nicht rein auf den Containersicherheit oder die Infrastruktursicherheit zu verlassen. \cite{ContainerSecurity}
+Um in diesem Bereich Sicherheit zu bekommen sind die Entwickler*innen auf das Betriebssystem der Hostmaschine angewiesen. Es ist wichtig, dass das Betriebssystem eine hohe Isolierung zwischen den einzelnen Containern bietet und damit Sicherheit bringt. Jedoch kann über "Netzwerk-Namespaces" beispielsweise eine gemeinsame Nutzung von Speicher zwischen den Containern ermöglicht werden. Es sollte aber jede Anwendung auch die nötigen Sicherheitsvorkehrungen (Authentifizierung, Autorisierung, Durchsatzbeschränkungen, usw.) implementiert haben, um sich nicht rein auf die Containersicherheit oder die Infrastruktursicherheit zu verlassen. \cite{ContainerSecurity}
 
 Die Entwickler*innen sollten sich aber im Bereich der Infrastruktursicherheit bei der Implementierung folgende Fragen stellen:
 

@@ -1,6 +1,6 @@
 \hthree{Implementierung}
 
-"Frontend Routing" ist, wie gerade erwähnt, ein bisschen komplizierter zu implementieren. Wenn man kein Framework wie \zb: Angular verwendet, muss man praktisch alles selbst implementieren. Trotzdem wurde bei \ZELIA\ kein Framework verwendet, sondern  ein eigenes kleines "Frontend Service" geschrieben, um perfekt an die Bedürfnisse von \ZELIA\ angepasst zu sein.
+"Frontend Routing" ist, ein bisschen komplizierter zu implementieren. Wenn man kein Framework wie \zb: Angular verwendet, muss man praktisch alles selbst implementieren. Bei \ZELIA\ wurde kein Framework verwendet, sondern  ein eigenes kleines "Frontend Service" geschrieben, um perfekt an die Bedürfnisse von \ZELIA\ angepasst zu sein.
 
 Aufteilen kann man die Client Bibliothek wie schon gesagt in zwei Teile: Das Komponentensystem und den Client-Side-Router. Das Komponentensystem wurde vorher schon beschrieben (siehe Kapitel WebComponents \ref{sec:webcomponents}). Beide Teile der Bibliothek haben keine Abhängigkeiten und können getrennt voneinander laufen. Sie sind beide für den Anwendungsfall in \ZELIA\ entwickelt, können aber auch problemlos einzeln für andere Web-Applikationen verwendet werden.
 
@@ -19,11 +19,11 @@ Der erste Parameter ist der Pfad und der Zweite ist der Controller, welcher ausg
 
 \typescript{code/CSRouter/hw_example.ts}{Beispiel einer "Hello World"-Seite}
 
-Im Codebeispiel \ref{initRoutes}, Zeile fünf bis sieben, wird der Pfadeintrag "{\ttfamily /room/:roomNumber}" verwendet. Der Router leitet somit alle "{\ttfamily /room/...}" auf den verknüpften Controller um und wenn dieser aufgerufen wird, bekommt er als Parameter die Werte von dem Platzhaltern mitgeliefert:
+Im Codebeispiel \ref{initRoutes}, Zeile fünf bis sieben, wird der Pfadeintrag "{\ttfamily /room/:roomNumber}" verwendet. Der Router leitet somit alle "{\ttfamily /room/...}" auf den verknüpften Controller um. Wenn dieser aufgerufen wird, bekommt er als Parameter die Werte von dem Platzhaltern mitgeliefert:
 
 \typescript{code/CSRouter/placeholder.ts}{Beispiel "Controller" mit Platzhalter}
 
-Am Ende, nachdem alle Routen initialisiert wurden, führt der Router den Controller aus der mit dem aktuellen Pfad verknüpft ist. Damit werden alle  Inhalte der angeforderten Seite dargestellt. Dafür wird der Pfad verwendet, welcher in der Eingabezeile des Browsers mitgegeben wird. Somit ist es möglich, dass man den Pfad manuell eingeben kann und nicht immer auf der Anfangsroute "{\ttfamily /}" startet.
+Nachdem alle Routen initialisiert wurden, führt der Router den Controller aus, welcher mit dem aktuellen Pfad aus der Suchleiste verknüpft ist. Damit werden alle  Inhalte der angeforderten Seite dargestellt. Somit ist es möglich, dass man den Pfad manuell eingeben kann und nicht immer auf der Anfangsroute "{\ttfamily /}" startet.
 
 Wenn ein Link ausgewählt wird, fängt \ZELIA\ die Anfrage an den Server ab und verwaltet das Umleiten selbst:
 

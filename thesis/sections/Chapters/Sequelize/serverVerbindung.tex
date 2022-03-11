@@ -2,9 +2,9 @@
 
 Durch die verschiedenen Verbindungsklassen wird ein direkter Zugriff auf die Datenbank und die Tabellen in ihr ermöglicht. Der Datenbankservice ist nun für die Kommunikation mit dem restlichen Server zuständig. 
 
-Das Ziel hinter diesem eigenen Services war es die Interaktion des restlichen Servers mit der internen Datenbankkommunikation so gering wie möglich zu halten. Durch den externen Service muss nur dieser aufgerufen werden. Der Datenbankservice übernimmt ab diesem Zeitpunkt die gesamte Aufrufhierarchie der Datenbank.
+Das Ziel hinter diesem eigenen Services war es, die Interaktion des restlichen Servers mit der internen Datenbankkommunikation so gering wie möglich zu halten. Durch den externen Service muss nur dieser aufgerufen werden. Der Datenbankservice übernimmt ab diesem Zeitpunkt die gesamte Aufrufhierarchie der Datenbank.
 
-Außerdem wird über den Datenbankservice das Auftreten von Fehler gehandhabt. beispielsweise wird überprüft ob die Datenbank verfügbar ist, oder ob beim Verbindungsaufbau etwas nicht geklappt hat, oder der ausgewählte Raum in der Datenbank nicht vorhanden ist. Dies wird über verschiedene "Exceptions" realisiert welche einerseits den Entwicklern beim Programmieren helfen die Übersicht zu behalten und andererseits den Benutzer*innen im fertigen Produkt ein Feedback liefern, ob ihre Aktion erfolgreich war, oder nicht.
+Außerdem wird über den Datenbankservice das Auftreten von Fehlern gehandhabt. Beispielsweise wird überprüft, ob die Datenbank verfügbar ist, oder ob beim Verbindungsaufbau etwas nicht geklappt hat, oder der ausgewählte Raum in der Datenbank nicht vorhanden ist. Dies wird über verschiedene "Exceptions" realisiert, welche einerseits den Entwicklern beim Programmieren helfen die Übersicht zu behalten und andererseits den Benutzer*innen im fertigen Produkt ein Feedback liefern, ob ihre Aktion erfolgreich war, oder nicht.
 
 Beispiel für eine Exception:
 
