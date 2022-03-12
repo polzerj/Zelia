@@ -25,27 +25,27 @@ Wenn das Custom Element registriert ist, kann es mit dem vergebenen Namen im HTM
 
 \html{code/WebComponents/three.html}{Verwendung des Custom Elements im HTML}
 
-\hfive{Lifecycle-Methoden \cite{MDNWebCustomElements}}
+\hfive{Lifecycle-Methoden}
 
-Um den Lebenszyklus eines Custom Elements besser kontrollieren zu können, gibt es sogenannte "lifecycle callbacks". Diese "lifecycle callbacks" sind spezielle Methoden in einer Klasse, welche von der API der Custom Elements aufgerufen werden.
+Um den Lebenszyklus eines Custom Elements besser kontrollieren zu können, gibt es sogenannte "lifecycle callbacks". Diese "lifecycle callbacks" sind spezielle Methoden in einer Klasse, welche von der API der Custom Elements aufgerufen werden. \cite{MDNWebCustomElements}
 
-Der "{\ttfamily connectedCallback}" wird aufgerufen, wenn das Element in das DOM eingefügt wird. Das DOM (Document Object Model) ist eine Programmierschnittstelle über die man auf die einzelnen HTML Elemente zugreifen kann. \cite{MDNDOM} Im "{\ttfamily connectedCallback}" können zum Beispiel Event-Listeners registriert werden.
+Der "{\ttfamily connectedCallback}" wird aufgerufen, wenn das Element in das DOM eingefügt wird. Das DOM (Document Object Model) ist eine Programmierschnittstelle, über die auf die einzelnen HTML Elemente zugreifen werden kann. \cite{MDNDOM} Im "{\ttfamily connectedCallback}" können zum Beispiel Event-Listeners registriert werden. \cite{MDNWebCustomElements}
 
 \typescript{code/WebComponents/four.ts}{"connectedCallback" Beispiel}
    
 Der "{\ttfamily disconnectedCallback}" ist das Gegenstück zum "{\ttfamily connectedCallback}" und wird beim Verlassen des DOMs aufgerufen. Darin sollten etwaige "Event Listeners" entfernt werden, um die nicht mehr benötigten Ressourcen freizugeben und dadurch Speicher und CPU-Zeit zu sparen. 
-Auf diese Art wird sichergestellt, dass die Anwendung auch nach längerer Nutzung performant funktioniert.
+Auf diese Art wird sichergestellt, dass die Anwendung auch nach längerer Nutzung performant funktioniert. \cite{MDNWebCustomElements}
 
 \typescript{code/WebComponents/five.ts}{"disconnectedCallback" Beispiel}
 
 % tofix: jedes Mal?
-Der "{\ttfamily adoptedCallback}" wird jedes Mal aufgerufen, wenn das Element auf eine neue Seite verschoben wird.
+Der "{\ttfamily adoptedCallback}" wird jedes Mal aufgerufen, wenn das Element auf eine neue Seite verschoben wird. \cite{MDNWebCustomElements}
 
 \typescript{code/WebComponents/six.ts}{"adoptedCallback" Beispiel}
 
-Der "{\ttfamily attributeChangedCallback}" Lifecycle-Hook wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. Allerdings muss dafür eine Liste an Attributnamen von der statischen Eigenschaft "{\ttfamily observedAttributes}" zurückgegeben werden. 
+Der "{\ttfamily attributeChangedCallback}" Lifecycle-Hook wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. Allerdings muss dafür eine Liste an Attributnamen von der statischen Eigenschaft "{\ttfamily observedAttributes}" zurückgegeben werden. \cite{MDNWebCustomElements}
     
-Der "{\ttfamily attributeChangedCallback}" nimmt drei Parameter:
+Der "{\ttfamily attributeChangedCallback}" nimmt drei Parameter\cite{MDNWebCustomElements}:
 \begin{itemize}
     \item Name: Name des Attributes
     \item Old Value: Den Wert vor der Änderung
@@ -88,7 +88,7 @@ Dieser ermöglicht es, Inhalte an die Components weiterzugeben.
 Dafür muss allerdings ein Shadow DOM verwendet werden. 
 Ein Slot wird immer mit seinem Namen referenziert. 
 Wenn bei einem Child-Node eines Custom Elements kein Slotname angegeben ist, dann wird dieses Node im Slot ohne Namen gerendert. 
-Unter einem Node versteht man sowohl ein HTML-Element als auch ein sogenanntes Text-Node, welches Text ist, der direkt in das Element eingefügt wird. 
+Unter einem Node versteht man sowohl ein HTML-Element als auch ein sogenanntes Text-Node, welcher Text ist, der direkt in das Element eingefügt wird. 
 Wird für einen Slot kein Node mit dem jeweiligen "{\ttfamily slot}"-Attribut gesetzt, dann wird der Inhalt des Slots als Standardwert verwendet. 
 \cite{MDNSlots}
 

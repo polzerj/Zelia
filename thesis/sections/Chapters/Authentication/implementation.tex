@@ -1,11 +1,11 @@
 \hthree{Implementierung}
 
-Da die tokenbasierende Authentifizierungsmethode einige Vorteile bezüglich des "Load-Balancing" hat, wurde das JWT verwendet, um die Sitzung des Benutzers zu identifizieren.
+Da die Token-basierende Authentifizierungsmethode einige Vorteile bezüglich des "Load-Balancing" hat, wurde das JWT verwendet, um die Sitzung des Benutzers zu identifizieren.
 
 \hfour{Aufbau der Sitzung}
 
 
-Beim Anmelden, werden die Benutzerdaten vom Client, mit den im "Body" des "HTTP-Requests" angegebenen Benutzerkenndaten, von der Datenbank abgefragt. 
+Beim Anmelden werden die Benutzerdaten vom Client, mit den im "Body" des "HTTP-Requests" angegebenen Benutzerkenndaten, von der Datenbank abgefragt. 
 Daraufhin wird das Token mit den Benutzerinformationen erstellt, signiert und an den Client zurückgesendet. 
 Wenn die Benutzerkenndaten nicht mit den Daten aus der Datenbank übereinstimmen, wird ein Fehler mit dem HTTP Status-Code 401 (Unauthorized) zurückgegeben (siehe Code \ref{code:LoginController}).
 

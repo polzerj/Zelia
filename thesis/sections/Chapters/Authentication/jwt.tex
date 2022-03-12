@@ -1,4 +1,4 @@
-\hfour{Json Web Token (JWT)}\label{sec:jwt}
+\hfour{JSON Web Token (JWT)}\label{sec:jwt}
 
 Der JWT speichert die Benutzerdaten verschlüsselt im Token selbst. Dieses Token wird wie ein Sitzungs-"Cookie" bei jeder Anfrage mitgeschickt. 
 Da die Sitzungsdaten jedoch im Token gespeichert sind, müssen die Server die Sitzungen nicht synchronisieren. 
@@ -18,7 +18,7 @@ Im Header befinden sich meist zwei Felder.
 Der Typ des Tokens ({\ttfamily typ}) und der\linebreak"Signing"-Algorithmus ({\ttfamily alg}). 
 Diese standardisierten Felder sind in der Regel drei Zeichen lang, um das Token möglichst kompakt zu halten. \cite{Auth0JWT}
 
-Die "Payload" besteht in der Regel aus Benutzerdaten. Diese nennt man "Claims". Es gibtes drei Arten von "Claims"\cite{Auth0JWT}: 
+Die "Payload" besteht in der Regel aus Benutzerdaten. Diese nennt man "Claims". Es gibt drei Arten von "Claims"\cite{Auth0JWT}: 
 
 \begin{itemize}
     \item "Registered claims" sind vordefinierte "Claims" wie
