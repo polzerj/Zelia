@@ -4,8 +4,9 @@
 \hthree{Allgemeines}
 
 Web-Worker sind Javascript-Skripte, die im Hintergrund ausgeführt werden. 
-Sie können zum Beispiel dazu verwendet werden, um eine Webseite offline-fähig zu machen oder Push-Notifications zu implementieren.
-Da ältere Browser Web-Worker nicht unterstützen (siehe Abbildung \ref{fig:CanIUseServiceWorker}), muss die Kompatibilität vor dem Starten geprüft werden. 
+Da diese separat vom Main-Thread ausgeführt werden, werden diese für resourcenintensive Berechnungen verwendet.
+Service-Worker sind eine spezielle Art von Worker, welche dazu verwendet werden, um eine Webseite offline-fähig zu machen.
+Da ältere Browser Service-Worker nicht unterstützen (siehe Abbildung \ref{fig:CanIUseServiceWorker}), muss die Kompatibilität vor dem Starten geprüft werden. 
 Dazu muss abgefragt werden, ob das "serviceWorker" Objekt in dem "navigator" Objekt existiert. 
 
 \begin{figure}[H]
@@ -24,26 +25,20 @@ Ein Service Worker hat verschiedene Events \cite{MDNCacheAPI}:
 
 \hfive{"Install"-Event}
 
-Das "install"-Event wird ausgelöst, nachdem der Service Worker registriert wurde. Dort werden normalerweise die Abhängigkeiten installiert, \zb\ das Füllen des statischen Cache.
+Das "{\ttfamily install}"-Event wird ausgelöst, nachdem der Service Worker registriert wurde. Dort werden normalerweise die Abhängigkeiten installiert, \zb\ das Füllen des statischen Cache.
     
 \hfive{"Activated"-Event}
 
-Bei der Erstinstallation wird das "activated"-Event unmittelbar nach der Installation ausgelöst.
+Bei der Erstinstallation wird das "{\ttfamily activated}"-Event unmittelbar nach der Installation ausgelöst.
 Wenn ein neuer Service Worker für dieselbe Seite zur Verfügung steht, wird dieser nur installiert.
 Die Aktivierung erfolgt jedoch erst in der nächsten Sitzung.
-Das "activated"-Event wird in der Regel dazu verwendet, alte Ressourcen aufzuräumen. 
+Das "{\ttfamily activated}"-Event wird in der Regel dazu verwendet, alte Ressourcen aufzuräumen. 
 Beispielsweise werden die Caches des vorherigen Service Workers geleert.
 
 \hfive{"Fetch"-Event}
 
-Das "fetch"-Event wird jedes Mal aufgerufen, wenn eine Ressource des Servers angefordert wird. Es fängt diese Anfrage ab, um zum Beispiel mit den Daten aus dem Cache zu antworten.
+Das "{\ttfamily fetch}"-Event wird jedes Mal aufgerufen, wenn eine Ressource des Servers angefordert wird. Die Anfrage wird dabei abgefangen, um zum Beispiel mit den Daten aus dem Cache zu antworten.
 
-\hfive{"Push"-Event}
-
-% tofix: Dieser Satz ist komisch
-Das "push"-Event wird ausgelöst, wenn der Server ein "push"-Event sendet, welches der Client abonniert hat.
-
-% TODO: gehört da ein kleines h?
 \begin{figure}[H]
     \centering
     \includegraphics{media/ServiceWorker/lifecycle.svg.pdf}

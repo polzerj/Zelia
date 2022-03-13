@@ -29,20 +29,26 @@ Wenn das Custom Element registriert ist, kann es mit dem vergebenen Namen im HTM
 Zur besseren Kontrolle des Lebenszyklus eines Custom Elements werden sogenannte "lifecycle callbacks" verwendet.
 Diese "lifecycle callbacks" sind spezielle Methoden in einer Klasse, welche von der API der Custom Elements aufgerufen werden. \cite{MDNWebCustomElements}
 
-Der "{\ttfamily connectedCallback}" wird aufgerufen, wenn das Element in das DOM eingefügt wird. Das DOM (Document Object Model) ist eine Programmierschnittstelle, über die auf die einzelnen HTML Elemente zugreifen werden kann. \cite{MDNDOM} Im "{\ttfamily connectedCallback}" können zum Beispiel Event-Listeners registriert werden. \cite{MDNWebCustomElements}
+\typescript{code/WebComponents/LifecycleExamples.ts}{"connectedCallback" Beispiel}
 
-\typescript{code/WebComponents/four.ts}{"connectedCallback" Beispiel}
-   
-Der "{\ttfamily disconnectedCallback}" ist das Gegenstück zum "{\ttfamily connectedCallback}" und wird beim Verlassen des DOMs aufgerufen. Darin sollten etwaige "Event Listeners" entfernt werden, um die nicht mehr benötigten Ressourcen freizugeben und dadurch Speicher und CPU-Zeit zu sparen. 
+Der "{\ttfamily connectedCallback}" ist eine der Lifecycle-Methoden und wird aufgerufen, wenn das Element in das DOM eingefügt wird. 
+Das DOM (Document Object Model) ist eine Programmierschnittstelle, über die auf die einzelnen HTML Elemente zugegriffen werden kann. \cite{MDNDOM} Im "{\ttfamily connectedCallback}" können zum Beispiel Event-Listeners registriert werden. \cite{MDNWebCustomElements}
+
+\typescriptsub{code/WebComponents/LifecycleExamples.ts}{"connectedCallback" Beispiel}{12}{14}
+
+% todo: zum
+Die Lifecycle-Methode "{\ttfamily disconnectedCallback}" ist das Gegenstück zu \linebreak "{\ttfamily connectedCallback}".
+Diese wird beim Verlassen des DOMs aufgerufen. Darin sollten etwaige "Event Listener" entfernt werden, um die nicht mehr benötigten Ressourcen freizugeben und dadurch Speicher und CPU-Zeit zu sparen. 
 Auf diese Art wird sichergestellt, dass die Anwendung auch nach längerer Nutzung performant funktioniert. \cite{MDNWebCustomElements}
 
-\typescript{code/WebComponents/five.ts}{"disconnectedCallback" Beispiel}
+\typescriptsub{code/WebComponents/LifecycleExamples.ts}{"disconnectedCallback" Beispiel}{16}{18}
 
-Der "{\ttfamily adoptedCallback}" wird jedes Mal aufgerufen, wenn das Element auf eine neue Seite verschoben wird. \cite{MDNWebCustomElements}
+Die Lifecycle-Methode "{\ttfamily adoptedCallback}" wird jedes Mal aufgerufen, wenn das Element mit der "{\ttfamily adoptNode}"-Methode in ein anderes Dokument - \zb\ eines "{\ttfamily iframe}"-Elements - verschoben wird \cite{MDNWebCustomElements}
 
-\typescript{code/WebComponents/six.ts}{"adoptedCallback" Beispiel}
+\typescriptsub{code/WebComponents/LifecycleExamples.ts}{"adoptedCallback" Beispiel}{24}{26}
 
-Der "{\ttfamily attributeChangedCallback}" Lifecycle-Hook wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. Allerdings muss dafür eine Liste an Attributnamen von der statischen Eigenschaft "{\ttfamily observedAttributes}" zurückgegeben werden. \cite{MDNWebCustomElements}
+Der "{\ttfamily attributeChangedCallback}" Lifecycle-Callback wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. 
+Damit dieser Callback ausgelöst wird, müssen die Namen der zu überwachenden Attribute von der statischen Eigenschaft "{\ttfamily observedAttributes}" zurückgegeben werden. \cite{MDNWebCustomElements} Beim Codebeispiel \ref{code:attributeChangedCallback} wird die Methode "{\ttfamily attributeChangedCallback}" nur aufgerufen, wenn die Attribute "from" und "to" geändert werden.
     
 Der "{\ttfamily attributeChangedCallback}" nimmt drei Parameter\cite{MDNWebCustomElements}:
 \begin{itemize}
@@ -51,7 +57,7 @@ Der "{\ttfamily attributeChangedCallback}" nimmt drei Parameter\cite{MDNWebCusto
     \item New Value: Der neue, aktuelle Wert 
 \end{itemize}
 
-\typescript{code/WebComponents/seven.ts}{"attributeChangedCallback" Beispiel}
+\typescriptsub[code:attributeChangedCallback]{code/WebComponents/LifecycleExamples.ts}{"attributeChangedCallback" Beispiel}{28}{34}
 
 \pagebreak
 \hfour{Shadow DOM}
@@ -60,6 +66,8 @@ Unter DOM (Document Object Model) versteht man die Programmierschnittstelle, mit
 
 Ein Shadow DOM ist ein Ast im DOM-Baum innerhalb der Webseite, welcher separat von der restlichen Seite gerendert wird.
 Dadurch kann auch auf Custom Elements ein Style in Style-Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen. \cite{MDNShadowRoot}
+
+Shadow DOMs bieten die Möglichkeit, einzelne Elemente des Webprojekts abgesondert vom Rest der Seite zu behandeln, ohne dafür "{\ttfamily iframe}"-Elemente zu verwenden. Dabei ermöglichen sie, die Komponente ganz unabhängig von dokumentenübergreifenden Styling-Anweisungen zu gestalten. \cite{IONOSShadowDom}
 
 Damit ein "Shadow Root" erstellt werden kann, muss lediglich die "{\ttfamily attachShadow}"-Methode aufgerufen werden. \cite{MDNShadowRoot}
 
@@ -71,11 +79,11 @@ Der "Mode" muss auf "{\ttfamily open}" gesetzt werden, damit der "Shadow Root" b
 \pagebreak
 \hfour{HTML Templates}
 
-Um das Custom Element mit Inhalten zu füllen, gibt es in HTML den "template"-Tag. Dieser wird nicht im DOM gerendert, kann aber trotzdem mit Javascript referenziert werden. \cite{MDNtemplate}
+Um ein Custom Element mit Inhalt zu füllen, gibt es in HTML den "template"-Tag. Dieser wird nicht im DOM gerendert, kann aber trotzdem mit Javascript referenziert werden. \cite{MDNtemplate}
 
 \html{code/WebComponents/nine.html}{Erstellung eines HTML Template}
 
-Damit das Template als Custom Element gerendert wird, muss der Content in das dieses, oder dessen Shadow DOM kopiert werden.
+Damit das Template als Custom Element gerendert wird, muss der Content in dieses, oder dessen Shadow DOM kopiert werden.
 
 \typescript{code/WebComponents/ten.ts}{Kopieren des Template in das Custom Element}
 

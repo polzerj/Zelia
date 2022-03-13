@@ -32,7 +32,7 @@ Die "Payload" besteht in der Regel aus Benutzerdaten. Diese nennt man "Claims". 
 
 Sowohl Header als auch "Payload" werden mit Base64 kodiert.
 
-Die "Signature" wird erstellt durch das Verschlüsseln der Base64 Url kodierten Abschnitte "Header", "Payload" und einem "Secret". 
+Die "Signature" wird durch das Verschlüsseln der Base64 Url kodierten Abschnitte "Header", "Payload" und einem "Secret" erstellt. 
 Dabei wird der im Header spezifizierte Verschlüsselungsalgorithmus verwendet.\cite{RFC7519}\cite{WdsJWT}
 
 Die Abschnitte des JWT werden durch einen Punkt getrennt zusammengeführt. 

@@ -5,16 +5,23 @@
 Um die agile Entwicklungsmethodik umzusetzen, wird Github verwendet. 
 Github bietet nicht nur die Möglichkeit den Quellcode mittels Git zu verwalten, sondern auch einzelne Arbeitspakete zu erstellen und diese Meilensteinen und Unterprojekten zuzuordnen.
 
-Dabei ist es möglich, dass der Status eines einzelnen Arbeitspaketes automatisch bei der Durchführung eines "Pull-Requests" in die bei der agilen Entwicklung üblichen Spalten verschoben wird. Diese Spalten sind:
+Dabei ist es möglich, dass der Status eines einzelnen Arbeitspaketes automatisch bei der Durchführung eines "Pull-Requests" in die bei der agilen Entwicklung üblichen Spalten des Taskboards verschoben wird. Diese Spalten sind:
 
 \begin{description}
     \item[To do] Die Arbeitspakete sind angelegt, werden allerdings noch nicht bearbeitet.
     \item[In progress] Die Arbeitspakete werden bearbeitet.
-    \item[Review in progress] Die Entwicklung an diesem Arbeitspaket ist abgeschlossen, und ein anderer Entwickler muss nach dem Vier-Augen-Prinzip den Code überprüfen. 
+    \item[Review in progress] Die Entwicklung an diesem Arbeitspaket ist abgeschlossen und ein anderer Entwickler muss nach dem Vier-Augen-Prinzip den Code überprüfen. 
     \item[Review approved] Der Code wurde überprüft und der Entwickler hat den Code akzeptiert, allerdings ist der Code noch nicht auf den Branch des jeweiligen Sprints geführt worden.
     \item[Done] Der Merge des Entwicklungsbranch auf den Branch des jeweiligen Sprints wurde durchgeführt.
 \end{description}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{media/ProjectManagement/Taskboard.png}
+    \caption{Taskboard Beispiel}
+    \label{fig:github-taskboard}
+    
+\end{figure}
 % TODO: cross ref zu Scrum
 
 \hthree{Erstellen eines Projektes}
@@ -28,7 +35,7 @@ Ein Projekt kann im "Projects"-Tab (Abbildung \ref{fig:newProject}) erstellt wer
     \label{fig:newProject}
 \end{figure}
 
-Einem Projekt werden ein Name und eine Beschreibung zugewiesen. Damit die Spalten für die agile Entwicklung erstellt werden, und die Karten darin automatisch verschoben werden, muss  "Automated kanban with reviews" beim Projekt-"template" ausgewählt werden (siehe Abbildung \ref{fig:enterProjectInfo}).
+Einem Projekt werden ein Name und eine Beschreibung zugewiesen. Damit die Spalten für das Taskboard erstellt werden und die Karten darin automatisch verschoben werden, muss  "Automated kanban with reviews" beim Projekt-"template" ausgewählt werden (siehe Abbildung \ref{fig:enterProjectInfo}).
 
 \begin{figure}[H]
     \centering
