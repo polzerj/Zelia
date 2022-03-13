@@ -26,8 +26,8 @@ Wenn das Custom Element registriert ist, kann es mit dem vergebenen Namen im HTM
 \html{code/WebComponents/three.html}{Verwendung des Custom Elements im HTML}
 
 \hfive{Lifecycle-Methoden}
-
-Um den Lebenszyklus eines Custom Elements besser kontrollieren zu können, gibt es sogenannte "lifecycle callbacks". Diese "lifecycle callbacks" sind spezielle Methoden in einer Klasse, welche von der API der Custom Elements aufgerufen werden. \cite{MDNWebCustomElements}
+Zur besseren Kontrolle des Lebenszyklus eines Custom Elements werden sogenannte "lifecycle callbacks" verwendet.
+Diese "lifecycle callbacks" sind spezielle Methoden in einer Klasse, welche von der API der Custom Elements aufgerufen werden. \cite{MDNWebCustomElements}
 
 Der "{\ttfamily connectedCallback}" wird aufgerufen, wenn das Element in das DOM eingefügt wird. Das DOM (Document Object Model) ist eine Programmierschnittstelle, über die auf die einzelnen HTML Elemente zugreifen werden kann. \cite{MDNDOM} Im "{\ttfamily connectedCallback}" können zum Beispiel Event-Listeners registriert werden. \cite{MDNWebCustomElements}
 
@@ -38,7 +38,6 @@ Auf diese Art wird sichergestellt, dass die Anwendung auch nach längerer Nutzun
 
 \typescript{code/WebComponents/five.ts}{"disconnectedCallback" Beispiel}
 
-% tofix: jedes Mal?
 Der "{\ttfamily adoptedCallback}" wird jedes Mal aufgerufen, wenn das Element auf eine neue Seite verschoben wird. \cite{MDNWebCustomElements}
 
 \typescript{code/WebComponents/six.ts}{"adoptedCallback" Beispiel}
@@ -59,7 +58,6 @@ Der "{\ttfamily attributeChangedCallback}" nimmt drei Parameter\cite{MDNWebCusto
 
 Unter DOM (Document Object Model) versteht man die Programmierschnittstelle, mit der auf die Elemente einer Webseite zugegriffen werden kann, um deren Inhalt und Darstellung zu verändern. \cite{MDNDOM}
 
-% tofix: gerendert
 Ein Shadow DOM ist ein Ast im DOM-Baum innerhalb der Webseite, welcher separat von der restlichen Seite gerendert wird.
 Dadurch kann auch auf Custom Elements ein Style in Style-Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen. \cite{MDNShadowRoot}
 
@@ -67,7 +65,7 @@ Damit ein "Shadow Root" erstellt werden kann, muss lediglich die "{\ttfamily att
 
 \typescript{code/WebComponents/eight.ts}{Erstellung eines Shadow Roots}
 
-Der "Mode" muss auf "{\ttfamily open}" gesetzt werden, damit der "ShadowRoot" befüllt werden kann. Nun kann mit "{\ttfamily this.shadowRoot}" auf den "ShadowRoot" innerhalb des Custom Components zugegriffen werden.
+Der "Mode" muss auf "{\ttfamily open}" gesetzt werden, damit der "Shadow Root" befüllt werden kann. Nun kann mit "{\ttfamily this.shadowRoot}" auf den "ShadowRoot" innerhalb des Custom Components zugegriffen werden.
 \cite{MDNShadowRoot}
 
 \pagebreak
@@ -88,7 +86,8 @@ Dieser ermöglicht es, Inhalte an die Components weiterzugeben.
 Dafür muss allerdings ein Shadow DOM verwendet werden. 
 Ein Slot wird immer mit seinem Namen referenziert. 
 Wenn bei einem Child-Node eines Custom Elements kein Slotname angegeben ist, dann wird dieses Node im Slot ohne Namen gerendert. 
-Unter einem Node versteht man sowohl ein HTML-Element als auch ein sogenanntes Text-Node, welcher Text ist, der direkt in das Element eingefügt wird. 
+Unter einem Node versteht man sowohl ein HTML-Element als auch ein sogenannter Text-Node. 
+Letzteres ist ein Text, der direkt in das Element eingefügt wird. 
 Wird für einen Slot kein Node mit dem jeweiligen "{\ttfamily slot}"-Attribut gesetzt, dann wird der Inhalt des Slots als Standardwert verwendet. 
 \cite{MDNSlots}
 

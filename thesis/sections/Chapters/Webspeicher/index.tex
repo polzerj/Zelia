@@ -4,7 +4,7 @@
 
 \hthree{Einleitung}
 
-Webspeicher (Im Englischen "Web Storage" genannt) ermöglichen den Entwicklern % tofix: Gendern? 
+Webspeicher (im Englischen "Web Storage" genannt) ermöglichen den Entwicklern % tofix: Gendern? 
 Daten im Webbrowser zu speichern.
 Es gibt verschiedene Arten von Webspeichern, welche für unterschiedlicher Anwendungsfälle konzipiert wurden. Dazu zählen:
 
@@ -23,7 +23,7 @@ Damit die Daten nicht von anderen Web-Apps gelesen und manipuliert werden könne
 
 Damit eine Webanwendung nicht die gesamte Festplatte vollschreiben kann, wird die Speichermenge einer Webseite limitiert. Diese Limitierungen sind davon abhängig, welcher Webbrowser verwendet wird.
 
-Der Google Chrome Browser erlaubt es Webseiten bis zu achtzig Prozent der Festplattenkapazität zu nutzen.
+Der Google Chrome Browser erlaubt es, Webseiten bis zu achtzig Prozent der Fest\-platten\-kapazität zu nutzen.
 
 Firefox hat ein Limit von zwei Gigabyte pro Website. Insgesamt dürfen Webseiten bis zu 50 \% des freien Speicherplatzes nutzen.
 
@@ -32,10 +32,11 @@ Apples Safari-Browser schränkt die Nutzung von Webanwendungen auf maximal ein G
 \hfour{Same-Origin-Policy} \label{sec:sameorigin}
 
 Damit nicht jede Webseite auf die gespeicherten Ressourcen der anderen Webseiten zugreifen kann, gibt es eine "Same-Origin-Policy".
-Dadurch soll verhindert werden, dass Webseiten andere Webseiten ausspionieren, indem sie auslesen mit welchen Accounts der Benutzer auf anderen Seiten angemeldet ist. Außerdem wird die Manipulation der Daten anderer Seiten unterbunden.
+Dadurch soll verhindert werden, dass Webseiten andere Webseiten ausspionieren, indem sie auslesen, mit welchen Accounts der Benutzer auf anderen Seiten angemeldet ist. Außerdem wird die Manipulation der Daten anderer Seiten unterbunden. \cite{MDNSame-origin-policy}
 
 Dennoch kann durch Cookies Tracking durchgeführt werden.
-Dabei wird auf einer Webseite \zb\ ein Script von Google Analytics eingebunden. Dieses Script kann dann auf die Daten der anderen Webseiten zugreifen und somit mit Tracking-Cookies das Benutzerverhalten verfolgen.
+Dabei wird auf einer Webseite \zb\ ein Script von Google Analytics eingebunden. Dieses Script kann dann auf die Daten der anderen Webseiten zugreifen und somit mit Tracking-Cookies das Benutzer\-verhalten verfolgen.
+
 
 \hthree{Allgemeines}
 
@@ -43,15 +44,8 @@ Dabei wird auf einer Webseite \zb\ ein Script von Google Analytics eingebunden. 
 \input{sections/Chapters/Webspeicher/sessionstorage.tex}
 \input{sections/Chapters/Webspeicher/cookies.tex}
 \input{sections/Chapters/Webspeicher/indexeddb.tex}
+\clearpage
 \input{sections/Chapters/Webspeicher/cache.tex}
-
-\hthree{Implementierung}
-
-Bei \ZELIA\ gibt es zwei Anwendungsfälle von Webspeichern:
-
-\begin{itemize}
-    \item Die sichere Speicherung des JWT
-    \item Der Cache, welcher die Webseite speichert, um diese als offline-fähige PWA zu installieren.
-\end{itemize}
+\clearpage
 
 \input{sections/Chapters/Webspeicher/implementation.tex}

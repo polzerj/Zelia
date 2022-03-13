@@ -20,12 +20,12 @@ Auf dem Open Request Objekt gibt es mehrere Events.
 Das Event "upgradeneeded" wird ausgelöst, wenn die geöffnete Datenbank noch nicht initialisiert wurde oder wenn die Version erhöht wurde. 
 Innerhalb dieses Ereignisses müssen die Object Stores und die Indizes erstellt werden (siehe Code \ref{code:createDB}). 
 Beim Erstellen des Object-Stores müssen der Name des Object-Stores und der Primärschlüssel definiert werden. Wenn der Primärschlüssel automatisch generiert werden soll, muss dies durch die Eigenschaft "autoIncrement", welche auf "true" gesetzt werden muss, angegeben werden.
-Wenn der Object-Store erstellt ist, können über Attribute indiziert werden. Dabei muss jedem Index ein Name gegeben werden und ein Attribut angegeben werden, nach welchem der Object-Store durchsucht werden soll. Außerdem kann definiert werden, ob dieses Attribut einzigartig sein soll.
+Wenn der Object-Store erstellt ist, können über Attribute indiziert werden. Dabei muss jedem Index ein Name gegeben und ein Attribut angegeben werden, nach welchem der Object-Store durchsucht werden soll. Außerdem kann definiert werden, ob dieses Attribut einzigartig sein soll.
 
 \typescript[code:createDB]{code/Webspeicher/createDB.ts}{Erstellen und Ändern des Datenbankschemas}
 
-Das Event "success" wird nach der vollständigen Initialisierung der Datenbank ausgelöst. 
-Das heißt nach dem "upgradeneeded"-Event, falls dieses erforderlich war. 
+Das Event "success" wird nach der vollständigen Initialisierung der Datenbank ausgelöst - 
+das heißt, nach dem "upgradeneeded"-Event, falls dieses erforderlich war. 
 Wenn die Datenbank bereits initialisiert wurde, wird das "success"-Event sofort ausgelöst. 
 Nach dem "success"-Event sind alle Arten von Manipulationen und Abfragen der Daten möglich. 
 Um Daten aus der Indexed-DB abzurufen, muss eine Transaktion unter Verwendung des "Indexed Database Objekts" erstellt werden. 
@@ -35,7 +35,7 @@ Das "Indexed Database Objekt" ist als Ergebnis des "Open Request" abrufbar.
 
 Es ist auch möglich, Daten über einen Index abzurufen. Da ein indiziertes 
 % Zusammenhang methoden First/all Match
-Attribut nicht eindeutig sein muss, gibt es zwei Methoden, um die Daten zu erhalten. Die Methode "get" liefert die erste Übereinstimmung und die Methode "getAll" liefert alle Übereinstimmungen als Array.
+Attribut nicht eindeutig sein muss, gibt es zwei Methoden, um die Daten zu erhalten. Die Methode "get" liefert die erste Übereinstimmung und die Methode "getAll" alle Über\-ein\-stimmungen als Array.
 
 \typescript{code/Webspeicher/getByIndex.ts}{Abfragen von Datensätzen mit einem Index}
 

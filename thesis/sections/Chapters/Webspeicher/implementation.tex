@@ -1,6 +1,15 @@
+\hthree{Implementierung}
+
+Bei \ZELIA\ gibt es zwei Anwendungsfälle von Webspeichern:
+
+\begin{itemize}
+    \item Die sichere Speicherung des JWT
+    \item Der Cache welcher die Webseite speichert, um diese als offline-fähige PWA zu installieren.
+\end{itemize}
+
 \hfour{Speicherung des JWT}
 
-Um den JSON Web Token sicher zu speichern, ist es wichtig, dass dieser nicht mit unbegrenzter Gültigkeit gespeichert wird. Darüber hinaus soll der Administrator beim Schließen des "Admin Dashboards" ausgeloggt werden. Deshalb wird dieser Token im Session-Storage abgelegt. Dadurch wird der Token nach der Sitzung gelöscht und der Administrator muss sich beim nächsten Besuch des "Admin Dashboards" neu anmelden.
+Um das JSON Web Token sicher zu speichern, ist es wichtig, dass dieser nicht mit unbegrenzter Gültigkeit gespeichert wird. Darüber hinaus soll der Administrator beim Schließen des "Admin Dashboards" ausgeloggt werden. Deshalb wird dieses Token im Session-Storage abgelegt. Dadurch wird das Token nach der Sitzung gelöscht und der Administrator muss sich beim nächsten Besuch des "Admin Dashboards" neu anmelden.
 
 \hfour{Cache für schnelle Ladezeiten}
 

@@ -5,7 +5,7 @@
 
 Bei der Webentwicklung werden Daten meist am Server gespeichert, da Daten, die im Browser gespeichert werden, vom Benutzer beim Bereinigen der Browserdaten gelöscht werden können. 
 Dabei werden auch benutzerspezifische Daten am Server gespeichert, wodurch Authentifizierung ein wichtiges Sicherheits-Thema ist.
-Damit diese Daten nicht öffentlich eingesehen werden können, muss sich der der Benutzer beim Server authentifizieren.
+Damit diese Daten nicht öffentlich eingesehen werden können, muss sich der Benutzer beim Server authentifizieren.
 
 Es gibt verschiedene \textbf{Authentifizierungsmethoden}. Zwei davon sind:
 \begin{itemize} 
@@ -18,9 +18,9 @@ Einerseits gibt es die "Session-Cookie"-Methode. Auf der anderen Seite kann man 
 
 Bei der Anmeldung auf einer Webseite werden meistens folgende Schritte durchgeführt:
 \begin{enumerate}
-    \item Der Benutzer gibt seinen Benutzernamen und sein Passwort ein
-    \item Benutzername und Kennwort werden durch HTTPS verschlüsselt an den Server gesendet
-    \item Server sendet ein "Session-Cookie" (Abschnitt \ref{sec:sessioncookie}) oder ein JWT (Abschnitt \ref{sec:jwt}) zurück an den Client
+    \item Der Benutzer gibt seinen Benutzernamen und sein Passwort ein.
+    \item Benutzername und Kennwort werden durch HTTPS verschlüsselt an den Server gesendet.
+    \item Server sendet ein "Session-Cookie" (Abschnitt \ref{sec:sessioncookie}) oder ein JWT (Abschnitt \ref{sec:jwt}) zurück an den Client.
 \end{enumerate}
 
 \pagebreak
@@ -28,10 +28,10 @@ Bei der Anmeldung auf einer Webseite werden meistens folgende Schritte durchgef�
 
 Die ursprüngliche Idee der "session"-basierten Authentifizierung bestand darin, ein so genanntes "Session-Cookie" auf dem Web-Client zu speichern, das bei jeder Anfrage mitgeschickt wird. Mit diesem Cookie als Schlüssel kann der Server auf die Sitzung mit den Benutzerdaten zugreifen. 
 
-Ein Hauptproblem der auf "Session-Cookies" basierenden Ansätze besteht entsteht beim "Load-Balancing". 
+Ein Hauptproblem, welches bei "Session-Cookie" basierenden Ansätzen entsteht, ist das "Load-Balancing". 
 Da die Sitzungsdaten am Server gespeichert werden, müssen diese zwischen den verschiedenen Servern synchronisiert werden, damit der Benutzer jedes Mal dieselbe Antwort erhält, egal welcher Server antwortet. 
 
-Ein zweiter Ansatz, um "Load-Balancing" zu ermöglichen ist, dass der "Load-Balancer" speichert, zu welchem Server die Sitzung gehört. Dadurch kann es passieren, dass beim Ausfall des Servers die Sitzung abbricht. Außerdem ist es somit schwieriger, die Lasten gleichmäßig auf alle Server zu verteilen.
+Ein zweiter Ansatz, um "Load-Balancing" zu ermöglichen, ist, dass der "Load-Balancer" speichert, zu welchem Server die Sitzung gehört. Dadurch kann es passieren, dass beim Ausfall des Servers die Sitzung abbricht. Außerdem ist es somit schwieriger, die Lasten gleichmäßig auf alle Server zu verteilen.
 
 \input{sections/Chapters/Authentication/jwt.tex}
 
