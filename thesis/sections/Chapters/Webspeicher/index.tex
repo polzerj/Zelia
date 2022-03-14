@@ -4,7 +4,7 @@
 
 \hthree{Einleitung}
 
-Webspeicher (Im Englischen "Web Storage" genannt) ermöglichen den Entwicklern % tofix: Gendern? 
+Webspeicher (im Englischen "Web Storage" genannt) ermöglichen den Entwicklern % tofix: Gendern? 
 Daten im Webbrowser zu speichern.
 Es gibt verschiedene Arten von Webspeichern, welche für unterschiedlicher Anwendungsfälle konzipiert wurden. Dazu zählen:
 
@@ -16,14 +16,14 @@ Es gibt verschiedene Arten von Webspeichern, welche für unterschiedlicher Anwen
     \item Cache
 \end{itemize}
 
-Damit die Daten nicht von anderen Web-Apps gelesen und manipuliert werden können, gibt es die "Same-Origin-Policy" (siehe Kapitel \ref{sec:sameorigin}).
+Damit die Daten nicht von anderen Web-Apps gelesen und manipuliert werden können, kommt eine  "Same-Origin-Policy" zum Einsatz (siehe Kapitel \ref{sec:sameorigin}).
 % Damit die Session gespeichert und die Website offline aufgerufen werden kann, ist es wichtig, Daten im Webbrowser abzuspeichern. Es gibt verschiedene Arten von Speichern in einem modernen Webbrowser Um riesige Webanwendungen zu entwickeln, wurde die Menge an Speicherplatz in den letzten Jahren erhöht. 
 
 \hfour{Speichermengen}
 
-Damit eine Webanwendung nicht die gesamte Festplatte vollschreiben kann, gibt es verschiedene Limitierungen. Diese sind davon abhängig, welcher Webbrowser verwendet wird.
+Damit eine Webanwendung nicht die gesamte Festplatte vollschreiben kann, wird die Speichermenge einer Webseite limitiert. Diese Limitierungen sind davon abhängig, welcher Webbrowser verwendet wird.
 
-Der Google Chrome Browser erlaubt es Webseiten bis zu achtzig Prozent der Festplattenkapazität zu nutzen.
+Der Google Chrome Browser erlaubt es, Webseiten bis zu achtzig Prozent der Fest\-platten\-kapazität zu nutzen.
 
 Firefox hat ein Limit von zwei Gigabyte pro Website. Insgesamt dürfen Webseiten bis zu 50 \% des freien Speicherplatzes nutzen.
 
@@ -31,11 +31,12 @@ Apples Safari-Browser schränkt die Nutzung von Webanwendungen auf maximal ein G
 
 \hfour{Same-Origin-Policy} \label{sec:sameorigin}
 
-Damit nicht jede Webseite auf die gespeicherten Ressourcen der anderen Webseiten zugreifen können, gibt es eine "Same-Origin-Policy".
-Dadurch soll verhindert werden, dass Webseiten ausspionieren, mit welchen Accounts der Benutzer auf anderen Seiten angemeldet ist oder Daten anderer Seiten manipulieren.
+Damit nicht jede Webseite auf die gespeicherten Ressourcen der anderen Webseiten zugreifen kann, gibt es eine "Same-Origin-Policy".
+Dadurch soll verhindert werden, dass Webseiten andere Webseiten ausspionieren, indem sie auslesen, mit welchen Accounts der Benutzer auf anderen Seiten angemeldet ist. Außerdem wird die Manipulation der Daten anderer Seiten unterbunden. \cite{MDNSame-origin-policy}
 
-Dennoch kann durch Cookies Tracking durchgeführt werden.
-Dabei wird auf einer Webseite \zb\ ein Script von Google Analytics eingebunden. Dieses Script kann dann auf die Daten der anderen Webseiten zugreifen und somit mit Tracking-Cookies das Benutzerverhalten verfolgen.
+Dennoch kann Tracking mit Hilfe von Cookies durchgeführt werden.
+Dabei wird auf einer Webseite \zb\ ein Script von Google Analytics eingebunden. Dieses Script kann dann auf die Daten der anderen Webseiten zugreifen und somit mit Tracking-Cookies das Benutzer\-verhalten verfolgen.
+
 
 \hthree{Allgemeines}
 
@@ -43,10 +44,8 @@ Dabei wird auf einer Webseite \zb\ ein Script von Google Analytics eingebunden. 
 \input{sections/Chapters/Webspeicher/sessionstorage.tex}
 \input{sections/Chapters/Webspeicher/cookies.tex}
 \input{sections/Chapters/Webspeicher/indexeddb.tex}
+\clearpage
 \input{sections/Chapters/Webspeicher/cache.tex}
-
-\hthree{Implementierung}
-
-Bei \ZELIA\ gibt es zwei Anwendungsfälle von Webspeicher. Der Erste ist die sichere Speicherung des JWT. Der Zweite ist der Cache, welcher die Webseite speichert, um diese als offline-fähige PWA zu installieren.
+\clearpage
 
 \input{sections/Chapters/Webspeicher/implementation.tex}

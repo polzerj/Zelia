@@ -1,8 +1,10 @@
-\hthree{Beispiele}
-\hfour{Vergleich: Light- und Dark-Theme}
+\hthree{Beispiele der Anwendung von Responsive Design}
+\hfour{Unterstützung Light/Dark-Mode}
 
-Die \ZELIA\ App lässt sich sowohl im Light- als auch im Dark-Theme anzeigen (siehe Abbildung \ref{fig:theme}). Dafür werden Media Queries (siehe Kapitel \ref{sec:mediaQueries}) verwendet, welche das Theme des Browsers abfragen (siehe Code \ref{code:theme}). 
-Die jeweiligen Farben werden in CSS-Variablen gespeichert. Dadurch müssen die Farben nur einmal in einer Media Query angepasst werden und können nun für jedes Element verwendet werden. 
+Die \ZELIA\ App lässt sich sowohl im Light- als auch im Dark-Theme anzeigen (siehe Abbildung \ref{fig:theme}). 
+Dafür werden Media Queries (siehe Kapitel \ref{sec:mediaQueries}) verwendet, welche das Theme des Browsers abfragen (siehe Code \ref{code:theme}). 
+Die jeweiligen Farben werden in CSS-Variablen gespeichert. 
+Dadurch müssen die Farben nur einmal in einer Media Query angepasst werden und können nun für jedes Element verwendet werden. 
 
 \begin{figure}[H]
     \begin{subfigure}[c]{0.49\textwidth}
@@ -15,17 +17,16 @@ Die jeweiligen Farben werden in CSS-Variablen gespeichert. Dadurch müssen die F
         \includegraphics[width=\textwidth]{media/ResponsiveDesign/ZeliaDesktopDark.png}
         \caption{Dunkles Theme}
     \end{subfigure}
-    \caption{Gegenüberstellung vom hellen und dunklen Theme}
+    \caption{Gegenüberstellung: helles - dunkles Theme}
     \label{fig:theme}
 \end{figure}
 
 \css[code:theme]{code/ResponsiveDesign/theme.css}{Anpassung der Farben anhand des Themes}
 
 \clearpage
-\hfour{Vergleich: Mobil und Desktop}
+\hfour{Unterstützung von Mobil- und Desktopansicht}
 
 Da \ZELIA\ sowohl am Computer als auch am Smartphone oder Tablet genutzt werden soll, wird mithilfe der Clamp-Funktion (siehe Kapitel \ref{sec:clamp}) das Design für die verschiedenen Bildschirmgrößen angepasst (siehe Abbildung \ref{fig:info}).
-
 
 \begin{figure}[H]
     \begin{subfigure}[c]{0.64\textwidth}
@@ -41,6 +42,8 @@ Da \ZELIA\ sowohl am Computer als auch am Smartphone oder Tablet genutzt werden 
     \caption{Vergleich von Desktop- und Mobile-Versionen der Rauminformation}
     \label{fig:info}
 \end{figure}
+
+\hfour{Unterstützung von besonderen Geräteeigenschaften}
 
 Wenn \ZELIA\ auf einem Mobilgerät verwendet wird, dann wird der "Kamera öffnen"-Button (siehe Abbildung \ref{fig:homeMobile}) dafür angezeigt, damit die Raumnummer mittels OCR (siehe Kapitel \ref{sec:ocr}) eingelesen werden kann. Auf der Desktop-Version wird dieser Button nicht angezeigt (siehe Abbildung \ref{fig:homeDesktop}).
 

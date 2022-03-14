@@ -9,7 +9,7 @@
 
 2009, als MariaDB ins Leben gerufen wurde konnte MySQL schon auf Erfahrung und Wissen aus 20 Jahr zurückgreifen. Zu Beginn des neuen Datenbanksystems, waren die Unterschiede der beiden noch gar nicht so groß und MariaDB wollte den primären Fokus auf einen smarten Support von Systemen und das Abwickeln sauberer Weiterentwicklung legen, welche durch die Open-Source Community getragen wird. Mittlerweile verfolgen beide Unternehmen und Datenbankmanagementsysteme konträre Produktionsansätze und Zugänge zu Problemlösungen im Datenverwaltungsbereich in den 20ern der 21. Jahrhundert. \cite{MariaVsMy}
 
-MySQL und MariaDB basieren beiden auf dem gleichen Softwarekern. MariaDB wurde damals als Abspaltung (Fork) von der MySQL Version 5.1 ins Leben gerufen und entwickelte im Laufe der Zeit immer mehr an Selbstständigkeit und Unabhängigkeit zu MySQL. Im nachfolgenden Vergleich gehen wir auf die Unterschiede zwischen MySQL Version 8.0.11 und der MariaDB Version 10.2.8 ein. \cite{MariaVsMy}
+MySQL und MariaDB basieren beiden auf dem gleichen Softwarekern. MariaDB wurde damals als Abspaltung (Fork) von der MySQL Version 5.1 ins Leben gerufen und entwickelte im Laufe der Zeit immer mehr an Selbstständigkeit und Unabhängigkeit zu MySQL. Im nachfolgenden Vergleich wird auf die Unterschiede zwischen MySQL MariaDB eingegangen. \cite{MariaVsMy}
 
 \hfour{Datenbankstruktur}
 
@@ -60,7 +60,7 @@ Weiters implementierte MariaDB sogenannte "Rolling Encryption Keys", welche eine
 Im Bereich der Benutzerauthentifizierung, welche im Bereich der Sicherheit auch nicht außer Acht zu lassen ist, setzten beide Systeme auf Plugin, welche zusätzlich installiert werden können. \cite{MariaVsMy}
 
 MySQL stellt dem Datenbankadministrator zwei Authentifizierungsplugins zur Verfügung, nämlich "sha256\_password" und "caching\_sha2\_password". Das zuletzt genannte bietet den Vorteil, dass das Caching auch Serverseitig passiert und eine erneute Authentifizierung eines Benutzers schneller abgehandelt werden kann. Dies nennt man "Secure Hash Algorithm"
-MariaDB setzte bis zur Version 10.1.21 ebenfalls auf diesen "Secure Hash Algorithm", welche mit dem Hash Algorithmus SHA-1 abgehandelt wurde. Seit Version 10.1.22 wird das Plugin mit dem Namen ed25519 verwendet. Hierbei wurden zwei Verschlüsselungsalgorithmen miteinander kombiniert, nämlich SHA-2 und Curve25519. Dasselbe Schema kommt unter anderem auch bei Google zum Einsatz. \cite{MariaVsMy}
+MariaDB setzte bis zur Version 10.1.21 ebenfalls auf diesen "Secure Hash Algorithm", welche mit dem Hash Algorithmus SHA-1 abgehandelt wurde. Seit Version 10.1.22 wird das Plugin mit dem Namen "ed25519" verwendet. Hierbei wurden zwei Verschlüsselungsalgorithmen miteinander kombiniert, nämlich "SHA-2" und "Curve25519". Dasselbe Schema kommt unter anderem auch bei Google zum Einsatz. \cite{MariaVsMy}
 
 Das eindeutige Alleinstellungsmerkmal im Bereich der Sicherheit, welches MariaDB seit Version 10.0.5 implementiert hat und es bei MySQL nicht einmal vergleichsweise gibt ist die "Rollenbasierte Zugriffskontrolle". Diese vereinfacht die Vergabe von Zugriffsrechten für die Administrator*innen enorm und man vermeidet dadurch Fehler, welche durch eine manuelle Eingabe sehr wohl passieren können. \cite{MariaVsMy}
 

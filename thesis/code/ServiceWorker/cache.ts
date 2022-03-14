@@ -11,7 +11,6 @@ self.addEventListener("install", (evt) => {
     })
   );
 });
-
 // activate event
 self.addEventListener("activate", (evt) => {
   evt.waitUntil(
@@ -25,7 +24,6 @@ self.addEventListener("activate", (evt) => {
     })
   );
 });
-
 // fetch events
 self.addEventListener("fetch", (evt) => {
   evt.respondWith(
