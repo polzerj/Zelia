@@ -41,15 +41,15 @@ Auf einem REST-konformen Server können unterschiedliche Dienste unterschiedlich
 Alle Requests und Responses in einer REST-Anwendung müssen selbstbeschreibend sein. Um dies zu erreichen, verwenden REST-Anwendungen Standardmethoden, um Ressourcen zu manipulieren. Die am meisten verbreiteten Methoden sind die HTTP-Methoden. Folgende HTTP Methoden werden bei REST verwendet:
 
 \begin{itemize}
-    \item GET: Mit GET wird eine Ressource vom Server angefordert. Da-bei wird am serverseitigen Zustand nichts verändert, wodurch GET als sichere HTTP-Methode gilt.
-    \item POST: Mit POST wird eine Subressource unterhalb der angege-benen Ressource auf dem Server erstellt werden. Ein neuer Res-sourcenlink wird erstellt und an den Client zurückgeliefert.
-    \item PUT: Mit PUT wird die angegebene Ressource erstellt. Wenn die angegebene Ressource bereits existiert, wird sie abgeändert. 
-    \item PATCH: Mit PATCH wird ein Teil der angegebenen Ressource geändert. 
-    \item DELETE: Mit DELETE wird die angegebene Ressource gelöscht.
-    \item HEAD: Mit HEAD werden Metadaten zu der angegebenen Res-source angefordert. 
-    \item OPTIONS: Mit OPTIONS werden die erlaubten HTTP-Methoden für die angegebene Ressource abgefragt. 
-    \item CONNECT: Mit CONNECT wird die Anfrage durch einen TCP-Tunnel geleitet. 
-    \item TRACE: Mit TRACE kann überprüft werden, ob sich an der An-frage am Weg zum Server etwas ändert. Dabei schickt der Server die Anfrage, wie er sie bekommen hat zum Client zurück. Nun kann diese Anfrage mit der Anfrage, die der Client weggeschickt hat, verglichen werden. 
+    \item GET -- Mit GET wird eine Ressource vom Server angefordert. Da-bei wird am serverseitigen Zustand nichts verändert, wodurch GET als sichere HTTP-Methode gilt.
+    \item POST -- Mit POST wird eine Subressource unterhalb der angege-benen Ressource auf dem Server erstellt werden. Ein neuer Res-sourcenlink wird erstellt und an den Client zurückgeliefert.
+    \item PUT -- Mit PUT wird die angegebene Ressource erstellt. Wenn die angegebene Ressource bereits existiert, wird sie abgeändert. 
+    \item PATCH -- Mit PATCH wird ein Teil der angegebenen Ressource geändert. 
+    \item DELETE -- Mit DELETE wird die angegebene Ressource gelöscht.
+    \item HEAD -- Mit HEAD werden Metadaten zu der angegebenen Res-source angefordert. 
+    \item OPTIONS -- Mit OPTIONS werden die erlaubten HTTP-Methoden für die angegebene Ressource abgefragt. 
+    \item CONNECT -- Mit CONNECT wird die Anfrage durch einen TCP-Tunnel geleitet. 
+    \item TRACE -- Mit TRACE kann überprüft werden, ob sich an der An-frage am Weg zum Server etwas ändert. Dabei schickt der Server die Anfrage, wie er sie bekommen hat zum Client zurück. Nun kann diese Anfrage mit der Anfrage, die der Client weggeschickt hat, verglichen werden. 
 \end{itemize}
 
 Optional können weitere HTTP-Befehle wie COPY, MOVE, MKCOL, LOCK, UNLOCK, LINK und UNLINK verwendet werden. Falls UDP mit REST verwendet wird, kann das Constrained Application Protocol verwendet werden, welches leicht abgeänderte GET-, POST-, PUT- und DELETE-Methoden besitzt. \cite{WikiREST}

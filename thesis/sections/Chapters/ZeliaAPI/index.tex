@@ -20,18 +20,18 @@ Falls die Bearbeitung des Requests nicht funktioniert, antwortet der Server mit 
 Wenn der Benutzer Informationen zu einem bestimmten Raum haben möchte, greift er mithilfe der "GET"-Methode auf den "/api/room/{roomNumber}" zu. Der Endpunkt benötigt einen Parameter. Dieser Parameter ist ein String und beinhaltet die Raumbezeichnung.  Wenn der mitgegebene Raum existiert, antwortet der Server mit einem Array, dass ein Raumobjekt zurückliefert, dass Informationen zu diesem Raum beinhaltet. Das Objekt hat folgende Eigenschaften:
 
 \begin{itemize}
-    \item roomNumber: String mit der Raumbezeichnung
-    \item name: String mit der Zusatzbezeichnung des Raumes
-    \item description: String mit einer kurzen Beschreibung des Raumes
-    \item type: String, der die Art des Objektes angibt. In diesem Fall ist es immer ein Objekt vom Typ "Class"
-    \item isWheelchairAccesible: Boolean-Wert, der die Zugänglichkeit für Rollstuhlfahrer*innen angibt.
-    \item hasTeacherComputer: Boolean-Wert, der angibt, ob der Raum über einen Lehrerrechner verfügt.
-    \item projector: String, der die Art des Projektors in dem Raum beschreibt.
-    \item projectorConnectors: String-Array, das die verschiedenen Anschlüsse des Projektors beinhaltet.
-    \item hasWater: Boolean-Wert, der angibt, ob der Raum über ein Waschbecken mit Wasserhahn verfügt. 
-    \item boards: String-Array, das die verschiedenen Tafeln im Raum beschreibt.
-    \item numberOfComputers: Integer-Wert, der die Anzahl der Computer in dem Raum angibt.
-    \item numberOfSeats: Integer-Wert  
+    \item roomNumber -- String mit der Raumbezeichnung
+    \item name -- String mit der Zusatzbezeichnung des Raumes
+    \item description -- String mit einer kurzen Beschreibung des Raumes
+    \item type -- String, der die Art des Objektes angibt. In diesem Fall ist es immer ein Objekt vom Typ "Class"
+    \item isWheelchairAccesible -- Boolean-Wert, der die Zugänglichkeit für Rollstuhlfahrer*innen angibt.
+    \item hasTeacherComputer -- Boolean-Wert, der angibt, ob der Raum über einen Lehrerrechner verfügt.
+    \item projector -- String, der die Art des Projektors in dem Raum beschreibt.
+    \item projectorConnectors -- String-Array, das die verschiedenen Anschlüsse des Projektors beinhaltet.
+    \item hasWater -- Boolean-Wert, der angibt, ob der Raum über ein Waschbecken mit Wasserhahn verfügt. 
+    \item boards -- String-Array, das die verschiedenen Tafeln im Raum beschreibt.
+    \item numberOfComputers -- Integer-Wert, der die Anzahl der Computer in dem Raum angibt.
+    \item numberOfSeats -- Integer-Wert  
 \end{itemize}
 
 Falls der Parameter "roomNumber" keine gültige Raumnummer enthält, wird ein Response mit Statuscode "404" zurückgeschickt. 
@@ -47,15 +47,15 @@ Der Endpunkt "/api/room/{roomNumber}/timetable" liefert einem Client den Stunden
 Ein Lessonobjekt repräsentiert eine Unterrichtsstunde. Solch ein Objekt hat folgende Eigenschaften: 
 
 \begin{itemize}
-    \item id: Eine von der WebUntis-API vergebene ID.
-    \item date: Datum der Unterrichtsstunde.
-    \item startTime: Anfang der Unterrichtsstunde.
-    \item endTime: Ende der Unterrichtsstunde.
-    \item kl: Array, dass mehrere Klassenobjekte beinhalten, die jeweils eine Klasse der Schule repräsentieren, die an diesem Unterricht teilnimmt. 
-    \item te: Array von Lehrerobjekten, welche jeweils einen Lehrer der Schule repräsentieren, die diesen Unterricht führen. 
-    \item su: Array mit einem Gegenstandsobjekt, welches den Lehrgegenstand dieses Unterrichts repräsentiert.
-    \item ro: Array, dass Raumobjekte beinhaltet, die jeweils einen Raum repräsentieren, der für diesen Unterricht verwendet wird. 
-    \item activityType: String welcher die Art des Unterrichts repräsentiert. 
+    \item id -- Eine von der WebUntis-API vergebene ID.
+    \item date -- Datum der Unterrichtsstunde.
+    \item startTime -- Anfang der Unterrichtsstunde.
+    \item endTime -- Ende der Unterrichtsstunde.
+    \item kl -- Array, dass mehrere Klassenobjekte beinhalten, die jeweils eine Klasse der Schule repräsentieren, die an diesem Unterricht teilnimmt. 
+    \item te -- Array von Lehrerobjekten, welche jeweils einen Lehrer der Schule repräsentieren, die diesen Unterricht führen. 
+    \item su -- Array mit einem Gegenstandsobjekt, welches den Lehrgegenstand dieses Unterrichts repräsentiert.
+    \item ro -- Array, dass Raumobjekte beinhaltet, die jeweils einen Raum repräsentieren, der für diesen Unterricht verwendet wird. 
+    \item activityType -- String welcher die Art des Unterrichts repräsentiert. 
 \end{itemize}
 
 \hfive{/api/room/{roomNumber}/book}
@@ -64,11 +64,11 @@ Ein Lessonobjekt repräsentiert eine Unterrichtsstunde. Solch ein Objekt hat fol
 Mithilfe des Endpunktes "/api/room/{roomNumber}/book" kann ein Client einen Raum buchen. Die Raumbezeichnung des zu buchenden Raums wird dabei als Parameter mitgegeben. Der Client verwendet dazu die POST-Methode. Im Body des Requests muss ein Objekt mit folgender Struktur mitgeschickt werden: 
 
 \begin{itemize}
-    \item user: String, der den Benutzernamen des Clients beinhaltet. 
-    \item purpose: String, der den Grund zur Buchung beinhaltet.
-    \item from: Integerwert, der das Anfangsdatum der Buchung beinhaltet.
-    \item until: Integerwert, der das Enddatum der Buchung beinhaltet.
-    \item date: Integerwert, der den Tag der Buchung beinhaltet. 
+    \item user -- String, der den Benutzernamen des Clients beinhaltet. 
+    \item purpose -- String, der den Grund zur Buchung beinhaltet.
+    \item from -- Integerwert, der das Anfangsdatum der Buchung beinhaltet.
+    \item until -- Integerwert, der das Enddatum der Buchung beinhaltet.
+    \item date -- Integerwert, der den Tag der Buchung beinhaltet. 
 \end{itemize}
 
 Wenn das Objekt im Request-body nicht den Anforderungen entspricht, wird ein Response mit Statuscode "400" zurückgeschickt. 
@@ -79,10 +79,10 @@ Wenn das Objekt im Request-body nicht den Anforderungen entspricht, wird ein Res
 Der "/api/room/{roomNumber}/report"-Endpunkt ermöglicht es einem Client, Beschwerden oder Schäden bezüglich eines Raumes einzureichen. Der betreffende Raum wird als Parameter mitgegeben. Um eine Beschwerde einzureichen, tätigt der Client auf diesen Endpunkt einen POST-Request. Im Request-Body schickt der Client ein Objekt mit, dass die Beschwerde näher beschreibt. Das Objekt hat folgende Eigenschaften:
 
 \begin{itemize}
-    \item user: String, der den Benutzernamen des Clients beinhaltet.
-    \item firstDetected: Integerwert, der das Datum beinhaltet, an dem der Schaden entdeckt wurde. 
-    \item information: String, in dem genauere Informationen zur Beschwerde stehen. 
-    \item roomNumber: String, in dem die Raumbezeichnung des betreffenden Raums steht. 
+    \item user -- String, der den Benutzernamen des Clients beinhaltet.
+    \item firstDetected -- Integerwert, der das Datum beinhaltet, an dem der Schaden entdeckt wurde. 
+    \item information -- String, in dem genauere Informationen zur Beschwerde stehen. 
+    \item roomNumber -- String, in dem die Raumbezeichnung des betreffenden Raums steht. 
 \end{itemize}
 
 Wenn kein Fehler auftritt, antwortet der Server mit Statuscode "200". Wenn das Objekt im Request-Body ungültige Informationen enthält, antwortet der Server mit einem Statuscode "400".
@@ -93,9 +93,9 @@ Wenn kein Fehler auftritt, antwortet der Server mit Statuscode "200". Wenn das O
 Ein Klassenobjekt repräsentiert eine Klasse in der Schule. Ein Klassenobjekt hat folgende Eigenschaften: 
 
 \begin{itemize}
-    \item id: Integerwert, er eine von der WebUntis-API vergebene ID enthält. 
-    \item name: String, der den Klassennamen enthält. 
-    \item longname: String, der den vollständigen Klassennamen enthält. 
+    \item id -- Integerwert, er eine von der WebUntis-API vergebene ID enthält. 
+    \item name -- String, der den Klassennamen enthält. 
+    \item longname -- String, der den vollständigen Klassennamen enthält. 
 \end{itemize}
 
 \hfive{Lehrerobjekt}
@@ -104,9 +104,9 @@ Ein Klassenobjekt repräsentiert eine Klasse in der Schule. Ein Klassenobjekt ha
 Ein Lehrerobjekt repräsentiert einen Lehrer an der Schule. Ein Lehrerobjekt hat folgende Eigenschaften: 
 
 \begin{itemize}
-    \item id: Integerwert, der eine von der WebUntis-API vergebene ID enthält.
-    \item name: String, der die Abkürzung des Lehrers beinhaltet.
-    \item longname: String, der den Nachnamen des Lehrers beinhaltet. 
+    \item id -- Integerwert, der eine von der WebUntis-API vergebene ID enthält.
+    \item name -- String, der die Abkürzung des Lehrers beinhaltet.
+    \item longname -- String, der den Nachnamen des Lehrers beinhaltet. 
 \end{itemize}
 
 \hfive{Gegenstandsobjekt}
@@ -115,9 +115,9 @@ Ein Lehrerobjekt repräsentiert einen Lehrer an der Schule. Ein Lehrerobjekt hat
 Ein Gegenstandsobjekt repräsentiert einen Lehrgegenstand. Ein Gegenstandsobjekt hat folgende Eigenschaften: 
 
 \begin{itemize}
-    \item id: Integerwert, der eine von der WebUntis-API vergebene ID enthält. 
-    \item name: String, der die Abkürzung des Lehrgegenstands enthält.
-    \item longname: String, der den vollständigen Namen des Lehrgegenstands enthält
+    \item id -- Integerwert, der eine von der WebUntis-API vergebene ID enthält. 
+    \item name -- String, der die Abkürzung des Lehrgegenstands enthält.
+    \item longname -- String, der den vollständigen Namen des Lehrgegenstands enthält
 \end{itemize}
 
 \hfive{Raumobjekt}
@@ -126,7 +126,7 @@ Ein Gegenstandsobjekt repräsentiert einen Lehrgegenstand. Ein Gegenstandsobjekt
 Ein Raumobjekt repräsentiert einen Raum in der Schule. Ein Raumobjekt hat folgende Eigenschaften: 
 
 \begin{itemize}
-    \item id: Integerwert, der eine von der WebUntis-API vergebene ID enthält.
-    \item name: String, der den Namen des Raums enthält.
-    \item longname: String, der den gesamten Namen des Raums enthält. 
+    \item id -- Integerwert, der eine von der WebUntis-API vergebene ID enthält.
+    \item name -- String, der den Namen des Raums enthält.
+    \item longname -- String, der den gesamten Namen des Raums enthält. 
 \end{itemize}
