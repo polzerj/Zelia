@@ -3,8 +3,8 @@
 Ein "Controller" verarbeitet alle "Requests" auf einem Pfad. 
 "Controller" sind Klassen, welche von der "ControllerBase"-Klasse erben. 
 Im Basis-Konstruktor (in Javascript "{\ttfamily super()}") des "Controllers" muss der Pfad der Requests an die Basisklasse, "ControllerBase", übergeben werden, welche vom "Controller" verarbeitet werden sollen. 
-Zusätzlich kann ein Objekt mit Middlewares (siehe Kapitel \ref{sec:middleware}) übergeben werden, welche nur vor diesem Controller aufgerufen werden. 
-Um eine HTTP-Methode zu implementieren, müssen lediglich folgende Methoden in der Klasse überschrieben werden. 
+Zusätzlich kann ein Objekt mit "Middlewares" (siehe Kapitel \ref{sec:middleware}) übergeben werden, welche nur vor diesem "Controller" aufgerufen werden. 
+Um eine HTTP-Methode zu implementieren, müssen lediglich folgende Methoden in der Klasse überschrieben werden:
 
 \begin{itemize}
     \item {\ttfamily get} - wird aufgerufen, wenn ein GET-Request auf den Pfad des "Controllers" gestellt wird.
@@ -18,8 +18,9 @@ Diese nehmen die von "ExpressJS" bekannten Parameter "Request" und "Response".
 Im "Request"-Objekt (oft mit "req" abgekürzt) kann auf alle Informationen des Requests zugegriffen werden. Dazu zählen \zb\ die Header, Query-Parameter oder der Body.
 Das "Response"-Objekt (oft mit "res" abgekürzt) ermöglicht es, eine Antwort zu erstellen. Dafür können mit diesem Objekt der Statuscode, die Header und der Body gesetzt werden.
 
-Im folgenden ist ein Beispiel eines "Controllers", welcher auf dem Pfad "/hello" registriert wird und beim Aufruf der Methode "get" ein JSON-Objekt zurückgibt, welches in der Eigenschaft "hello" den Text "world" beinhaltet:
+
+Im Folgenden ist ein Beispiel eines "Controllers", welcher auf dem Pfad "/hello" registriert wird und beim Aufruf der Methode "get" ein JSON-Objekt zurückgibt, welches in der Eigenschaft "hello" den Text "world" beinhaltet:
 
 \typescript{code/APITemplate/helloWorldController.ts}{Beispiel-Controller}
 
-Wie ein Controller registriert wird ist im Abschnitt "App" \ref{sec:app} beschrieben. 
+Wie ein "Controller" registriert wird, ist im Abschnitt "App" \ref{sec:app} beschrieben. 

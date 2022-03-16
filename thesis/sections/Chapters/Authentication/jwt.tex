@@ -1,4 +1,4 @@
-\hfour{Json Web Token (JWT)}\label{sec:jwt}
+\hfour{JSON Web Token (JWT)}\label{sec:jwt}
 
 Der JWT speichert die Benutzerdaten verschlüsselt im Token selbst. Dieses Token wird wie ein Sitzungs-"Cookie" bei jeder Anfrage mitgeschickt. 
 Da die Sitzungsdaten jedoch im Token gespeichert sind, müssen die Server die Sitzungen nicht synchronisieren. 
@@ -14,27 +14,26 @@ Das JWT ist im RFC7519 definiert. Jedes JWT ist in drei Abschnitte\cite{Auth0JWT
     \item \textbf{"Signature"} - Signatur des Tokens
 \end{itemize}
 
-Im Header befinden sich meist zwei Felder. 
-Der Typ des Tokens ({\ttfamily typ}) und der\linebreak"Signing"-Algorithmus ({\ttfamily alg}). 
+Im Header befinden sich meist zwei Felder - der Typ des Tokens ({\ttfamily typ}) und der\linebreak"Signing"-Algorithmus ({\ttfamily alg}). 
 Diese standardisierten Felder sind in der Regel drei Zeichen lang, um das Token möglichst kompakt zu halten. \cite{Auth0JWT}
 
-Die "Payload" besteht in der Regel aus Benutzerdaten. Diese nennt man "Claims". Es gibtes drei Arten von "Claims"\cite{Auth0JWT}: 
+Die "Payload" besteht in der Regel aus Benutzerdaten. Diese nennt man "Claims". Dabei unterscheidet man drei Arten. \cite{Auth0JWT}: 
 
 \begin{itemize}
-    \item "Registered claims" sind vordefinierte "Claims" wie
+    \item "Registered claims" sind vordefinierte "Claims", wie
     \begin{itemize}
         \item "iss": is user
         \item "exp":  expiration time
-        \item …
+        \item ...
     \end{itemize}
-    \item "Public claims" können vom Entwickler definiert werden
-    \item "Private claims" werden verwendet, um Informationen zwischen Servern auszutauschen
+    \item "Public claims" können vom Entwickler definiert werden.
+    \item "Private claims" werden verwendet, um Informationen zwischen Servern aus\-zu\-tauschen
 \end{itemize}
 
 Sowohl Header als auch "Payload" werden mit Base64 kodiert.
 
-Die "Signature" wird erstellt durch das Verschlüsseln der Base64 Url kodierten Abschnitte "Header", "Payload" und einem "Secret". 
-Dabei wird der im Header spezifizierten Verschlüsselungsalgorithmus verwendet.\cite{RFC7519}\cite{WdsJWT}
+Die "Signature" wird durch das Verschlüsseln der Base64 Url kodierten Abschnitte "Header", "Payload" und einem "Secret" erstellt. 
+Dabei wird der im Header spezifizierte Verschlüsselungsalgorithmus verwendet.\cite{RFC7519}\cite{WdsJWT}
 
 Die Abschnitte des JWT werden durch einen Punkt getrennt zusammengeführt. 
 
@@ -42,6 +41,6 @@ Die Abschnitte des JWT werden durch einen Punkt getrennt zusammengeführt.
 
 Wenn geschützte Ressourcen angefordert werden, wird das JWT in der Regel im Authorization-Header als sogenanntes Bearer Token gesendet. Dieser Header würde wie folgt aussehen\cite{Auth0JWT}:
 
-\emph{Authorization: Bearer \textless JWT Token\textgreater}
+{\ttfamily Authorization: Bearer \textless JWT Token\textgreater}
 
 

@@ -4,9 +4,10 @@
 \hthree{Allgemeines}
 
 Web-Worker sind Javascript-Skripte, die im Hintergrund ausgeführt werden. 
-Sie können zum Beispiel dazu verwendet werden, um eine Webseite offlinefähig zu machen oder Push-Notifications zu implementieren.
-Da ältere Browser Web-Worker nicht unterstützen (siehe Abbildung \ref{fig:CanIUseServiceWorker}), muss vor dem Starten geprüft werden, ob der Browser diese unterstützt. 
-Dazu muss geprüft werden, ob das "serviceWorker" Objekt in dem "navigator" Objekt existiert. 
+Da diese separat vom Main-Thread ausgeführt werden, werden diese für resourcenintensive Berechnungen verwendet.
+Service-Worker sind eine spezielle Art von Worker, welche dazu verwendet werden, um eine Webseite offline-fähig zu machen.
+Da ältere Browser Service-Worker nicht unterstützen (siehe Abbildung \ref{fig:CanIUseServiceWorker}), muss die Kompatibilität vor dem Starten geprüft werden. 
+Dazu muss abgefragt werden, ob das "serviceWorker" Objekt in dem "navigator" Objekt existiert. 
 
 \begin{figure}[H]
     \centering
@@ -16,28 +17,29 @@ Dazu muss geprüft werden, ob das "serviceWorker" Objekt in dem "navigator" Obje
     \label{fig:CanIUseServiceWorker}
 \end{figure}
 
+\clearpage
+
 \hfour{Life Cycle Events} 
 
 Ein Service Worker hat verschiedene Events \cite{MDNCacheAPI}: 
 
-\hfive{"Install event"}
+\hfive{"Install"-Event}
 
-Das "Install"-Event wird getriggert, nachdem der Service Worker registriert wurde. Dort werden normalerweise die Abhängigkeiten installiert - \zb: der statische Cache wird dort gefüllt 
+Das "{\ttfamily install}"-Event wird ausgelöst, nachdem der Service Worker registriert wurde. Dort werden normalerweise die Abhängigkeiten installiert, \zb\ das Füllen des statischen Cache.
+    
+\hfive{"Activated"-Event}
 
-\hfive{"Activated event"}
+Bei der Erstinstallation wird das "{\ttfamily activated}"-Event unmittelbar nach der Installation ausgelöst.
+Wenn ein neuer Service Worker für dieselbe Seite zur Verfügung steht, wird dieser nur installiert.
+Die Aktivierung erfolgt jedoch erst in der nächsten Sitzung.
+Das "{\ttfamily activated}"-Event wird in der Regel dazu verwendet, alte Ressourcen aufzuräumen. 
+Beispielsweise werden die Caches des vorherigen Service Workers geleert.
 
-Bei der Erstinstallation wird das "Activated"-Event unmittelbar nach der Installation ausgelöst. Wenn es einen neuen Service Worker für dieselbe Seite gibt, wird dieser nur installiert. Die Aktivierung erfolgt jedoch erst in der nächsten Sitzung. Das "Activated"-Event wird in der Regel dazu verwendet, alte Ressourcen aufzuräumen. \zb: die Caches des vorherigen Service Workers werden geleert
+\hfive{"Fetch"-Event}
 
-\hfive{"Fetch event"}
+Das "{\ttfamily fetch}"-Event wird jedes Mal aufgerufen, wenn eine Ressource des Servers angefordert wird. Die Anfrage wird dabei abgefangen, um zum Beispiel mit den Daten aus dem Cache zu antworten.
 
-Das "fetch"-Event wird jedes Mal aufgerufen, wenn eine Ressource des Servers angefordert wird. Es fängt diese Anfrage ab, um zum Beispiel mit den Daten aus dem Cache zu antworten.
-
-\hfive{"Push event"}
-
-Das Push Event wird getriggert, wenn der Server ein Push Event sendet, auf das der Client "subscribed" hat.
-
-% TODO: gehört da ein kleines h?
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics{media/ServiceWorker/lifecycle.svg.pdf}
     \caption{Service Worker Lifecycle}
@@ -45,12 +47,13 @@ Das Push Event wird getriggert, wenn der Server ein Push Event sendet, auf das d
 
 \hfour{Registrierung eines Service Workers}
 
-Ein Service Worker kann über das "serviceWorker" Objekt des "navigator" Objekts registriert werden. Da Service Worker nicht in allen Browsern unterstützt werden, muss davor überprüft werden, ob der Browser ein Service Worker unterstützt, um Fehler zu vermeiden.
+Ein Service Worker kann über das "{\ttfamily serviceWorker}"-Objekt des "{\ttfamily navigator}"-Objekts registriert werden. 
+Da Service Worker nicht von allen Browsern unterstützt werden, muss die Kompatibilität vor der Nutzung überprüft werden (um Fehler zu vermeiden).
 
 \typescript{code/ServiceWorker/register.ts}{Registrieren eines Service Workers}
 
 \hthree{Implementierung eines Cache}\label{sec:cacheImpl}
 
-Der folgende Code zeigt, wie ein Service Worker mit der Cache-API zur Verwendung eines statischen und dynamischen Cache programmiert wird:
+Der folgende Code zeigt, wie ein Service Worker mit der Cache-API zur Verwendung eines statischen und dynamischen Cache-Speichers programmiert wird:
 
 \typescript[code:cache]{code/ServiceWorker/cache.ts}{Verwendung der Cache-API in einem Service Worker}

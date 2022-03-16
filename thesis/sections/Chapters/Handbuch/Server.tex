@@ -7,7 +7,7 @@ Der \ZELIA\ Server ist notwendig um den \ZELIA\ Client zu verwenden, da der Clie
     \hfour{Abhänigkeiten}
     \hfive{NodeJS}
     
-    Bevor man den Server aufsetzen und verwenden kann, gibt es ein paar Abhängigkeiten die man installieren sollte. Die wichtigste Abhängigkeit, die man nur zum Entwickeln braucht, ist NodeJS. NodeJS ist eine Javascript Engine, welche ohne ein Browser-Frontend läuft (siehe Kapitel NodeJS \ref{sec:nodejs}). Installieren kann man NodeJS einfach von der offiziellen Webseite \emph{https://nodejs.org/} (siehe Abbildung \ref{fig:nodejsdownload}). Die Version 16.14.0 bietet sich an, da die meisten Pakete diese Version unterstützen. Für \ZELIA\ macht es aber keinen Unterschied, welche Version verwendet wird, da der Server auch auf der neusten Version von Node läuft.
+    Bevor man den Server aufsetzen und verwenden kann, gibt es ein paar Abhängigkeiten die man installieren sollte. Die wichtigste Abhängigkeit, die man nur zum Entwickeln braucht, ist NodeJS. NodeJS ist eine Javascript Engine, welche ohne ein Browser-Frontend läuft (siehe Kapitel NodeJS \ref{sec:nodejs}). Herunterladen kann man NodeJS einfach von der offiziellen Webseite \emph{https://nodejs.org/} (siehe Abbildung \ref{fig:nodejsdownload}). Die Version 16.14.0 bietet sich an, da die meisten Pakete diese Version unterstützen. Für \ZELIA\ macht es aber keinen Unterschied, welche Version verwendet wird, da der Server auch auf der neusten Version von Node läuft.
 \end{minipage}
     
 \begin{figure}[H]
@@ -59,7 +59,7 @@ In der Kommandoeingabe des jeweiligen Betriebssystem kann man sich mit dem einfa
 \begin{minipage}{\textwidth}
     \hfive{GitHub Desktop}
     
-    Nachdem man das Programm geöffnet hat wird man gefragt von wo man eine Arbeitskopie holen will. Hier muss man auswählen \emph{Aus dem Internet kopieren} und dann die URL von dem Repository angeben (siehe Abbildung \ref{fig:clonewithdesktop}). Wenn man auf "Kopieren" gedrückt hat, wird der Quellcode in das ausgewählte Verzeichnis geladen. 
+    Nachdem man das Programm geöffnet hat wird man gefragt von wo man eine Arbeitskopie holen will. Hier muss man auswählen \emph{Aus dem Internet kopieren} und dann die URL von dem Repository angeben (siehe Abbildung \ref{fig:clonewithdesktop}). Wenn man auf "klonen" gedrückt hat, wird der Quellcode in das ausgewählte Verzeichnis geladen. 
 \end{minipage}
 
 \begin{figure}[H]
@@ -71,7 +71,7 @@ In der Kommandoeingabe des jeweiligen Betriebssystem kann man sich mit dem einfa
 
 \hthree{Starten des Servers}
 
-Wenn der Quellcode nun auf dem beliebigen Server herunterladen wurde, muss man noch eine \emph{.env-Datei} im Unterverzeichnis "api" anlegen. In dieser stehen die notwendigen Umgebungsvariablen. Diese werden benötigt um zu definieren auf welchem Port der Server läuft, welche Anmeldedaten für die Abfrage von WebUntis verwendet werden und noch vieles mehr (siehe Code \ref{fig:envexample}).
+Wenn der Quellcode nun auf dem beliebigen Server heruntergeladen wurde, muss man noch eine \emph{.env-Datei} im Unterverzeichnis "api" anlegen. In dieser stehen die notwendigen Umgebungsvariablen. Diese werden benötigt um zu definieren auf welchem Port der Server läuft, welche Anmeldedaten für die Abfrage von WebUntis verwendet werden und noch vieles mehr (siehe Code \ref{fig:envexample}).
 
 
 \begin{singlespace}
