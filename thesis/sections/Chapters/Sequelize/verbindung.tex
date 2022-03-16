@@ -9,10 +9,10 @@ Zu Beginn muss das Sequelize Framework eingebunden werden.
 Um eine Verbindung aufzubauen werden Parameter benötigt, welche bei \ZELIA\ in einer eigenen ".env"-Datei ausgelagert ist. Folgende Parameter sind für den Aufbau erforderlich:
 
 \begin{itemize}
-    \item "DB\_SERVER": Gibt an, über welcher Adresse der Datenbank Server erreichbar ist.
-    \item "DB\_USER": Gibt an, über welchen User, welcher schon im Datenbanksystem angelegt sein muss, man sich zum Server verbindet.
-    \item "DB\_PASSWORD": Gibt das passende Passwort zum angegebenen User mit.
-    \item "DB\_DATABASE": Gibt die Datenbank an, auf welche zugegriffen werden soll. Diese muss schon im Datenbanksystem angelegt worden sein.
+    \item "DB\_SERVER" -- Gibt an, über welcher Adresse der Datenbank Server erreichbar ist.
+    \item "DB\_USER" -- Gibt an, über welchen User, welcher schon im Datenbanksystem angelegt sein muss, man sich zum Server verbindet.
+    \item "DB\_PASSWORD" -- Gibt das passende Passwort zum angegebenen User mit.
+    \item "DB\_DATABASE" -- Gibt die Datenbank an, auf welche zugegriffen werden soll. Diese muss schon im Datenbanksystem angelegt worden sein.
 \end{itemize}
 
 Nun werden die jeweiligen Variablen in eine lokal angelegte Konstante gespeichert. Zugegriffen wird auf die ".env"-Datei mit "{\ttfamily process.env}".
