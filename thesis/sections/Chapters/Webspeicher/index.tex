@@ -4,16 +4,16 @@
 
 \hthree{Einleitung}
 
-Webspeicher (im Englischen "Web Storage" genannt) ermöglichen den Entwicklern % tofix: Gendern? 
+Webspeicher (im Englischen "Web Storage" genannt) ermöglichen Entwicklern % tofix: Gendern? 
 Daten im Webbrowser zu speichern.
 Es gibt verschiedene Arten von Webspeichern, welche für unterschiedlicher Anwendungsfälle konzipiert wurden. Dazu zählen:
 
 \begin{itemize}
-    \item Local Storage
-    \item Session Storage
-    \item Cookies
-    \item Indexed-DB
-    \item Cache
+    \item Local Storage -- vergleiche \ref{sec:localstorage}
+    \item Session Storage -- vergleiche \ref{sec:sessionstorage}
+    \item Cookies -- vergleiche \ref{sec:cookies}
+    \item Indexed-DB -- vergleiche \ref{sec:indexeddb}
+    \item Cache -- vergleiche \ref{sec:cache}
 \end{itemize}
 
 Damit die Daten nicht von anderen Web-Apps gelesen und manipuliert werden können, kommt eine  "Same-Origin-Policy" zum Einsatz (siehe Kapitel \ref{sec:sameorigin}).
@@ -21,13 +21,15 @@ Damit die Daten nicht von anderen Web-Apps gelesen und manipuliert werden könne
 
 \hfour{Speichermengen}
 
-Damit eine Webanwendung nicht die gesamte Festplatte vollschreiben kann, wird die Speichermenge einer Webseite limitiert. Diese Limitierungen sind davon abhängig, welcher Webbrowser verwendet wird.
+Damit eine Webanwendung nicht die gesamte Festplatte vollschreiben kann, wird die Speichermenge einer Webseite limitiert. Diese Limitierungen sind davon abhängig, welcher Webbrowser verwendet wird. \cite{WebDevStorage}
 
-Der Google Chrome Browser erlaubt es, Webseiten bis zu achtzig Prozent der Fest\-platten\-kapazität zu nutzen.
+Der Google Chrome Browser erlaubt es, Webseiten bis zu achtzig Prozent der Fest\-platten\-kapazität zu nutzen. 
 
-Firefox hat ein Limit von zwei Gigabyte pro Website. Insgesamt dürfen Webseiten bis zu 50 \% des freien Speicherplatzes nutzen.
+Firefox hat ein Limit von zwei Gigabyte pro Website. Insgesamt dürfen Webseiten bis zu 50 \% des freien Speicherplatzes nutzen. 
 
-Apples Safari-Browser schränkt die Nutzung von Webanwendungen auf maximal ein Gigabyte ein. Wenn diese Grenze erreicht ist, wird der Benutzer alle 200 MB gefragt, ob er weitere 200 MB zulassen möchte. Dieses Verhalten ist jedoch von Apple nicht dokumentiert. \cite{WebDevStorage}
+Apples Safari-Browser schränkt die Nutzung von Webanwendungen auf maximal ein Gigabyte ein. 
+Wenn diese Grenze erreicht ist, wird der Benutzer alle 200 MB gefragt, ob er weitere 200 MB zulassen möchte. 
+Dieses Verhalten ist von Apple nicht dokumentiert. 
 
 \hfour{Same-Origin-Policy} \label{sec:sameorigin}
 
@@ -35,7 +37,8 @@ Damit nicht jede Webseite auf die gespeicherten Ressourcen der anderen Webseiten
 Dadurch soll verhindert werden, dass Webseiten andere Webseiten ausspionieren, indem sie auslesen, mit welchen Accounts der Benutzer auf anderen Seiten angemeldet ist. Außerdem wird die Manipulation der Daten anderer Seiten unterbunden. \cite{MDNSame-origin-policy}
 
 Dennoch kann Tracking mit Hilfe von Cookies durchgeführt werden.
-Dabei wird auf einer Webseite \zb\ ein Script von Google Analytics eingebunden. Dieses Script kann dann auf die Daten der anderen Webseiten zugreifen und somit mit Tracking-Cookies das Benutzer\-verhalten verfolgen.
+Dabei wird auf einer Webseite \zb\ ein Script von Google Analytics eingebunden. 
+Dieses Script kann dann auf die Daten der anderen Webseiten zugreifen und somit mit Tracking-Cookies das Benutzer\-verhalten verfolgen. \cite{TrackingCookies}
 
 
 \hthree{Allgemeines}

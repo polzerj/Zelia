@@ -4,12 +4,13 @@
 Die \ZELIA\ App lässt sich sowohl im Light- als auch im Dark-Theme anzeigen (siehe Abbildung \ref{fig:theme}). 
 Dafür werden Media Queries (siehe Kapitel \ref{sec:mediaQueries}) verwendet, welche das Theme des Browsers abfragen (siehe Code \ref{code:theme}). 
 Die jeweiligen Farben werden in CSS-Variablen gespeichert. 
-Dadurch müssen die Farben nur einmal in einer Media Query angepasst werden und können nun für jedes Element verwendet werden. 
+Dadurch müssen die Farben nur einmal in einer Media Query angepasst werden. Diese können nun für jedes Element verwendet werden. 
 
 \begin{figure}[H]
+    \setlength{\fboxsep}{0pt}
     \begin{subfigure}[c]{0.49\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{media/ResponsiveDesign/ZeliaDesktop.png}
+        \fbox{\includegraphics[width=\textwidth]{media/ResponsiveDesign/ZeliaDesktop.png}}
         \caption{Helles Theme}
     \end{subfigure} \hfill
     \begin{subfigure}[c]{0.49\textwidth}
@@ -17,7 +18,7 @@ Dadurch müssen die Farben nur einmal in einer Media Query angepasst werden und 
         \includegraphics[width=\textwidth]{media/ResponsiveDesign/ZeliaDesktopDark.png}
         \caption{Dunkles Theme}
     \end{subfigure}
-    \caption{Gegenüberstellung: helles - dunkles Theme}
+    \caption{Gegenüberstellung helles - dunkles Theme}
     \label{fig:theme}
 \end{figure}
 
@@ -29,16 +30,16 @@ Dadurch müssen die Farben nur einmal in einer Media Query angepasst werden und 
 Da \ZELIA\ sowohl am Computer als auch am Smartphone oder Tablet genutzt werden soll, wird mithilfe der Clamp-Funktion (siehe Kapitel \ref{sec:clamp}) das Design für die verschiedenen Bildschirmgrößen angepasst (siehe Abbildung \ref{fig:info}).
 
 \begin{figure}[H]
-    \begin{subfigure}[c]{0.64\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{media/ResponsiveDesign/ZeliaDesktop.png}
-        \caption{Rauminfo (Desktop)}
-    \end{subfigure} \hfill
-    \begin{subfigure}[c]{0.34\textwidth}
+    \begin{subfigure}[b]{0.34\textwidth}
         \centering
         \includegraphics[width=\textwidth]{media/ResponsiveDesign/ZeliaMobile.png}
         \caption{Rauminfo (Mobil)}
-    \end{subfigure}
+    \end{subfigure} \hfill
+    \begin{subfigure}[b]{0.64\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{media/ResponsiveDesign/ZeliaDesktop.png}
+        \caption{Rauminfo (Desktop)}
+    \end{subfigure} 
     \caption{Vergleich von Desktop- und Mobile-Versionen der Rauminformation}
     \label{fig:info}
 \end{figure}
@@ -48,18 +49,18 @@ Da \ZELIA\ sowohl am Computer als auch am Smartphone oder Tablet genutzt werden 
 Wenn \ZELIA\ auf einem Mobilgerät verwendet wird, dann wird der "Kamera öffnen"-Button (siehe Abbildung \ref{fig:homeMobile}) dafür angezeigt, damit die Raumnummer mittels OCR (siehe Kapitel \ref{sec:ocr}) eingelesen werden kann. Auf der Desktop-Version wird dieser Button nicht angezeigt (siehe Abbildung \ref{fig:homeDesktop}).
 
 \begin{figure}[H]
-    \begin{subfigure}[c]{0.64\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{media/ResponsiveDesign/ZeliaHome.png}
-        \caption{Startseite (Desktop)}
-        \label{fig:homeDesktop}
-    \end{subfigure} \hfill
-    \begin{subfigure}[c]{0.34\textwidth}
+    \begin{subfigure}[b]{0.34\textwidth}
         \centering
         \includegraphics[width=\textwidth]{media/ResponsiveDesign/ZeliaHomeMobile.png}
         \caption{Startseite (Mobil)}
         \label{fig:homeMobile}
-    \end{subfigure}
+    \end{subfigure} \hfill
+    \begin{subfigure}[b]{0.64\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{media/ResponsiveDesign/ZeliaHome.png}
+        \caption{Startseite (Desktop)}
+        \label{fig:homeDesktop}
+    \end{subfigure} 
     \caption{Vergleich von Desktop- und Mobile-Version der Startseite}
     \label{fig:home}
 \end{figure}

@@ -1,18 +1,19 @@
-\hfour{Indexed-DB}
+\hfour{Indexed-DB}\label{sec:indexeddb}
 
 Eine neue Entwicklung zur Speicherung von großen Datenmengen ist die Indexed-DB. 
 Diese ist eine Datenbank, welche den Entwicklern ermöglicht, Daten in der Form von Objekten abzuspeichern.
 
-Jede Datenbank enthält sogenannte Object-Stores. Das sind Sammlungen von Daten, welche als JSON Objekte abgespeichert sind. 
+Jede Datenbank enthält sogenannte Object-Stores. Das sind Sammlungen von Daten, welche als JSON-Objekte abgespeichert sind. 
 Im Gegensatz zu relationalen Datenbanken ist bei der Indexed-DB kein festes Schema erforderlich. 
-Dennoch muss immer ein Primärschlüssel definiert werden, welcher in diesem Object-Store für jedes Objekt einzigartig sein muss.
+Dennoch ist immer ein Primärschlüssel zu definiert, welcher in diesem Object-Store für jedes Objekt einzigartig sein muss.
 Dieser kann entweder ein Attribut des Objektes sein oder durch eine automatisch inkrementierende Ganzzahl generiert werden. 
 
-Um Datensätze nach einer Eigenschaft zu durchsuchen, muss ein Index erstellt werden. Ein indiziertes Attribut muss in jedem Objekt des Object-Stores vorhanden sein.
+Damit Datensätze nach einer Eigenschaft zu durchsucht werden können, wird ein Index erstellt. 
+Ein indiziertes Attribut muss in jedem Objekt des Object-Stores vorhanden sein.
 
-Im Vergleich zu Session-Storage und Local-Storage lässt sich die Indexed-DB nicht so leicht implementieren.
+Im Vergleich zu Session-Storage und Local-Storage ist die API der Indexed-DB komplexer zu implementieren.
 
-Um mit Indexed-DB arbeiten zu können, muss zunächst ein sogenannter "open request" erstellt werden:
+Um mit Indexed-DB arbeiten zu können, wird zunächst ein sogenannter "open request" erstellt:
 
 \typescript{code/Webspeicher/openRequest.ts}{Erstellen eines Indexed-DB Open-Requests}
 
@@ -23,9 +24,11 @@ Um mit Indexed-DB arbeiten zu können, muss zunächst ein sogenannter "open requ
     \cite{fig:openDB}
 \end{figure}
 
-Auf dem Open Request Objekt gibt es mehrere Events. 
-Das Event "upgradeneeded" wird ausgelöst, wenn die geöffnete Datenbank noch nicht initialisiert wurde oder wenn die Version erhöht wurde. 
-Innerhalb dieses Ereignisses müssen die Object Stores und die Indizes erstellt werden (siehe Code \ref{code:createDB}). 
+Auf dem Open-Request-Objekt gibt es mehrere Events. 
+Das Event "{\ttfamily upgradeneeded}" wird ausgelöst, wenn die geöffnete Datenbank noch nicht initialisiert wurde oder wenn die Version erhöht wurde. 
+Die Version der Datenbank wird beim Erstellen des Open-Requests angegeben. 
+Wenn sich das Schema der Datenbank ändern soll, wird diese Versionsnummer erhöht, damit das "{\ttfamily upgradeneeded}"-Event ausgelöst wird.
+Innerhalb dieses Ereignisses werden die Object-Stores und die Indizes erstellt (siehe Code \ref{code:createDB}). 
 Beim Erstellen des Object-Stores müssen der Name des Object-Stores und der Primärschlüssel definiert werden. Wenn der Primärschlüssel automatisch generiert werden soll, muss dies durch die Eigenschaft "autoIncrement", welche auf "true" gesetzt werden muss, angegeben werden.
 Wenn der Object-Store erstellt ist, können Attribute indiziert werden. 
 Dabei muss jedem Index ein Name gegeben und ein Attribut angegeben werden, nach welchem der Object-Store durchsucht werden soll. 
@@ -33,18 +36,18 @@ Außerdem kann definiert werden, ob dieses Attribut einzigartig (unique) sein so
 
 \typescript[code:createDB]{code/Webspeicher/createDB.ts}{Erstellen und Ändern des Datenbankschemas}
 
-Das Event "success" wird nach der vollständigen Initialisierung der Datenbank ausgelöst - 
-das heißt, nach dem "upgradeneeded"-Event, falls dieses erforderlich war. 
-Wenn die Datenbank bereits initialisiert wurde, wird das "success"-Event sofort ausgelöst. 
-Nach dem "success"-Event sind alle Arten von Manipulationen und Abfragen der Daten möglich. 
-Um Daten aus der Indexed-DB abzurufen, muss eine Transaktion unter Verwendung des "Indexed Database Objekts" erstellt werden. 
+Das Event "{\ttfamily success}" wird nach der vollständigen Initialisierung der Datenbank ausgelöst -- 
+das heißt, nach dem "{\ttfamily upgradeneeded}"-Event, falls dieses erforderlich war. 
+Wenn die Datenbank bereits initialisiert wurde, wird das "{\ttfamily success}"-Event sofort ausgelöst. 
+Nach dem "{\ttfamily success}"-Event sind alle Arten von Manipulationen und Abfragen der Daten möglich. 
+Zum Abrufen von Daten aus der Indexed-DB, wird eine Transaktion unter Verwendung des "Indexed Database Objekts" erstellt. 
 Das "Indexed Database Objekt" ist als Ergebnis des "Open Request" abrufbar.
 
 \typescript{code/Webspeicher/getByPrimaryKey.ts}{Abfragen von Datensätzen mit einem Primärschlüssel}
 
 Es ist auch möglich, Daten über einen Index abzurufen. Da ein indiziertes 
 % Zusammenhang methoden First/all Match
-Attribut nicht eindeutig sein muss, gibt es zwei Methoden, um die Daten zu erhalten. Die Methode "get" liefert die erste Übereinstimmung und die Methode "getAll" alle Über\-ein\-stimmungen als Array.
+Attribut nicht eindeutig sein muss, gibt es zwei Methoden, um die Daten zu erhalten. Die Methode "{\ttfamily get}" liefert die erste Übereinstimmung und die Methode "{\ttfamily getAll}" alle Über\-ein\-stimmungen als Array.
 
 \typescript{code/Webspeicher/getByIndex.ts}{Abfragen von Datensätzen mit einem Index}
 
