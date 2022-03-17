@@ -2,11 +2,11 @@
 \label{sec:TypeScript}
 \sectionauthor{Mersed Kečo}
 
-TypeScript ist eine von Microsoft entwickelte Programmiersprache, welche auf Javascript beziehungsweiße, dem "ECMAScript-6" Standard basiert. TypeScript unterstützt mithilfe von Modulen das Kapseln von Klassen, Interfaces, Funktionen und Variablen in eigene Namensräume(Namespaces). Dabei wird zwischen internen Modulen, welche sich an den Standard anlehnen und externen Modulen, welche eine Javascript-Bibliothek wie AMD oder CommonJS verwenden, unterschieden.\cite{TypeScript}
+TypeScript ist eine von Microsoft entwickelte Programmiersprache, welche auf Javascript beziehungsweiße, dem "ECMAScript-6" Standard basiert. TypeScript unterstützt mithilfe von Modulen das Kapseln von Klassen, Interfaces, Funktionen und Variablen in eigene Namensräume(Namespaces). Dabei wird zwischen internen Modulen, welche sich an den Standard anlehnen und externen Modulen, welche eine Javascript-Bibliothek wie AMD oder CommonJS verwenden, unterschieden. \cite{TypeScript}\cite{ECMAScript6}
 
-Wenn über interne Module gesprochen wird, werden eigentlich damit die sogenannten "Namespaces" gemeint, welche für die Organisation von Code in TypeScript verwendet werden. Namensräume sind einfacher gesagt Javascript Objekte in einem globalen Namensraum. \cite{IntModules}
+Wenn über interne Module gesprochen wird, werden eigentlich damit die sogenannten "Namespaces" gemeint, welche für die Organisation von Code in TypeScript verwendet werden. Namensräume sind einfacher gesagt Javascript-Objekte in einem globalen Namensraum. \cite{IntModules}
 
-Externe Module dienen dazu, mehrere externe Javascript-Dateien und Code zu definieren, Abhängigkeiten zwischen Dateien zu beschreiben und diese darzustellen. Um aber überhaupt das Laden von externen Javascript-Dateien zu ermöglichen, benötigt es einen "Module Loader". Der meist verwendete "Module Loader" ist RequieJs.\cite{ExtModules}
+Externe Module dienen dazu, mehrere externe Javascript-Dateien und Code zu definieren, Abhängigkeiten zwischen Dateien zu beschreiben und diese darzustellen. Damit aber überhaupt das Laden von externen Javascript-Dateien zu ermöglichen, benötigt es einen "Module Loader". Der meist verwendete "Module Loader" ist RequieJs.\cite{ExtModules}
 
 Der Unterschied zwischen internen und externen Modulen ist der, dass externe Module Abhängigkeiten besitzen und kompakter sind, was auch die Lesbarkeit des Codes erhöht.\cite{TypeScript}
 
@@ -15,22 +15,20 @@ Der Unterschied zwischen internen und externen Modulen ist der, dass externe Mod
 \typescript{code/TypeScript/jsvsts.ts}{Js vs. Ts}
 
 
-Aufgrund des Zieles von TypeScript, nur die Erweiterung von Javascript zu erreichen und beide Sprachen ein und denselben Sprachkern haben, ist der Code derselbe und keine Unterschiede sind bemerkbar. 
+Aufgrund des Zieles von TypeScript, nur die Erweiterung von Javascript zu erreichen und beide Sprachen ein und denselben Sprachkern haben, ist der Code derselbe und keine Unterschiede sind bei der Ausführung des Codes bemerkbar. 
 \cite{TypeScript}
 
 
 \hthree{Features}
-Geschriebener Code in TypeScript kann nicht direkt von Browsern interpretiert werden und wird daher in Javascript-Code übersetzt, mit welchem der Browser den Code interpretieren und ausgeben kann. Dieser Vorgang kommt aus dem Englischen und heißt "Transpiling". Der Nutzen ist sehr gut durchdacht, es wird der Quellcode benutzt, der in einer bestimmten Programmiersprache ist und dieser wird durch einen sogenannten "Transpiler" in eine andere Sprache übersetzt. Ein weiteres Features, welches auf dem "Transpiling" basiert, ist die direkte Konveriterung von Javascript in TypeScript. Dies geschieht mit dem Abändern der Dateiendung. Dadurchwird die Dateiendung .js einfach zu .ts.TypeScript kann so kompiliert werden, dass der Code in jedem Browser, auf jedem Gerät und Betriebssystem lauffähig ist. \cite{Differnces}
+Geschriebener Code in TypeScript kann nicht direkt von Browsern interpretiert werden und wird daher in Javascript-Code übersetzt, mit welchem der Browser den Code interpretieren und ausgeben kann. Dieser Vorgang kommt aus dem Englischen und heißt "Transpiling". Der Nutzen ist sehr gut durchdacht, es wird der Quellcode benutzt, der in einer bestimmten Programmiersprache ist und dieser wird durch einen sogenannten "Transpiler" in eine andere Sprache übersetzt. Ein weiteres Features, welches auf dem "Transpiling" basiert, ist die direkte Konvertierung von Javascript in TypeScript. Dies geschieht mit dem Abändern der Dateiendung. Dadurch wird die Dateiendung .js einfach zu .ts. TypeScript kann so kompiliert werden, dass der Code in jedem Browser, auf jedem Gerät und Betriebssystem lauffähig ist. \cite{Differnces}
 
 
 \hthree{Problemlösungen mithilfe von TypeScript}
-Um sicherzustellen, dass der geschrieben Code keine Fehler enthält, gibt es die Möglichkeit automatisierte Tests anzufertigen und mithilfe dieser zu überprüfen, ob der Code in dieser Art und Weise, wie er geschrieben ist, fehlerfrei funktioniert.\cite{ScriptWiki}
+Um sicherzustellen, dass der geschrieben Code keine Fehler enthält, gibt es die Möglichkeit automatisierte Tests anzufertigen und mithilfe dieser zu überprüfen, ob der Code in dieser Art und Weise, wie er geschrieben ist, fehlerfrei funktioniert. \cite{ScriptWiki}
 
 
-Nicht viele Unternehmen haben die Unternehmensgröße von Microsoft, doch sind die meisten Probleme, die bei der Programmierung mit Javascript auftreten, diesselben. Große Codebasen bestehen aus mehreren Tausend Dateien. Bei der Änderung eines einzelnen Wertes in einer Datei, kann sich das Verhalten dieser aber auch anderer Dateien vollkommen verändern.
+Nicht viele Unternehmen haben die Unternehmensgröße von Microsoft, doch sind die meisten Probleme, die bei der Programmierung mit Javascript auftreten, ähnlich und haben oftmals den selben Hintergrund. Große Codebasen bestehen aus mehreren Tausend Dateien. Bei der Änderung eines einzelnen Wertes in einer Datei, kann sich das Verhalten dieser aber auch anderer Dateien vollkommen verändern.
 Die Validierung von Verbindungen kann dadurch schnell zeitaufwendig werden.\cite{ScriptWiki}
 
 
-Eine Sprache wie TypeScript kann dies automatisch erledigen und liefert während der Entwicklung sofortiges Feedback. Mithilfe dieser Funktion, versucht TypeScript Entwicklern eine bessere Übersicht über ihren Code zu geben und spart viel Zeit bei der Validierung, um sicherzustellen, dass die Entwickler das Projekt nicht versehentlich beschädigt haben oder dieses überhaupt nach dem Fertigschreiben lauffähig ist.
-
-\cite{ScriptWiki}
+Eine Sprache wie TypeScript kann die Validierung automatisch erledigen und liefert während der Entwicklung sofortiges Feedback. Mithilfe der automatischen Validierung, versucht TypeScript Entwicklern eine bessere Übersicht über ihren Code zu geben und spart viel Zeit bei der Validierung. Damit wird sichergestellt, dass die Entwickler das Projekt nicht versehentlich beschädigt haben oder dieses überhaupt nach dem Fertigschreiben lauffähig ist. \cite{ScriptWiki}
