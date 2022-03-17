@@ -47,6 +47,7 @@ Tesseract ist eine Software-Bibliothek aus 1985, die 2005 als Open-Source-Projek
 \hthree{Implementierung}
 
 \hfour{OCR-Modul}
+\label{sec:ocrmodul}
 
 Man kann Raumnummern, nicht nur eingeben, sondern auch mit der Kamera eines Smartphones einscannen. Um die Raumnummern aus den Bildern auszulesen wird ein "Optical Character Recognition"-Prozess verwendet. Dabei wird die Bibliothek "TesseractJS", eine Web-Version von "Tesseract OCR", direkt im Browser eingebunden, um die Bilder von Raumnummern zu Text zu verarbeiten.\cite{TesseractJS}\cite{TesseractJSImplementation}
 
@@ -97,6 +98,7 @@ Mit diesen Optimierungen liefert Tesseract sehr gute Ergebnisse, ein Grund wesha
 \pagebreak
 
 \hfour{Messungen der OCR Implementierung}
+\label{sec:ocrmessung}
 
 Um zu überprüfen ob das OCR-Modul für die Anwendung auf Mobilgeräten performant genug ist, wurden einige Messungen gemacht. Der OCR Umwandlungsprozess von dem Bild, welches in der Abbildung \ref{fig:phonecam} zu sehen ist, dauert ohne die Bildvereinfachung rund 4,2 Sekunden. Für die schnelle Anwendung bei \ZELIA\ wäre diese Dauer viel zu lange. Um die Geschwindigkeiten zu verringern wird ein Fokusbereich definiert, auf den das Bild verkleinert wird (siehe Abbildung \ref{fig:ocrfocus}). Durch diese Verkleinerung des Bildes dauert der OCR-Vorgang nur noch rund 1,3 Sekunden. Dieses Ergebnis ist schon besser, jedoch wurde noch weiter optimiert, um die Dauer zu minimieren. 
 

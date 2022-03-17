@@ -1,23 +1,25 @@
 \hthree{Der "Web Component" Standard}
 
-Web Components ermöglichen es den gleichen Code des Clients an mehreren Stellen zu verwenden. Dazu wurden drei neue Technologien \cite{MDNWebComponents} eingeführt:
+Web Components ermöglichen es den gleichen Code des Clients an mehreren Stellen zu verwenden. 
+Dazu wurden drei neue Technologien eingeführt \cite{MDNWebComponents}:
 
 \begin{itemize}
-    \item Custom Elements - Selbstdefinierte HTML-Elemente
-    \item Shadow DOM - Ein unabhängig gerenderter DOM-Baum
-    \item HTML Templates - Ein HTML-Tag, der nicht angezeigt wird, um dessen Inhalt von Javascript zu referenzieren
+    \item Custom Elements -- Selbstdefinierte HTML-Elemente
+    \item Shadow DOM -- Ein unabhängig gerenderter DOM-Baum
+    \item HTML Templates -- Ein HTML-Tag, der nicht angezeigt wird, um dessen Inhalt von Javascript zu referenzieren
 \end{itemize}
-
 
 \hfour{Custom Elements}
 
 \hfive{Erstellung eines Custom Elements}
 
-Custom Elements sind ES6 Klassen, die von der Klasse "HTMLElement" erben. "ES6", ausgeschrieben "ECMA Script 6", ist der Standard, in dem Klassen in Javascript hinzugefügt wurden.\cite{MDNes6Classes}
+Custom Elements sind ES6-Klassen, die von der Klasse "{\ttfamily HTMLElement}" erben. 
+"ES6", ausgeschrieben "ECMA Script 6", ist der Standard, in dem Klassen in Javascript hinzugefügt wurden \cite{MDNes6Classes}.
 
 \typescript{code/WebComponents/one.ts}{Erstellung einer Custom Element Klasse}
 
-Diese Klasse kann nun als Custom Element registriert werden. Dabei muss der Name des Elements vergeben werden, welcher einen Bindestrich enthalten muss.
+Nachdem die, welche vom "{\ttfamily HTMLElement}" erbt erstellt wurde, kann diese als Custom Element registriert werden. 
+Dabei muss der Name des Elements vergeben werden, welcher einen Bindestrich enthalten muss.
 
 \typescript{code/WebComponents/two.ts}{Registrierung des Custom Elements}
 
@@ -29,17 +31,17 @@ Wenn das Custom Element registriert ist, kann es mit dem vergebenen Namen im HTM
 Zur besseren Kontrolle des Lebenszyklus eines Custom Elements werden sogenannte "lifecycle callbacks" verwendet.
 Diese "lifecycle callbacks" sind spezielle Methoden in einer Klasse, welche von der API der Custom Elements aufgerufen werden. \cite{MDNWebCustomElements}
 
-\typescript{code/WebComponents/LifecycleExamples.ts}{"connectedCallback" Beispiel}
+\typescript{code/WebComponents/LifecycleExamples.ts}{Beispiel eines Custom Elements mit Lifecycle-Methoden}
 
 Der "{\ttfamily connectedCallback}" ist eine der Lifecycle-Methoden und wird aufgerufen, wenn das Element in das DOM eingefügt wird. 
-Das DOM (Document Object Model) ist eine Programmierschnittstelle, über die auf die einzelnen HTML Elemente zugegriffen werden kann. \cite{MDNDOM} Im "{\ttfamily connectedCallback}" können zum Beispiel Event-Listeners registriert werden. \cite{MDNWebCustomElements}
+Das DOM (Document Object Model) ist eine Programmierschnittstelle, über die auf die einzelnen HTML-Elemente zugegriffen werden kann. \cite{MDNDOM} Im "{\ttfamily connectedCallback}" können zum Beispiel Event-Listeners registriert werden \cite{MDNWebCustomElements}.
 
 \typescriptsub{code/WebComponents/LifecycleExamples.ts}{"connectedCallback" Beispiel}{12}{14}
 
 % todo: zum
-Die Lifecycle-Methode "{\ttfamily disconnectedCallback}" ist das Gegenstück zu \linebreak "{\ttfamily connectedCallback}".
+Die Lifecycle-Methode "{\ttfamily disconnectedCallback}" ist das Gegenstück zu der Lifecycle-Methode "{\ttfamily connectedCallback}".
 Diese wird beim Verlassen des DOMs aufgerufen. Darin sollten etwaige "Event Listener" entfernt werden, um die nicht mehr benötigten Ressourcen freizugeben und dadurch Speicher und CPU-Zeit zu sparen. 
-Auf diese Art wird sichergestellt, dass die Anwendung auch nach längerer Nutzung performant funktioniert. \cite{MDNWebCustomElements}
+Auf diese Art wird sichergestellt, dass die Anwendung auch nach längerer Nutzung performant funktioniert \cite{MDNWebCustomElements}.
 
 \typescriptsub{code/WebComponents/LifecycleExamples.ts}{"disconnectedCallback" Beispiel}{16}{18}
 
@@ -48,13 +50,15 @@ Die Lifecycle-Methode "{\ttfamily adoptedCallback}" wird jedes Mal aufgerufen, w
 \typescriptsub{code/WebComponents/LifecycleExamples.ts}{"adoptedCallback" Beispiel}{24}{26}
 
 Der "{\ttfamily attributeChangedCallback}" Lifecycle-Callback wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. 
+Ein Attribut ist eine Eigenschaft, welche im HTML-Tag definiert wird. 
+Beispielsweise ist "{\ttfamily href}" ein Attribut des in HTML5 vordefinierten Anker-Tags, welches die URL eines Links repräsentiert. 
 Damit dieser Callback ausgelöst wird, müssen die Namen der zu überwachenden Attribute von der statischen Eigenschaft "{\ttfamily observedAttributes}" zurückgegeben werden. \cite{MDNWebCustomElements} Beim Codebeispiel \ref{code:attributeChangedCallback} wird die Methode "{\ttfamily attributeChangedCallback}" nur aufgerufen, wenn die Attribute "from" und "to" geändert werden.
     
 Der "{\ttfamily attributeChangedCallback}" nimmt drei Parameter\cite{MDNWebCustomElements}:
 \begin{itemize}
-    \item Name: Name des Attributes
-    \item Old Value: Den Wert vor der Änderung
-    \item New Value: Der neue, aktuelle Wert 
+    \item Name -- Name des Attributes
+    \item Old Value -- Den Wert vor der Änderung
+    \item New Value -- Der neue, aktuelle Wert 
 \end{itemize}
 
 \typescriptsub[code:attributeChangedCallback]{code/WebComponents/LifecycleExamples.ts}{"attributeChangedCallback" Beispiel}{28}{34}
@@ -65,25 +69,27 @@ Der "{\ttfamily attributeChangedCallback}" nimmt drei Parameter\cite{MDNWebCusto
 Unter DOM (Document Object Model) versteht man die Programmierschnittstelle, mit der auf die Elemente einer Webseite zugegriffen werden kann, um deren Inhalt und Darstellung zu verändern. \cite{MDNDOM}
 
 Ein Shadow DOM ist ein Ast im DOM-Baum innerhalb der Webseite, welcher separat von der restlichen Seite gerendert wird.
-Dadurch kann auch auf Custom Elements ein Style in Style-Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen. \cite{MDNShadowRoot}
+Dadurch können auch in Custom Elements Style-Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen \cite{MDNShadowRoot}.
 
-Shadow DOMs bieten die Möglichkeit, einzelne Elemente des Webprojekts abgesondert vom Rest der Seite zu behandeln, ohne dafür "{\ttfamily iframe}"-Elemente zu verwenden. Dabei ermöglichen sie, die Komponente ganz unabhängig von dokumentenübergreifenden Styling-Anweisungen zu gestalten. \cite{IONOSShadowDom}
+Shadow-DOMs bieten die Möglichkeit, einzelne Elemente des Webprojekts gesondert vom Rest der Seite zu behandeln, ohne dafür "{\ttfamily iframe}"-Elemente zu verwenden. 
+Dabei ermöglichen sie, die Komponente unabhängig von dokumentenübergreifenden Styling-Anweisungen zu gestalten \cite{IONOSShadowDom}.
 
 Damit ein "Shadow Root" erstellt werden kann, muss lediglich die "{\ttfamily attachShadow}"-Methode aufgerufen werden. \cite{MDNShadowRoot}
 
-\typescript{code/WebComponents/eight.ts}{Erstellung eines Shadow Roots}
+\typescript{code/WebComponents/eight.ts}{Erstellung eines Shadow-Roots}
 
-Der "Mode" muss auf "{\ttfamily open}" gesetzt werden, damit der "Shadow Root" befüllt werden kann. Nun kann mit "{\ttfamily this.shadowRoot}" auf den "ShadowRoot" innerhalb des Custom Components zugegriffen werden.
+Der "Mode" wird auf "{\ttfamily open}" gesetzt, damit der "Shadow Root" befüllt werden kann. Nun kann mit "{\ttfamily this.shadowRoot}" auf den "ShadowRoot" innerhalb des Custom Components zugegriffen werden.
 \cite{MDNShadowRoot}
 
 \pagebreak
 \hfour{HTML Templates}
 
-Um ein Custom Element mit Inhalt zu füllen, gibt es in HTML den "template"-Tag. Dieser wird nicht im DOM gerendert, kann aber trotzdem mit Javascript referenziert werden. \cite{MDNtemplate}
+Der "template"-Tag ermöglicht es HTML-Code in Custom Element zu füllen.
+Templates werden auf der Webseite selbst nicht angezeigt, dennoch können sie mit Javascript referenziert werden. \cite{MDNtemplate}
 
 \html{code/WebComponents/nine.html}{Erstellung eines HTML Template}
 
-Damit das Template als Custom Element gerendert wird, muss der Content in dieses, oder dessen Shadow DOM kopiert werden.
+Damit das Template als Custom Element gerendert wird, muss der Content in dieses, oder dessen Shadow-DOM kopiert werden.
 
 \typescript{code/WebComponents/ten.ts}{Kopieren des Template in das Custom Element}
 
@@ -91,7 +97,7 @@ Damit das Template als Custom Element gerendert wird, muss der Content in dieses
 
 Um den Inhalt der Components dynamisch zu machen, gibt es den HTML "Slot"-Tag. 
 Dieser ermöglicht es, Inhalte an die Components weiterzugeben. 
-Dafür muss allerdings ein Shadow DOM verwendet werden. 
+Dafür muss allerdings ein Shadow-DOM verwendet werden. 
 Ein Slot wird immer mit seinem Namen referenziert. 
 Wenn bei einem Child-Node eines Custom Elements kein Slotname angegeben ist, dann wird dieses Node im Slot ohne Namen gerendert. 
 Unter einem Node versteht man sowohl ein HTML-Element als auch ein sogenannter Text-Node. 
@@ -110,3 +116,7 @@ Wird für einen Slot kein Node mit dem jeweiligen "{\ttfamily slot}"-Attribut ge
 Die Codebeispiele \ref{code:WebComponentExampleJS} und \ref{code:WebComponentExampleHTML} erzeugen folgende Ausgabe:
 
 {\ttfamily Hi Universe!!}
+
+Dabei werden die im Template definierten Texte "Hello" und "World" aufgrund der Slots mit den Texten "Hi" und "Universe" ersetzt. 
+Dabei bezieht sich der Span aufgrund des "{\ttfamily slot}"-Attributes, welches auf "greeting" gesetzt ist, auf den Slot mit dem "{\ttfamily name}"-Attribut mit dem Wert "greeting". 
+Da der zweite Slot ohne Namen ist, wird der Text-Node "Universe" hier eingefügt.

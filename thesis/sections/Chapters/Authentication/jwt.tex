@@ -9,9 +9,9 @@ Um sicherzustellen, dass das Token nicht manipuliert wird, haben nur die Server 
 Das JWT ist im RFC7519 definiert. Jedes JWT ist in drei Abschnitte\cite{Auth0JWT} unterteilt. 
 
 \begin{itemize}
-    \item \textbf{"Header"} - Informationen über das Token
-    \item \textbf{"Payload"} - Informationen über den Benutzer
-    \item \textbf{"Signature"} - Signatur des Tokens
+    \item \textbf{"Header"} -- Informationen über das Token
+    \item \textbf{"Payload"} -- Informationen über den Benutzer
+    \item \textbf{"Signature"} -- Signatur des Tokens
 \end{itemize}
 
 Im Header befinden sich meist zwei Felder - der Typ des Tokens ({\ttfamily typ}) und der\linebreak"Signing"-Algorithmus ({\ttfamily alg}). 
@@ -22,8 +22,8 @@ Die "Payload" besteht in der Regel aus Benutzerdaten. Diese nennt man "Claims". 
 \begin{itemize}
     \item "Registered claims" sind vordefinierte "Claims", wie
     \begin{itemize}
-        \item "iss": is user
-        \item "exp":  expiration time
+        \item "iss" -- is user
+        \item "exp" --  expiration time
         \item ...
     \end{itemize}
     \item "Public claims" können vom Entwickler definiert werden.

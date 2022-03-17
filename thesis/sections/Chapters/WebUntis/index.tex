@@ -44,7 +44,7 @@ Dies ist nur ein kleiner Ausschnitt der gesamten Räume des SZU:
     \caption{getRooms Ausgabe ZELIA}
 \end{figure}
 
-Mithilfe der Methode "getTimetableFor" und den mitzugebenden Parametern können wir uns den Stundeplan für einen speziellen Typen anzeigen lassen.
+Mithilfe der Methode "getTimetableFor" und den mitzugebenden Parametern kann der Stundeplan für einen speziellen Typen angezeigt werden lassen.
 
 \typescript{code/WebUntis/getTimetableFor.ts}{getTimetableFor Beschreibung}
 
@@ -78,7 +78,7 @@ Das allererste Problem ist, dass gewisse Räume mit mehreren Namen beziehungswei
 \typescript{code/WebUntis/getIDByRoomNumber.ts}{Raum über ID zurückbekommen}
 
 
-Die Methode bekommt einen Wert des Typen "RoomNumber" übergeben. Gleichzeitig liefern wir uns mit der Methode getRoomList() alle eingetragenen Klassen und gehen in einer for-Schleife durch jedes Element durch. Die Vorgehensweise scheint zwar unkonventionell, doch während der Implementierung ist aufgefallen, dass der vollständige Klassenname nicht immer im Longname oder im Shortname abgespeichert, sondern eher rein zufällig in einem der beiden Parametern beinhaltet ist. Deswegen wird auf Nummer sicher gegangen und beide Parameter geprüft und geben bei einer Übereinstimmung die dazu vorhandene Raum-ID mit, diese ist einzigartig dennoch können, wie schon zuvor gesagt, mehrere IDs auf einen Raum zeigen, was in dem Fall kein allzu großes Problem darstellt.
+Die Methode bekommt einen Wert des Typen "RoomNumber" übergeben. Gleichzeitig liefert die Methode getRoomList() alle eingetragenen Klassen, bei der in einer for-Schleife durch jedes Element durchgegangen wird und passende Übereinstimmungen ausgegeben werden. Die Vorgehensweise scheint zwar unkonventionell, doch während der Implementierung ist aufgefallen, dass der vollständige Klassenname nicht immer im Longname oder im Shortname abgespeichert, sondern eher rein zufällig in einem der beiden Parametern beinhaltet ist. Deswegen wird auf Nummer sicher gegangen und beide Parameter geprüft und geben bei einer Übereinstimmung die dazu vorhandene Raum-ID mit, diese ist einzigartig dennoch können, wie schon zuvor gesagt, mehrere IDs auf einen Raum zeigen, was in dem Fall kein allzu großes Problem darstellt.
 
 Des Weiteren gab es das Problem, dass WebUntis einen Token eingebaut hat, welcher nach einer gewissen Zeit abläuft und die momentane Sitzung als "ungültig" deklariert. In diesem Fall weitergehend mit der Methode "validateSession()" überprüft, ob der Token zum Zeitpunkt der Abfrage schon abgelaufen oder noch gültig ist. 
 

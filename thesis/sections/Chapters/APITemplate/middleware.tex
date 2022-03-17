@@ -4,9 +4,9 @@ Bei ZELIA ist eine "Middleware" eine Funktion, die eine bestimmte Signatur hat (
 Diese benötigt die aus dem NPM-Modul "express" bekannten Parameter:
 
 \begin{itemize}
-    \item \textbf{Request-Objekt} ({\ttfamily req}) - beinhaltet alle Informationen des Requests. Dazu zählen \zb\ die Header, Query-Parameter oder der Body.
-    \item \textbf{Response-Objekt} ({\ttfamily res}) - ermöglicht das Erstellen einer Antwort. Dafür können mit diesem Objekt der Statuscode, die Header und der Body gesetzt werden.
-    \item \textbf{Next-Funktion} ({\ttfamily next}) - muss aufgerufen werden, wenn die Middleware fertig ist, ohne dass dieser die Anfrage durch eine Antwort beendet hat.
+    \item \textbf{Request-Objekt} ({\ttfamily req}) -- beinhaltet alle Informationen des Requests. Dazu zählen \zb\ die Header, Query-Parameter oder der Body.
+    \item \textbf{Response-Objekt} ({\ttfamily res}) -- ermöglicht das Erstellen einer Antwort. Dafür können mit diesem Objekt der Statuscode, die Header und der Body gesetzt werden.
+    \item \textbf{Next-Funktion} ({\ttfamily next}) -- muss aufgerufen werden, wenn die Middleware fertig ist, ohne dass dieser die Anfrage durch eine Antwort beendet hat.
 \end{itemize}
 
 "Middlewares" können entweder für einzelne Methoden im "Controller", für einzelne "Controller" oder für die gesamte API registriert werden. Soll die Middleware für die gesamte API zur Verfügung stehen, muss diese im App-Konstruktor registriert werden.
