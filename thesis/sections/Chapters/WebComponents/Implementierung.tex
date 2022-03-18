@@ -109,7 +109,7 @@ Die Meldungs- und Buchungsseite sind zwei verschiedene Seiten, welche allerdings
     \item Einem Link, welcher zurück zur Rauminformationsseite führt
 \end{itemize}
 
-Um einen Defekt in einem Raum zu melden, gibt man eine EDU-Mail-Adresse, das Datum sowie Uhrzeit wann der Defekt das erste Mal aufgetreten ist und eine Beschreibung des Problems an. Wie schon erläutert, wird die Mail-Adresse verwendet, um Schüler*innen identifizieren zu können, ohne dass sie sich einen Account anlegen müssen. Nach Absenden des Formulars bekommt man einen Bestätigungslink auf die angegebene Mail-Adresse, um die Meldung zu bestätigen. So ist das Meldesystem nicht anonym und dadurch können Falsch-Meldungen verringert werden.
+Damit man Defekte in einem Raum melden kann, gibt man eine EDU-Mail-Adresse, das Datum sowie Uhrzeit wann der Defekt das erste Mal aufgetreten ist und eine Beschreibung des Problems an. Wie schon erläutert, wird die Mail-Adresse verwendet, um Schüler*innen identifizieren zu können, ohne dass sie sich einen Account anlegen müssen. Nach Absenden des Formulars bekommt man einen Bestätigungslink auf die angegebene Mail-Adresse, um die Meldung zu bestätigen. So ist das Meldesystem nicht anonym und dadurch können Falsch-Meldungen verringert werden.
 
 \begin{figure}[H]
     \centering
@@ -135,7 +135,7 @@ Wie beim Melden, gibt man auch hier eine EDU-Mailadresse an und zusätzlich dazu
 \hfive{"Admin Login" und "Dashboard"}
 \label{sec:webcomplogdash}
 
-Um einen Überblick über Meldungen und Buchungen zu bekommen, gibt es das "Admin Dashboard". Damit nicht jeder die Raumbuchungen und Defektmeldungen sieht, muss man sich mit einem Administratorbenutzer anmelden. Jede Buchung und Meldung ist einem Administratorbenutzer zugeteilt und kann somit von diesem abgearbeitet werden. Im Fall von \ZELIA\ im Schulzentrum Ungargasse, sind diese Administratoren meist Abteilungsleiter*innen oder Lehrer*innen, die für den gemeldeten oder gebuchten Raum zuständig sind. 
+Meldungen und Buchungen kann man im sogenannten "Admin Dashboard" einsehen. Damit nicht jeder die Raumbuchungen und Defektmeldungen sieht, muss man sich mit einem Administratorbenutzer anmelden. Jede Buchung und Meldung ist einem Administratorbenutzer zugeteilt und kann somit von diesem abgearbeitet werden. Im Fall von \ZELIA\ im Schulzentrum Ungargasse, sind diese Administratoren meist Abteilungsleiter*innen oder Lehrer*innen, die für den gemeldeten oder gebuchten Raum zuständig sind. 
 
 Wie schon beschrieben, muss man als Administrator angemeldet sein, um Zugriff auf alle Meldungen und Buchungen zu haben. Hierfür gibt es die "Admin Login"-Seite, welche über den normalen ZELIA-Webserver aufgerufen werden kann. Auf dieser Webseite findet man eine Komponente, die ein Anmeldeformular anzeigt. Beim anmelden wird die Anfrage an den Server geschickt und auf die Antwort gewartet. Wenn der Server mit einem "JSON-Web-Token" (siehe Kapitel Authentifizierung "Json Web Token -- JWT" \ref{sec:jwt}) antwortet, wird dieser im "session storage" (siehe Kapitel "Webspeicher" \ref{sec:webstorage}) gespeichert und man wird auf die Übersichtsseite weitergeleitet.
 

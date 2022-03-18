@@ -12,19 +12,22 @@ In der Netzwerktechnik ist "Routing" der Vorgang um einen Weg für Daten zu find
 In diesen Fällen wären "{\ttfamily /home}" und "{\ttfamily /room/S1308}" zwei verschiedene Routen. Früher hat man am Webserver, also der Server, der die Daten zur Verfügung stellt, ein Verzeichnis gehabt, das alle möglichen Pfade abbildet.
 
 \begin{figure}[H]
-    \begin{lstlisting}
+  
+  \begin{singlespace}
+  \begin{lstlisting}
 www/
-> home/
-> room/
-  > S1308/
-  > ...
+  > home/
+  > room/
+    > S1308/
+    > ...
     \end{lstlisting}
+  \end{singlespace}
     \caption{Ordnerstruktur eines Webservers}
 \end{figure}
 
-Diese Art von Webserver stellt statische Webseiten zur Verfügung. Statisch, weil die Daten, \zb: das "{\ttfamily index.html}", nicht geändert werden, sondern so wie sie am Server liegen dem Client geschickt werden. Dies hat den Vorteil, dass der Server kaum Ressourcen verbraucht. In jedem dieser Verzeichnisse kann man ein "{\ttfamily index.html}" finden, welches der Webserver schickt, wenn einer dieser Pfade vom Browser angefragt wird. Da gibt es schon das erste Problem: Es muss für jeden Raum ein fertiges "{\ttfamily index.html}" im richtigen Pfad geben, um darauf zugreifen zu können.
+Diese Art von Webserver stellt statische Webseiten zur Verfügung. Statisch, weil die Daten, \zb: das "{\ttfamily index.html}", nicht geändert werden, sondern so wie sie am Server liegen dem Client geschickt werden. Dies hat den Vorteil, dass der Server kaum Ressourcen verbraucht. In jedem dieser Verzeichnisse kann man ein "{\ttfamily index.html}" finden, welches der Webserver schickt, wenn einer dieser Pfade vom Browser angefragt wird. Das Problem welches dabei auftritt ist, dass es für jeden Raum ein fertiges "{\ttfamily index.html}" im richtigen Pfad geben muss.
 
-Als Lösung dafür gibt es sogenannte Router, die wissen was zu tun ist, wenn eine Route angefragt wird. Somit kann man diese statische Hierarchie auflösen und auf jede Anfrage individuell reagieren. In der Webentwicklung werden diese Steuerungsprogramme, die auf Anfragen reagieren, meist "Controller" genannt. Ein "Controller" bekommt somit eine Anfrage und liefert eine Antwort, welche im Zusammenhang von vorher das "{\ttfamily index.html}" ist. Dabei ist aber wichtig zu erwähnen, dass der Inhalt des "{\ttfamily index.html}", also der Antworttext, modifiziert werden kann. So kann ein Router beispielsweise alle Routen die aus "{\ttfamily /room/...}" bestehen an einen "Controller" weitergeben, der dem Client jeweils andere Informationen zurückgibt.
+Als Lösung für dieses Problem gibt es sogenannte Router, die wissen was zu tun ist, wenn eine Route angefragt wird. Somit kann man die statische Hierarchie auflösen und auf jede Anfrage individuell reagieren. In der Webentwicklung werden diese Steuerungsprogramme, die auf Anfragen reagieren, meist "Controller" genannt. Ein "Controller" bekommt somit eine Anfrage und liefert eine Antwort, welche im Zusammenhang von vorher das "{\ttfamily index.html}" ist. Dabei ist aber wichtig zu erwähnen, dass der Inhalt des "{\ttfamily index.html}", also der Antworttext, modifiziert werden kann. So kann ein Router beispielsweise alle Routen die aus "{\ttfamily /room/...}" bestehen an einen "Controller" weitergeben, der dem Client jeweils andere Informationen zurückgibt.
 
 Nochmal kurz zusammengefasst: Router sind in der Webentwicklung dazu da, um Routen (Pfade) aufzulösen und an den richtigen "Controller" weiterzureichen. "Controller" liefern dann individuelle Ergebnisse auf jeweilige Anfragen.
 

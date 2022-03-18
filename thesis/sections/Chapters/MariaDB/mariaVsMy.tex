@@ -21,7 +21,7 @@ Die Kompatibilität wurde von MariaDB immer sehr großgeschrieben. Deshalb wurde
 
 Eines der Beispiele, dass sich MySQL und MariaDB in der zukünftigen Entwicklung voneinander wegbewegen und unterschiedliche Weg einschlagen werden ist das Implementieren des sogenannten "Data-Dictionary" welches transaktional arbeitet und seit MySQL Version 8 enthalten ist. Dieses Konzept unterscheidet sich in Grundlegenden Punkten von vorhergegangenen Versionen. Dieses Konzept ist zur  Verarbeitung von Metadaten eingebaut worden. Da MariaDB zurzeit nicht wissentlich an einem vergleichbaren Mechanismus arbeitet ist davon auszugehen, dass in Zukunft auch keine Kompatibilität im Bereich von Datafiles geben wird. \cite{MariaVsMy}
 
-\hfour{Datenbank-Engines}
+\hfour{Datenbank-Engines} \label{sec:dbEngine}
 
 Eine Datenbank-Engine ist ein sogenanntes Speichersubsystem, welches für das Erstellen, Lesen, Manipulieren und Löschen von Daten zuständig ist. Ohne diese Engine wäre dies für das Datenbankmanagementsystem nicht möglich.
 MariaDB möchte sich in diesem Bereich durch eine stetig wachsende Anzahl an unterstützen Engines von MySQL unterscheiden. Dies hat den Vorteil, dass man bei der Auswahl eine höhere Flexibilität genießt. \cite{MariaVsMy}
@@ -36,7 +36,7 @@ In diesem Punkt gibt es keinerlei Unterschiede zwischen den Systemen. \cite{Mari
 
 \hfour{Performance}
 
-Das Liefern von Leistung wird in vielen Unternehmen der ausschlaggebendste Punkt in Bezug auf die Wahl des Datenbanksystems sein. Sollte sich eine Firma nun für ein von Michael Widenius entworfenes Produkt (MySQL oder MariaDB) entscheiden, stellt sich die Frage, welches der beiden Datenbankmanagementsystemen schafft es dem Unternehmen eine höhere Performance zu liefern. Wenn auf die blanken Ergebnisse eines Benchmark-Tests (wie des DBT-3) geblickt wird hat MariaDB die Nase vorne, jedoch macht hierbei vor Allem die verwendete Datenbank-Engine den Unterschied. \cite{MariaVsMy}
+Das Liefern von Leistung wird in vielen Unternehmen der ausschlaggebendste Punkt in Bezug auf die Wahl des Datenbanksystems sein. Sollte sich eine Firma nun für ein von Michael Widenius entworfenes Produkt (MySQL oder MariaDB) entscheiden, stellt sich die Frage, welches der beiden Datenbankmanagementsystemen schafft es dem Unternehmen eine höhere Performance zu liefern. Wenn auf die blanken Ergebnisse eines Benchmark-Tests (wie des DBT-3) geblickt wird hat MariaDB die Nase vorne, jedoch macht hierbei vor Allem die verwendete Datenbank-Engine (siehe Kapitel \ref{sec:dbEngine}, Seite \pageref{sec:dbEngine}) den Unterschied. \cite{MariaVsMy}
 
 Es kann jedoch gesagt werden, dass sehr viel von dem Entwickler abhängt, da es immer darauf ankommt, was für welchen Anwendungsfall verwendet und implementiert wird. Hierbei kommt es wie schon oben erwähnt auf die verwendete Datenbank-Engine an. In diesem Punkt kann MariaDB besonders punkten, da es viele alternative Engines unterstützt. MariaDB liefert seit Version 10.0.1 seinen Kunden eine zusätzliche Optimierung der SQL-Abfragen, da nun nicht mehr auf interne Statistiken der Datenbank-Engine vertraut wird, sondern diese innerhalb des Systems berechnet und als normale Tabelle abgespeichert werden. So kann man schneller und engineunabhängig den besten Weg für SQL-Kommandos ermitteln. \cite{MariaVsMy}
 

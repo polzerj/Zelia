@@ -19,7 +19,7 @@ Der \ZELIA\ Server ist notwendig um den \ZELIA\ Client zu verwenden, da der Clie
 
 \hfive{Git}
 
-Durch die Installation von Git, kann man sich das Arbeiten mit dem Quellcode erleichtern, notwendig ist es aber nicht. Verwenden kann man das Programm als Befehl in der Konsole. Unter den meisten Linux Distributionen ist Git bereits vorinstalliert. Unter MacOS kann man Git herunterladen, wenn man die Apple Entwicklungswerkzeuge installiert, welche mit der Entwicklerumgebung Xcode mitgeliefert werden. Um Git auf Windows laufen zu lassen, kann man das Programm von der offiziellen Website \emph{https://git-scm.com/downloads} herunterladen.
+Durch die Installation von Git, kann man sich das Arbeiten mit dem Quellcode erleichtern, notwendig ist es aber nicht. Verwenden kann man das Programm als Befehl in der Konsole. Unter den meisten Linux Distributionen ist Git bereits vorinstalliert. Unter MacOS kann man Git herunterladen, wenn man die Apple Entwicklungswerkzeuge installiert, welche mit der Entwicklerumgebung Xcode mitgeliefert werden. Git für Windows, kann von der offiziellen Website \emph{https://git-scm.com/downloads} herunterladen.
 
 GitHub stellt "GitHub Desktop" zur Verfügung, welches auch ein integriertes Git mitbringt. Zusätzlich hat "GitHub Desktop" eine grafische  Benutzeroberfläche, die den Einstieg in GitHub und Git vereinfachen kann (\emph{https://desktop.github.com}). 
 
@@ -32,7 +32,7 @@ GitHub stellt "GitHub Desktop" zur Verfügung, welches auch ein integriertes Git
 
 \hfive{Docker}
 
-Docker baut, wie man in Kapitel \ref{sec:ContainerAndDocker} erfährt, auf Containertechnologien auf. Diese machen es möglich unabhängig von der Hardware ausgeführt zu werden. Rein theoretisch bräuchte man Docker nicht, da man die einzelnen Komponenten auch nebeneinander auf einem Computer mittels mehrerer NodeJS Instanzen zum Laufen bringen könnte. Um den Startvorgang zu vereinfachen und Hardwareunabhängig zu machen, sollte man allerdings Docker verwenden. Herunterladen kann man "Docker Desktop", die Benutzeroberfläche von Docker, von \emph{https://www.docker.com/get-started}.
+Docker baut, wie man in Kapitel \ref{sec:ContainerAndDocker} erfährt, auf Containertechnologien auf. Diese "Docker Container" machen es möglich unabhängig von der Hardware ausgeführt zu werden und vereinfachen den Startvorgang. Rein theoretisch bräuchte man Docker nicht, da man die einzelnen Komponenten auch nebeneinander auf einem Computer mittels mehrerer NodeJS Instanzen zum Laufen bringen könnte. Herunterladen kann man "Docker Desktop", die Benutzeroberfläche von Docker, von \emph{https://www.docker.com/get-started}.
 
 \begin{figure}[H]
     \centering
@@ -93,7 +93,7 @@ JWT_SECRET=ZEL1A
 
 \hfour{Entwicklung}
 
-Wenn der Server im Entwicklungsmodus gestartet wird, kann bei einer Änderung im Quellcode der veränderte Programmteil automatisch neugestartet werden. Um den Server in diesem Zustand zu starten, muss man in dem ZELIA-Verzeichnis in den beiden Unterordern "pwa" und "api" jeweils folgendes Kommando in der Konsole ausführen: \emph{npm install} oder verkürzt \emph{npm i}. Dadurch werden vom "Node Packet Manager" (siehe Kapitel "NPM" \ref{sec:npm}) alle Bibliotheken heruntergeladen die benötigt werden um den Server zum Laufen zu bringen.
+Wenn der Server im Entwicklungsmodus gestartet wird, kann bei einer Änderung im Quellcode der veränderte Programmteil automatisch neugestartet werden. Bevor der Server in diesem Zustand gestartet werden kann, muss man in dem ZELIA-Verzeichnis in den beiden Unterordern "pwa" und "api" jeweils folgendes Kommando in der Konsole ausführen: \emph{npm install} oder verkürzt \emph{npm i}. Dadurch werden vom "Node Packet Manager" (siehe Kapitel "NPM" \ref{sec:npm}) alle Bibliotheken heruntergeladen die benötigt werden um den Server zum Laufen zu bringen.
 
 Danach muss man unter MacOS und Windows "Docker Desktop" öffnen, damit die "Docker-Engine" gestartet wird. Auf Linuxsystemen ist dieser Vorgang nicht notwendig (siehe Kapitel \ref{sec:dockerexplained}). Nachdem die "Docker-Engine" geladen wurde kann man die Docker-Container mit folgendem Befehl starten:
 
@@ -109,6 +109,6 @@ So wie im Entwicklungsmodus muss man auch hier "Docker Desktop" öffnen, um Dock
 
 Auch dieser Startvorgang wird beim ersten Mal etwas länger dauern, da erstens Docker die notwendigen Abbildungen herunterlädt und zweitens der NPM-Installationsvorgang in den Docker-Containern ausgeführt wird.
 
-Um zu überprüfen ob der Server erfolgreich gestartet wurde, kann man in einem Browser der Wahl probieren die API zu erreichen. 
+Nachdem der Server gestartet wurde, kann man in einem Browser der Wahl probieren die API aufzurufen:
 
 \emph{https://localhost/api} oder im Entwicklungsmodus \emph{https://localhost:3001/api}.

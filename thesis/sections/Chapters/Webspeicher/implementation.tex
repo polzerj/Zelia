@@ -7,15 +7,17 @@ Bei \ZELIA\ gibt es zwei Anwendungsfälle von Webspeichern:
     \item Der Cache welcher die Webseite speichert, um diese als offline-fähige PWA zu installieren.
 \end{itemize}
 
+Die Eigenschaften einer PWA sind im Kapitel \ref{sec:cache} auf Seite \pageref{sec:cache} beschrieben.
+
 \hfour{Speicherung des JWT}
 
-Um das JSON Web Token sicher zu speichern, ist es wichtig, dass dieser nicht mit unbegrenzter Gültigkeit gespeichert wird. Darüber hinaus soll der Administrator beim Schließen des "Admin Dashboards" ausgeloggt werden. 
+Beim Schließen soll der Administrator des "Admin Dashboards" ausgeloggt werden. 
 Deshalb wird dieses Token im Session-Storage abgelegt. 
 Dadurch wird das Token nach der Sitzung gelöscht und der Administrator muss sich beim nächsten Besuch des "Admin Dashboards" neu anmelden.
 
 \hfour{Cache für schnelle Ladezeiten}
 
-Damit die Anwendung alle Voraussetzungen erfüllt um als PWA installiert zu werden, muss die Webseite im Cache gespeichert werden. 
+Damit die Anwendung alle Voraussetzungen erfüllt, um als PWA installiert zu werden, muss die Webseite im Cache gespeichert werden. 
 Somit kann die Webseite bzw. die installierte PWA offline genauso geöffnet werden. 
 Allerdings wird bei der offline-Nutzung eine Meldung angezeigt, dass keine Rauminformationen verfügbar sind, da die API-Anfragen eine aktive Internetverbindung benötigen.
 
