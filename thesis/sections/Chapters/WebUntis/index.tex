@@ -26,42 +26,38 @@ Um den Wrapper überhaupt verwenden zu können, benötigt man zuerst das WebUnti
 Durch den Wrapper hat besteht die Möglichkeit nicht nur auf den Stundenplan und gewisse Informationen zuzugreifen, sondern auch zum Beispiel Informationen zur besuchten Fachabteilung oder das Anzeigen von zu erledigenden Hausübungen. In diesem Fall benötigt \ZELIA\ aber nur folgende Methoden, die teilweise mit anderen Methoden verwendet werden, um auf unser Wunschergebnis zu kommen:
 
 
-\typescript{code/WebUntis/constructor.ts}{Konstruktor von der WebUntis API}
+\typescript[code:ConWebAPI]{code/WebUntis/constructor.ts}{Konstruktor von der WebUntis API}
 
-Der Konstruktor muss so verwenden werden, da sonst nicht auf das WebUntis-Objekt zugreifen kann. Bei \ZELIA\ wird es genauso verwendet. Der einzige Unterschied ist aber hierbei, dass die verwendeten Variablen und die dazu entsprechenden Werte in einem .env-File abgespeichert sind, damit erstens, die Daten alle gesammelt an einer Stelle liegen und zweitens, da somit ein wenig Sicherheit hineingebracht werden kann.
+Der Konstruktor (in Code \ref{code:ConWebAPI}) muss so verwenden werden, da sonst nicht auf das WebUntis-Objekt zugreifen kann. Bei \ZELIA\ wird es genauso verwendet. Der einzige Unterschied ist aber hierbei, dass die verwendeten Variablen und die dazu entsprechenden Werte in einem .env-File abgespeichert sind, damit erstens, die Daten alle gesammelt an einer Stelle liegen und zweitens, da somit ein wenig Sicherheit hineingebracht werden kann.
 
 \typescript{code/WebUntis/.env.ts}{.env-Datei von ZELIA}
 
 getRooms wird verwendet, um alle Räume für ein Schulgebäude herauszufinden.
 
 \typescript{code/WebUntis/getRooms.ts}{getRooms Methode}
+\begin{minipage}{\textwidth}
+    Dies ist nur ein kleiner Ausschnitt der gesamten Räume des SZU:
+    
+    \typescriptsub{code/WebUntis/Rooms.json}{getRooms Ausgabe Zelia}{1}{20}
+\end{minipage}
 
-Dies ist nur ein kleiner Ausschnitt der gesamten Räume des SZU:
+\begin{minipage}\textwidth
+    Mithilfe der Methode "getTimetableFor" und den mitzugebenden Parametern kann der Stundeplan für einen speziellen Typen angezeigt werden lassen.
+    
+    \typescript{code/WebUntis/getTimetableFor.ts}{getTimetableFor Beschreibung}
+\end{minipage}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics{media/WebUntis/getRoomsAusgabe.png}
-    \caption{getRooms Ausgabe ZELIA}
-\end{figure}
-
-Mithilfe der Methode "getTimetableFor" und den mitzugebenden Parametern kann der Stundeplan für einen speziellen Typen angezeigt werden lassen.
-
-\typescript{code/WebUntis/getTimetableFor.ts}{getTimetableFor Beschreibung}
 
 Der WebUntisElementType wird als Wert übergeben und je nachdem, welcher Wert das ist, wird der Stundenplan ausgegeben. 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics{media/WebUntis/WebUntisElementType.png}
-    \caption{WebUntisElementType}
-\end{figure}
-
+\typescript{code/WebUntis/WebUntisElementType.ts}{WebUntisElementType}
 
 In der Ausgabe werden also alle wichtigen Parameter angezeigt, sei es das Fach, die Klasse die momentan unterrichtet wird oder aber auch der Lehrer, der die Stunde abhält.
 
 \typescript{code/WebUntis/getTimetableForAusgabe.ts}{getTimetableFor ZELIA}
 
-Die Methode "getTimeGrid" wird verwendet, um die Struktur des Stundeplans anzuzeigen. Mit der Struktur sind die Unterrichtsstunden, deren Anfangs– und Endzeiten gemeint.
+\begin{minipage}\textwidth
+    Die Methode "getTimeGrid" wird verwendet, um die Struktur des Stundeplans anzuzeigen. Mit der Struktur sind die Unterrichtsstunden, deren Anfangs– und Endzeiten gemeint.
 
 \typescript{code/WebUntis/getTimegrid.ts}{getTimegrid Methode}
 
@@ -69,6 +65,9 @@ Das Ergebnis sieht bei \ZELIA\ wie folgt aus:
 
 \typescript{code/WebUntis/getTimegridAusgabe.ts}{getTimeGrid ZELIA}
 
+\end{minipage}
+
+\pagebreak
 \hfour{Probleme}
 
 Mithilfe der API ist zwar einiges möglich, dennoch sind in dem Anwendungsfall \ZELIA\ einige "Probleme" aufgefallen, die abgefangen beziehungsweise ausgebessert werden mussten.
