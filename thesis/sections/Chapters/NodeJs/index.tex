@@ -46,7 +46,7 @@ Aufgrund der Verwendung von einer kleineren Anzahl von Threads, werden weniger R
 
 \hfour{Anwendungen von Node.js}
 
-Da Node.js für eine Vielzahl von Anwendungen verwendet wird, sind einige Anwendungsfälle sehr beliebt und Node.js eine sehr gute Wahl dafür.
+Da Node.js für eine Vielzahl von Anwendungen verwendet wird, sind einige Anwendungsfälle sehr beliebt und Node.js eine Auswahlmöglichkeit dafür. In folgenden Anwendungen ist Node.js immer häufiger ein Bestandteil:
 
 \begin{figure}[H]
     \centering
@@ -54,25 +54,17 @@ Da Node.js für eine Vielzahl von Anwendungen verwendet wird, sind einige Anwend
     \caption{Node.js Anwendungen \cite{AnwendungenFoto}}
 \end{figure}
 
-\begin{enumerate}
-    \item Chats in Echtzeit
-    \newline Die Node.js Architektur bietet eine gute Basis, um Echtzeit-Kommunikation zu verarbeiten. Durch die leichte Skalierbarkeit wird die Laufzeitumgebung oft bei der Entwicklung von Chatbots verwendet. Des weiteren wird es einem Entwickler leicht gemacht, zusätzliche Chat-Funktionen wie "Multi-Person-Chats" und Push-Benachrichtigungen zu erstellen. \cite{Anwendungen}
-    \item Internet of Things
-    \newline
-    IoT-Anwendungen bestehen in den meisten Fällen aus mehreren Sensoren, die häufig, kleine Datenpakete senden, die sich mit der Zeit zu einer großen Anzahl von Anfragen anhäufen können. Node.js eignet sich aufgrund der schnellen und gleichzeitigen Verarbeitung von Anfragen dafür umso mehr. \cite{Anwendungen}
-    \item Komplexe Single-Page-Anwendungen (SPAs)
-    \newline
-    Bei SPAs wird die ganze Anwendung in einer Seite geladen. In der Regel bedeutet das, dass im Hintergrund gewisse Anfragen für bestimmte Komponenten gestellt werden. Die Eventschleife spielt in diesem Fall eine große Bedeutung. \cite{Anwendungen}
-    \item REST API-basierte Anwendungen
-    \newline
-    Javascript wird nicht nur im Frontend, sondern auch im Backend von Webseiten eingesetzt. Mithilfe von Node.js besitzt ein Server somit die Möglichkeit, über REST APIs mit dem Frontend zu kommunizieren. Erwähnenswert ist noch, dass über Node.js bestimmte Pakete wie zum Beispiel Express.js zur Verfügung gestellt werden, die es noch einfacher machen, Webanwendungen zu erstellen. \cite{Anwendungen}
-    \item Daten-Streaming
-    \newline
-    Bekannte Unternehmen wie "Netflix" und "Disney+" nutzen Node.js für Streamingzwecke. Der Grund dafür ist der, dass die Laufzeitumgebung schnell und leichtgewichtig ist. Wichtig zu erwähnen ist, dass eine native Streaming-API in Node.js schon vorweg implementiert ist. Streams ermöglichen den Nutzern, Anfragen aneinander weiterzuleiten, was das Ergebnis mit sich bringt, dass die Daten direkt an ihr Ziel gestreamt werden. \cite{Anwendungen}
-    
-\end{enumerate}
+    \textbf{Chats in Echtzeit:}
+    Die Node.js Architektur bietet eine Basis, um Echtzeit-Kommunikation zu verarbeiten. Durch die leichte Skalierbarkeit wird die Laufzeitumgebung oft bei der Entwicklung von Chatbots, zusätzlichen Chat-Funktionen wie "Multi-Person-Chats" und Push-Benachrichtigungen verwendet.
 
+    \textbf{Internet of Things:}
+    IoT-Anwendungen bestehen in den meisten Fällen aus mehreren Sensoren, die häufig, kleine Datenpakete senden. Aufgrund der immer mehr werdenden Anfragen bietet sich Node.js durch seine Eigenschaften umso mehr dafür an.
 
+    \textbf{REST API-basierte Anwendungen:}
+    Javascript wird nicht nur im Frontend, sondern auch im Backend von Webseiten eingesetzt. Mithilfe von Node.js besitzt ein Server somit die Möglichkeit, über REST APIs mit dem Frontend zu kommunizieren. Node.js bietet die Möglichkeit, Pakete zur Verfügung zu stellen und damit die Erstellung von Webanwendungen zu erleichtern. 
+
+    \textbf{Daten-Streaming:}
+    Bekannte Unternehmen wie "Netflix" und "Disney+" nutzen Node.js für Streamingzwecke, dies ist aufgrund der schnellen Laufzeitumgebung möglich. Wichtig zu erwähnen ist, dass eine native Streaming-API in Node.js schon vorweg implementiert ist.
 
 
 \hfour{Hello World in Node.js}
@@ -85,6 +77,7 @@ Im oben genannten Codebeispiel wird das http-Modul als erstes geladen. Danach wi
 
 Node.js wird den Entwicklern mit dem bereits eingebauten Modul namens "HTTP" bereitgestellt, welches die Datenübertragung über das "HyperText Transfer Protocol" (HTTP) ermöglicht. \cite{HelloWorld}
 
+\pagebreak
 \hfour{NPM}
 \label{sec:npm}
 
@@ -92,13 +85,16 @@ Node.js wird den Entwicklern mit dem bereits eingebauten Modul namens "HTTP" ber
 NPM wird mit einem Kommandozeilenprogramm ausgeliefert. Die Möglichkeit besteht auch, auf der Webseite von NPM nach gewünschten Paketen zu suchen und diese mit einem einzigen Befehl zu installieren. Die Versionierung der Pakete und die Überprüfung von Abhängigkeiten kann eingerichtet werden. Node.js ist ein Dreh– und Angelpunkt für Entwickler*innen vor allem wegen dem "Package Support".
 Die Sicherheit von Paketen ist bei NPM durch den bereits eingebauten Sicherheits-Scanner gegeben. \cite{NPM}\cite{NPM2}\cite{NPMIntro}
 
+
 \begin{figure}[H]
     \centering
     \includegraphics{media/NodeJs/NPM.png}
     \caption{NPM Logo \cite{NPMLOGO}}
 \end{figure}
 
+\begin{minipage}\textwidth
 \hfive{Sicherheitslücken}
 Wie jede Anwendung hat NPM anfänglich Probleme mit Sicherheitslücken gehabt, die zum Glück behoben werden konnten. Bei der ersten bekannten Sicherheitslücke, die nach der Übernahme von NPM durch GitHub im Jahr 2021 aufgetreten ist, war das Problem, dass neue Verisonen von beliebigen Paketen hochgeladen- und somit gesehen Pakete erschienen sind, die auch mögliche Schadsoftware beeinhalten könnten. Das genaue Datum des erstmaligen Auftretens des Fehlers ist unbekannt, jedoch wird vermutet, dass es mindestens seit September 2020 schon möglich gewesen wäre, diese Sicherheitslücke zu missbrauchen. \cite{NPMSecurity}
+\end{minipage}
 
 
