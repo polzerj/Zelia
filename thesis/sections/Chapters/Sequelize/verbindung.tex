@@ -1,6 +1,6 @@
 \hfour{Verbindung zur Datenbank aufbauen}
 
-Um die Verbindung mit dem Datenbankserver herstzustellen ist folgendes notwendig:
+Um die Verbindung mit dem Datenbankserver herstzustellen, ist folgendes notwendig:
 
 Zu Beginn muss das Sequelize Framework eingebunden werden.
 
@@ -23,15 +23,15 @@ Weiters wird eine lokale Variable namens "sequelize" von der Klasse "Sequelize" 
 
 \typescriptsub{code/Sequelize/datenbankverb.ts}{Lokale Variable von der Klasse Sequelize}{4}{4}
 
-Diese lokale Variable wird nun mit "{\ttfamily = new Sequelize}" zu einem neuen Sequelize Objekt. Der Konstruktor von Sequelize, welcher in \ZELIA\ verwendet wird benötigt drei Parameter, nämlich einen Datenbanknamen, den Datenbankuser und das Passwort für den vorher angegebenen User. 
+Diese lokale Variable wird nun mit "{\ttfamily = new Sequelize}" zu einem neuen Sequelize Objekt. Der Konstruktor von Sequelize, welcher in \ZELIA\ verwendet wird, benötigt drei Parameter, nämlich einen Datenbanknamen, den Datenbankuser und das Passwort für den vorher angegebenen User. 
 
-Nachfolgend können außerdem diverseste Optionen angegeben werden. Im Projekt \ZELIA\ werden zwei Optionen verwendet, nämlich der "Host", bei welchem die Adresse des Datenbankserver mitgegeben wird, und den "dialect". Dieser gibt an auf welches Datenbanksystem zugegriffen werden soll.
+Nachfolgend können außerdem diverseste Optionen angegeben werden. Im Projekt \ZELIA\ werden zwei Optionen verwendet, nämlich der "Host", bei welchem die Adresse des Datenbankservers mitgegeben wird und den "dialect". Dieser gibt an, auf welches Datenbanksystem zugegriffen werden soll.
 
-Folgender Code ist für das oben beschriebene zuständig:
+Folgender Code ist für das oben Beschriebene zuständig:
 
 \typescriptsub{code/Sequelize/datenbankverb.ts}{Erzeugen eines neuen Sequelizeobjekts}{6}{9}
 
-Außerdem wird das Schlüsselwort "export" verwendet, da so das "Sequelize-Objekt" nun auch in anderen Dateien aufgerufen werden kann. Dies ist für den weiteren Datenbankzugriff und in weiterer folge die Verbindungsklassen wichtig.
+Außerdem wird das Schlüsselwort "export" verwendet, da so das "Sequelize-Objekt" nun auch in anderen Dateien aufgerufen werden kann. Dies ist für den weiteren Datenbankzugriff und in weiterer Folge für die Verbindungsklassen wichtig.
 
 \typescriptsub{code/Sequelize/datenbankverb.ts}{Exportieren des Sequelizeobjekts}{11}{11}
 
