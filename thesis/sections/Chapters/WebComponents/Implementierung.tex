@@ -46,7 +46,7 @@ Erst nachdem alle Ressourcen der Komponenten geladen wurden, wird der Client-Sid
     Wenn nun ein eigenes Element erstellt wird, hat der "Loader" die HTML-Ressource bereits geladen. Während der Initialisierung des Elements holt sich dieser die HTML-Ressource als Text. Im Konstruktor der Basiskomponente gibt es neben dem "query"-Parameter, welcher für die automatische Referenzierung verwendet wird, noch die "autoRender"- und "useShadowRoot"-Argumente. Standardmäßig sind beide Werte auf {\ttfamily true} gesetzt. Das heißt, die Komponente wird, sobald sie auf die Seite hinzugefügt wird, ihr HTML anzeigen und in ein "ShadowRoot" eingebunden. Durch das "ShadowRoot" wird es als eigenes Dokument angezeigt, unabhängig von dem wo es eingebunden wird. Dies behebt Überschneidungen von verschieden CSS-Styles. Somit sieht die Komponente jedes Mal gleich aus, unabhängig von der restlichen Seite.
 \end{minipage}
 
-Bevor der HTML-Text dargestellt werden kann, werden die States ersetzt (siehe Code Beispiel \ref{code:replhtml} und \ref{code:replhtml}, Seite \pageref{code:replhtml}). Danach wird geschaut ob die Elemente, die automatisch referenziert werden sollen, vorhanden sind. Falls sich ein "State" ändert, wird der Inhalt der Komponente automatisch neu erstellt und gerendert. Durch das neu Erstellen der Komponente bekommen auch die referenzierten Elemente neue Referenzen. Das könnte ein Problem sein, wenn man Komponenten hat, bei denen es wichtig ist, dass die Elemente "dieselben" bleiben. Somit sollte man sich um das Modifizieren dieser Komponenten selbst kümmern oder keine States ändern, sodass nicht neu gerendert werden muss.
+Bevor der HTML-Text dargestellt werden kann, werden die "States" ersetzt (siehe Code Beispiel \ref{code:replhtml} und \ref{code:replhtml}, Seite \pageref{code:replhtml}). Danach wird geschaut ob die Elemente, die automatisch referenziert werden sollen, vorhanden sind. Falls sich ein "State" ändert, wird der Inhalt der Komponente automatisch neu erstellt und gerendert. Durch das neu Erstellen der Komponente bekommen auch die referenzierten Elemente neue Referenzen. Das könnte ein Problem sein, wenn man Komponenten hat, bei denen es wichtig ist, dass die Elemente "dieselben" bleiben. Somit sollte man sich um das Modifizieren dieser Komponenten selbst kümmern oder keine "States" ändern, sodass nicht neu gerendert werden muss.
 
 \hfour{Eingebaute Komponenten}
 
@@ -55,7 +55,7 @@ Insgesamt besteht das komplette Frontend aus zwölf Komponenten, die auf acht Se
 \begin{figure}[H]
     \centering
     \includegraphics[width=150mm]{media/WebComponents/overview.svg.pdf}
-    \caption{Übersicht über alle Komponenten und Seiten (Komponenten: Blau, Seiten: Weiß)}
+    \caption{Übersicht über alle Komponenten (blau) und Seiten (weiß)}
     \label{fig:comppageoverview}
 \end{figure}
 
@@ -137,7 +137,7 @@ Wie beim Melden, gibt man auch hier eine EDU-Mailadresse an und zusätzlich dazu
 
 Meldungen und Buchungen kann man im sogenannten "Admin Dashboard" einsehen. Damit nicht jeder die Raumbuchungen und Defektmeldungen sieht, muss man sich mit einem Administratorbenutzer anmelden. Jede Buchung und Meldung ist einem Administratorbenutzer zugeteilt und kann somit von diesem abgearbeitet werden. Im Fall von \ZELIA\ im Schulzentrum Ungargasse, sind diese Administratoren meist Abteilungsleiter*innen oder Lehrer*innen, die für den gemeldeten oder gebuchten Raum zuständig sind. 
 
-Wie schon beschrieben, muss man als Administrator angemeldet sein, um Zugriff auf alle Meldungen und Buchungen zu haben. Hierfür gibt es die "Admin Login"-Seite, welche über den normalen ZELIA-Webserver aufgerufen werden kann. Auf dieser Webseite findet man eine Komponente, die ein Anmeldeformular anzeigt. Beim anmelden wird die Anfrage an den Server geschickt und auf die Antwort gewartet. Wenn der Server mit einem "JSON-Web-Token" (siehe Kapitel Authentifizierung "Json Web Token -- JWT" \ref{sec:jwt}) antwortet, wird dieser im "session storage" (siehe Kapitel "Webspeicher" \ref{sec:webstorage}) gespeichert und man wird auf die Übersichtsseite weitergeleitet.
+Wie schon beschrieben, muss man als Administrator angemeldet sein, um Zugriff auf alle Meldungen und Buchungen zu haben. Hierfür gibt es die "Admin Login"-Seite, welche über den normalen ZELIA-Webserver aufgerufen werden kann. Auf dieser Webseite findet man eine Komponente, die ein Anmeldeformular anzeigt. Beim Anmelden wird die Anfrage an den Server geschickt und auf die Antwort gewartet. Wenn der Server mit einem "JSON-Web-Token" (siehe Kapitel Authentifizierung "JSON Web Token -- JWT" \ref{sec:jwt}) antwortet, wird dieser im "session storage" (siehe Kapitel "Webspeicher" \ref{sec:webstorage}) gespeichert und man wird auf die Übersichtsseite weitergeleitet.
 
 \begin{figure}[H]
     \centering
