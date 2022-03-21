@@ -1,6 +1,6 @@
 \hthree{Der "Web Component" Standard}
 
-Web Components ermöglichen es den gleichen Code des Clients an mehreren Stellen zu verwenden. 
+Web Components ermöglichen es, den gleichen Code des Clients an mehreren Stellen zu verwenden. 
 Dazu wurden drei neue Technologien eingeführt \cite{MDNWebComponents}:
 
 \begin{itemize}
@@ -18,7 +18,7 @@ Custom Elements sind ES6-Klassen, die von der Klasse "{\ttfamily HTMLElement}" e
 
 \typescript{code/WebComponents/one.ts}{Erstellung einer Custom Element Klasse}
 
-Nachdem die, welche vom "{\ttfamily HTMLElement}" erbt erstellt wurde, kann diese als Custom Element registriert werden. 
+Nachdem die Klasse, welche vom "{\ttfamily HTMLElement}" erbt, erstellt wurde, kann diese als Custom Element registriert werden. 
 Dabei muss der Name des Elements vergeben werden, welcher einen Bindestrich enthalten muss.
 
 \typescript{code/WebComponents/two.ts}{Registrierung des Custom Elements}
@@ -49,7 +49,7 @@ Die Lifecycle-Methode "{\ttfamily adoptedCallback}" wird jedes Mal aufgerufen, w
 
 \typescriptsub{code/WebComponents/LifecycleExamples.ts}{"adoptedCallback" Beispiel}{24}{26}
 
-Der "{\ttfamily attributeChangedCallback}" Lifecycle-Callback wird jedes Mal aufgerufen, wenn ein Attribut des Custom Elements geändert wird. 
+Der "{\ttfamily attributeChangedCallback}" Lifecycle-Callback wird immer aufgerufen, wenn ein Attribut des Custom Elements geändert wird. 
 Ein Attribut ist eine Eigenschaft, welche im HTML-Tag definiert wird. 
 Beispielsweise ist "{\ttfamily href}" ein Attribut des in HTML5 vordefinierten Anker-Tags, welches die URL eines Links repräsentiert. 
 Damit dieser Callback ausgelöst wird, müssen die Namen der zu überwachenden Attribute von der statischen Eigenschaft "{\ttfamily observedAttributes}" zurückgegeben werden. \cite{MDNWebCustomElements} Beim Codebeispiel \ref{code:attributeChangedCallback} wird die Methode "{\ttfamily attributeChangedCallback}" nur aufgerufen, wenn die Attribute "from" und "to" geändert werden.
@@ -84,12 +84,12 @@ Der "Mode" wird auf "{\ttfamily open}" gesetzt, damit der "Shadow Root" befüllt
 \pagebreak
 \hfour{HTML Templates}
 
-Der "template"-Tag ermöglicht es HTML-Code in Custom Element zu füllen.
+Der "template"-Tag ermöglicht es, HTML-Code in Custom Element zu füllen.
 Templates werden auf der Webseite selbst nicht angezeigt, dennoch können sie mit Javascript referenziert werden. \cite{MDNtemplate}
 
 \html{code/WebComponents/nine.html}{Erstellung eines HTML Template}
 
-Damit das Template als Custom Element gerendert wird, muss der Content in dieses, oder dessen Shadow-DOM kopiert werden.
+Damit das Template als Custom Element gerendert wird, muss der Content in das Custom Element, oder dessen Shadow-DOM kopiert werden.
 
 \typescript{code/WebComponents/ten.ts}{Kopieren des Template in das Custom Element}
 
@@ -100,7 +100,7 @@ Dieser ermöglicht es, Inhalte an die Components weiterzugeben.
 Dafür muss allerdings ein Shadow-DOM verwendet werden. 
 Ein Slot wird immer mit seinem Namen referenziert. 
 Wenn bei einem Child-Node eines Custom Elements kein Slotname angegeben ist, dann wird dieses Node im Slot ohne Namen gerendert. 
-Unter einem Node versteht man sowohl ein HTML-Element als auch ein sogenannter Text-Node. 
+Unter einem Node versteht man sowohl ein HTML-Element als auch einen sogenannten Text-Node. 
 Letzteres ist ein Text, der direkt in das Element eingefügt wird. 
 Wird für einen Slot kein Node mit dem jeweiligen "{\ttfamily slot}"-Attribut gesetzt, dann wird der Inhalt des Slots als Standardwert verwendet. 
 \cite{MDNSlots}
@@ -117,6 +117,6 @@ Die Codebeispiele \ref{code:WebComponentExampleJS} und \ref{code:WebComponentExa
 
 {\ttfamily Hi Universe!!}
 
-Dabei werden die im Template definierten Texte "Hello" und "World" aufgrund der Slots mit den Texten "Hi" und "Universe" ersetzt. 
+Die im Template definierten Texte "Hello" und "World" werden aufgrund der Slots mit den Texten "Hi" und "Universe" ersetzt. 
 Dabei bezieht sich der Span aufgrund des "{\ttfamily slot}"-Attributes, welches auf "greeting" gesetzt ist, auf den Slot mit dem "{\ttfamily name}"-Attribut mit dem Wert "greeting". 
 Da der zweite Slot ohne Namen ist, wird der Text-Node "Universe" hier eingefügt.
