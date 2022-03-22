@@ -9,8 +9,8 @@ Wie vorhin erwähnt wird bei \ZELIA\ ein einfaches "index.html" verwendet, um da
 
 \typescript{code/CSRouter/interface.ts}{Schnittstellen der "Router" Klasse}
 
-Als "Root-Element" wird dem Konstruktor der "app"-Container mitgegeben. Der Inhalt von diesem Container wird jedes Mal, wenn eine neue Seite geladen wird, gelöscht und mit den neuen Daten befüllt. Somit gibt es die Möglichkeit statische Inhalte einzubauen, wie zum Beispiel eine Kopfzeile oder Impressum, ohne sie auf jeder Seite hinzufügen zu müssen.
-%TODO: jeder oder jede Seite
+Als "Root-Element" wird dem Konstruktor der "app"-Container mitgegeben. Der Inhalt von diesem Container wird jedes Mal, wenn eine neue Seite geladen wird, gelöscht und mit den neuen Daten befüllt. Somit gibt es die Möglichkeit statische Inhalte einzubauen, wie zum Beispiel eine Kopfzeile oder ein Impressum, ohne sie auf jeder Seite hinzufügen zu müssen.
+
 Nachdem der Router erstellt wurde, werden die notwendigen Routen initialisiert:
 
 \typescript[initRoutes]{code/CSRouter/init.ts}{Initialisierung der Routen}

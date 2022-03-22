@@ -92,8 +92,8 @@ Meist liefert der OCR-Prozess eindeutige Ergebnisse. Allerdings kann es auch pas
 
 \hfive{Rauminformationsseite}
 
-Wie der Name schon vermuten lässt, kann man auf der Rauminformationsseite alle Daten über einen Raum auslesen. Nachdem man einen Raum, entweder durch manuelle Eingabe oder durch das Einscannen der Nummer ausgewählt hat, wird man auf die jeweilige Rauminformationsseite umgeleitet. Aufgebaut ist die Seite aus insgesamt fünf Komponenten (siehe Abbildung \ref{fig:roominfoframes}). So wie bei der OCR-Seite gibt es auch hier einen Link, welcher zurück auf die Startseite führt. Zwei weitere Komponenten dienen als Knöpfe, um eine Meldung oder Buchung zu einem Raum zu erstellen. Wenn man einen der beiden drückt, wird man auf die jeweilige Seite, Meldung oder Buchung umgeleitet. Die letzten zwei Komponenten auf dieser Seite sind die Interessantesten, denn sie zeigen die Informationen zu einem Raum an. Die eine Komponente zeigt eine aufklappbare Liste an, um die physikalischen Daten eines Raumes anzusehen. Die andere Komponente wird verwendet, um den jeweiligen Raumstundenplan dazustellen.
-%TODO: "letzten zwei Komponenten auf dieser Seite sind die Interessantesten" -> Interessantesten groß oder klein?
+Wie der Name schon vermuten lässt, kann man auf der Rauminformationsseite alle Daten über einen Raum auslesen. Nachdem man einen Raum, entweder durch manuelle Eingabe oder durch das Einscannen der Nummer ausgewählt hat, wird man auf die jeweilige Rauminformationsseite umgeleitet. Aufgebaut ist die Seite aus insgesamt fünf Komponenten (siehe Abbildung \ref{fig:roominfoframes}). So wie bei der OCR-Seite gibt es auch hier einen Link, welcher zurück auf die Startseite führt. Zwei weitere Komponenten dienen als Knöpfe, um eine Meldung oder Buchung zu einem Raum zu erstellen. Wenn man einen der beiden drückt, wird man auf die jeweilige Seite, Meldung oder Buchung umgeleitet. Die letzten zwei Komponenten auf dieser Seite sind die interessantesten, denn sie zeigen die Informationen zu einem Raum an. Die eine Komponente zeigt eine aufklappbare Liste an, um die physikalischen Daten eines Raumes anzusehen. Die andere Komponente wird verwendet, um den jeweiligen Raumstundenplan dazustellen.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=120mm]{media/WebComponents/Rauminformationsseite_frames.png}
@@ -162,8 +162,7 @@ Die Komponente, welche Meldungen anzeigt, hat nur einen Knopf, um den Status der
 
 \begin{minipage}{\textwidth}
     \hfive{Die Fehlerseite}
-    %TODO fixierten oder fixiertem
-    Die Fehlerseite ist keine eigene Seite mit einem fixiertem Pfad, wie die anderen Seiten. Sie besteht nur aus der 404-"Not Found" Komponente und wird angezeigt, wenn auf einen nicht vorhandenen Pfad zugegriffen wird. 
+    Die Fehlerseite ist keine eigene Seite mit einem fixierten Pfad, wie die anderen Seiten. Sie besteht nur aus der 404-"Not Found" Komponente und wird angezeigt, wenn auf einen nicht vorhandenen Pfad zugegriffen wird. 
 \end{minipage}
 
 So kommt \zb\ wenn der Pfad "{\ttfamily /admin/passwords}" aufgerufen wird:
