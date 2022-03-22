@@ -1,11 +1,9 @@
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
-
 export default class LoginController extends ControllerBase {
   constructor() {
     super("/admin/login");
   }
-
   async post(req: Request, res: Response) {
     let user = req.body.username;
     let pwd = req.body.password;

@@ -99,7 +99,7 @@ Um den Inhalt der Components dynamisch zu machen, gibt es den HTML "Slot"-Tag.
 Dieser ermöglicht es, Inhalte an die Components weiterzugeben. 
 Dafür muss allerdings ein Shadow-DOM verwendet werden. 
 Ein Slot wird immer mit seinem Namen referenziert. 
-Wenn bei einem Child-Node eines Custom Elements kein Slotname angegeben ist, dann wird dieses Node im Slot ohne Namen gerendert. 
+Wenn bei einem Child-Node eines Custom Elements kein Slotname angegeben ist, dann wird dieser Node im Slot ohne Namen gerendert. 
 Unter einem Node versteht man sowohl ein HTML-Element als auch einen sogenannten Text-Node. 
 Letzteres ist ein Text, der direkt in das Element eingefügt wird. 
 Wird für einen Slot kein Node mit dem jeweiligen "{\ttfamily slot}"-Attribut gesetzt, dann wird der Inhalt des Slots als Standardwert verwendet. 
@@ -118,5 +118,5 @@ Die Codebeispiele \ref{code:WebComponentExampleJS} und \ref{code:WebComponentExa
 {\ttfamily Hi Universe!!}
 
 Die im Template definierten Texte "Hello" und "World" werden aufgrund der Slots mit den Texten "Hi" und "Universe" ersetzt. 
-Dabei bezieht sich der Span aufgrund des "{\ttfamily slot}"-Attributes, welches auf "greeting" gesetzt ist, auf den Slot mit dem "{\ttfamily name}"-Attribut mit dem Wert "greeting". 
+Dabei bezieht sich der Span aufgrund des "{\ttfamily slot}"-Attributes, welches auf "greeting" gesetzt ist, auf den Slot mit dem "{\ttfamily name}"-Attribut, das den Wert "greeting" enthält. 
 Da der zweite Slot ohne Namen ist, wird der Text-Node "Universe" hier eingefügt.

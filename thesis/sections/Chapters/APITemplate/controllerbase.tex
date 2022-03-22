@@ -1,6 +1,6 @@
 \hthree{Die "ControllerBase"-Klasse}
 
-Die abstrakte "ControllerBase"-Klasse ist die Basisklasse eines jeden "Controllers" und stellt die grundlegenden Funktionen bereit. 
+Die abstrakte "{\ttfamily ControllerBase}"-Klasse ist die Basisklasse eines jeden "Controller" und stellt die grundlegenden Funktionen bereit. 
 
 Der Konstruktor der "ControllerBase" nimmt zwei Parameter entgegen:
 
@@ -8,12 +8,12 @@ Der Konstruktor der "ControllerBase" nimmt zwei Parameter entgegen:
     \item["path"] Der Pfad, unter dem der "Controller" registriert werden soll.
     \item["middlewareParam"] Ein Objekt, welches das Interface "MiddlewareParam" implementiert und dabei die folgenden Parameter enthält:
     \begin{description}
-        \item["all"] wird bei allen Requests aufgerufen
-        \item["get"] wird bei GET-Requests aufgerufen
-        \item["post"] wird bei POST-Requests aufgerufen
-        \item["put"] wird bei PUT-Requests aufgerufen
-        \item["patch"] wird bei PATCH-Requests aufgerufen
-        \item["delete"] wird bei DELETE-Requests aufgerufen
+        \item["all"] … wird bei allen Requests aufgerufen
+        \item["get"] … wird bei GET-Requests aufgerufen
+        \item["post"] … wird bei POST-Requests aufgerufen
+        \item["put"] … wird bei PUT-Requests aufgerufen
+        \item["patch"] … wird bei PATCH-Requests aufgerufen
+        \item["delete"] … wird bei DELETE-Requests aufgerufen
     \end{description}
 \end{description}
 
