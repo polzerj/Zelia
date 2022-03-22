@@ -6,11 +6,11 @@ Docker Container fokussieren sich darauf, beim Ausfall oder der Aktualisierung e
 
 \hfour{Layer- und Image-Versionskontrolle}
 
-Jedes Image in Docker ist in den einzelnen Bestandteilen in Layern organsiert. Jeder einzelne Layer ist einem Image fix zuzuordnen. Bei jeder Veränderung oder Abänderung, welche ein Image betrifft, wird ein neuer Layer erstellt. Dies kommt zum Beispiel bei der Eingabe der Befehle: "docker run", oder "docker copy" vor. \cite{DockerGrundlagen}
+Jedes Image in Docker ist in den einzelnen Bestandteilen in Layern organsiert. Jeder einzelne Layer ist einem Image fix zuzuordnen. Bei jeder Veränderung oder Abänderung, welche ein Image betrifft, wird ein neuer Layer erstellt. Dies kommt zum Beispiel bei der Eingabe der Befehle: "docker run" oder "docker copy" vor. \cite{DockerGrundlagen}
 
 Die erstellten Layer aus alten Images werden beim Erstellen von neuen Containern wiederverwendet. Dies beschleunigt die Erstellung neuer Container gewaltig. Weiters können Änderungen, welche während des Betriebes passieren, von allen Docker Containern gleichzeitig verwendet werden, um so noch mehr Performance herauszuholen. \cite{DockerGrundlagen}
 
-In Bezug auf die Versionskontrolle kann man folgendes sagen: Durch die Containerorganisierung in Layern, welche immer ein Änderungsprotokoll enthalten, habe ich immer die gesamte Kontrolle über meine Docker Container. \cite{DockerGrundlagen}
+In Bezug auf die Versionskontrolle kann Folgendes gesagt werden: Durch die Containerorganisierung in Layern, welche immer ein Änderungsprotokoll enthalten, habe ich immer die gesamte Kontrolle über meine Docker Container. \cite{DockerGrundlagen}
 
 \hfour{Rollback}
 

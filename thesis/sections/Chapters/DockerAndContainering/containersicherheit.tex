@@ -1,6 +1,6 @@
 \hthree{Containersicherheit}
 
-Unter dem Überbegriff "Containersicherheit", wird der Schutz eines Container in einem System verstanden und hierbei die Abwicklung eines Prozesses, eines Services, oder aber auch die gesamte Systeminfrastruktur des Services. \cite{ContainerSecurity}
+Unter dem Überbegriff "Containersicherheit" wird der Schutz eines Container in einem System verstanden und hierbei die Abwicklung eines Prozesses, eines Services oder aber auch die gesamte Systeminfrastruktur des Services. \cite{ContainerSecurity}
 
 \begin{figure}[H]
     \centering
@@ -10,11 +10,11 @@ Unter dem Überbegriff "Containersicherheit", wird der Schutz eines Container in
 
 \hfour{Imagesicherheit}
 
-Container oder besser gesagt Services, welche in Containern laufen gelassen werden, werden über sogenannte "Images" bereitgestellt. Dies bietet Angreiferinnen und Angreifern die Möglichkeit, über ein schädliches "Image" Schadsoftware oder Sicherheitslücken direkt beim Initialisieren des Systems mitzuinstallieren, oder zu öffnen. Wichtig ist daher, dass das "Basisimage", also der Ausgangspunkt für weitere "Images" und Services sicher und geschützt ist. \cite{ContainerSecurity}
+Container oder besser gesagt Services, welche in Containern laufen gelassen werden, werden über sogenannte "Images" bereitgestellt. Dies bietet Angreiferinnen und Angreifern die Möglichkeit, über ein schädliches "Image" Schadsoftware oder Sicherheitslücken direkt beim Initialisieren des Systems mitzuinstallieren oder zu öffnen. Wichtig ist daher, dass das "Basisimage", also der Ausgangspunkt für weitere "Images" und Services, sicher und geschützt ist. \cite{ContainerSecurity}
 
 Es ist daher wichtig, dass die Entwickler*innen nur "Images" verwenden, welche vertrauenswürdig und sicher sind. Eine 100\% Sicherheit kann jedoch nie gewährleistet sein, da durch das Verändern der Konfiguration oder dem Hinzufügen von neuen Anwendungen wieder Sicherheitslücken entstehen können. \cite{ContainerSecurity}
 
-Ein sicherer Ort für das Auswählen und Verwenden von "Images" ist der "Docker Hub" (Abbildung \ref{fig:dockerhub}), da im Menü auf der rechten Seite ausgewählt werden kann, ob der Ersteller des "Images" ein verifizierter Ersteller sein muss. \cite{ContainerSecurity}
+Ein sicherer Ort für das Auswählen und Verwenden von "Images" ist der "Docker Hub" (Abbildung \ref{fig:dockerhub}), da im Menü auf der rechten Seite ausgewählt werden kann, ob die Ersteller*innen des "Images" verifizierte sein müssen. \cite{ContainerSecurity}
 
 \begin{figure}[H]
     \centering
@@ -36,7 +36,7 @@ Zusammengefasst kann gesagt werden, dass sich vor der Auswahl eines "Images" die
 
 Nachdem der Container nun mit dem gewünschten "Image" richtig aufgesetzt wurde, ist es nun wichtig, den Zugriff auf diesen abzusichern. Egal ob der Container nun entwickelt wird (zum Beispiel ein Datenbankcontainer) oder einen Service (beispielsweise einen Service zum Herunterladen) bereitstellt. 
 
-Der Zugriff auf den Container kann durch eine sogenannte "Private Registry" rollenbasiert geregelt werden. Über "Metadaten" kann die Kontrolle von den Daten, auf welche zugegriffen werden soll, kontrolliert werden. Bei "Metadaten" werden beispielsweise schon bekannte Sicherheitslücken weiterverfolgt, oder nach neu auftretenden gesucht. Durch die "Private Registry" werden globale Richtlinien für Container und deren "Images" automatisch bereitgestellt. Dies hat den Vorteil, dass menschliches Versagen im Bereich der Richtlinien minimiert werden kann. \cite{ContainerSecurity}
+Der Zugriff auf den Container kann durch eine sogenannte "Private Registry" rollenbasiert geregelt werden. Über "Metadaten" kann die Kontrolle von den Daten, auf welche zugegriffen werden soll, kontrolliert werden. Bei "Metadaten" werden beispielsweise schon bekannte Sicherheitslücken weiterverfolgt oder nach neu auftretenden gesucht. Durch die "Private Registry" werden globale Richtlinien für Container und deren "Images" automatisch bereitgestellt. Dies hat den Vorteil, dass menschliches Versagen im Bereich der Richtlinien minimiert werden kann. \cite{ContainerSecurity}
 
 Die Entwickler*innen sollten sich im Bereich der Zugriffsverwaltung Antworten zu folgende vier Fragen überlegen:
 
