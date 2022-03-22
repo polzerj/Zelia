@@ -1,16 +1,16 @@
 \hthree{Implementierung}
 \label{sec:csrouterimp}
 
-"Frontend Routing" ist, ein bisschen komplizierter zu implementieren. Wenn man kein Framework wie \zb: Angular verwendet, muss man praktisch alles selbst implementieren. Bei \ZELIA\ wurde kein Framework verwendet, sondern  ein eigenes kleines "Frontend Service" geschrieben, das an die Bedürfnisse von \ZELIA\ angepasst ist.
+"Frontend Routing" ist ein bisschen komplizierter zu implementieren. Wenn man kein Framework wie \zb: Angular verwendet, muss man praktisch alles selbst implementieren. Bei \ZELIA\ wurde kein Framework verwendet, sondern  ein eigenes, kleines "Frontend Service" geschrieben, welches an die Bedürfnisse von \ZELIA\ angepasst ist.
 
-Aufteilen kann man die Client Bibliothek wie schon gesagt in zwei Teile: Das Komponentensystem und den Client-Side-Router. Das Komponentensystem wurde vorher schon beschrieben (siehe Kapitel WebComponents \ref{sec:webcomponents}). Beide Teile der Bibliothek haben keine Abhängigkeiten und können getrennt voneinander laufen. Sie sind beide für den Anwendungsfall in \ZELIA\ entwickelt, können aber auch problemlos einzeln für andere Web-Applikationen verwendet werden.
+Aufteilen kann man die Client Bibliothek wie schon gesagt in zwei Teile: Das Komponentensystem und den Client-Side-Router. Das Komponentensystem wurde vorher schon beschrieben (siehe Kapitel WebComponents \ref{sec:webcomponents}). Beide Teile der Bibliothek haben keine Abhängigkeiten und können getrennt voneinander laufen. Sie sind für den Anwendungsfall in \ZELIA\ entwickelt, können aber auch problemlos für andere Web-Applikationen verwendet werden.
 
-Wie vorhin erwähnt wird bei \ZELIA\ ein einfaches "index.html" verwendet, um das Skript zu laden, welches sich um die gesamte Seite kümmert. Zusätzlich ist ein leerer Container mit dem Namen "app" definiert, der sich auf der Webseite befindet. Dieser Container wird vom Client-Side-Router verwendet um Seiten dynamisch in die Hauptseite, die nie wirklich verlassen wird, hineinzuladen. Wenn das Skript vom Browser gestartet wird, erstellt \ZELIA\ ein Router Objekt mit folgenden Schnittstellen:
+Wie vorhin erwähnt wird bei \ZELIA\ ein einfaches "index.html" verwendet, um das Skript zu laden, welches sich um die gesamte Seite kümmert. Zusätzlich ist ein leerer Container mit dem Namen "app" definiert, der sich auf der Webseite befindet. Dieser Container wird vom Client-Side-Router verwendet, um Seiten dynamisch in die Hauptseite, die nie wirklich verlassen wird, hineinzuladen. Wenn das Skript vom Browser gestartet wird, erstellt \ZELIA\ ein Router Objekt mit folgenden Schnittstellen:
 
 \typescript{code/CSRouter/interface.ts}{Schnittstellen der "Router" Klasse}
 
-Als "Root-Element" wird dem Konstruktor der "app"-Container mitgegeben. Der Inhalt von diesem Container wird jedes Mal, wenn eine neue Seite geladen wird, gelöscht und mit den neuen Daten befüllt. Somit gibt es die Möglichkeit statische Inhalte einzubauen, wie zum Beispiel eine Kopfzeile oder Impressum, ohne sie in jede Seite hinzufügen zu müssen.
-
+Als "Root-Element" wird dem Konstruktor der "app"-Container mitgegeben. Der Inhalt von diesem Container wird jedes Mal, wenn eine neue Seite geladen wird, gelöscht und mit den neuen Daten befüllt. Somit gibt es die Möglichkeit statische Inhalte einzubauen, wie zum Beispiel eine Kopfzeile oder Impressum, ohne sie auf jeder Seite hinzufügen zu müssen.
+%TODO: jeder oder jede Seite
 Nachdem der Router erstellt wurde, werden die notwendigen Routen initialisiert:
 
 \typescript[initRoutes]{code/CSRouter/init.ts}{Initialisierung der Routen}
@@ -20,7 +20,7 @@ Der erste Parameter ist der Pfad und der Zweite ist der Controller, welcher ausg
 
 \typescript{code/CSRouter/hw_example.ts}{Beispiel einer "Hello World"-Seite}
 
-Im Codebeispiel \ref{initRoutes}, Zeile fünf bis sieben, wird der Pfadeintrag "{\ttfamily /room/:roomNumber}" verwendet. Der Router leitet somit alle "{\ttfamily /room/...}" auf den verknüpften Controller um. Wenn dieser aufgerufen wird, bekommt er als Parameter die Werte von dem Platzhaltern mitgeliefert:
+Im Codebeispiel \ref{initRoutes}, Zeile fünf bis sieben, wird der Pfadeintrag "{\ttfamily /room/:roomNumber}" verwendet. Der Router leitet somit alle "{\ttfamily /room/...}" auf den verknüpften Controller um. Wenn dieser aufgerufen wird, bekommt er als Parameter die Werte von den Platzhaltern mitgeliefert:
 
 \typescript{code/CSRouter/placeholder.ts}{Beispiel "Controller" mit Platzhalter}
 
@@ -30,9 +30,9 @@ Wenn ein Link ausgewählt wird, fängt \ZELIA\ die Anfrage an den Server ab und 
 
 \typescript{code/CSRouter/redirect.ts}{Umleitung in einem Event}
 
-Im  Hintergrund wird jedes Mal beim Umleiten ein Eintrag in den Verlauf hinzugefügt. Bei diesem Eintrag wird der besuchte Pfad gespeichert. Der Browser speichert den Verlauf einer Seite als Stack. Dadurch kann man nur oben Elemente hinzufügen oder das Oberste herunternehmen. Somit kann man das Event "onPop" welches der Browser feuert, abfangen und selbst mit dem Router umleiten:
+Im  Hintergrund wird jedes Mal beim Umleiten ein Eintrag in den Verlauf hinzugefügt. Bei diesem Eintrag wird der besuchte Pfad gespeichert. Der Browser speichert den Verlauf einer Seite als Stack. Dadurch kann man nur oben Elemente hinzufügen oder das Oberste herunternehmen. Somit kann man das Event "onPop", welches der Browser feuert, abfangen und selbst mit dem Router umleiten:
 
-\typescript[code:routerhistory]{code/CSRouter/history.ts}{Abfangen und Umleiten, wenn der Verlauf geändert wird}
+\typescript[code:routerhistory]{code/CSRouter/history.ts}{Abfangen und umleiten, wenn der Verlauf geändert wird}
 
 Im Codebeispiel \ref{code:routerhistory} steht das zweite Argument für "Silent History", womit kein Eintrag in den Verlauf gemacht wird.
 
@@ -40,4 +40,4 @@ Wenn der Router auf einen Pfad umleiten soll den er nicht kennt, dann lädt er d
 
 \typescript{code/CSRouter/notfound.ts}{Laden der 404 Komponente in die Fehlerseite}
 
-Mit all den oben beschriebenen Maßnahmen kann der \ZELIA\ Client-Service zwischen verschiedenen logischen Seiten wechseln, ohne jemals die eigentliche Seite zu verlassen.
+Mit all den oben beschriebenen Maßnahmen kann der \ZELIA-Client-Service zwischen verschiedenen logischen Seiten wechseln, ohne jemals die eigentliche Seite zu verlassen.

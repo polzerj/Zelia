@@ -6,9 +6,9 @@
     \caption{Architektur des Clients}
 \end{figure}
 
-Der \ZELIA-Client ist eine Web-Anwendung welche in HTML, CSS und Typescript von Grund auf selbst entwickelt ist. Es wird nur eine externe Bibliothek für die Funktionalität der Webseite verwendet, nämlich TesseractJS. Das Tesseract-Projekt ist ein "Open Source"-Softwareprojekt, welches Texte aus Bildern extrahiert. Bei \ZELIA\ wird das benötigt um mit der Smartphonekamera die Raumnummern, zum Beispiel von Türschildern, einzuscannen (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}, Seite \pageref{sec:ocr}).
+Der \ZELIA-Client ist eine Web-Anwendung, welche in HTML, CSS und Typescript von Grund auf selbst entwickelt ist. Es wird nur eine externe Bibliothek für die Funktionalität der Webseite verwendet, nämlich TesseractJS. Das Tesseract-Projekt ist ein "Open Source"-Softwareprojekt, welches Texte aus Bildern extrahiert. Bei \ZELIA\ wird das benötigt, um mit der Smartphonekamera Raumnummern einzuscannen (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}, Seite \pageref{sec:ocr}).
 
-Dadurch, dass keine fremde Bibliotheken (außer TesseractJS) verwendet werden, ist die "Frontend-Engine" selbst entworfen und implementiert. Diese "Engine" ist eine Ansammlung an Funktionen, um eine moderne Webseite zu erstellen. Die Anforderungen für diese Bibliothek waren, dass man sie von \ZELIA\ trennen kann und sie somit für jede andere Webseite wiederverwendbar ist. Dafür wurde die Bibliothek komplett unabhängig von dem eigentlichen Projekt geplant. 
+Dadurch, dass keine fremden Bibliotheken (außer TesseractJS) verwendet werden, ist die "Frontend-Engine" selbst entworfen und implementiert. Diese "Engine" ist eine Ansammlung an Funktionen, um eine moderne Webseite zu erstellen. Die Anforderungen für diese Bibliothek waren, dass man sie von \ZELIA\ trennen kann und sie somit für jede andere Webseite wiederverwendbar ist. Dafür wurde die Bibliothek komplett unabhängig von dem eigentlichen Projekt geplant. 
 
 Dieses "Frontend Framework" besteht aus zwei logischen Teilen, die nichts miteinander zu tun haben:
 \begin{itemize}

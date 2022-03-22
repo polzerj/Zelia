@@ -9,11 +9,11 @@ Das Komponentensystem ist der erste Teil der ZELIA-Frontend-Bibliothek, der entw
 
 \hfour{Architektur}
 
-Wie bereits im Standard beschrieben, muss es eine Klasse geben, welche von "HTMLElement" erbt, um als "Custom HTML Element" verwendet werden zu können. So gibt es in der \ZELIA\ Implementierung die abstrakte Klasse "Component" von der alle anderen Komponenten erben.
+Wie bereits im Standard beschrieben, muss es eine Klasse geben, welche von "HTMLElement" erbt, um als "Custom HTML Element" verwendet werden zu können. So gibt es in der \ZELIA\ Implementierung die abstrakte Klasse "Component", von der alle anderen Komponenten erben.
 
 \typescript{code/WebComponents/BaseInterfaces.ts}{Schnittstellen der Basiskomponente}
 
-Die jeweils dazugehörige HTML Quelle wird vom sogenannten "Component Loader", beim Aufruf der Webseite, geladen und zwischengespeichert. Dadurch muss nicht jede Komponente ihren Darstellungscode selbst herunterladen, wenn sie verwendet wird, wie es bei manchen Bibliotheken (\zb: Angular oder ...) der Fall ist. Somit ist es kaum merkbar, wenn man eine Seite wechselt, denn das Grundgerüst der Seite kann angezeigt werden, während die eigentlichen Informationen noch nachgeladen werden. 
+Die jeweils dazugehörige HTML Quelle wird vom sogenannten "Component Loader", beim Aufruf der Webseite, geladen und zwischengespeichert. Dadurch muss nicht jede Komponente ihren Darstellungscode selbst herunterladen, wie es bei manchen Bibliotheken der Fall ist. Somit ist es kaum merkbar, wenn man eine Seite wechselt. Das Grundgerüst der Seite kann angezeigt werden, während die eigentlichen Informationen noch nachgeladen werden. 
 
 Mit Hilfe von "States" kann man Texte dynamisch ersetzen, wie es auch in anderen Bibliotheken gemacht wird.
 
@@ -33,8 +33,8 @@ In diesem Beispiel wird das Element "{\ttfamily button}" gesucht. Dieses Element
 
 Im Endeffekt steht dann auf dem Knopf "Click Me". Das "Click" wird mithilfe der
 "States" ersetzt und danach wird über die Elementreferenz ein " Me" angehängt. Das automatische Finden von Referenzen ist wichtig, um Events abzufangen oder Elemente zu modifizieren, wenn es notwendig ist.
-
-Wie oben erwähnt, lädt der "Component Loader" die notwendigen HTML-Files und speichert sie. Diese Daten werden dann von der Basis "Component" Klasse, welche den Namen des HTML-Elements im Konstruktor als Parameter bekommt, verwendet. Über diesen Namen holt sich die Komponente, wenn sie erstellt wird, die HTML Ressource. Wenn sie schließlich angezeigt werden soll, ersetzt sie die "States" und fügt sich selbst in die Webseite hinzu.
+%TODO: fix all highlighting in code segments 
+Wie oben erwähnt, lädt der "Component Loader" die notwendigen HTML-Files und speichert sie. Diese Daten werden dann von der Basis "Component"-Klasse, welche den Namen des HTML-Elements im Konstruktor als Parameter bekommt, verwendet. Über diesen Namen holt sich die Komponente, wenn sie erstellt wird, die HTML Ressource. Wenn sie schließlich angezeigt werden soll, ersetzt sie die "States" und fügt sich selbst in die Webseite hinzu.
 
 \typescript{code/WebComponents/ComponentLoader.ts}{Laden einer Komponente}
 
@@ -63,7 +63,7 @@ Insgesamt besteht das komplette Frontend aus zwölf Komponenten, die auf acht Se
     \hfive{Die Startseite}
     \label{sec:webcompstart}
     
-    Auf dem Root-Pfad ("/") liegt die Willkommensseite von ZELIA. Auf ihr findet man die Raumeingabekomponente, die von der ZELIA-API alle möglichen Raumnummern abfragt und als Auswahlhilfe anzeigt. Auf Mobilgeräten, wie Smartphones oder Tablets, wird zusätzlich ein Knopf angezeigt. Dieser ermöglicht es die Raumnummer mit der Kamera des Geräts einzulesen. Wenn man auf diesen Knopf drückt, wird man zur "OCR"-Seite weitergeleitet. Gibt man die Raumnummer selbst ein, landet man sofort auf der Rauminformationsseite. Während der manuellen Eingabe werden alle bekannten Räume, in einer dynamisch generierten Dropdown-Liste unter der Eingabebox, angezeigt. Gibt man einen Buchstaben des Raumnamens oder Raumnummer an, so werden nur mehr Ergebnisse angezeigt, in denen das angegebene Muster vorkommt.
+    Auf dem Root-Pfad ("/") liegt die Willkommensseite von ZELIA. Auf ihr findet man die Raumeingabekomponente, die von der ZELIA-API alle möglichen Raumnummern abfragt und als Auswahlhilfe anzeigt. Auf Mobilgeräten, wie Smartphones oder Tablets, wird zusätzlich ein Knopf angezeigt. Dieser ermöglicht es die Raumnummer mit der Kamera des Geräts einzulesen. Wenn man auf diesen Knopf drückt, wird man zur "OCR"-Seite weitergeleitet. Gibt man die Raumnummer selbst ein, landet man sofort auf der Rauminformationsseite. Während der manuellen Eingabe werden alle bekannten Räume in einer dynamisch generierten Dropdown-Liste, unter der Eingabebox, angezeigt. Gibt man einen Buchstaben des Raumnamens oder Raumnummer an, so werden nur mehr Ergebnisse angezeigt, in denen das angegebene Muster vorkommt.
 \end{minipage}
 
 Beispiel:
@@ -78,7 +78,7 @@ Beispiel:
 
 \hfive{Die "OCR"-Seite}
 
-Auf dieser Seite können alle Geräte, die eine Kamera haben, eine Raumnummer von Raumschildern, Plakaten, usw., einscannen. Diese Anforderung wurde mittels "Optical Character Recognition", kurz "OCR", bewerkstelligt (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}). Die "OCR"-Seite besteht aus zwei Komponenten. Eine zeigt an was die Kamera sieht und die Andere dient als Link, um zurück zur Startseite zu kommen. Die Komponente, welche den Scanner anzeigt, ist auch zuständig den OCR-Service (siehe Kapitel Tesseract \ref{sec:tesseract}, Seite \pageref{sec:tesseract}) zu starten. Mit Hilfe von diesem wird dann der Text aus den Bildern ausgelesen. Bevor das Bild an den OCR-Service übergeht, wird es durch unsere App auf zwei Farben komprimiert und zusammengeschnitten, sodass nur mehr der markierte Fokusbereich der Kamera weiter zu verarbeiten bleibt (siehe Abbildung \ref{fig:ocrpage}).
+Auf dieser Seite können alle Geräte die eine Kamera haben, eine Raumnummer von Raumschildern, Plakaten, usw., einscannen. Diese Anforderung wurde mittels "Optical Character Recognition", kurz "OCR", bewerkstelligt (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}). Die "OCR"-Seite besteht aus zwei Komponenten. Eine zeigt an was die Kamera sieht und die Andere dient als Link, um zurück zur Startseite zu kommen. Die Komponente, welche den Scanner anzeigt, ist auch zuständig den OCR-Service (siehe Kapitel Tesseract \ref{sec:tesseract}, Seite \pageref{sec:tesseract}) zu starten. Mit Hilfe von diesem wird dann der Text aus den Bildern ausgelesen. Bevor das Bild an den OCR-Service übergeht, wird es durch unsere App auf zwei Farben komprimiert und zusammengeschnitten, sodass nur mehr der markierte Fokusbereich der Kamera weiter zu verarbeiten bleibt (siehe Abbildung \ref{fig:ocrpage}).
 
 \begin{figure}[H]
     \centering
@@ -92,8 +92,8 @@ Meist liefert der OCR-Prozess eindeutige Ergebnisse. Allerdings kann es auch pas
 
 \hfive{Rauminformationsseite}
 
-Wie der Name schon vermuten lässt, kann man auf der Rauminformationsseite alle Daten über einen Raum auslesen. Nachdem man einen Raum, entweder durch manuelle Eingabe oder durch das Einscannen der Nummer ausgewählt hat, wird man auf die jeweilige Rauminformationsseite umgeleitet. Aufgebaut ist die Seite aus insgesamt fünf Komponenten (siehe Abbildung \ref{fig:roominfoframes}). So wie bei der OCR-Seite gibt es auch hier einen Link, welcher zurück auf die Startseite führt. Zwei weitere Komponenten dienen als Knöpfe, um eine Meldung oder Buchung zu einem Raum zu erstellen. Wenn man einen der beiden drückt, wird man auf die jeweilige Seite, Meldung oder Buchung umgeleitet. Die letzten zwei Komponenten auf dieser Seite sind die interessantesten, denn sie zeigen die Informationen zu einem Raum an. Die eine Komponente zeigt eine aufklappbare Liste an, um die physikalischen Daten eines Raumes anzusehen. Die andere Komponente wird verwendet, um den jeweiligen Raumstundenplan dazustellen.
-
+Wie der Name schon vermuten lässt, kann man auf der Rauminformationsseite alle Daten über einen Raum auslesen. Nachdem man einen Raum, entweder durch manuelle Eingabe oder durch das Einscannen der Nummer ausgewählt hat, wird man auf die jeweilige Rauminformationsseite umgeleitet. Aufgebaut ist die Seite aus insgesamt fünf Komponenten (siehe Abbildung \ref{fig:roominfoframes}). So wie bei der OCR-Seite gibt es auch hier einen Link, welcher zurück auf die Startseite führt. Zwei weitere Komponenten dienen als Knöpfe, um eine Meldung oder Buchung zu einem Raum zu erstellen. Wenn man einen der beiden drückt, wird man auf die jeweilige Seite, Meldung oder Buchung umgeleitet. Die letzten zwei Komponenten auf dieser Seite sind die Interessantesten, denn sie zeigen die Informationen zu einem Raum an. Die eine Komponente zeigt eine aufklappbare Liste an, um die physikalischen Daten eines Raumes anzusehen. Die andere Komponente wird verwendet, um den jeweiligen Raumstundenplan dazustellen.
+%TODO: "letzten zwei Komponenten auf dieser Seite sind die Interessantesten" -> Interessantesten groß oder klein?
 \begin{figure}[H]
     \centering
     \includegraphics[width=120mm]{media/WebComponents/Rauminformationsseite_frames.png}
@@ -117,13 +117,13 @@ Damit man Defekte in einem Raum melden kann, gibt man eine EDU-Mail-Adresse, das
     \caption{Meldungsseite}
 \end{figure}
 
-Eine Buchungsanfrage für einen Raum zu erstellen, geht ebenso einfach, wie Defekte zu melden. Hierfür gibt man drei Dinge an: 
+Eine Buchungsanfrage für einen Raum zu erstellen, geht ebenso einfach wie Defekte zu melden. Hierfür gibt man drei Dinge an: 
 \begin{itemize}
     \item Den Tag, an dem man den Raum verwenden will
     \item Die Unterrichtsstunde, in der man startet
     \item Die Anzahl an Stunden, die man den Raum nutzen möchte
 \end{itemize} 
-Wie beim Melden, gibt man auch hier eine EDU-Mailadresse an und zusätzlich dazu sollte man noch einen Buchungsgrund angeben, um kurz zu beschreiben, wofür man den Raum benötigt.
+Wie beim Melden gibt man auch hier eine EDU-Mailadresse an. Zusätzlich sollte man noch einen Buchungsgrund angeben, um kurz zu beschreiben wofür man den Raum benötigt.
 
 \begin{figure}[H]
     \centering
@@ -135,7 +135,7 @@ Wie beim Melden, gibt man auch hier eine EDU-Mailadresse an und zusätzlich dazu
 \hfive{"Admin Login" und "Dashboard"}
 \label{sec:webcomplogdash}
 
-Meldungen und Buchungen kann man im sogenannten "Admin Dashboard" einsehen. Damit nicht jeder die Raumbuchungen und Defektmeldungen sieht, muss man sich mit einem Administratorbenutzer anmelden. Jede Buchung und Meldung ist einem Administratorbenutzer zugeteilt und kann somit von diesem abgearbeitet werden. Im Fall von \ZELIA\ im Schulzentrum Ungargasse, sind diese Administratoren meist Abteilungsleiter*innen oder Lehrer*innen, die für den gemeldeten oder gebuchten Raum zuständig sind. 
+Meldungen und Buchungen kann man im sogenannten "Admin Dashboard" einsehen. Damit nicht jeder die Raumbuchungen und Defektmeldungen sieht, muss man sich mit einem Administratorbenutzer anmelden. Jede Buchung und Meldung ist einem Administratorbenutzer zugeteilt und kann somit von diesem abgearbeitet werden. Im Fall von \ZELIA\ im Schulzentrum Ungargasse, sind diese Administratoren meist Abteilungsleiter*innen oder Lehrer*innen.
 
 Wie schon beschrieben, muss man als Administrator angemeldet sein, um Zugriff auf alle Meldungen und Buchungen zu haben. Hierfür gibt es die "Admin Login"-Seite, welche über den normalen ZELIA-Webserver aufgerufen werden kann. Auf dieser Webseite findet man eine Komponente, die ein Anmeldeformular anzeigt. Beim Anmelden wird die Anfrage an den Server geschickt und auf die Antwort gewartet. Wenn der Server mit einem "JSON-Web-Token" (siehe Kapitel Authentifizierung "JSON Web Token -- JWT" \ref{sec:jwt}) antwortet, wird dieser im "session storage" (siehe Kapitel "Webspeicher" \ref{sec:webstorage}) gespeichert und man wird auf die Übersichtsseite weitergeleitet.
 
@@ -147,7 +147,7 @@ Wie schon beschrieben, muss man als Administrator angemeldet sein, um Zugriff au
 
 Landet man auf der "Admin Dashboard"-Seite, wird zuerst überprüft, ob ein Token im "session storage" gespeichert ist. Wenn keiner vorhanden ist, wird man sofort auf die Anmeldeseite umgeleitet. Bei einem vorhandenen Token werden alle Meldungen und Buchungen, die den Filtereinstellungen entsprechen, vom Server abgefragt. In dieser Anfrage wird auch der Token mitgeschickt. Am Server wird geprüft ob der Token gültig ist und wenn dies der Fall ist, bekommt der Client die angefragten Daten. Ist der Token ungültig, schickt der Server dem Client den HTTP-Code 401 "Unauthorized" und man wird zurück auf die Anmeldeseite umgeleitet.
 
-Hat der Client die Buchungen und Meldungen erhalten, werden zwei Komponenten verwendet, um diese anzuzeigen. Anders als auf den anderen Seiten werden mehrere Instanzen dieser beiden Komponenten erstellt, um alle Daten darzustellen. Jede Buchung und Meldung ist somit in einer eigenen Instanz einer Komponente untergebracht. Beide dieser Komponenten können aufgeklappt werden, um alle damit verknüpften Informationen einzusehen. Zugeklappt bestehen sie aus einer Zusammenfassung der Daten (siehe Abbildung \ref{fig:admindashboard}).
+Hat der Client die Buchungen und Meldungen erhalten, werden zwei Komponenten verwendet, um diese anzuzeigen. Anders als auf den anderen Seiten werden mehrere Instanzen dieser beiden Komponenten erstellt, um alle Daten darzustellen. Jede Buchung und Meldung ist somit in einer eigenen Instanz einer Komponente untergebracht. Beide dieser Komponenten können aufgeklappt werden, um alle damit verknüpften Informationen zu sehen. Zugeklappt bestehen sie aus einer Zusammenfassung der Daten (siehe Abbildung \ref{fig:admindashboard}).
 
 Die Buchungskomponente hat zwei verschiedene Knöpfe, um die Buchungsanfrage zu verarbeiten. Einen zum "Akzeptieren" und den anderen zum "Ablehnen". Zusätzlich kann man einen kurzen Informationstext schreiben, der den Buchenden mit der Buchungsbestätigung gesendet wird. 
 
@@ -162,7 +162,7 @@ Die Komponente, welche Meldungen anzeigt, hat nur einen Knopf, um den Status der
 
 \begin{minipage}{\textwidth}
     \hfive{Die Fehlerseite}
-    
+    %TODO fixierten oder fixiertem
     Die Fehlerseite ist keine eigene Seite mit einem fixiertem Pfad, wie die anderen Seiten. Sie besteht nur aus der 404-"Not Found" Komponente und wird angezeigt, wenn auf einen nicht vorhandenen Pfad zugegriffen wird. 
 \end{minipage}
 
