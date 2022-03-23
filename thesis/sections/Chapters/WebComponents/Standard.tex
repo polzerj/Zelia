@@ -33,8 +33,8 @@ Diese "lifecycle callbacks" sind spezielle Methoden in einer Klasse, welche von 
 
 \typescript{code/WebComponents/LifecycleExamples.ts}{Beispiel eines Custom Elements mit Lifecycle-Methoden}
 
-Der "{\ttfamily connectedCallback}" ist eine der Lifecycle-Methoden und wird aufgerufen, wenn das Element in das DOM eingefügt wird. 
-Das DOM (Document Object Model) ist eine Programmierschnittstelle, über die auf die einzelnen HTML-Elemente zugegriffen werden kann. \cite{MDNDOM} Im "{\ttfamily connectedCallback}" können zum Beispiel Event-Listeners registriert werden. \cite{MDNWebCustomElements}
+Der "{\ttfamily connectedCallback}" ist eine der Lifecycle-Methoden und wird aufgerufen, wenn das Element in das DOM (Document Object Model) eingefügt wird. 
+Das DOM ist eine Programmierschnittstelle, über die auf die einzelnen HTML-Elemente zugegriffen werden kann. \cite{MDNDOM} Im "{\ttfamily connectedCallback}" können zum Beispiel Event-Listeners registriert werden. \cite{MDNWebCustomElements}
 
 \typescriptsub{code/WebComponents/LifecycleExamples.ts}{"connectedCallback" Beispiel}{12}{14}
 
@@ -65,7 +65,7 @@ Der "{\ttfamily attributeChangedCallback}" nimmt drei Parameter\cite{MDNWebCusto
 \pagebreak
 \hfour{Shadow DOM}
 
-Unter DOM (Document Object Model) versteht man die Programmierschnittstelle, mit der auf die Elemente einer Webseite zugegriffen werden kann, um deren Inhalt und Darstellung zu verändern. \cite{MDNDOM}
+Unter DOM versteht man die Programmierschnittstelle, mit der auf die Elemente einer Webseite zugegriffen werden kann, um deren Inhalt und Darstellung zu verändern. \cite{MDNDOM}
 
 Ein Shadow DOM ist ein Ast im DOM-Baum innerhalb der Webseite, welcher separat von der restlichen Seite gerendert wird.
 Dadurch können auch in Custom Elements Style-Tags erstellt werden, ohne das Design der restlichen Seite zu beeinflussen. \cite{MDNShadowRoot}
@@ -84,7 +84,7 @@ Der "Mode" wird auf "{\ttfamily open}" gesetzt, damit der "Shadow Root" befüllt
 \hfour{HTML Templates}
 
 Der "template"-Tag ermöglicht es, HTML-Code in Custom Element zu füllen.
-Templates werden auf der Webseite selbst nicht angezeigt, dennoch können sie mit Javascript referenziert werden. \cite{MDNtemplate}
+Tem\-plates werden auf der Webseite selbst nicht angezeigt, dennoch können sie mit Javascript referenziert werden. \cite{MDNtemplate}
 
 \html{code/WebComponents/nine.html}{Erstellung eines HTML Template}
 

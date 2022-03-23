@@ -1,21 +1,21 @@
 \hfour{JSON Web Token (JWT)}\label{sec:jwt}
 
-Der JWT speichert die Benutzerdaten verschlüsselt im Token selbst. Dieses Token wird wie ein Sitzungs-"Cookie" bei jeder Anfrage mitgeschickt. 
+Der JWT speichert die Benutzerdaten verschlüsselt im Token selbst. Dieser Token wird wie ein Sitzungs-"Cookie" bei jeder Anfrage mitgeschickt. 
 Da die Sitzungsdaten jedoch im Token gespeichert sind, müssen die Server die Sitzungen nicht synchronisieren. 
 Es ist außerdem möglich, einen anderen Server nur für die Authentifizierung zu verwenden. 
 Die einzige Voraussetzung ist, dass sowohl der Authentifizierungsserver als auch der eigentliche Webserver das gleiche JWT-"Secret" verwenden. 
-Um sicherzustellen, dass das Token nicht manipuliert wird, haben nur die Server den Schlüssel, um das Token zu signieren und die darin enthaltenen Daten zu manipulieren. \cite{Auth0JWT}
+Um sicherzustellen, dass der Token nicht manipuliert wird, haben nur die Server den Schlüssel, um den Token zu signieren und die darin enthaltenen Daten zu manipulieren. \cite{Auth0JWT}
 
 Das JWT ist im RFC7519 definiert. Jedes JWT ist in drei Abschnitte\cite{Auth0JWT} unterteilt. 
 
 \begin{itemize}
-    \item \textbf{"Header"} -- Informationen über das Token
+    \item \textbf{"Header"} -- Informationen über den Token
     \item \textbf{"Payload"} -- Informationen über den Benutzer
     \item \textbf{"Signature"} -- Signatur des Tokens
 \end{itemize}
 
 Im Header befinden sich meist zwei Felder - der Typ des Tokens ({\ttfamily typ}) und der\linebreak"Signing"-Algorithmus ({\ttfamily alg}). 
-Diese standardisierten Felder sind in der Regel drei Zeichen lang, um das Token möglichst kompakt zu halten. \cite{Auth0JWT}
+Diese standardisierten Felder sind in der Regel drei Zeichen lang, um den Token möglichst kompakt zu halten. \cite{Auth0JWT}
 
 Die "Payload" besteht in der Regel aus Benutzerdaten. Diese nennt man "Claims". Dabei unterscheidet man drei Arten. \cite{Auth0JWT}: 
 
@@ -39,7 +39,7 @@ Die Abschnitte des JWT werden durch einen Punkt getrennt zusammengeführt.
 
 {\ttfamily Header.Payload.Signature}
 
-Wenn geschützte Ressourcen angefordert werden, wird das JWT in der Regel im Authorization-Header als sogenanntes Bearer Token gesendet. Dieser Header würde wie folgt aussehen\cite{Auth0JWT}:
+Wenn geschützte Ressourcen angefordert werden, wird das JWT in der Regel im Authorization-Header als sogenannter Bearer Token gesendet. Dieser Header würde wie folgt aussehen\cite{Auth0JWT}:
 
 {\ttfamily Authorization: Bearer \textless JWT Token\textgreater}
 
