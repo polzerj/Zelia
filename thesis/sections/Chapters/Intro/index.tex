@@ -6,7 +6,7 @@
 % TODO:
 % Passiv vermeiden?
 % Beistrichsetzung!!
-Das "Zentrale, Einheitliche LehrraumInformationsAuslesystem", kurz ZELIA, ist vereinfacht gesagt ein Programm, mit dem man Informationen von Lehrräumen abfragen und verändern kann. Das Ziel von \ZELIA\ ist in Schulen verwendet zu werden, um schnell allgemeine Informationen über Räume zu erlangen, ohne sich an Lehrer*innen wenden zu müssen. Da \mbox{ZELIA} im "Schulzentrum Ungargasse" entwickelt wurde, beziehen sich Tests und Beispiele oft auf dieses. Die Anwendung des Programmes ist jedoch ortsunabhängig, da die einzige Voraussetzung zur Verwendung eine eindeutige Raumkennung ist. Somit könnte man \ZELIA\ auch in anderen Schulen ausrollen und verwenden. 
+Das "Zentrale, Einheitliche LehrraumInformationsAuslesystem", kurz \ZELIA, ist vereinfacht gesagt ein Programm, mit dem man Informationen von Lehrräumen abfragen und verändern kann. Das Ziel von \ZELIA\ ist in Schulen verwendet zu werden, um schnell allgemeine Informationen über Räume zu erlangen, ohne sich an Lehrer*innen wenden zu müssen. Da \ZELIA\ im "Schulzentrum Ungargasse" entwickelt wurde, beziehen sich Tests und Beispiele oft auf dieses. Die Anwendung des Programmes ist jedoch ortsunabhängig, da die einzige Voraussetzung zur Verwendung eine eindeutige Raumkennung ist. Somit könnte man \ZELIA\ auch in anderen Schulen ausrollen und verwenden. 
 
 \begin{figure}[H]
     \centering
@@ -42,10 +42,10 @@ ZELIA ist spezifisch für Schulen entwickelt und somit besteht die Zielgruppe vo
 
 \htwo{Server}
 
-Der ZELIA-Server ist der Hauptteil von ZELIA. Er sammelt und stellt Daten, die benötigt werden um die Software auf den Endgeräten darstellen zu können, zur Verfügung. Dafür wird der Server nochmal unterteilt.
+Der \ZELIA-Server ist der Hauptteil von \ZELIA. Er sammelt und stellt Daten, die benötigt werden um die Software auf den Endgeräten darstellen zu können, zur Verfügung. Dafür wird der Server nochmal unterteilt.
 
 \begin{itemize}
-    \item Der erste und wichtigste Teil ist die Schnittstelle für die Endgeräte, genannt ZELIA-API ("Application Programming Interface"). Über diese Schnittstelle fragt das Client-Programm Informationen über Räume ab oder sendet Meldungs- und Buchungsanfragen aus.
+    \item Der erste und wichtigste Teil ist die Schnittstelle für die Endgeräte, genannt \ZELIA-API ("Application Programming Interface"). Über diese Schnittstelle fragt das Client-Programm Informationen über Räume ab oder sendet Meldungs- und Buchungsanfragen aus.
     \item Der zweite Teil ist die Schnittstelle zwischen Server und Datenbank. Primär werden aus der Datenbank Informationen über Räume abgefragt. Auch andere Daten wie Administratorbenutzer, um Meldungen und Buchungen zu verwalten, stehen in der Datenbank zur Verfügung. 
     \item Der dritte Teil kümmert sich um die Abfragen von WebUntis, um Zugriff auf aktuelle Stundenpläne jeweiliger Räume zu bekommen.
 \end{itemize}
@@ -55,7 +55,7 @@ Aus der Sicht des Clients ist das Backend ein einzelner Server, wobei dieser eig
 \begin{figure}[H]
     \centering
     \includegraphics[width=120mm]{./media/Intro/server_arch.svg.pdf}
-    \caption{Aufbau des ZELIA-Servers}
+    \caption{Aufbau des \ZELIA-Servers}
     \label{fig:server_arch}
 \end{figure}
 
@@ -63,7 +63,7 @@ Der \ZELIA-API Server ist mittels NodeJS implementiert. NodeJS ist ein Javascrip
 
 \htwo{Datenbank}
 
-Die \ZELIA-Datenbank ist physisch gesehen ein Teil des \ZELIA-Servers (siehe Abbildung \ref{fig:server_arch}). Alle Informationen zu Räumen, wie die Anzahl von Plätzen oder Computern, werden in ihr gespeichert. Dort sind auch Meldungen und Buchungen von Räumen abgelegt, damit später darauf zurückgegriffen werden kann. Diese Meldungen und Buchungen können von Administratorbenutzern abgefragt werden. Diese Administratoren sind in der Datenbank gespeichert. Die Datenbank ist in einem privaten Netz, mittels Containertechnologien (siehe Kapitel Containertechnologie und Docker \ref{sec:ContainerAndDocker}, Seite \pageref{sec:ContainerAndDocker}), abgeschottet. Sie kann nur über definierte Schnittstellen vom Server angesprochen und abgefragt werden (siehe Kapitel ZELIA-API \ref{sec:zeliaapi}, Seite \pageref{sec:zeliaapi}). Für die Datenbankschnittstelle des ZELIA-Servers wird "Sequelize" verwendet, um Abfragen zu machen (siehe Kapitel Sequelize \ref{sec:sequelize}, Seite \pageref{sec:sequelize}). Verwendet wird die Datenbank "MariaDB" (siehe Kapitel MariaDB \ref{sec:MariaDB}, Seite \pageref{sec:sequelize}).
+Die \ZELIA-Datenbank ist physisch gesehen ein Teil des \ZELIA-Servers (siehe Abbildung \ref{fig:server_arch}). Alle Informationen zu Räumen, wie die Anzahl von Plätzen oder Computern, werden in ihr gespeichert. Dort sind auch Meldungen und Buchungen von Räumen abgelegt, damit später darauf zurückgegriffen werden kann. Diese Meldungen und Buchungen können von Administratorbenutzern abgefragt werden. Diese Administratoren sind in der Datenbank gespeichert. Die Datenbank ist in einem privaten Netz, mittels Containertechnologien (siehe Kapitel Containertechnologie und Docker \ref{sec:ContainerAndDocker}, Seite \pageref{sec:ContainerAndDocker}), abgeschottet. Sie kann nur über definierte Schnittstellen vom Server angesprochen und abgefragt werden (siehe Kapitel \ZELIA-API \ref{sec:zeliaapi}, Seite \pageref{sec:zeliaapi}). Für die Datenbankschnittstelle des \ZELIA-Servers wird "Sequelize" verwendet, um Abfragen zu machen (siehe Kapitel Sequelize \ref{sec:sequelize}, Seite \pageref{sec:sequelize}). Verwendet wird die Datenbank "MariaDB" (siehe Kapitel MariaDB \ref{sec:MariaDB}, Seite \pageref{sec:sequelize}).
 
 
 \htwo{Client}
@@ -76,12 +76,12 @@ Das Frontend von \ZELIA\ ist von Grund auf mit HTML5 und CSS3 realisiert. Statt 
 
 Das Frontend läuft mit Ausnahme von TesseractJS ohne fremde Bibliotheken (siehe Kapitel Tesseract \ref{sec:tesseract}). TesseractJS wird verwendet, um Text aus Bildern auszulesen. Dies wird benötigt um mit der Kamera eines Endgerätes Raumschilder einscannen zu können. Die Verwendung anderer Bibliotheken wurden aus folgenden Gründen vermieden:
 \begin{itemize}
-    \item Bibliotheken, wie zum Beispiel Angular, sind für den Anwendungsfall an ZELIA zu groß. Dadurch könnte die Webseite schnell zu komplex und langsam werden.
+    \item Bibliotheken, wie zum Beispiel Angular, sind für den Anwendungsfall an \ZELIA zu groß. Dadurch könnte die Webseite schnell zu komplex und langsam werden.
     \item Um Erfahrungen zu sammeln, wie man eine eigene einfache Bibliothek entwickeln kann, welche nicht nur für die Anwendung an \ZELIA\ konzipiert ist.
 \end{itemize}
 
 \begin{minipage}{\textwidth}
-    Somit wurden zwei separate Teile entwickelt, auf denen der ZELIA-Client basiert:
+    Somit wurden zwei separate Teile entwickelt, auf denen der \ZELIA-Client basiert:
     
     \begin{itemize}
         \item Ein Web-Komponentensystem, um den Inhalt der jeweiligen Seite anzuzeigen (siehe Kapitel \ref{sec:webcomponents}).
