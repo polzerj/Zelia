@@ -5,7 +5,7 @@
 
 \hfour{Einleitung}
 
-Das Komponentensystem ist der erste Teil der ZELIA-Frontend-Bibliothek, der entworfen wurde, um den Inhalt der Webseiten darstellen zu können. Der Code im Frontend ist in Typescript (siehe Kapitel TypeScript \ref{sec:TypeScript}, Seite \pageref{sec:TypeScript}) geschrieben, um einen Überblick über die Datentypen zu behalten.
+Das Komponentensystem ist der erste Teil der \ZELIA-Frontend-Bibliothek, der entworfen wurde, um den Inhalt der Webseiten darstellen zu können. Der Code im Frontend ist in Typescript (siehe Kapitel TypeScript \ref{sec:TypeScript}, Seite \pageref{sec:TypeScript}) geschrieben, um einen Überblick über die Datentypen zu behalten.
 
 \hfour{Architektur}
 
@@ -63,7 +63,7 @@ Insgesamt besteht das komplette Frontend aus zwölf Komponenten, die auf acht Se
     \hfive{Die Startseite}
     \label{sec:webcompstart}
     
-    Auf dem Root-Pfad ("/") liegt die Willkommensseite von ZELIA. Auf ihr findet man die Raumeingabekomponente, die von der ZELIA-API alle möglichen Raumnummern abfragt und als Auswahlhilfe anzeigt. Auf Mobilgeräten, wie Smartphones oder Tablets, wird zusätzlich ein Knopf angezeigt. Dieser ermöglicht es die Raumnummer mit der Kamera des Geräts einzulesen. Wenn man auf diesen Knopf drückt, wird man zur "OCR"-Seite weitergeleitet. Gibt man die Raumnummer selbst ein, landet man sofort auf der Rauminformationsseite. Während der manuellen Eingabe werden alle bekannten Räume in einer dynamisch generierten Dropdown-Liste, unter der Eingabebox, angezeigt. Gibt man einen Buchstaben des Raumnamens oder Raumnummer an, so werden nur mehr Ergebnisse angezeigt, in denen das angegebene Muster vorkommt.
+    Auf dem Root-Pfad ("/") liegt die Willkommensseite von \ZELIA. Auf ihr findet man die Raumeingabekomponente, die von der \ZELIA-API alle möglichen Raumnummern abfragt und als Auswahlhilfe anzeigt. Auf Mobilgeräten, wie Smartphones oder Tablets, wird zusätzlich ein Knopf angezeigt. Dieser ermöglicht es die Raumnummer mit der Kamera des Geräts einzulesen. Wenn man auf diesen Knopf drückt, wird man zur "OCR"-Seite weitergeleitet. Gibt man die Raumnummer selbst ein, landet man sofort auf der Rauminformationsseite. Während der manuellen Eingabe werden alle bekannten Räume in einer dynamisch generierten Dropdown-Liste, unter der Eingabebox, angezeigt. Gibt man einen Buchstaben des Raumnamens oder Raumnummer an, so werden nur mehr Ergebnisse angezeigt, in denen das angegebene Muster vorkommt.
 \end{minipage}
 
 Beispiel:
@@ -88,7 +88,7 @@ Auf dieser Seite können alle Geräte die eine Kamera haben, eine Raumnummer von
 \end{figure}
 
 
-Meist liefert der OCR-Prozess eindeutige Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist es notwendig, dass nachdem das Bild in Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, der Bilder in Text umwandelt, wird mit den Standardwerten einmal pro Sekunde durchgeführt. Dieses Intervall kann einfach verändert werden. Im Fall von ZELIA ist es standardmäßig eine Sekunde, da dies völlig ausreichend ist, um schnell Raumnummern zu erfassen. Wenn dieses Intervall kleiner werden würde, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, dann könnten schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Mehr zu OCR und den Messungen der Implementierung später (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr} und Messungen der OCR Implementierung \ref{sec:ocrmessung}, Seite \pageref{sec:ocr} und \pageref{sec:ocrmessung}). Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
+Meist liefert der OCR-Prozess eindeutige Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist es notwendig, dass nachdem das Bild in Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, der Bilder in Text umwandelt, wird mit den Standardwerten einmal pro Sekunde durchgeführt. Dieses Intervall kann einfach verändert werden. Im Fall von \ZELIA ist es standardmäßig eine Sekunde, da dies völlig ausreichend ist, um schnell Raumnummern zu erfassen. Wenn dieses Intervall kleiner werden würde, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, dann könnten schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Mehr zu OCR und den Messungen der Implementierung später (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr} und Messungen der OCR Implementierung \ref{sec:ocrmessung}, Seite \pageref{sec:ocr} und \pageref{sec:ocrmessung}). Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
 
 \hfive{Rauminformationsseite}
 
@@ -137,7 +137,7 @@ Wie beim Melden gibt man auch hier eine EDU-Mailadresse an. Zusätzlich sollte m
 
 Meldungen und Buchungen kann man im sogenannten "Admin Dashboard" einsehen. Damit nicht jeder die Raumbuchungen und Defektmeldungen sieht, muss man sich mit einem Administratorbenutzer anmelden. Jede Buchung und Meldung ist einem Administratorbenutzer zugeteilt und kann somit von diesem abgearbeitet werden. Im Fall von \ZELIA\ im Schulzentrum Ungargasse, sind diese Administratoren meist Abteilungsleiter*innen oder Lehrer*innen.
 
-Wie schon beschrieben, muss man als Administrator angemeldet sein, um Zugriff auf alle Meldungen und Buchungen zu haben. Hierfür gibt es die "Admin Login"-Seite, welche über den normalen ZELIA-Webserver aufgerufen werden kann. Auf dieser Webseite findet man eine Komponente, die ein Anmeldeformular anzeigt. Beim Anmelden wird die Anfrage an den Server geschickt und auf die Antwort gewartet. Wenn der Server mit einem "JSON-Web-Token" (siehe Kapitel Authentifizierung "JSON Web Token -- JWT" \ref{sec:jwt}) antwortet, wird dieser im "session storage" (siehe Kapitel "Webspeicher" \ref{sec:webstorage}) gespeichert und man wird auf die Übersichtsseite weitergeleitet.
+Wie schon beschrieben, muss man als Administrator angemeldet sein, um Zugriff auf alle Meldungen und Buchungen zu haben. Hierfür gibt es die "Admin Login"-Seite, welche über den normalen \ZELIA-Webserver aufgerufen werden kann. Auf dieser Webseite findet man eine Komponente, die ein Anmeldeformular anzeigt. Beim Anmelden wird die Anfrage an den Server geschickt und auf die Antwort gewartet. Wenn der Server mit einem "JSON-Web-Token" (siehe Kapitel Authentifizierung "JSON Web Token -- JWT" \ref{sec:jwt}) antwortet, wird dieser im "session storage" (siehe Kapitel "Webspeicher" \ref{sec:webstorage}) gespeichert und man wird auf die Übersichtsseite weitergeleitet.
 
 \begin{figure}[H]
     \centering

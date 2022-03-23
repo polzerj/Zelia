@@ -1,7 +1,7 @@
 \htwo{Handbuch Server}
 \hthree{Installation}
 
-Der \ZELIA-Server ist notwendig, um den \ZELIA-Client zu verwenden. Der Client ist eine Web-Applikation, welche vom \ZELIA-Server bereit gestellt wird. Zusätzlich stellt dieser Server die ZELIA-API zur Verfügung, welche vom Client verwendet wird, um Informationen der Räume abzufragen und zu schreiben. Die Datenbank, in der Informationen über die Räume gespeichert sind, wird auch mittels Container direkt auf diesem Server gestartet.
+Der \ZELIA-Server ist notwendig, um den \ZELIA-Client zu verwenden. Der Client ist eine Web-Applikation, welche vom \ZELIA-Server bereit gestellt wird. Zusätzlich stellt dieser Server die \ZELIA-API zur Verfügung, welche vom Client verwendet wird, um Informationen der Räume abzufragen und zu schreiben. Die Datenbank, in der Informationen über die Räume gespeichert sind, wird auch mittels Container direkt auf diesem Server gestartet.
 
 \begin{minipage}{\textwidth}
     \hfour{Abhänigkeiten}
@@ -54,7 +54,7 @@ Von GitHub kann man sich einfach mit Git oder "GitHub Desktop" den Quellcode lok
 
 \hfive{Git in der Kommandozeile}
 
-In der Kommandoeingabe des jeweiligen Betriebssystems kann man sich mit dem einfachen Befehl \emph{git clone https://github.com/polzerj/Zelia.git} eine Arbeitskopie herunterladen. Dabei wird in dem Verzeichnis, in dem man sich befindet, ein Unterorder mit dem Namen "ZELIA" angelegt. In diesem liegt der gesamte Code.
+In der Kommandoeingabe des jeweiligen Betriebssystems kann man sich mit dem einfachen Befehl \emph{git clone https://github.com/polzerj/Zelia.git} eine Arbeitskopie herunterladen. Dabei wird in dem Verzeichnis, in dem man sich befindet, ein Unterorder mit dem Namen "\ZELIA" angelegt. In diesem liegt der gesamte Code.
 
 \begin{minipage}{\textwidth}
     \hfive{GitHub Desktop}
@@ -71,12 +71,12 @@ In der Kommandoeingabe des jeweiligen Betriebssystems kann man sich mit dem einf
 
 
 \hthree{Starten des Servers}
-%TODO: .env vereinheitlichen und \ZELIA verwenden
-Wenn der Quellcode nun auf einem beliebigen Server heruntergeladen wurde, muss man noch eine \emph{.env-Datei} im Unterverzeichnis "api" anlegen. In dieser stehen die notwendigen Umgebungsvariablen. Diese werden benötigt, um zu definieren, auf welchem Port der Server läuft, welche Anmeldedaten für die Abfrage von WebUntis verwendet werden und noch andere Werte, siehe Code \ref{fig:envexample}.
+%TODO: \ZELIA verwenden
+Wenn der Quellcode nun auf einem beliebigen Server heruntergeladen wurde, muss man noch eine \emph{".env"-Datei} im Unterverzeichnis "api" anlegen. In dieser stehen die notwendigen Umgebungsvariablen. Diese werden benötigt, um zu definieren, auf welchem Port der Server läuft, welche Anmeldedaten für die Abfrage von WebUntis verwendet werden und noch andere Werte, siehe Code \ref{fig:envexample}.
 
 
 \begin{singlespace}
-    \begin{lstlisting}[caption={Beispiel einer .env-Datei},label={fig:envexample},captionpos=b]
+    \begin{lstlisting}[caption={Beispiel einer ".env"-Datei},label={fig:envexample},captionpos=b]
 PORT=3001
 DB_SERVER=db
 DB_USER=***

@@ -3,7 +3,7 @@
 
 \hthree{Einleitung}
 
-WebUntis ist der zentrale Ort, wo die Planung für eine Schule vorgenommen werden kann. Entscheidungen sind mithilfe von WebUntis leichter zu treffen und Informationen sind immer direkt griffbereit. Dies ist nicht nur für Lehrer*innen und die Administration der Schule, sondern auch für Schüler*innen und deren Eltern abrufbar. Da das Schulzentrum Ungargasse WebUntis jetzt schon einige Zeit verwendet, bietet es eine solide Grundlage für den Informationsgewinn – und Verarbeitung. Damit das ZELIA-Team überhaupt eine Möglichkeit besitzt, auf Stundenpläne von Klassen und auf bestimmte Räume zugreifen zu können, benötigt es eine "REST-API". In folgenden Fall gibt es einen bereits bestehenden Node.Js-Wrapper der WebUntis-API mit einer doch sehr weiterhelfenden Dokumentation zu den darin bestehenden Methoden und den zu verwendenden Parametern. Dieser wird aber nicht direkt von WebUntis bereitgestellt, sondern von einer kleinen Community auf GitHub. \cite{WebUntisWrapper}
+WebUntis ist der zentrale Ort, wo die Planung für eine Schule vorgenommen werden kann. Entscheidungen sind mithilfe von WebUntis leichter zu treffen und Informationen sind immer direkt griffbereit. Dies ist nicht nur für Lehrer*innen und die Administration der Schule, sondern auch für Schüler*innen und deren Eltern abrufbar. Da das Schulzentrum Ungargasse WebUntis jetzt schon einige Zeit verwendet, bietet es eine solide Grundlage für den Informationsgewinn – und Verarbeitung. Damit das \ZELIA-Team überhaupt eine Möglichkeit besitzt, auf Stundenpläne von Klassen und auf bestimmte Räume zugreifen zu können, benötigt es eine "REST-API". In folgenden Fall gibt es einen bereits bestehenden Node.Js-Wrapper der WebUntis-API mit einer doch sehr weiterhelfenden Dokumentation zu den darin bestehenden Methoden und den zu verwendenden Parametern. Dieser wird aber nicht direkt von WebUntis bereitgestellt, sondern von einer kleinen Community auf GitHub. \cite{WebUntisWrapper}
 
 \begin{figure}[H]
     \centering
@@ -28,9 +28,9 @@ Durch den Wrapper hat besteht die Möglichkeit nicht nur auf den Stundenplan und
 
 \typescript[code:ConWebAPI]{code/WebUntis/constructor.ts}{Konstruktor von der WebUntis API}
 
-Der Konstruktor (in Code \ref{code:ConWebAPI}) muss so verwenden werden, da sonst nicht auf das WebUntis-Objekt zugreifen kann. Bei \ZELIA\ wird es genauso verwendet. Der einzige Unterschied ist aber hierbei, dass die verwendeten Variablen und die dazu entsprechenden Werte in einem .env-File abgespeichert sind, damit erstens, die Daten alle gesammelt an einer Stelle liegen und zweitens, da somit ein wenig Sicherheit hineingebracht werden kann.
+Der Konstruktor (in Code \ref{code:ConWebAPI}) muss so verwenden werden, da sonst nicht auf das WebUntis-Objekt zugreifen kann. Bei \ZELIA\ wird es genauso verwendet. Der einzige Unterschied ist aber hierbei, dass die verwendeten Variablen und die dazu entsprechenden Werte in einer ".env"-Datei abgespeichert sind, damit erstens, die Daten alle gesammelt an einer Stelle liegen und zweitens, da somit ein wenig Sicherheit hineingebracht werden kann.
 
-\typescript{code/WebUntis/.env.ts}{.env-Datei von ZELIA}
+\typescript{code/WebUntis/.env.ts}{".env"-Datei von \ZELIA}
 
 getRooms wird verwendet, um alle Räume für ein Schulgebäude herauszufinden.
 
