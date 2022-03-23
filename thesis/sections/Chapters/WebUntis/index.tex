@@ -34,17 +34,17 @@ Der Konstruktor (in Code \ref{code:ConWebAPI}) muss so verwenden werden, da sons
 
 getRooms wird verwendet, um alle Räume für ein Schulgebäude herauszufinden.
 
-\typescript{code/WebUntis/getRooms.ts}{getRooms Methode}
+\typescript{code/WebUntis/getRooms.ts}{Rückgabe aller Raumnummern}
 \begin{minipage}{\textwidth}
     Dies ist nur ein kleiner Ausschnitt der gesamten Räume des SZU:
     
-    \typescriptsub{code/WebUntis/Rooms.json}{getRooms Ausgabe Zelia}{1}{20}
+    \typescriptsub{code/WebUntis/Rooms.json}{Ausgabe der getRooms Methode}{1}{20}
 \end{minipage}
 
 \begin{minipage}\textwidth
     Mithilfe der Methode "getTimetableFor" und den mitzugebenden Parametern kann der Stundeplan für einen speziellen Typen angezeigt werden lassen.
     
-    \typescript{code/WebUntis/getTimetableFor.ts}{getTimetableFor Beschreibung}
+    \typescript{code/WebUntis/getTimetableFor.ts}{Methode um Stundenplan einer Klasse abzufragen}
 \end{minipage}
 
 
@@ -54,16 +54,16 @@ Der WebUntisElementType wird als Wert übergeben und je nachdem, welcher Wert da
 
 In der Ausgabe werden also alle wichtigen Parameter angezeigt, sei es das Fach, die Klasse die momentan unterrichtet wird oder aber auch der Lehrer, der die Stunde abhält.
 
-\typescript{code/WebUntis/getTimetableForAusgabe.ts}{getTimetableFor ZELIA}
+\typescript{code/WebUntis/getTimetableForAusgabe.ts}{Ausgabe des Stundenplans}
 
 \begin{minipage}\textwidth
     Die Methode "getTimeGrid" wird verwendet, um die Struktur des Stundeplans anzuzeigen. Mit der Struktur sind die Unterrichtsstunden, deren Anfangs– und Endzeiten gemeint.
 
-\typescript{code/WebUntis/getTimegrid.ts}{getTimegrid Methode}
+\typescript{code/WebUntis/getTimegrid.ts}{Methode um die Stundenplanstruktur abzufragen}
 
 Das Ergebnis sieht bei \ZELIA\ wie folgt aus:
 
-\typescript{code/WebUntis/getTimegridAusgabe.ts}{getTimeGrid ZELIA}
+\typescript{code/WebUntis/getTimegridAusgabe.ts}{Ausgabe des Standardstundenplans}
 
 \end{minipage}
 
