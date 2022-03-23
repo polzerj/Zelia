@@ -3,7 +3,7 @@
 
 \hthree{Einleitung}
 
-WebUntis ist der zentrale Ort, wo die Planung für eine Schule vorgenommen werden kann. Entscheidungen sind mithilfe von WebUntis leichter zu treffen und Informationen sind immer direkt griffbereit. Dies ist nicht nur für Lehrer*innen und die Administration der Schule, sondern auch für Schüler*innen und deren Eltern abrufbar. Da das Schulzentrum Ungargasse WebUntis jetzt schon einige Zeit verwendet, bietet es eine solide Grundlage für den Informationsgewinn – und Verarbeitung. Damit das \ZELIA-Team überhaupt eine Möglichkeit besitzt, auf Stundenpläne von Klassen und auf bestimmte Räume zugreifen zu können, benötigt es eine "REST-API". In folgenden Fall gibt es einen bereits bestehenden Node.Js-Wrapper der WebUntis-API mit einer doch sehr weiterhelfenden Dokumentation zu den darin bestehenden Methoden und den zu verwendenden Parametern. Dieser wird aber nicht direkt von WebUntis bereitgestellt, sondern von einer kleinen Community auf GitHub. \cite{WebUntisWrapper}
+WebUntis ist der zentrale Ort, wo die Planung für eine Schule vorgenommen werden kann. Entscheidungen sind mithilfe von WebUntis leichter zu treffen und Informationen sind immer direkt griffbereit. Dies ist nicht nur für Lehrer*innen und die Administration der Schule, sondern auch für Schüler*innen und deren Eltern abrufbar. Da das Schulzentrum Ungargasse WebUntis jetzt schon einige Zeit verwendet, bietet es eine solide Grundlage für den Informationsgewinn – und Verarbeitung. Damit das \ZELIA-Team überhaupt eine Möglichkeit besitzt, auf Stundenpläne von Klassen und auf bestimmte Räume zugreifen zu können, benötigt es eine "REST-API". In folgenden Fall gibt es einen bereits bestehenden Node.Js-Wrapper der WebUntis-API mit einer weiterhelfenden Dokumentation zu den darin bestehenden Methoden und den zu verwendenden Parametern. Dieser wird nicht direkt von WebUntis bereitgestellt, sondern von einer kleinen Community auf GitHub. \cite{WebUntisWrapper}
 
 \begin{figure}[H]
     \centering
@@ -17,34 +17,34 @@ Untis wurde am 7.Jänner 1970 von den beiden Programmierern, Bernhard Gruber und
 
 \hthree{Implementierung}
 
-Um den Wrapper überhaupt verwenden zu können, benötigt man zuerst das WebUntis-Package, welches sich wie folgt herunterladen und installiert lässt:
+Um den Wrapper verwenden zu können, benötigt man zuerst das WebUntis-Package, welches sich wie folgt herunterladen und installiert lässt:
 
 
 
 \emph{npm i webuntis}
 
-Durch den Wrapper hat besteht die Möglichkeit nicht nur auf den Stundenplan und gewisse Informationen zuzugreifen, sondern auch zum Beispiel Informationen zur besuchten Fachabteilung oder das Anzeigen von zu erledigenden Hausübungen. In diesem Fall benötigt \ZELIA\ aber nur folgende Methoden, die teilweise mit anderen Methoden verwendet werden, um auf unser Wunschergebnis zu kommen:
+Durch den Wrapper besteht die Möglichkeit, nicht nur auf den Stundenplan und gewisse Informationen zuzugreifen, sondern auch zum Beispiel Informationen zur besuchten Fachabteilung oder das Anzeigen von zu erledigenden Hausübungen. In diesem Fall benötigt \ZELIA\ folgende Methoden, die teilweise mit anderen Methoden verwendet werden, um auf das Wunschergebnis zu kommen:
 
 
 \typescript[code:ConWebAPI]{code/WebUntis/constructor.ts}{Konstruktor von der WebUntis API}
 
-Der Konstruktor (in Code \ref{code:ConWebAPI}) muss so verwenden werden, da sonst nicht auf das WebUntis-Objekt zugreifen kann. Bei \ZELIA\ wird es genauso verwendet. Der einzige Unterschied ist aber hierbei, dass die verwendeten Variablen und die dazu entsprechenden Werte in einer ".env"-Datei abgespeichert sind, damit erstens, die Daten alle gesammelt an einer Stelle liegen und zweitens, da somit ein wenig Sicherheit hineingebracht werden kann.
+Der Konstruktor (in Code \ref{code:ConWebAPI}) muss so verwendet werden, da sonst nicht auf das WebUntis-Objekt zugregriffen werden kann. Bei \ZELIA\ wird es genauso verwendet. Der einzige Unterschied ist aber hierbei, dass die verwendeten Variablen und die dazu entsprechenden Werte in einer ".env"-Datei abgespeichert sind, damit erstens, die Daten alle gesammelt an einer Stelle liegen und zweitens, da somit ein wenig Sicherheit hineingebracht werden kann.
 
 \typescript{code/WebUntis/.env.ts}{".env"-Datei von \ZELIA}
 
 getRooms wird verwendet, um alle Räume für ein Schulgebäude herauszufinden.
 
-\typescript{code/WebUntis/getRooms.ts}{getRooms Methode}
+\typescript{code/WebUntis/getRooms.ts}{Rückgabe aller Raumnummern}
 \begin{minipage}{\textwidth}
     Dies ist nur ein kleiner Ausschnitt der gesamten Räume des SZU:
     
-    \typescriptsub{code/WebUntis/Rooms.json}{getRooms Ausgabe Zelia}{1}{20}
+    \typescriptsub{code/WebUntis/Rooms.json}{Ausgabe der getRooms Methode}{1}{20}
 \end{minipage}
 
 \begin{minipage}\textwidth
     Mithilfe der Methode "getTimetableFor" und den mitzugebenden Parametern kann der Stundeplan für einen speziellen Typen angezeigt werden lassen.
     
-    \typescript{code/WebUntis/getTimetableFor.ts}{getTimetableFor Beschreibung}
+    \typescript{code/WebUntis/getTimetableFor.ts}{Methode um Stundenplan einer Klasse abzufragen}
 \end{minipage}
 
 
@@ -54,23 +54,23 @@ Der WebUntisElementType wird als Wert übergeben und je nachdem, welcher Wert da
 
 In der Ausgabe werden also alle wichtigen Parameter angezeigt, sei es das Fach, die Klasse die momentan unterrichtet wird oder aber auch der Lehrer, der die Stunde abhält.
 
-\typescript{code/WebUntis/getTimetableForAusgabe.ts}{getTimetableFor ZELIA}
+\typescript{code/WebUntis/getTimetableForAusgabe.ts}{Ausgabe des Stundenplans}
 
 \begin{minipage}\textwidth
     Die Methode "getTimeGrid" wird verwendet, um die Struktur des Stundeplans anzuzeigen. Mit der Struktur sind die Unterrichtsstunden, deren Anfangs– und Endzeiten gemeint.
 
-\typescript{code/WebUntis/getTimegrid.ts}{getTimegrid Methode}
+\typescript{code/WebUntis/getTimegrid.ts}{Methode um die Stundenplanstruktur abzufragen}
 
 Das Ergebnis sieht bei \ZELIA\ wie folgt aus:
 
-\typescript{code/WebUntis/getTimegridAusgabe.ts}{getTimeGrid ZELIA}
+\typescript{code/WebUntis/getTimegridAusgabe.ts}{Ausgabe des Standardstundenplans}
 
 \end{minipage}
 
 \pagebreak
 \hfour{Probleme}
 
-Mithilfe der API ist zwar einiges möglich, dennoch sind in dem Anwendungsfall \ZELIA\ einige "Probleme" aufgefallen, die abgefangen beziehungsweise ausgebessert werden mussten.
+Mithilfe der API ist einiges möglich, dennoch sind in dem Anwendungsfall \ZELIA\ einige "Probleme" aufgefallen, die abgefangen beziehungsweise ausgebessert werden mussten.
 
 Das allererste Problem ist, dass gewisse Räume mit mehreren Namen beziehungsweise mehreren IDs eingetragen sind und anfänglich die Frage im Raum stand, nach welchen Kriterien der Klassenraum auffindbar ist. Jedoch wurde bei \ZELIA\ die Entscheidung getroffen, nach der ID des Raumes zu suchen.
 
