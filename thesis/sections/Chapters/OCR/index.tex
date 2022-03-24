@@ -38,8 +38,7 @@ Hier wird, wie der Name schon sagt, nach Merkmalen gesucht. Merkmale sind zum Be
 
 Heutzutage werden auch oft andere Ansätze verwendet. So extrahieren viele OCR Anbieter zuerst Merkmale von den Zeichen mit Bildern und ein neurales Netz prüft dann welches Zeichen das sein könnte.
 
-% TODO: Sprachen werden gesprochen
-Oft wird auch nicht nur nach Zeichen gesucht. Gerade bei Sprachen, die mit Leerzeichen getrennt werden, versuchen OCR Anbieter ganze Wörter zu finden. Diese werden dann wieder in Zeichen zerlegt, aber trotzdem als gesamtes Wort mit einem Wörterbuch verglichen. Dadurch ist es noch wahrscheinlicher die Wörter richtig zu erkennen. 
+Oft wird auch nicht nur nach Zeichen gesucht. Gerade bei Sprachen, die Wörter mit Leerzeichen trennen, versuchen OCR Anbieter diese komplett zu erfassen. Diese werden dann wieder in Zeichen zerlegt, aber trotzdem als gesamtes Wort mit einem Wörterbuch verglichen. Dadurch ist es noch wahrscheinlicher die Wörter richtig zu erkennen. 
 
 \hfour{Tesseract}\label{sec:tesseract}
 
@@ -69,8 +68,7 @@ Die Aufgabe des "OCR"-Moduls ist es Bilder in Text umzuwandeln. Dabei wird Tesse
 
 \typescript{code/OCR/OCRModule.ts}{Die Verwendeung von TesseractJS}
 
-TesseractJS verwendet sogenannte "Worker", um Text aus einem Bild zu extrahieren. Je mehr davon vorhanden sind, desto schneller geht der Prozess. Natürlich wird dadurch mehr Prozessorleitung verwendet, was bei Smartphones schnell zu einem erhöhten Energieverbrauch oder Erhitzen des Gerätes führt. Somit wird bei \ZELIA\ standardmäßig nur ein "Worker" verwendet. Da das Initialisieren dieser Services recht lange dauert, ca. 2-3 Sekunden, gäbe es die Möglichkeit mehrere "Worker" gleichzeitig zu laden. Bei nur einem "Worker" macht das keinen Unterschied, aber wenn man mehrere initialisieren würde, kann diese Optimierung viel Zeit einsparen.
-%TODO Macht das Sinn? "Bei nur einem "Worker" macht das keinen Unterschied, aber wenn man mehrere initialisieren würde, kann diese Optimierung viel Zeit einsparen"
+TesseractJS verwendet sogenannte "Worker", um Text aus einem Bild zu extrahieren. Je mehr davon vorhanden sind, desto schneller geht der Prozess. Natürlich wird dadurch mehr Prozessorleitung verwendet, was bei Smartphones schnell zu einem erhöhten Energieverbrauch oder Erhitzen des Gerätes führt. Somit wird bei \ZELIA\ standardmäßig nur ein "Worker" verwendet. Da das Initialisieren dieser Services recht lange dauert, ca. 2-3 Sekunden, gäbe es die Möglichkeit mehrere "Worker" gleichzeitig zu laden. Dadurch kann viel Zeit beim Initialisieren eingespart werden. Bei nur einem "Worker" gibt es diesen Unterschied nicht. 
 
 Zusätzlich, um den eigentlichen Umwandlungsvorgang von Bild zu Text zu beschleunigen, wird eine Bildoptimierung für OCR durchgeführt. Bevor Tesseract dem Bild die Zeichen entzieht, wird es in ein Schwarz-Weiß-Bild umgewandelt und auf den wichtigen Teil, dort wo nichts schwarz ist, zusammengeschnitten (siehe Abbildung \ref{ocroptimised}).
 
@@ -113,8 +111,7 @@ Um zu überprüfen ob das OCR-Modul für die Anwendung auf Mobilgeräten perform
 
 Wie oben geschrieben wandelt \ZELIA\ das Bild der Kamera in ein Schwarz-Weiß-Bild um und schneidet es so klein wie möglich zusammen, bevor es dem Tesseract Prozess übergeben wird. Diese Optimierung dauert rund 27 Millisekunden und beschleunigt den gesamten Prozess. Den Text aus dem oben genannten Bild zu extrahieren, dauert dadurch nur noch rund 660 Millisekunden. Das Bild in ein Schwarz-Weiß-Bild umzuwandeln, macht für Tesseract eigentlich kaum einen Unterschied. Trotzdem wird es so gemacht, weil das Verkleinern eines Bildes mit Hilfe der äußersten schwarzen Punkte funktioniert. Diese Verkleinerung, ist so wie der kleinere Fokusbereich, ausschlaggebend für schnelle Ergebnisse. 
 
-Der letzte Optimierungsversuch war mehrere "Worker" zu verwenden. Mit diesem Ansatz hat man allerdings kaum Zeit gewonnen, da mehrere "Worker" erst richtig performant werden, wenn man große Mengen an Text aus Bildern filtern will. Während das Initialisieren von einem OCR "Worker" rund 2,3 Sekunden dauert, benötigen zwei Worker rund 3,4 Sekunden. Dadurch, dass bei \ZELIA\ die "Worker" wie oben genannt gleichzeitig erstellt werden, geht dieser Vorgang schneller als normalerweise. Trotzdem steigt die Dauer leicht an, wenn mehrere "Worker" initialisiert werden. Wenn ein OCR Prozess mit zwei "Workern" das Bild aus dem vorherigen Beispiel verarbeitet, dauert dies rund 630 Millisekunden. Diese Optimierung, von rund 30 Millisekunden, wird durch die längere Startzeit der zwei "Worker", mit über eine Sekunde, aufgehoben.
-%TODO "Wie oben", "Der letzte" -> verständlich?
+Der letzte Optimierungsversuch war mehrere "Worker" zu verwenden. Mit diesem Ansatz hat man allerdings kaum Zeit gewonnen, da mehrere "Worker" erst richtig performant werden, wenn man große Mengen an Text aus Bildern filtern will. Während das Initialisieren von einem OCR "Worker" rund 2,3 Sekunden dauert, benötigen zwei Worker rund 3,4 Sekunden. Dadurch, dass bei \ZELIA\ die "Worker" wie oben genannt gleichzeitig geladen werden, wird dieser Vorgang beschleunigt. Trotzdem steigt die Dauer leicht an wenn mehrere "Worker" initialisiert werden. Wenn ein OCR Prozess mit zwei "Workern" das Bild aus dem vorherigen Beispiel verarbeitet, dauert dies rund 630 Millisekunden. Diese Optimierung, von rund 30 Millisekunden, wird durch die längere Startzeit der zwei "Worker", mit über einer Sekunde, aufgehoben.
 
 Nochmal kurz zusammengefasst: Die durchschnittlichen Zeiten, die das OCR-Modul insgesamt braucht, liegen zwischen 400 und 700 Millisekunden, abhängig davon wie groß die Buchstaben in dem Fokusbereich stehen, also wie nahe die Kamera vom Schild entfernt ist.
 
