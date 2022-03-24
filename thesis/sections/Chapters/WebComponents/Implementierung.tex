@@ -13,7 +13,7 @@ Wie bereits im Standard beschrieben, muss es eine Klasse geben, welche von "HTML
 
 \typescript{code/WebComponents/BaseInterfaces.ts}{Schnittstellen der Basiskomponente}
 
-Die jeweils dazugehörige HTML Quelle wird vom sogenannten "Component Loader", beim Aufruf der Webseite, geladen und zwischengespeichert. Dadurch muss nicht jede Komponente ihren Darstellungscode selbst herunterladen, wie es bei manchen Bibliotheken der Fall ist. Somit ist es kaum merkbar, wenn man eine Seite wechselt. Das Grundgerüst der Seite kann angezeigt werden, während die eigentlichen Informationen noch nachgeladen werden. 
+Die jeweils dazugehörige HTML Quelle wird vom sogenannten "Component Loader" beim Aufruf der Webseite geladen und zwischengespeichert. Dadurch muss nicht jede Komponente ihren Darstellungscode selbst herunterladen, wie es bei manchen Bibliotheken der Fall ist. Somit ist es kaum merkbar, wenn man eine Seite wechselt. Das Grundgerüst der Seite kann angezeigt werden, während die eigentlichen Informationen noch nachgeladen werden. 
 
 Mit Hilfe von "States" kann man Texte dynamisch ersetzen, wie es auch in anderen Bibliotheken gemacht wird.
 
@@ -23,7 +23,7 @@ Mit Hilfe von "States" kann man Texte dynamisch ersetzen, wie es auch in anderen
 
 Dadurch können zum Beispiel nachgeladene Daten eingefügt werden, aber auch die Sprache der Seite kann so geändert werden.
 
-Zusätzlich kann sich das Komponentensystem automatisch Referenzen auf "HTML Elemente" suchen. Dafür muss im Konstruktor der Basiskomponente, von der alle Komponenten erben, nur definiert sein, wie ein Element gefunden wird. Durch den generischen Typen den man der Klasse mitgeben kann, werden die Datentypen der automatisch gefunden Elemente festgelegt (siehe Code \ref{code:kompref}).
+Zusätzlich kann sich das Komponentensystem automatisch Referenzen auf "HTML Elemente" suchen. Dafür muss im Konstruktor der Basiskomponente, von der alle Komponenten erben, nur definiert sein, wie ein Element gefunden wird. Durch den generischen Typen, den man der Klasse mitgeben kann, werden die Datentypen der automatisch gefunden Elemente festgelegt (siehe Code \ref{code:kompref}).
 
 \typescript[code:kompref]{code/WebComponents/AutoRef.ts}{Erstellen einer Komponente und suchen einer Referenz}
 
@@ -43,7 +43,7 @@ Erst nachdem alle Ressourcen der Komponenten geladen wurden, wird der Client-Sid
 \begin{minipage}{\textwidth}
     \hfour{"Life-Cycle"}
     
-    Wenn nun ein eigenes Element erstellt wird, hat der "Loader" die HTML-Ressource bereits geladen. Während der Initialisierung des Elements holt sich dieser die HTML-Ressource als Text. Im Konstruktor der Basiskomponente gibt es neben dem "query"-Parameter, welcher für die automatische Referenzierung verwendet wird, noch die "autoRender"- und "useShadowRoot"-Argumente. Standardmäßig sind beide Werte auf {\ttfamily true} gesetzt. Das heißt, die Komponente wird, sobald sie auf die Seite hinzugefügt wird, ihr HTML anzeigen und in ein "ShadowRoot" eingebunden. Durch das "ShadowRoot" wird es als eigenes Dokument angezeigt, unabhängig von dem wo es eingebunden wird. Dies behebt Überschneidungen von verschieden CSS-Styles. Somit sieht die Komponente jedes Mal gleich aus, unabhängig von der restlichen Seite.
+    Wenn nun ein eigenes Element erstellt wird, hat der "Loader" die HTML-Ressource bereits geladen. Während der Initialisierung des Elements holt sich dieser die HTML-Ressource als Text. Im Konstruktor der Basiskomponente gibt es neben dem "query"-Parameter, welcher für die automatische Referenzierung verwendet wird, noch die "autoRender"- und "useShadowRoot"-Argumente. Standardmäßig sind beide Werte auf {\ttfamily true} gesetzt. Das heißt, die Komponente wird, sobald sie auf die Seite hinzugefügt wird, ihr HTML anzeigen und in ein "ShadowRoot" eingebunden. Durch das "ShadowRoot" wird es als eigenes Dokument angezeigt, unabhängig von dem, wo es eingebunden wird. Dies behebt Überschneidungen von verschieden CSS-Styles. Somit sieht die Komponente jedes Mal gleich aus, unabhängig von der restlichen Seite.
 \end{minipage}
 
 Bevor der HTML-Text dargestellt werden kann, werden die "States" ersetzt (siehe Code Beispiel \ref{code:replhtml} und \ref{code:replhtml}, Seite \pageref{code:replhtml}). Danach wird geschaut ob die Elemente, die automatisch referenziert werden sollen, vorhanden sind. Falls sich ein "State" ändert, wird der Inhalt der Komponente automatisch neu erstellt und gerendert. Durch das neu Erstellen der Komponente bekommen auch die referenzierten Elemente neue Referenzen. Das könnte ein Problem sein, wenn man Komponenten hat, bei denen es wichtig ist, dass die Elemente "dieselben" bleiben. Somit sollte man sich um das Modifizieren dieser Komponenten selbst kümmern oder keine "States" ändern, sodass nicht neu gerendert werden muss.
@@ -78,7 +78,7 @@ Beispiel:
 
 \hfive{Die "OCR"-Seite}
 
-Auf dieser Seite können alle Geräte die eine Kamera haben, eine Raumnummer von Raumschildern, Plakaten, usw., einscannen. Diese Anforderung wurde mittels "Optical Character Recognition", kurz "OCR", bewerkstelligt (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}). Die "OCR"-Seite besteht aus zwei Komponenten. Eine zeigt an was die Kamera sieht und die Andere dient als Link, um zurück zur Startseite zu kommen. Die Komponente, welche den Scanner anzeigt, ist auch zuständig den OCR-Service (siehe Kapitel Tesseract \ref{sec:tesseract}, Seite \pageref{sec:tesseract}) zu starten. Mit Hilfe von diesem wird dann der Text aus den Bildern ausgelesen. Bevor das Bild an den OCR-Service übergeht, wird es durch unsere App auf zwei Farben komprimiert und zusammengeschnitten, sodass nur mehr der markierte Fokusbereich der Kamera weiter zu verarbeiten bleibt (siehe Abbildung \ref{fig:ocrpage}).
+Auf dieser Seite können alle Geräte, die eine Kamera haben, eine Raumnummer von Raumschildern, Plakaten, usw. einscannen. Diese Anforderung wurde mittels "Optical Character Recognition", kurz "OCR", bewerkstelligt (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}). Die "OCR"-Seite besteht aus zwei Komponenten. Eine zeigt an was die Kamera sieht und die Andere dient als Link, um zurück zur Startseite zu kommen. Die Komponente, welche den Scanner anzeigt, ist auch zuständig den OCR-Service (siehe Kapitel Tesseract \ref{sec:tesseract}, Seite \pageref{sec:tesseract}) zu starten. Mit Hilfe von diesem wird dann der Text aus den Bildern ausgelesen. Bevor das Bild an den OCR-Service übergeht, wird es durch diese App auf zwei Farben komprimiert und zusammengeschnitten, sodass nur mehr der markierte Fokusbereich der Kamera weiter zu verarbeiten bleibt (siehe Abbildung \ref{fig:ocrpage}).
 
 \begin{figure}[H]
     \centering
@@ -88,11 +88,11 @@ Auf dieser Seite können alle Geräte die eine Kamera haben, eine Raumnummer von
 \end{figure}
 
 
-Meist liefert der OCR-Prozess eindeutige Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist es notwendig, dass nachdem das Bild in Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, der Bilder in Text umwandelt, wird mit den Standardwerten einmal pro Sekunde durchgeführt. Dieses Intervall kann einfach verändert werden. Im Fall von \ZELIA ist es standardmäßig eine Sekunde, da dies völlig ausreichend ist, um schnell Raumnummern zu erfassen. Wenn dieses Intervall kleiner werden würde, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, dann könnten schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Mehr zu OCR und den Messungen der Implementierung später (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr} und Messungen der OCR Implementierung \ref{sec:ocrmessung}, Seite \pageref{sec:ocr} und \pageref{sec:ocrmessung}). Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
+Meist liefert der OCR-Prozess eindeutige Ergebnisse. Allerdings kann es auch passieren, gerade wenn viele helle und dunkle Flecken im Hintergrund des Bildes sind, dass diese als Zeichen erkannt werden. Somit ist es notwendig, dass nachdem das Bild in einen Text umgewandelt wurde, mittels "Regular Expressions" der wichtige Teil aus dem Text herausgefiltert wird. Dieser gesamte Prozess, der Bilder in einen Text umwandelt, wird mit den Standardwerten einmal pro Sekunde durchgeführt. Dieses Intervall kann einfach verändert werden. Im Fall von \ZELIA\ ist es standardmäßig eine Sekunde, da dies völlig ausreichend ist, um schnell Raumnummern zu erfassen. Wenn dieses Intervall kleiner werden würde, also wenn mehrmals pro Sekunde Bild zu Text verarbeitet wird, dann könnten schwächere Smartphones schnell warm werden und mehr Energie verbrauchen. Mehr zu OCR und den Messungen der Implementierung später (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr} und Messungen der OCR Implementierung \ref{sec:ocrmessung}, Seite \pageref{sec:ocr} und \pageref{sec:ocrmessung}). Wenn eine Raumnummer erfolgreich eingelesen wurde, wird man automatisch auf die Rauminformationsseite weitergeleitet.
 
 \hfive{Rauminformationsseite}
 
-Wie der Name schon vermuten lässt, kann man auf der Rauminformationsseite alle Daten über einen Raum auslesen. Nachdem man einen Raum, entweder durch manuelle Eingabe oder durch das Einscannen der Nummer ausgewählt hat, wird man auf die jeweilige Rauminformationsseite umgeleitet. Aufgebaut ist die Seite aus insgesamt fünf Komponenten (siehe Abbildung \ref{fig:roominfoframes}). So wie bei der OCR-Seite gibt es auch hier einen Link, welcher zurück auf die Startseite führt. Zwei weitere Komponenten dienen als Knöpfe, um eine Meldung oder Buchung zu einem Raum zu erstellen. Wenn man einen der beiden drückt, wird man auf die jeweilige Seite, Meldung oder Buchung umgeleitet. Die letzten zwei Komponenten auf dieser Seite sind die interessantesten, denn sie zeigen die Informationen zu einem Raum an. Die eine Komponente zeigt eine aufklappbare Liste an, um die physikalischen Daten eines Raumes anzusehen. Die andere Komponente wird verwendet, um den jeweiligen Raumstundenplan dazustellen.
+Wie der Name schon vermuten lässt, kann man auf der Rauminformationsseite alle Daten über einen Raum auslesen. Nachdem man einen Raum, entweder durch manuelle Eingabe oder durch das Einscannen der Nummer, ausgewählt hat, wird man auf die jeweilige Rauminformationsseite umgeleitet. Aufgebaut ist die Seite aus insgesamt fünf Komponenten (siehe Abbildung \ref{fig:roominfoframes}). So wie bei der OCR-Seite gibt es auch hier einen Link, welcher zurück auf die Startseite führt. Zwei weitere Komponenten dienen als Knöpfe, um eine Meldung oder Buchung zu einem Raum zu erstellen. Wenn man einen der beiden drückt, wird man auf die jeweilige Seite, Meldung oder Buchung umgeleitet. Die letzten zwei Komponenten auf dieser Seite sind die interessantesten, denn sie zeigen die Informationen zu einem Raum an. Die eine Komponente zeigt eine aufklappbare Liste an, um die physikalischen Daten eines Raumes anzusehen. Die andere Komponente wird verwendet, um den jeweiligen Raumstundenplan dazustellen.
 
 \begin{figure}[H]
     \centering
@@ -109,7 +109,7 @@ Die Meldungs- und Buchungsseite sind zwei verschiedene Seiten, welche allerdings
     \item Einem Link, welcher zurück zur Rauminformationsseite führt
 \end{itemize}
 
-Damit man Defekte in einem Raum melden kann, gibt man eine EDU-Mail-Adresse, das Datum sowie Uhrzeit wann der Defekt das erste Mal aufgetreten ist und eine Beschreibung des Problems an. Wie schon erläutert, wird die Mail-Adresse verwendet, um Schüler*innen identifizieren zu können, ohne dass sie sich einen Account anlegen müssen. Nach Absenden des Formulars bekommt man einen Bestätigungslink auf die angegebene Mail-Adresse, um die Meldung zu bestätigen. So ist das Meldesystem nicht anonym und dadurch können Falsch-Meldungen verringert werden.
+Damit man Defekte in einem Raum melden kann, gibt man eine EDU-Mail-Adresse, das Datum sowie die Uhrzeit, wann der Defekt das erste Mal aufgetreten ist, und eine Beschreibung des Problems an. Wie schon erläutert, wird die Mail-Adresse verwendet, um Schüler*innen identifizieren zu können, ohne dass sie sich einen Account anlegen müssen. Nach Absenden des Formulars bekommt man einen Bestätigungslink auf die angegebene Mail-Adresse, um die Meldung zu bestätigen. So ist das Meldesystem nicht anonym und dadurch können Falsch-Meldungen verringert werden.
 
 \begin{figure}[H]
     \centering
@@ -123,7 +123,7 @@ Eine Buchungsanfrage für einen Raum zu erstellen, geht ebenso einfach wie Defek
     \item Die Unterrichtsstunde, in der man startet
     \item Die Anzahl an Stunden, die man den Raum nutzen möchte
 \end{itemize} 
-Wie beim Melden gibt man auch hier eine EDU-Mailadresse an. Zusätzlich sollte man noch einen Buchungsgrund angeben, um kurz zu beschreiben wofür man den Raum benötigt.
+Wie beim Melden gibt man auch hier eine EDU-Mailadresse an. Zusätzlich sollte man noch einen Buchungsgrund angeben, welcher kurz beschreibt, wofür man den Raum benötigt.
 
 \begin{figure}[H]
     \centering
@@ -145,13 +145,13 @@ Wie schon beschrieben, muss man als Administrator angemeldet sein, um Zugriff au
     \caption{Anmeldeseite}
 \end{figure}
 
-Landet man auf der "Admin Dashboard"-Seite, wird zuerst überprüft, ob ein Token im "session storage" gespeichert ist. Wenn keiner vorhanden ist, wird man sofort auf die Anmeldeseite umgeleitet. Bei einem vorhandenen Token werden alle Meldungen und Buchungen, die den Filtereinstellungen entsprechen, vom Server abgefragt. In dieser Anfrage wird auch der Token mitgeschickt. Am Server wird geprüft ob der Token gültig ist und wenn dies der Fall ist, bekommt der Client die angefragten Daten. Ist der Token ungültig, schickt der Server dem Client den HTTP-Code 401 "Unauthorized" und man wird zurück auf die Anmeldeseite umgeleitet.
+Landet man auf der "Admin Dashboard"-Seite, wird zuerst überprüft, ob ein Token im "session storage" gespeichert ist. Wenn keiner vorhanden ist, wird man sofort auf die Anmeldeseite umgeleitet. Bei einem vorhandenen Token werden alle Meldungen und Buchungen, die den Filtereinstellungen entsprechen, vom Server abgefragt. In dieser Anfrage wird auch der Token mitgeschickt. Am Server wird geprüft, ob der Token gültig ist und wenn dies der Fall ist, bekommt der Client die angefragten Daten. Ist der Token ungültig, schickt der Server dem Client den HTTP-Code 401 "Unauthorized" und man wird zurück auf die Anmeldeseite umgeleitet.
 
 Hat der Client die Buchungen und Meldungen erhalten, werden zwei Komponenten verwendet, um diese anzuzeigen. Anders als auf den anderen Seiten werden mehrere Instanzen dieser beiden Komponenten erstellt, um alle Daten darzustellen. Jede Buchung und Meldung ist somit in einer eigenen Instanz einer Komponente untergebracht. Beide dieser Komponenten können aufgeklappt werden, um alle damit verknüpften Informationen zu sehen. Zugeklappt bestehen sie aus einer Zusammenfassung der Daten (siehe Abbildung \ref{fig:admindashboard}).
 
-Die Buchungskomponente hat zwei verschiedene Knöpfe, um die Buchungsanfrage zu verarbeiten. Einen zum "Akzeptieren" und den anderen zum "Ablehnen". Zusätzlich kann man einen kurzen Informationstext schreiben, der den Buchenden mit der Buchungsbestätigung gesendet wird. 
+Die Buchungskomponente hat zwei verschiedene Knöpfe, um die Buchungsanfrage zu verarbeiten. Einen zum "Akzeptieren" und den anderen zum "Ablehnen". Zusätzlich kann man einen kurzen Informationstext schreiben, der mit der Buchungsbestätigung an die buchende Person gesendet wird. 
 
-Die Komponente, welche Meldungen anzeigt, hat nur einen Knopf, um den Status der Meldung auf "geschlossen" zu setzen. Im Hintergrund gäbe es mehrere Auswahlmöglichkeiten eines Status, welche nicht im Frontend implementiert sind.
+Die Komponente, welche die Meldungen anzeigt, hat nur einen Knopf, um den Status der Meldung auf "geschlossen" zu setzen. Im Hintergrund gäbe es mehrere Auswahlmöglichkeiten eines Status, welche nicht im Frontend implementiert sind.
 
 \begin{figure}[H]
     \centering
