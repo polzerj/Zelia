@@ -13,7 +13,7 @@ TLS ist ein Verschlüsselungsprotokoll, um Kommunikation über das Internet zu v
 \begin{figure}[H]
     \centering
     \includegraphics{media/OpenSSL/info.png}
-    \caption{Keine Ahnung was das für ein Bild ist} % TODO: CAPTION
+    \caption{Lokation von TLS im ISO/OSI Schichtenmodell}
 \end{figure}
 
 TLS befindet sich im Bezug auf das ISO/OSI Schichtenmodell zwischen dem Transport Layer und dem Application Layer.
@@ -36,7 +36,7 @@ Die Kommunikation beginnt damit, dass der Client den TCP-Handshake initiiert. De
 \begin{figure}[H]
     \centering
     \includegraphics{media/OpenSSL/pt.png}
-    \caption{Packet-Tracer oder so} %TODO: Add caption
+    \caption{Client-Hello Paket in PaketTracer}
 \end{figure}
 
 In diesem Paket sind Informationen wie die TLS-Version, ein zufällig generierter Wert und eine Liste von unterstützten "Cipher Suites". "Cipher Suites" legen fest, welche Algorithmen bei der sicheren Datenverbindung verwendet werden. Der zufällig generierte Wert, der beim "Client Hello"-Paket mitgeschickt wird, speichert der Server bei sich. Als Antwort schickt der Server ein "Server Hello"-Paket an den Client. 
@@ -44,7 +44,7 @@ In diesem Paket sind Informationen wie die TLS-Version, ein zufällig generierte
 \begin{figure}[H]
     \centering
     \includegraphics{media/OpenSSL/hello.png}
-    \caption{caption} %TODO: Add caption
+    \caption{Server-Hello Paket} 
 \end{figure}
 
 Der Server schickt die TLS-Version, die der Client ihm geschickt hat zurück, falls der Server diese Version unterstützt. Zusätzlich wird die vom Server bevorzugte "Cipher Suite" mitgeschickt, sowie ein zufälliger Wert, den der Client bei sich speichert. Dann schickt der Server dem Client sein Zertifikat, um sich beim Client zu authentifizieren. Der Client muss dieses Zertifikat auf seine Richtigkeit überprüfen. Nachdem der Server dem Client sein Zertifikat schickt, sendet er zusätzlich noch eine "CertificateVerify"-Nachricht. Diese Nachricht enthält den gesamten vorherigen Nachrichtenaustausch zwischen Client und Server. Diesen Inhalt verschlüsselt der Server mit seinem Private-Key. Der Client kann nun die "CertificateVerify"- Nachricht mit dem Public-Key des Servers entschlüsseln und den darin enthaltenen Nachrichtenverlauf mit seinem Nachrichtenverlauf vergleichen. Damit kann der Client überprüfen, ob eine Nachricht von einer Drittperson verändert wurde und ob der Server wirklich im Besitz des Private-Keys ist. Optional kann der Server vom Client ein Zertifikat anfordern, damit sich der Client authentifiziert. 
@@ -60,7 +60,7 @@ Client und Server berechnen anschließend mithilfe von den zwei zufälligen Wert
 \begin{figure}[H]
     \centering
     \includegraphics{media/OpenSSL/key.png}
-    \caption{caption} %TODO: Add caption
+    \caption{Prozess der Überprüfung} 
 \end{figure}
 
 Mithilfe der zwei "MAC"-Schlüssel können jeweils Client und Server Nachrichten auf ihre Authentizität prüfen. Wenn einer der Kommunikationspartner eine Nachricht senden will, verschlüsselt er deren Inhalt und fügt in ein MAC-Tag in das TLS-Paket ein. Der Empfänger berechnet sich ebenfalls mit seinem "MAC"-Schlüssel das MAC-Tag für die empfangenen Nachricht und vergleicht es mit dem "MAC"-Tag, dass der Absender berechnet hat. Wenn beide Tags übereinstimmen, ist die Authentizität der Nachricht gegeben.
@@ -74,7 +74,7 @@ TLS-Zertifikate ermöglichen es Client und Server sich zu identifizieren und zu 
 \begin{figure}[H]
     \centering
     \includegraphics{media/OpenSSL/cert.png}
-    \caption{caption} %TODO: Add caption
+    \caption{TLS-Zertifikat Hierarchie}
 \end{figure}
 
 Ein wichtiges Element im Bezug auf Zertifikate ist die sogenannte "chain of trust". Sie ist ein hierarchisches Modell, dass das Vertrauen zwischen Zertifikaten darstellen soll. Das Zertifikat eines einfachen Clients oder Webserver wird "End Entity Certificate" genannt. Solche Zertifikate müssen von einer "Certificate Authority" ausgestellt werden. Die Zertifikate der "Certificate Authority" werden "Intermediate Certificate" genannt. Diese Zertifikate müssen wiederum von einer sogenannten "Root Certificate Authority" ausgestellt werden. Um ein Zertifikat zu erstellen, muss ein "Certificate Signing Request" einer "Certificate Authority" zugeschickt werden. Diese antwortet dann mit einem gültigen Zertifikat, dass verwendet werden kann.

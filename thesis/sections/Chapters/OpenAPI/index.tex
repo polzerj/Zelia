@@ -1,5 +1,5 @@
 \htwo{OpenAPI}
-\begin{figure}
+\begin{figure}[H]
     \includegraphics{media/OpenAPI/Logo.png}
     \centering
     \caption{Logo von OpenAPI}
@@ -10,12 +10,12 @@ Die OpenAPI-Spezifikation ermöglicht es die Struktur einer REST-API so darzuste
 \yaml{code/OpenAPI/Description.yaml}{Beschreibung der OpenAPI-Version}
 
 In der ersten Zeile wird die OpenAPI-Version angegeben. Die Version muss in jeder API-Spezifikation enthalten sein. Im "info"-Block werden Projektname und Informationen über den Autor beschrieben. Der "servers"-Block enthält Informationen zu der URL des Webservices. 
-
-\yaml{code/OpenAPI/Rauminfo.yaml}{TODO: caption}
+%TODO Mario: Code ändern
+\yaml{code/OpenAPI/Rauminfo.yaml}{Rauminfo in OpenAPI-Format}
 
 Der "paths"-Block ist das Herzstück des Dokuments und beschreibt die verschiedenen Pfade, die in der API definiert sind. Im oberen Teil des Blockes wird der Pfad und seine Aufgabe kurz zusammengefasst. Der Wert vom "operationId"-Key legt einen Namen für eine möglicherweise später genutzte Methode im Programmcode fest. Der "responses"-Block beinhaltet alle möglichen Antworten des Webservers. In dem gezeigten Beispiel gibt es für den "/api/room/"-Pfad zwei Antwortmöglichkeiten. Die erste Antwort ist eine reguläre Antwort mit HTTP-Statuscode 200. In dem dazugehörigen Block wird die Antwort genauer beschrieben. Der Wert des "type"-Keys gibt an, von welchem Typ der Inhalt der Antwort ist. Weiters kann man mithilfe des "x-examples"-Block eine mögliche Antwort darstellen. Diese dient nur zur Verständlichkeit. Der "500"-Block definiert die Antwort im Falle eines Internal Server Errors. Theoretisch könnten noch mehrere Statuscodes definiert werden, in diesem Fall werden jedoch nur zwei benötigt. Diese Vorgehensweise wird bei der Beschreibung der REST-API nun für jeden einzelnen Pfad angewendet. Das fertige Dokument soll die Beschreibung für jeden einzelnen Pfad beinhalten. In diesem Kapitel der Arbeit wird nicht jeder einzelne Pfad des \ZELIA-OpenAPI-Dokuments gezeigt.
-
-\yaml{code/OpenAPI/ZeliaComponents.yaml}{TODO: caption}
+%TODO Mario: Code ändern
+\yaml{code/OpenAPI/ZeliaComponents.yaml}{ZeliaComponents in OpenAPI-Format}
 
 Ein weiterer nützlicher Block in einem OpenAPI-Dokument ist der "components"-Block. Oft ist es der Fall, dass mehrere API-Operationen dieselben Parameter oder dieselbe Response-Struktur haben. Um eine Wiederholung von Code zu vermeiden, können im "components"-Block Typen definiert werden. Auf diese Typen kann dann an anderen Stellen des Dokuments zugegriffen werden. 
 

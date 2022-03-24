@@ -1,9 +1,9 @@
 \htwo{Node.js}
 \label{sec:nodejs}
 \sectionauthor{Mersed Kečo}
-Node.js ist eine plattformübergreifende Javascript-Laufzeitumgebung, die auf der V8 JS-Engine von Google basiert. Node.js wurde entwickelt um skalierbare Netzwerkanwendungen zu erstellen. Node.js wird von Ruby's "Event Machine" und Pythons "Twisted" beeinflusst und ähnelt diesen im Design. Die aktuelle Node.js-Version, die Version 17, während die Veröffentlichung der Version 18 für den 25. Oktober 2022 geplant ist.\cite{NodeInfo}
+Node.js ist eine plattformübergreifende Javascript-Laufzeitumgebung, die auf der V8 JS-Engine von Google basiert. Node.js wurde entwickelt um skalierbare Netzwerkanwendungen zu erstellen. Node.js wird von Ruby's "Event Machine" und Pythons "Twisted" beeinflusst und ähnelt diesen im Design. Die aktuelle Node.js-Version, die Version 17, während die Veröffentlichung der Version 18 für den 25. Oktober 2022 geplant ist. \cite{NodeInfo}
 
-Laut "W3Techs" wird Node.Js von 1,2\% aller Webseiten genutzt. Auf das ganze Internet gerechnet sind das über 20 Millionen Webseiten, die mithilfe von Node.js betrieben werden. \cite{NodeInfo}\cite{Node}
+Laut "W3Techs" wird Node.Js von 1,2\% aller Webseiten genutzt. Auf das ganze Internet gerechnet sind das über 20 Millionen Webseiten, die mithilfe von Node.js betrieben werden. \cite{NodeInfo} \cite{Node}
 
 \hfour{Architektur von Node.js}
 Die von Node.js verwendete Architektur der "Single Threaded Event Loop" wird dazu verwendet, mehrere Clients gleichzeitig handzuhaben. Damit Endnutzer den  Unterschieden zwischen dieser und anderen Runtimes auf die Spuren kommen, ist es von oberster Priorität zu verstehen, wie "Multithreaded Concurrent Clients" in Java gehandhabt werden. \cite{NodeJs.dev}
@@ -30,19 +30,19 @@ Node.js arbeitet mit dem Modell der "Event Loop", welches natürlich seine eigen
 \end{figure}
 
 
-Node.js erlaubt nur eine begrenzte Anzahl an Threads in dem Threadpool, welche Anfragen bearbeiten. \cite{NodeJsArch}\cite{NodeJsArch2}
+Node.js erlaubt nur eine begrenzte Anzahl an Threads in dem Threadpool, welche Anfragen bearbeiten. \cite{NodeJsArch} \cite{NodeJsArch2}
 
-Sobald Anfragen reinkommen, werden diese von Node.js in eine Warteschlange namens "Event Queue" eingeordnet. \cite{NodeJsArch}\cite{NodeJsArch2}
+Sobald Anfragen reinkommen, werden diese von Node.js in eine Warteschlange namens "Event Queue" eingeordnet. \cite{NodeJsArch} \cite{NodeJsArch2}
 
-Die Kernkomponente der Architektur kommt an diesem Punkt zum Einsatz, nämlich die Single Threaded "Event Loop". Dieser Thread wartet auf unbestimmte Zeit auf eingehende Anfragen. \cite{NodeJsArch}\cite{NodeJsArch2}
+Die Kernkomponente der Architektur kommt an diesem Punkt zum Einsatz, nämlich die Single Threaded "Event Loop". Dieser Thread wartet auf unbestimmte Zeit auf eingehende Anfragen. \cite{NodeJsArch} \cite{NodeJsArch2}
 
-Bei einer eingehenden Anfrage holt die " Event Loop" diese aus der Queue und prüft, ob diese eine blockierende Eingabe/Ausgabe-Operation benötigt. Falls dies nicht der Fall ist, wird die Anfrage verarbeitet und eine Antwort gesendet. \cite{NodeJsArch}\cite{NodeJsArch2}
+Bei einer eingehenden Anfrage holt die " Event Loop" diese aus der Queue und prüft, ob diese eine blockierende Eingabe/Ausgabe-Operation benötigt. Falls dies nicht der Fall ist, wird die Anfrage verarbeitet und eine Antwort gesendet. \cite{NodeJsArch} \cite{NodeJsArch2}
 
-Wenn die eingehende Anfrage aber eine blockierende Eingabe/Ausgabe-Operation benötigt, verweist die "Event Loop" auf einen internen Thread aus seinem Threadpool, um diese Anfrage zu bearbeiten. Die Gruppe von Threads, die in solchen Situationen einspringen, wird Workergroup genannt. \cite{NodeJsArch}\cite{NodeJsArch2}
+Wenn die eingehende Anfrage aber eine blockierende Eingabe/Ausgabe-Operation benötigt, verweist die "Event Loop" auf einen internen Thread aus seinem Threadpool, um diese Anfrage zu bearbeiten. Die Gruppe von Threads, die in solchen Situationen einspringen, wird Workergroup genannt. \cite{NodeJsArch} \cite{NodeJsArch2}
 
-Die Schleife verfolgt blockierende Anfragen und stellt solche in die Warteschlange. Jede Anfrage wird abgearbeitet, sobald davor auftretende blockierende Operationen abgearbeitet sind. Dies ist die Art und Weise, wie der Lebenszyklus von Nodes.js auf dem Laufenden gehalten werden kann. \cite{NodeJsArch}\cite{NodeJsArch2}
+Die Schleife verfolgt blockierende Anfragen und stellt solche in die Warteschlange. Jede Anfrage wird abgearbeitet, sobald davor auftretende blockierende Operationen abgearbeitet sind. Dies ist die Art und Weise, wie der Lebenszyklus von Nodes.js auf dem Laufenden gehalten werden kann. \cite{NodeJsArch} \cite{NodeJsArch2}
 
-Aufgrund der Verwendung von einer kleineren Anzahl von Threads, werden weniger Ressourcen beziehungsweise weniger Speicher verbraucht. Dies wirkt sich spürbar auf die schnellere Ausführung von Anfragen aus. Wenn datenintensive Aufgaben verarbeitet werden müssen, dann ist die Verwendung von Multi-Threaded-Sprachen wie Java sinnvoller. In Fall vom \ZELIA\ ist aber die Verwendung von Node.js die sinnvollste Wahl, da schon eine Vielzahl von Bibliotheken vorhanden sind und die Kommunikation zwischen Front- und Backend leichter gestaltet werden kann, da beides in JavaScript geschrieben ist. \cite{Arocom}\cite{NodeJsArch2}\cite{NodeJsArch}
+Aufgrund der Verwendung von einer kleineren Anzahl von Threads, werden weniger Ressourcen beziehungsweise weniger Speicher verbraucht. Dies wirkt sich spürbar auf die schnellere Ausführung von Anfragen aus. Wenn datenintensive Aufgaben verarbeitet werden müssen, dann ist die Verwendung von Multi-Threaded-Sprachen wie Java sinnvoller. In Fall vom \ZELIA\ ist aber die Verwendung von Node.js die sinnvollste Wahl, da schon eine Vielzahl von Bibliotheken vorhanden sind und die Kommunikation zwischen Front- und Backend leichter gestaltet werden kann, da beides in JavaScript geschrieben ist. \cite{Arocom} \cite{NodeJsArch2} \cite{NodeJsArch}
 
 \hfour{Anwendungen von Node.js}
 
@@ -83,7 +83,7 @@ Node.js wird den Entwicklern mit dem bereits eingebauten Modul namens "HTTP" ber
 
 "Der Node Package Manager (NPM) ist das Paket-System von Node.js". \cite{NPMIntro} Es ist das größte "Ecosystem" aller Open-Source Bibliotheken der Welt, mit über einer Millionen Pakete, weitere Pakete werden täglich releast. NPM ist kostenlos und hat eine sehr große Community, des öfteren Open Source Entwickler und begeisterte Programmierer. Die Firma, die hinter NPM steht, die sogenannte NPM INC., wurde 2014 gegründet und 2020 von GitHub aufgekauft.
 NPM wird mit einem Kommandozeilenprogramm ausgeliefert. Die Möglichkeit besteht auch, auf der Webseite von NPM nach gewünschten Paketen zu suchen und diese mit einem einzigen Befehl zu installieren. Die Versionierung der Pakete und die Überprüfung von Abhängigkeiten kann eingerichtet werden. Node.js ist ein Dreh– und Angelpunkt für Entwickler*innen vor allem wegen dem "Package Support".
-Die Sicherheit von Paketen ist bei NPM durch den bereits eingebauten Sicherheits-Scanner gegeben. \cite{NPM}\cite{NPM2}\cite{NPMIntro}
+Die Sicherheit von Paketen ist bei NPM durch den bereits eingebauten Sicherheits-Scanner gegeben. \cite{NPM} \cite{NPM2} \cite{NPMIntro}
 
 
 \begin{figure}[H]

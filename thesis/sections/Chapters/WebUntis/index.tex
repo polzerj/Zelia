@@ -8,7 +8,7 @@ WebUntis ist der zentrale Ort, wo die Planung für eine Schule vorgenommen werde
 \begin{figure}[H]
     \centering
     \includegraphics{media/WebUntis/WebUntisLogo.png}
-    \caption{WebUntis Logo\cite{WebUntisLogo}}
+    \caption{WebUntis Logo \cite{WebUntisLogo}}
 \end{figure}
 
 \hfour{Geschichte}
@@ -38,7 +38,7 @@ getRooms wird verwendet, um alle Räume für ein Schulgebäude herauszufinden.
 \begin{minipage}{\textwidth}
     Dies ist nur ein kleiner Ausschnitt der gesamten Räume des SZU:
     
-    \typescriptsub{code/WebUntis/Rooms.json}{Ausgabe der getRooms Methode}{1}{20}
+    \typescriptsub{code/WebUntis/Rooms.json}{Ausgabe der getRooms Methode}{10}{30}
 \end{minipage}
 
 \begin{minipage}\textwidth
@@ -86,7 +86,6 @@ Des Weiteren gab es das Problem, dass WebUntis einen Token eingebaut hat, welche
 
 Falls der Token zum Zeitpunkt der Abfrage ungültig ist, wird die Variable "valid" auf "false" gesetzt und springt nach der if-Abfrage in den else-Zweig. Dort wird automatisch eine Neuanmeldung mit den Informationen des Benutzers getätigt und es wird erneut versucht, die gewünschte Methode auszuführen.
 
-\pagebreak
 
 Während dem Exception-Handling ist \ZELIA\ folgender Fehler seitens WebUntis aufgefallen:
 
