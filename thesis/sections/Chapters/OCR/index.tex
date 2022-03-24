@@ -9,15 +9,15 @@
 
 \hfour{Anwendung}
 
-Schon 1914 wurden erste Schritte gemacht, um Zeichen einzulesen. Das "Optophone" ist ein Gerät, welches eingelesene Zeichen in Töne umwandelt.\cite{OCRRecognition}
+Schon 1914 wurden erste Schritte gemacht, um Zeichen einzulesen. Das "Optophone" ist ein Gerät, welches eingelesene Zeichen in Töne umwandelt. \cite{OCRRecognition}
 
-1974 forschte Ray Kurzweil an einer OCR Technik, die jeden gedruckten Text, unabhängig der Schriftart, erkannte. Kurzweil entwickelte eine Maschine für Blinde und Menschen die nicht lesen konnten, indem der eingelesene Text von der Maschine vorgelesen wurde.\cite{OCRRecognition}
+1974 forschte Ray Kurzweil an einer OCR Technik, die jeden gedruckten Text, unabhängig der Schriftart, erkannte. Kurzweil entwickelte eine Maschine für Blinde und Menschen die nicht lesen konnten, indem der eingelesene Text von der Maschine vorgelesen wurde. \cite{OCRRecognition}
 
 Heutzutage gibt es viele Anwendungen für die OCR Technologie. Zum Beispiel wird diese verwendet beim Projekt Gutenberg, eine der ältesten Digitalbibliotheken, um Bücher automatisch digitalisieren zu lassen. Aber auch im normalen Alltag stößt man öfters auf Texterkennung. So bietet zum Beispiel Google, bei ihrem Übersetzer, die Möglichkeit in Echtzeit über die Smartphone-Kamera Texte übersetzten zu lassen. Auch zum Einlesen von Informationen \zb: von einem Reisepass (wie bei "Lead Horizon"), wird Zeichenerkennung verwendet, um das mühsame Abschreiben zu vermeiden.
 
 \hfour{Funktionalität}
 
-Bevor man Texte aus einem Bild auslesen kann, wird das Bild meist vereinfacht. Es wird dabei das gesamte Bild auf Grautöne komprimiert, welche helfen sollen Text oder kein Text zu erkennen. Oft wird auch probiert das Bild zusammenzuschneiden, sodass nur mehr der wichtigste Teil mit Text vorhanden ist. Der letzte Schritt der gemacht wird ist das Einteilen der Zeichen. Dabei wird probiert alles was ein Zeichen sein könnte zu finden und auszuschneiden.\cite{OCRPreProcessing}
+Bevor man Texte aus einem Bild auslesen kann, wird das Bild meist vereinfacht. Es wird dabei das gesamte Bild auf Grautöne komprimiert, welche helfen sollen Text oder kein Text zu erkennen. Oft wird auch probiert das Bild zusammenzuschneiden, sodass nur mehr der wichtigste Teil mit Text vorhanden ist. Der letzte Schritt der gemacht wird ist das Einteilen der Zeichen. Dabei wird probiert alles was ein Zeichen sein könnte zu finden und auszuschneiden. \cite{OCRPreProcessing}
 
 Diese Bildausschnitte von Zeichen werden dann probiert in den jeweiligen Zeichencode umgewandelt zu werden. Dafür gibt es zwei Herangehensweisen, um diese Umwandlung durchzuführen:
 
@@ -28,11 +28,11 @@ Diese Bildausschnitte von Zeichen werden dann probiert in den jeweiligen Zeichen
 
 \hfour{Matrix/Pattern Matching}
 
-Bei diesem Vorgang wird eines der zusammengeschnittenen Zeichenbilder Pixel für Pixel verglichen, mit vorgefertigten Zeichen. Anhand der Prozent die übereinstimmen, kann zurückgeschlossen werden welches Zeichen im Bild sein könnte. Diese Möglichkeit ist recht einfach im Vergleich zur zweiten Technik. Ein Nachteil ist aber, dass verschiedene Schriftarten problematisch sein könnten und manche Zeichen falsch oder gar nicht erkannt werden. Beheben kann man dieses Problem, indem man die vorgefertigten Zeichen mit denen verglichen wird, erweitert. Das macht den ganzen Vorgang aber wiederum langsamer. Somit muss das Vorgehen für jede Anwendung individuell angepasst werden.\cite{OCRRecognition}
+Bei diesem Vorgang wird eines der zusammengeschnittenen Zeichenbilder Pixel für Pixel verglichen, mit vorgefertigten Zeichen. Anhand der Prozent die übereinstimmen, kann zurückgeschlossen werden welches Zeichen im Bild sein könnte. Diese Möglichkeit ist recht einfach im Vergleich zur zweiten Technik. Ein Nachteil ist aber, dass verschiedene Schriftarten problematisch sein könnten und manche Zeichen falsch oder gar nicht erkannt werden. Beheben kann man dieses Problem, indem man die vorgefertigten Zeichen mit denen verglichen wird, erweitert. Das macht den ganzen Vorgang aber wiederum langsamer. Somit muss das Vorgehen für jede Anwendung individuell angepasst werden. \cite{OCRRecognition}
 
 \hfour{Feature Extraction}
 
-Hier wird, wie der Name schon sagt, nach Merkmalen gesucht. Merkmale sind zum Beispiel Kanten und Kurven. Diese braucht man, um Zeichen zu beschreiben. Die Merkmale werden dann mit einer Ansammlung von typischen Zeichenmerkmalen verglichen. Somit kann erkannt werden um welches Symbol es sich handeln könnte. Dieser Vorgang funktioniert oft besser mit verschieden Schriftarten, da nicht so wie bei Matrix Matching auf einen exakten Vergleich geschaut wird.\cite{OCRRecognition}
+Hier wird, wie der Name schon sagt, nach Merkmalen gesucht. Merkmale sind zum Beispiel Kanten und Kurven. Diese braucht man, um Zeichen zu beschreiben. Die Merkmale werden dann mit einer Ansammlung von typischen Zeichenmerkmalen verglichen. Somit kann erkannt werden um welches Symbol es sich handeln könnte. Dieser Vorgang funktioniert oft besser mit verschieden Schriftarten, da nicht so wie bei Matrix Matching auf einen exakten Vergleich geschaut wird. \cite{OCRRecognition}
 
 \hfour{Anwendung in der Praxis}
 
@@ -42,14 +42,14 @@ Oft wird auch nicht nur nach Zeichen gesucht. Gerade bei Sprachen, die Wörter m
 
 \hfour{Tesseract}\label{sec:tesseract}
 
-Tesseract ist eine Software-Bibliothek aus 1985, die 2005 als Open-Source-Projekt veröffentlicht wurde. Seit 2006 wird das Projekt von Google unterstützt und gilt als eine der bekanntesten "Optical-Character-Recognition" Bibliotheken. Zusätzlich zu den oben genannten Arten der Zeichenerkennung, verwendet Tesseract ein neurales Netz, um die Auswahl der Zeichen weiter einzuschließen. Außerdem probiert Tesseract ganze Wörter zu finden, die sich aus den Zeichen ergeben könnten, um noch genauere Ergebnisse zu liefern.\cite{Tesseract}
+Tesseract ist eine Software-Bibliothek aus 1985, die 2005 als Open-Source-Projekt veröffentlicht wurde. Seit 2006 wird das Projekt von Google unterstützt und gilt als eine der bekanntesten "Optical-Character-Recognition" Bibliotheken. Zusätzlich zu den oben genannten Arten der Zeichenerkennung, verwendet Tesseract ein neurales Netz, um die Auswahl der Zeichen weiter einzuschließen. Außerdem probiert Tesseract ganze Wörter zu finden, die sich aus den Zeichen ergeben könnten, um noch genauere Ergebnisse zu liefern. \cite{Tesseract}
 
 \hthree{Implementierung}
 
 \hfour{OCR-Modul}
 \label{sec:ocrmodul}
 
-Man kann Raumnummern, nicht nur manuell eingeben, sondern auch mit der Kamera eines Smartphones einscannen. Für den Prozess, die Raumnummern aus den Bildern auszulesen, wird ein "Optical Character Recognition"-Verfahren verwendet. Dafür wird die Bibliothek "TesseractJS", eine Web-Version von "Tesseract OCR", direkt im Browser eingebunden.\cite{TesseractJS}\cite{TesseractJSImplementation}
+Man kann Raumnummern, nicht nur manuell eingeben, sondern auch mit der Kamera eines Smartphones einscannen. Für den Prozess, die Raumnummern aus den Bildern auszulesen, wird ein "Optical Character Recognition"-Verfahren verwendet. Dafür wird die Bibliothek "TesseractJS", eine Web-Version von "Tesseract OCR", direkt im Browser eingebunden. \cite{TesseractJS}\cite{TesseractJSImplementation}
 
 Für diese Aufgabe gibt es bei \ZELIA\ im Komponentensystem eine Komponente. Diese Komponente wird auf der OCR-Seite des Frontends eingebunden. Sie beinhaltet ein Videoelement, um zu zeigen was sie scannt. Bevor die Kamera eines Gerätes für eine Webseite verwendet werden darf, muss über den "Browser Navigator" die Berechtigung auf den Kamerazugriff angefragt werden (siehe Code \ref{code:CameraAccess}).
 
