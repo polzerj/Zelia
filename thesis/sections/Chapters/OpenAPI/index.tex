@@ -5,7 +5,7 @@
     \caption{Logo von OpenAPI}
 \end{figure}
 
-Die OpenAPI-Spezifikation ermöglicht es die Struktur einer REST-API so darzustellen, dass sie sowohl von Menschen als auch von Computern gelesen werden kann. Angefangen hat die OpenAPI-Spezifikation als Teil des Softwareprojekt "Swagger", einem Open-Source-Framework für HTTP-Webservices. Seit 2016 ist OpenAPI ein selbstständiges Projekt und wird von der OpenAPI-Initiative verwaltet. OpenAPI-Definitionen werden in einem Dokument abgespeichert. Geschrieben werden diese Dokumentationen dann entweder in JSON oder in YAML. Die \ZELIA-API wurde ebenfalls mithilfe von OpenAPI in YAML beschrieben. Wie ein OpenAPI-Dokument strukturiert ist, wird anhand der \ZELIA-API erläutert. Wichtig zu beachten ist bei der Verwendung von YAML die Einrückungen, die in dieser Sprache essenziell sind.
+Die OpenAPI-Spezifikation ermöglicht es die Struktur einer REST-API so darzustellen, dass sie sowohl von Menschen als auch von Computern gelesen werden kann. Angefangen hat die OpenAPI-Spezifikation als Teil des Softwareprojekt "Swagger", einem Open-Source-Framework für HTTP-Webservices. Seit 2016 ist OpenAPI ein selbstständiges Projekt und wird von der OpenAPI-Initiative verwaltet. OpenAPI-Definitionen werden in einem Dokument abgespeichert. Geschrieben werden diese Dokumentationen dann entweder in JSON oder in YAML. Die \ZELIA-API wurde ebenfalls mithilfe von OpenAPI in YAML beschrieben. Wie ein OpenAPI-Dokument strukturiert ist, wird anhand der \ZELIA-API erläutert. Bei der Verwendung von YAML ist es wichtig, die Einrückungen, welche essenziell sind, zu beachten.
 
 \yaml{code/OpenAPI/Description.yaml}{Beschreibung der OpenAPI-Version}
 
@@ -17,7 +17,7 @@ Der "paths"-Block ist das Herzstück des Dokuments und beschreibt die verschiede
 %TODO Mario: Code ändern
 \yaml{code/OpenAPI/ZeliaComponents.yaml}{ZeliaComponents in OpenAPI-Format}
 
-Ein weiterer nützlicher Block in einem OpenAPI-Dokument ist der "components"-Block. Oft ist es der Fall, dass mehrere API-Operationen dieselben Parameter oder dieselbe Response-Struktur haben. Um eine Wiederholung von Code zu vermeiden, können im "components"-Block Typen definiert werden. Auf diese Typen kann dann an anderen Stellen des Dokuments zugegriffen werden. 
+Ein weiterer nützlicher Block in einem OpenAPI-Dokument ist der "components"-Block. Oft ist es der Fall, dass mehrere API-Operationen dieselben Parameter oder dieselbe Response-Struktur haben. Damit die Wiederholung von Code vermieden werden kann, besteht die Möglichkeit im "components"-Block Typen zu definieren. Auf diese Typen kann dann an anderen Stellen des Dokuments zugegriffen werden. 
 
 Zusammengefasst stehen in einem OpenAPI-Dokument Informationen über den Autor des Dokuments, URL des Webservices und Informationen über alle Pfade innerhalb einer REST-API. 
 
