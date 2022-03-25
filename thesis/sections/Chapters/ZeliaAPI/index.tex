@@ -4,17 +4,17 @@
 \hthree{Allgemein}
 Die \ZELIA-API ist eine API, die die REST-Richtlinien erfüllt. Die verschiedenen Endpunkte geben einem Client die Möglichkeit, die Funktionalitäten des \ZELIA-Service zu nutzen. Da \ZELIA\ mehrere Funktionalitäten hat, gibt es dementsprechend mehrere Endpunkte in der API. In dem folgenden Kapiteln werden die wichtigsten Endpunkte von \ZELIA erläutert.
 
-\hfour{Routen}
-\hfive{/api/timegrid}
+\hthree{Routen}
+\hfour{/api/timegrid}
 Der Endpunkt "/api/timegrid" liefert dem Client den Stundenplan seiner Klasse. Dies tut er, in dem er mithilfe der GET-Methode auf diesen Endpunkt zugreift. Falls der Server aus irgendeinem Grund Probleme hat den Request zu beantworten, schickt der Server einen Response mit Statuscode "500" an den Client.
 
-\hfive{/api/room}
+\hfour{/api/room}
 \yaml{code/ZeliaAPI/room.yaml}{Schnittstelle des Room-Endpunkts}
 
 Der "/api/room"-Endpunkt gibt eine Liste von allen Räumen an der Schule zurück, die in Untis vorhanden sind. Zugegriffen wird auf den Endpunkt nur über die "GET"-Methode. Der "/api/room"-Endpunkt benötigt keine Parameter. Es gibt zwei mögliche Responses. Wenn am Server die Bearbeitung der Anfrage richtig abläuft, dann antwortet der Server mit Statuscode "200" und einem Array von Raumnamen. Die Raumnamen werden dabei als String mitgeliefert. 
 Falls die Bearbeitung des Requests nicht funktioniert, antwortet der Server mit einer Antwort mit Statuscode "500".
 
-\hfive{/api/room/{roomNumber}}
+\hfour{/api/room/{roomNumber}}
 \yaml{code/ZeliaAPI/roomnumber.yaml}{Schnittstelle eines Raumes}
 
 Wenn der Benutzer Informationen zu einem bestimmten Raum haben möchte, greift er mithilfe der "GET"-Methode auf den "/api/room/{roomNumber}" zu. Der Endpunkt benötigt einen Parameter. Dieser Parameter ist ein String und beinhaltet die Raumbezeichnung.  Wenn der mitgegebene Raum existiert, antwortet der Server mit einem Array, das ein Raumobjekt zurückliefert, welches Informationen zu diesem Raum beinhaltet. Das Objekt hat folgende Eigenschaften:
@@ -37,7 +37,7 @@ Wenn der Benutzer Informationen zu einem bestimmten Raum haben möchte, greift e
 Falls der Parameter "roomNumber" keine gültige Raumnummer enthält, wird ein Response mit Statuscode "404" zurückgeschickt. 
 Falls während der Bearbeitung des Requests ein Fehler auftritt, antwortet der Server mit einer Response mit Statuscode "500".
 
-\hfive{/api/room/{roomnumber}/timetable}
+\hfour{/api/room/{roomnumber}/timetable}
 \yaml{code/ZeliaAPI/timetable.yaml}{Schnittstelle eines Stundenplans}
 
 Der Endpunkt "/api/room/{roomNumber}/timetable" liefert einem Client den Stundenplan zu einem gewünschten Raum. Der Raum wird dabei als Parameter mitgegeben. Auf den Endpunkt wird mithilfe der GET-Methode zugegriffen. Wenn bei der Bearbeitung keine Komplikationen auftreten, antwortet der Server mit einem Array von Lesson-Objekten. Wenn die beim Request mitgelieferte Raumbezeichnung nicht gültig ist, antwortet der Server mit einem Statuscode "404". Wenn bei der Bearbeitung des Requests ein anderer Fehler auftritt, antwortet der Server mit einem Statuscode "500".
@@ -58,7 +58,7 @@ Ein Lesson-Objekt repräsentiert eine Unterrichtsstunde. Solch ein Objekt hat fo
     \item activityType -- String welcher die Art des Unterrichts repräsentiert. 
 \end{itemize}
 
-\hfive{/api/room/{roomNumber}/book}
+\hfour{/api/room/{roomNumber}/book}
 \yaml{code/ZeliaAPI/booking.yaml}{Schnittstelle des Buchungs-Endpunkts}
 
 Mithilfe des Endpunktes "/api/room/{roomNumber}/book" kann ein Client einen Raum buchen. Die Raumbezeichnung des zu buchenden Raums wird dabei als Parameter mitgegeben. Der Client verwendet dazu die POST-Methode. Im Body des Requests muss ein Objekt mit folgender Struktur mitgeschickt werden: 
@@ -73,7 +73,7 @@ Mithilfe des Endpunktes "/api/room/{roomNumber}/book" kann ein Client einen Raum
 
 Wenn das Objekt im Request-body nicht den Anforderungen entspricht, wird ein Response mit Statuscode "400" zurückgeschickt. 
 
-\hfive{/api/room/{roomNumber}/report}
+\hfour{/api/room/{roomNumber}/report}
 \yaml{code/ZeliaAPI/report.yaml}{Schnittstelle eines Meldungs-Endpunkts}
 
 Der "/api/room/{roomNumber}/report"-Endpunkt ermöglicht es einem Client, Beschwerden oder Schäden bezüglich eines Raumes einzureichen. Der betreffende Raum wird als Parameter mitgegeben. Um eine Beschwerde einzureichen, tätigt der Client auf diesen Endpunkt einen POST-Request. Im Request-Body schickt der Client ein Objekt mit, das die Beschwerde näher beschreibt. Das Objekt hat folgende Eigenschaften:
@@ -89,7 +89,7 @@ Wenn kein Fehler auftritt, antwortet der Server mit Statuscode "200". Wenn das O
 
 \pagebreak
 
-\hfive{Klassen-Objekt}
+\hfour{Klassen-Objekt}
 \yaml{code/ZeliaAPI/Klassenobjekt.yaml}{Definiton eines Klassen-Objekts}
 
 Ein Klassen-Objekt repräsentiert eine Klasse in der Schule. Ein Klassen-Objekt hat folgende Eigenschaften: 
@@ -100,10 +100,10 @@ Ein Klassen-Objekt repräsentiert eine Klasse in der Schule. Ein Klassen-Objekt 
     \item longname -- String, der den vollständigen Klassennamen enthält. 
 \end{itemize}
 
-\hfive{Lehrerobjekt}
+\hfour{Lehrer-Objekt}
 \yaml{code/ZeliaAPI/Lehrerobjekt.yaml}{Definiton eines Lehrer-Objekts}
 
-Ein Lehrerobjekt repräsentiert einen Lehrer an der Schule. Ein Lehrer-Objekt hat folgende Eigenschaften: 
+Ein Lehrer-Objekt repräsentiert einen Lehrer an der Schule. Ein Lehrer-Objekt hat folgende Eigenschaften: 
 
 \begin{itemize}
     \item id -- Integerwert, der eine von der WebUntis-API vergebene ID enthält.
@@ -111,7 +111,7 @@ Ein Lehrerobjekt repräsentiert einen Lehrer an der Schule. Ein Lehrer-Objekt ha
     \item longname -- String, der den Nachnamen des Lehrers beinhaltet. 
 \end{itemize}
 
-\hfive{Gegenstands-Objekt}
+\hfour{Gegenstands-Objekt}
 \yaml{code/ZeliaAPI/Gegenstandsobjekt.yaml}{Definition eines Gegenstands-Objekts}
 
 Ein Gegenstands-Objekt repräsentiert einen Lehrgegenstand. Ein Gegenstands-Objekt hat folgende Eigenschaften: 
@@ -122,7 +122,7 @@ Ein Gegenstands-Objekt repräsentiert einen Lehrgegenstand. Ein Gegenstands-Obje
     \item longname -- String, der den vollständigen Namen des Lehrgegenstands enthält
 \end{itemize}
 
-\hfive{Raumobjekt}
+\hfour{Raumobjekt}
 \yaml{code/ZeliaAPI/Raumobjekt.yaml}{Definition eines Raumobjekts}
 
 \pagebreak

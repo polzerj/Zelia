@@ -83,7 +83,7 @@ Ein Zertifikat enthält Hostnamen des Besitzers und wird als "Common Name" bezei
 
 \pagebreak
 
-\hthree{Erstellen eines Zertifikats mit OpenSSL}
+\hfour{Erstellen eines Zertifikats mit OpenSSL}
 
 Um ein eigenes Zertifikat zu erstellen, muss zuerst ein RSA-Schlüsselpaar erstellt werden. Dies geht mit folgendem Befehl:
 
@@ -103,6 +103,6 @@ Nachdem man den "Certificate Signing Request" erstellt hat, schickt man diesen a
 
 Dieser Befehl erstellt ein Zertifikat im "x509"-Standard. Mit dem "-days" Parameter kann man die Gültigkeitsdauer des Zertifikats angeben. \cite{ZertifikateTLS}
 
-\hthree{TLS-Zertifikat}
+\hfour{TLS-Zertifikat bei \ZELIA}
 
 Damit man den Datenverkehr zwischen dem \ZELIA-Server und den Clients so sicher wie möglich gestaltet, verwendet \ZELIA\ TLS. \ZELIA verwendet TLS mit einem selbstsignierten Zertifikat.
