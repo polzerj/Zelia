@@ -2,7 +2,7 @@
 
 Zunächst wurde für die Entwicklung eine separate NGINX-Konfiguration (siehe Code \ref{code:NginxDevConf}) erstellt, die den Entwicklungsserver, der von Vite betrieben wird, an den Client weitergibt.
 
-\css[code:NginxDevConf]{code/Nginx/dev.conf}{NGINX-Konfiguration für die Entwicklung}
+\yaml[code:NginxDevConf]{code/Nginx/dev.conf}{NGINX-Konfiguration für die Entwicklung}
 
 Um das Gesamtprojekt bereitzustellen, werden vier verschiedene Docker-Container gestartet:
 
@@ -10,8 +10,7 @@ Um das Gesamtprojekt bereitzustellen, werden vier verschiedene Docker-Container 
     \item "NGINX"-Webserver -- Bereitstellung der Webseite
     \item "API"-Server -- Verarbeitung der Daten
     \item "MariaDB"-Dateien -- Speicherung der Daten
-    \item "Vite"-Entwicklungsserver -- Bereitstellung der Webseite mit automatischem Neuladen
-% tofix: Neuladen oder neu Laden?
+    \item "Vite"-Entwicklungsserver -- Bereitstellung der Webseite mit automatischem neu Laden
 \end{itemize}
 
 Diese Container kommunizieren miteinander in einem virtuellen Docker Netzwerk (siehe Abbildung \ref{fig:DockerDevNetwork}). 
@@ -35,4 +34,4 @@ Um das Datenbankschema aufzubauen und Testdaten einzufügen, können SQL-Skripte
 Um "Secrets" - wie das Passwort zur Datenbank - zu schützen, werden sie aus Umgebungsvariablen übernommen.
 Damit es nicht notwendig ist, die Umgebungsvariablen jedes Mal manuell zu setzen, ist es bei Docker mit der Option "{\ttfamily --env-file}" möglich, eine ".env"-Datei anzugeben, die alle Umgebungsvariablen speichert. \label{par:dockerEnvFile} 
 
-\css{code/Docker/dev.yaml}{Docker-YAML für die Entwicklung}
+\yaml{code/Docker/dev.yaml}{Docker-YAML für die Entwicklung}
