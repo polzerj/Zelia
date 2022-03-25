@@ -8,6 +8,8 @@
 
 Die Architektur der Datenbank im Projekt \ZELIA\ ist so gewählt, dass die Daten, welche die Benutzer*innen eingeben oder auslesen wollen sicher, konsistent und vor allem verfügbar abgespeichert werden können. Die gesamte Datenbankstruktur besteht aus fünf Tabellen, welche in Beziehungen zueinander stehen.
 
+\pagebreak
+
 \hfive{Tabelle AdminUser}
 
 Die Tabelle, welche sich in der Hierarchie ganz unten befindet, ist die Tabelle "AdminUser". In ihr werden Benutzerinnen und Benutzer angelegt, welche im "Admin-Dashboard" alle Meldungen oder Buchungen vorfinden und verwalten können. Außerdem werden in ihr verantwortliche Personen für gewisse Räume eingetragen.
@@ -18,6 +20,8 @@ Die Tabelle, welche sich in der Hierarchie ganz unten befindet, ist die Tabelle 
     \caption{Spalten der Tabelle "AdminUser"}
     \label{fig:AdminUserColls}
 \end{figure}
+
+\pagebreak
 
 \hfive{Tabelle Room}
 
@@ -30,6 +34,8 @@ Eine Ebene weiter oben befindet sich eine der zentralsten Tabellen im gesamten P
     \label{fig:RoomTableColls}
 \end{figure}
 
+\pagebreak
+
 \hfive{Tabelle RoomReport}
 
 Die Tabelle "RoomReport" ist für das Melden und Verwalten von Schäden in einem Raum zuständig. Deshalb ist jeder Meldungseintrag der Tabelle auch einem Raum zugeordnet und ein Raum kann mehrere Meldungen enthalten (Kardinalität 1:n). Außerdem hat die Tabelle "RoomReport" eine Beziehung zur Tabelle "AdminUser",  um die verantwortliche Person für die Meldung zu bestimmen (Kardinalität 1:n). Welche Details zu einer Meldung angegeben werden müssen, kann aus der Abbildung \ref{fig:RoomReportColls} entnommen werden. Wichtig ist aber, dass der Status einer Meldung von der verantwortlichen Person geändert werden kann, je nachdem in welcher Phase sich die Meldung befindet. Außerdem wird die Email Adresse der Person vermerkt, damit nachverfolgbar bleibt, wer welche Meldung aufgegeben hat.
@@ -41,6 +47,8 @@ Die Tabelle "RoomReport" ist für das Melden und Verwalten von Schäden in einem
     \label{fig:RoomReportColls}
 \end{figure}
 
+\pagebreak
+
 \hfive{Tabelle RoomReservation}
 
 In der Tabelle "RoomReservation" werden alle Buchungen, welche über \ZELIA\ getätigt werden abgespeichert und verwaltet. Wie beim "RoomReport" hat auch diese Tabelle Beziehungen zu den Tabellen "AdminUser" und "Room" (jeweils die Kardinalität 1:n). Die Details können wieder aus der nachfolgenden Abbildung \ref{fig:RoomReservationColls} entnommen werden. Genauso wie in der Tabelle "RoomReport" kann der Status der Buchung geändert werden, um der reservierenden Person zu sagen, ob eine Buchung möglich ist oder nicht. Das System mit der E-Mail Zuordnung bleibt ebenfalls gleich wie in der oberen Tabelle beschrieben.
@@ -51,6 +59,8 @@ In der Tabelle "RoomReservation" werden alle Buchungen, welche über \ZELIA\ get
     \caption{Spalten der Tabelle "RoomReservation"}
     \label{fig:RoomReservationColls}
 \end{figure}
+
+\pagebreak
 
 \hfive{Tabelle Lessons}
 

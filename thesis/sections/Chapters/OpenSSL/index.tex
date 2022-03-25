@@ -99,9 +99,9 @@ Optional kann man den Public-Key aus dem Schlüsselpaar extrahieren:
 
 Nachdem man den "Certificate Signing Request" erstellt hat, schickt man diesen an eine "Certificate Authority". Man kann den "Certificate Signing Request" auch selbst signieren. Nachteil ist, dass das Zertifikat als nicht sicher betrachtet wird, da es von keiner "Certificate Authority" signiert wurde. Um den "Certificate Signing Request" selbst zu signieren, wird folgender Befehl verwendet: 
 
-{\ttfamily openssl x509 -in beispiel.csr -out beispiel.crt -req -signkey beispiel.key -days 3650}
+{\ttfamily openssl x509 -in beispiel.csr -out beispiel.crt -req \newline -signkey beispiel.key -days 3650}
 
-Dieser Befehl erstellt ein Zertifikat im "x509"-Standard. Mit dem "-days" Parameter kann man die Gültigkeitsdauer des Zertifikats angeben. \cite{ZertifikateTLS}
+Dieser Befehl erstellt ein Zertifikat im "x509"-Standard. Mit dem "{\ttfamily -days}" Parameter kann man die Gültigkeitsdauer des Zertifikats angeben. \cite{ZertifikateTLS}
 
 \hfour{TLS-Zertifikat bei \ZELIA}
 
