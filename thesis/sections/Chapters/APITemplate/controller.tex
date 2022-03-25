@@ -3,7 +3,7 @@
 Ein "Controller" verarbeitet alle "Requests" auf einem Pfad. 
 "Controller" sind Klassen, welche von der "ControllerBase"-Klasse erben. 
 Im Basis-Konstruktor (in Javascript "{\ttfamily super()}") des "Controllers" muss der Pfad der Requests an die Basisklasse, "ControllerBase", übergeben werden, welche vom "Controller" verarbeitet werden sollen. 
-Zusätzlich kann ein Objekt mit "Middlewares" (siehe Kapitel \ref{sec:middleware}) übergeben werden, welche nur vor diesem "Controller" aufgerufen werden. 
+Zusätzlich kann ein Objekt mit "Middlewares" (siehe Kapitel "Middleware" \ref{sec:middleware}, Seite \pageref{sec:middleware}) übergeben werden, welche nur vor diesem "Controller" aufgerufen werden. 
 Um eine HTTP-Methode zu implementieren, müssen lediglich folgende Methoden in der Klasse überschrieben werden:
 
 \begin{itemize}

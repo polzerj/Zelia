@@ -94,9 +94,9 @@ JWT_SECRET=ZEL1A
 
 \hfour{Entwicklung}
 
-Wenn der Server im Entwicklungsmodus gestartet wird, kann bei einer Änderung im Quellcode der veränderte Programmteil automatisch neugestartet werden. Bevor der Server in diesem Zustand gestartet werden kann, muss man im \ZELIA-Verzeichnis in den beiden Unterordnern "pwa" und "api" jeweils folgendes Kommando in der Konsole ausführen: \emph{npm install} oder verkürzt \emph{npm i}. Dadurch werden vom "Node Packet Manager" (siehe Kapitel "NPM" \ref{sec:npm}) alle Bibliotheken heruntergeladen, die benötigt werden, um den Server zum Laufen zu bringen.
+Wenn der Server im Entwicklungsmodus gestartet wird, kann bei einer Änderung im Quellcode der veränderte Programmteil automatisch neugestartet werden. Bevor der Server in diesem Zustand gestartet werden kann, muss man im \ZELIA-Verzeichnis in den beiden Unterordnern "pwa" und "api" jeweils folgendes Kommando in der Konsole ausführen: \emph{npm install} oder verkürzt \emph{npm i}. Dadurch werden vom "Node Packet Manager" (siehe Kapitel "NPM" \ref{sec:npm}, Seite \pageref{sec:npm}) alle Bibliotheken heruntergeladen, die benötigt werden, um den Server zum Laufen zu bringen.
 
-Danach muss man unter MacOS und Windows "Docker Desktop" öffnen, damit die "Docker-Engine" gestartet wird. Auf Linuxsystemen ist dieser Vorgang nicht notwendig (siehe Kapitel \ref{sec:dockerexplained}). Nachdem die "Docker-Engine" geladen wurde, kann man die Docker-Container mit folgendem Befehl starten:
+Danach muss man unter MacOS und Windows "Docker Desktop" öffnen, damit die "Docker-Engine" gestartet wird. Auf Linuxsystemen ist dieser Vorgang nicht notwendig (siehe Kapitel "Wie funktioniert Docker" \ref{sec:dockerexplained}, Seite \pageref{sec:dockerexplained}). Nachdem die "Docker-Engine" geladen wurde, kann man die Docker-Container mit folgendem Befehl starten:
 
 \emph{docker-compose -f docker-compose.dev.yaml -{}-env-file api/.env up}  
 

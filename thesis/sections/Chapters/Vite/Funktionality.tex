@@ -3,7 +3,7 @@
 \hfour{NPM Abhängigkeitsauflösung}\label{sec:npm-dependency-resolving}
 
 % tofix: ,,,?
-Mit Vite ist es möglich, Module, welche mit NPM (siehe Kapitel \ref{sec:npm}) installiert wurden, zu importieren. 
+Mit Vite ist es möglich, Module, welche mit NPM (siehe Kapitel "NPM" \ref{sec:npm}, Seite \pageref{sec:npm}) installiert wurden, zu importieren. 
 Die ES-"import"-Anweisungen im Browser unterstützen nicht die Angabe von NPM-Modulen. Vite wandelt die importierten CommonJS-Module in ES-Module (ESM) um. CommonJS beschreibt eine Art von Modulen, welche bei NodeJS verwendet wird. Außerdem werden mit Vite die "import"-Anweisungen auf im Browser verwendbare URL umgeschrieben. \cite{ViteFeatures}
 
 \typescript{code/Vite/ModulResolving.ts}{Beispiel, wie Vite Abhängigkeiten von NPM Modulen auflöst}
