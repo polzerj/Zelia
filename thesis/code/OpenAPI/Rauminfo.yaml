@@ -1,1 +1,40 @@
-test: "ok"
+paths:
+  /api/room:
+    parameters: []
+    get:
+      summary: Get list of available rooms
+      tags: []
+      operationId: get-room-numbers
+      parameters: []
+      description: Get list of available rooms
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                x-examples:
+                  example-1:
+                    - roomNumber: S1308
+                      name: 5AHITN
+                      description: Klassenraum der 5A/BHITN
+                      type: Class
+                      isWheelchairAccessible: true
+                      hasTeacherComputer: true
+                      projector: normal
+                      projectorConnectors:
+                        - HDMI
+                        - ' VGA'
+                      hasWater: false
+                      boards:
+                        - normal
+                      numberOfComputers: 1
+                      numberOfSeats: 26
+                items:
+                  type: string
+        '500':
+          description: Internal Server Error

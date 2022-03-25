@@ -1,1 +1,23 @@
-test: "ok"
+components:
+  schemas:
+    UTeacher:
+      description: ''
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+          minLength: 1
+        longname:
+          type: string
+          minLength: 1
+      required:
+        - id
+        - name
+        - longname
+      x-examples:
+        example-1:
+          id: 174
+          name: ZACH
+          longname: ZACHERL
