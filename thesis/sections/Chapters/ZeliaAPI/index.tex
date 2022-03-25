@@ -2,7 +2,7 @@
 \label{sec:zeliaapi}
 
 \hthree{Allgemein}
-Die \ZELIA-API ist eine API, die die REST-Richtlinien erfüllt. Die verschiedenen Endpunkte geben einem Client die Möglichkeit, die Funktionalitäten des \ZELIA-Service zu nutzen. Da \ZELIA\ mehrere Funktionalitäten hat, gibt es dementsprechend mehrere Endpunkte in der API. 
+Die \ZELIA-API ist eine API, die die REST-Richtlinien erfüllt. Die verschiedenen Endpunkte geben einem Client die Möglichkeit, die Funktionalitäten des \ZELIA-Service zu nutzen. Da \ZELIA\ mehrere Funktionalitäten hat, gibt es dementsprechend mehrere Endpunkte in der API. In dem folgenden Kapiteln werden die wichtigsten Endpunkte von \ZELIA erläutert.
 
 \hfour{Routen}
 \hfive{/api/timegrid}
@@ -51,7 +51,7 @@ Ein Lessonobjekt repräsentiert eine Unterrichtsstunde. Solch ein Objekt hat fol
     \item date -- Datum der Unterrichtsstunde.
     \item startTime -- Anfang der Unterrichtsstunde.
     \item endTime -- Ende der Unterrichtsstunde.
-    \item kl -- Array, dass mehrere Klassenobjekte beinhalten, die jeweils eine Klasse der Schule repräsentieren, die an diesem Unterricht teilnimmt. 
+    \item kl -- Array, dass mehrere Klassenobjekte beinhaltet, die jeweils eine Klasse der Schule repräsentieren, die an diesem Unterricht teilnimmt. 
     \item te -- Array von Lehrerobjekten, welche jeweils einen Lehrer der Schule repräsentieren, die diesen Unterricht führen. 
     \item su -- Array mit einem Gegenstandsobjekt, welches den Lehrgegenstand dieses Unterrichts repräsentiert.
     \item ro -- Array, dass Raumobjekte beinhaltet, die jeweils einen Raum repräsentieren, der für diesen Unterricht verwendet wird. 
@@ -125,10 +125,12 @@ Ein Gegenstandsobjekt repräsentiert einen Lehrgegenstand. Ein Gegenstandsobjekt
 \hfive{Raumobjekt}
 \yaml{code/ZeliaAPI/Raumobjekt.yaml}{Definition eines Raumobjekts}
 
+\pagebreak
+
 Ein Raumobjekt repräsentiert einen Raum in der Schule. Ein Raumobjekt hat folgende Eigenschaften: 
 
 \begin{itemize}
     \item id -- Integerwert, der eine von der WebUntis-API vergebene ID enthält.
-    \item name -- String, der den Namen des Raums enthält.
+    \item name -- String, der die Abkürzung beziehungsweise die Kurzschreibweise des Raums enthält.
     \item longname -- String, der den gesamten Namen des Raums enthält. 
 \end{itemize}

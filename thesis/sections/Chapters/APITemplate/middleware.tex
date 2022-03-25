@@ -27,9 +27,9 @@ Dabei wird sie im \linebreak App-Konstruktor registriert, um bei jeder Anfrage m
 \typescript{code/APITemplate/loggerMiddleware.ts}{Beispiel der "LoggerMiddleware"}
 
 "Middlewares" können auch benutzt werden, um den Benutzer beim "Request" zu \mbox{authentifizieren}.
-Dabei wird in der "Middleware" geprüft, ob der Nutzer auf diesen Endpunkt zugreifen darf. Wenn ja, wird die "Next"-Funktion aufgerufen, um die nächste "Middleware" bzw. die Handler-Methode des "Controllers" aufzurufen. Wenn nicht, wird mittels des "Response"-Objektes eine "Unauthorised-Response" geschickt.
+Dabei wird in der "Middleware" geprüft, ob der Nutzer auf diesen Endpunkt zugreifen darf. Wenn ja, wird die "Next"-Funktion aufgerufen, um die nächste "Middleware" beziehungsweise die Handler-Methode des "Controllers" aufzurufen. Wenn nicht, wird mittels des "Response"-Objektes eine "Unauthorised-Response" geschickt.
 
-Wenn die "Logger"-"Middleware" in der App-Klasse und die "Authentication"-"Middleware" in einem "Controller" registriert sind, wird bei einer Anfrage auf diesen "Controller" zunächst die "Logger"-"Middleware" ausgeführt. Danach wird in der "Authentication"-"Middleware" geprüft, ob der Nutzer berechtigt ist, auf diesen Endpunkt zuzugreifen. Wenn ja, wird die "Next"-Funktion aufgerufen, um die nächste "Middleware" bzw. die Handler-Methode des "Controllers" aufzurufen. Wenn nicht, wird mittels des "Response"-Objektes eine "Unauthorised-Response" geschickt (siehe Abbildung \ref{fig:authMiddleware}).
+Wenn die "Logger"-"Middleware" in der App-Klasse und die "Authentication"-"Middleware" in einem "Controller" registriert sind, wird bei einer Anfrage auf diesen "Controller" zunächst die "Logger"-"Middleware" ausgeführt. Danach wird in der "Authentication"-"Middleware" geprüft, ob der Nutzer berechtigt ist, auf diesen Endpunkt zuzugreifen. Wenn ja, wird die "Next"-Funktion aufgerufen, um die nächste "Middleware" beziehungsweise die Handler-Methode des "Controllers" aufzurufen. Wenn nicht, wird mittels des "Response"-Objektes eine "Unauthorised-Response" geschickt (siehe Abbildung \ref{fig:authMiddleware}).
 
 \begin{figure}[H]
     \centering
