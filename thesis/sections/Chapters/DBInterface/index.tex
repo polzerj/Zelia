@@ -3,13 +3,13 @@
 
 \hthree{Allgemein}
 
-Das Datenbank-Interface ermöglicht es Daten, die die verschiedenen Controller im Back\-end-Code verarbeiten, in die Datenbank zu schreiben. Diese Daten sind beispielsweise Buchungen von Räumen oder auch Beschwerden. Durch das Interface können Daten nicht nur in die Datenbank geschrieben werden, sondern auch ausgelesen werden.
+Das Datenbank-Interface ermöglicht es Daten, welche verschiedenen Controller im Back\-end-Code verarbeiten, in die Datenbank zu schreiben. Diese Daten sind beispielsweise Buchungen von Räumen oder auch Beschwerden. Durch das Interface können Daten nicht nur in die Datenbank geschrieben, sondern auch ausgelesen werden.
 
 \hthree{Auslesen von Rauminformationen}
 
 \typescript{code/DBInterface/GetRooms.ts}{Datenbankschnittstelle um Rauminformationen auslesen}
 
-Diese Funktion ermöglicht es Rauminformation zu einem bestimmten Raum auszulesen. Parameter der Funktion ist die Raumnummer als String. Falls die Rauminformation für den angegebenen Raum ausgelesen werden kann, wird diese Information in Form eines Arrays mit einem einzigen Raum-Objekt zurückgeliefert. Falls während dem Auslesen aus der Datenbank ein Fehler auftritt, wird eine \emph{DatabaseNotAvailableException} aufgerufen. Falls die ausgelesenen Daten die Länge 0 haben, wurde der Raum nicht gefunden. In diesem Fall wird eine \emph{RoomNotFoundException} aufgerufen.
+Die in der vorrigen Abbildung beschriebeme Funktion ermöglicht es, Rauminformation zu einem bestimmten Raum auszulesen. Parameter der Funktion ist die Raumnummer als String. Falls die Rauminformation für den angegebenen Raum ausgelesen werden kann, wird diese Information in Form eines Arrays mit einem Raum-Objekt zurückgeliefert. Falls während dem Auslesen aus der Datenbank ein Fehler auftritt, wird eine \emph{DatabaseNotAvailableException} aufgerufen. Falls die ausgelesenen Daten die Länge 0 besitzen, wurde der Raum nicht gefunden. In diesem Fall wird eine \emph{RoomNotFoundException} aufgerufen.
 
 \hthree{Auslesen von Reports}
 
@@ -19,13 +19,13 @@ Mit dieser Funktion können alle Reports für einen bestimmten Raum ausgelesen w
 
 \typescript{code/DBInterface/GetAllRoomReports.ts}{Datenbankschnittstelle um alle Meldungen auslesen}
 
-Um alle Reports für alle Räume auslesen zu können, gibt es die \emph{getAllRoomReports()} Funktion. Sie nimmt keine Parameter an. Wenn die Daten erfolgreich aus der Datenbank ausgelesen wurden, liefert die Funktion ein Array mit Report-Objekten zurück. Wenn während dem Auslesen aus der Datenbank ein Fehler auftritt, wird eine \emph{DatabaseNotAvailableException} geworfen. Wenn nach dem Auslesen das Array die Länge 0 hat, wurden keine Reports gefunden. Es wird somit eine \emph{NoRoomReportsFoundException} geworfen.
+Damit alle Reports für alle Räume auslesen zu können, gibt es die \emph{getAllRoomReports()} Funktion. Sie nimmt keine Parameter an. Wenn die Daten erfolgreich aus der Datenbank ausgelesen wurden, liefert die Funktion ein Array mit Report-Objekten zurück. Wenn während dem Auslesen aus der Datenbank ein Fehler auftritt, wird eine \emph{Database\-Not\-Available\-Exception} geworfen. Wenn nach dem Auslesen das Array die Länge 0 hat, wurden keine Reports gefunden. Es wird somit eine \emph{NoRoomReportsFoundException} geworfen.
 
 \hthree{Reports schreiben}
 
 \typescript{code/DBInterface/SetReport.ts}{Datenbankschnittstelle um Meldungen zu erstellen}
 
-Um Reports in die Datenbank zu schreiben, wird die Funktion \emph{setRoomReportDbService} verwendet. Als Parameter wird ein Report als Report-Objekt mitgegeben. Wenn der Report nicht in die Datenbank geschrieben werden kann, wird eine \emph{CouldNotInsertDataException} geworfen.
+Damit Reports in die Datenbank geschrieben werden, wird die Funktion \emph{setRoomReportDbService} verwendet. Als Parameter wird ein Report als Report-Objekt mitgegeben. Wenn der Report nicht in die Datenbank geschrieben werden kann, wird eine \emph{CouldNotInsertDataException} geworfen.
 
 \hthree{Reports verändern}
 
