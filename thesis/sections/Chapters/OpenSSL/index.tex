@@ -12,7 +12,7 @@ TLS ist ein Verschlüsselungsprotokoll, um Kommunikation über das Internet zu v
 
 \begin{figure}[H]
     \centering
-    \includegraphics{media/OpenSSL/info.png}
+    \includegraphics[width=0.9\textwidth]{media/OpenSSL/info.png}
     \caption{Lokation von TLS im ISO/OSI Schichtenmodell \cite{BreakDownTLS}}
 \end{figure}
 
@@ -27,7 +27,7 @@ Damit über TLS kommuniziert werden kann, müssen die Kommunikationspartner zuer
 
 \begin{figure}[H]
     \centering
-    \includegraphics{media/OpenSSL/VerbindungsAufbau.png}
+    \includegraphics[width=0.9\textwidth]{media/OpenSSL/VerbindungsAufbau.png}
     \caption{Aufbau einer TLS Verbindung \cite{DeepDiveTLS}}
 \end{figure}
 
@@ -35,7 +35,7 @@ Die Kommunikation beginnt damit, dass der Client den TCP-Handshake initiiert. De
 
 \begin{figure}[H]
     \centering
-    \includegraphics{media/OpenSSL/pt.png}
+    \includegraphics[width=0.9\textwidth]{media/OpenSSL/pt.png}
     \caption{Client-Hello Paket in PaketTracer \cite{DeepDiveTLS}}
 \end{figure}
 
@@ -43,11 +43,11 @@ In diesem Paket sind Informationen wie die TLS-Version, ein zufällig generierte
 
 \begin{figure}[H]
     \centering
-    \includegraphics{media/OpenSSL/hello.png}
+    \includegraphics[width=0.9\textwidth]{media/OpenSSL/hello.png}
     \caption{Server-Hello Paket \cite{DeepDiveTLS}} 
 \end{figure}
 
-Der Server schickt die vom Client geschickte TLs-Version zurück, falls diese vom Server unterstüzt wird. Zusätzlich wird die vom Server bevorzugte "Cipher Suite" mitgeschickt, sowie ein zufälliger Wert, den der Client auf seinem Gerät speichert. Dann schickt der Server dem Client sein Zertifikat, um sich beim Client zu authentifizieren. Der Client muss dieses Zertifikat auf seine Richtigkeit überprüfen. Nachdem der Server dem Client sein Zertifikat schickt, sendet er zusätzlich noch eine "CertificateVerify"-Nachricht. Diese Nachricht enthält den gesamten vorherigen Nachrichtenaustausch zwischen Client und Server. Diesen Inhalt verschlüsselt der Server mit seinem Private-Key. Der Client kann nun die "CertificateVerify"- Nachricht mit dem Public-Key des Servers entschlüsseln und den darin enthaltenen Nachrichtenverlauf mit seinem Nachrichtenverlauf vergleichen. Damit kann der Client überprüfen, ob eine Nachricht von einer Drittperson verändert wurde und ob der Server wirklich im Besitz des Private-Keys ist. Optional kann der Server vom Client ein Zertifikat anfordern, damit sich der Client authentifiziert. 
+Der Server schickt die vom Client geschickte TLs-Version zurück, falls diese vom Server unterstützt wird. Zusätzlich wird die vom Server bevorzugte "Cipher Suite" mitgeschickt, sowie ein zufälliger Wert, den der Client auf seinem Gerät speichert. Dann schickt der Server dem Client sein Zertifikat, um sich beim Client zu authentifizieren. Der Client muss dieses Zertifikat auf seine Richtigkeit überprüfen. Nachdem der Server dem Client sein Zertifikat schickt, sendet er zusätzlich noch eine "CertificateVerify"-Nachricht. Diese Nachricht enthält den gesamten vorherigen Nachrichtenaustausch zwischen Client und Server. Diesen Inhalt verschlüsselt der Server mit seinem Private-Key. Der Client kann nun die "CertificateVerify"- Nachricht mit dem Public-Key des Servers entschlüsseln und den darin enthaltenen Nachrichtenverlauf mit seinem Nachrichtenverlauf vergleichen. Damit kann der Client überprüfen, ob eine Nachricht von einer Drittperson verändert wurde und ob der Server wirklich im Besitz des Private-Keys ist. Optional kann der Server vom Client ein Zertifikat anfordern, damit sich der Client authentifiziert. 
 Nachdem die "Hello"-Pakete und die Zertifikate ausgetauscht wurden, sind Client und Server bereit, die Parameter auszutauschen, die zur verschlüsselten Kommunikation erforderlich sind. Damit die endgültige Kommunikation nach dem Handshake verschlüsselt wird, werden symmetrische Verfahren wie zum Beispiel AES eingesetzt. Der Nachteil von symmetrischen Verfahren ist, dass beide Kommunikationspartner denselben Schlüssel zum Verschlüsseln beziehungsweise der Schlüssel muss also über Klartext übergeben werden. Um den Schlüssel beziehungsweise wichtige Parameter zur Berechnung des Schlüssels zu übergeben, wird dieser Schlüssel mithilfe eines Public-Key Verfahrens wie RSA oder Diffie-Hellman vor der Übertragung verschlüsselt. Der Grund, warum der eigentliche Datenaustausch nach dem TLS-Handshake nicht weiter mit einem asymmetrischen Verfahren verschlüsselt wird ist, dass asymmetrische Verschlüsselungen kompliziertere Rechenverfahren verwenden. Das Verschlüsseln und Entschlüsseln würden länger dauern als bei symmetrischen Verfahren. \cite{WikiTLS}
 
 \begin{itemize}
@@ -59,7 +59,7 @@ Client und Server berechnen anschließend anhand der beiden zufälligen Werte, d
 
 \begin{figure}[H]
     \centering
-    \includegraphics{media/OpenSSL/key.png}
+    \includegraphics[width=0.9\textwidth]{media/OpenSSL/key.png}
     \caption{Prozess der Überprüfung \cite{TerminologyTLS}} 
 \end{figure}
 
@@ -73,7 +73,7 @@ TLS-Zertifikate ermöglichen es Client und Server, sich zu identifizieren und zu
 
 \begin{figure}[H]
     \centering
-    \includegraphics{media/OpenSSL/cert.png}
+    \includegraphics[width=0.9\textwidth]{media/OpenSSL/cert.png}
     \caption{TLS-Zertifikat Hierarchie \cite{ChainOfTrust}}
 \end{figure}
 

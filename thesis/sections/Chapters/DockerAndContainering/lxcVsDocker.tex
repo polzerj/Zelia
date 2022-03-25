@@ -2,7 +2,7 @@
 
 \hfour{Architektur}
 
-Im Kern ähnelt sich die Systemarchitektur von LXC jener von Docker, da die wichtigsten verwendeten Funktionen des Linux-Kernel "cgroups" und "namespaces" sind. "Cgroups" sind hierbei für die Aufteilung von CPU, Speicher und vielem mehr im System zuständig. "Namespaces" erlauben das Erstellen von mehreren virtuellen Instanzen des Kernels. Es kann daher gesagt werden, dass sich LXC und Docker im Bereich des Systemkernels sehr ident sind. \cite{LxcVsDocker}
+Im Kern ähnelt sich die Systemarchitektur von LXC jener von Docker, da die wichtigsten verwendeten Funktionen des Linux-Kernel "cgroups" und "namespaces" sind. "cgroups" sind hierbei für die Aufteilung von CPU, Speicher und vielem mehr im System zuständig. "Namespaces" erlauben das Erstellen von mehreren virtuellen Instanzen des Kernels. Es kann daher gesagt werden, dass sich LXC und Docker im Bereich des Systemkernels sehr ident sind. \cite{LxcVsDocker}
 
 Im Bereich der Engine, welche zwischen Anwendung und Kernel liegt, setzt LXC auf das Framework "liblxc". Docker implementierte jedoch ihre eigene Engine, welche den Namen "libcontainer" trug. Diese wurde jedoch im Laufe der Jahre durch mehrere dazwischenliegende Abstraktionsschichten ergänzt. \cite{LxcVsDocker}
 
@@ -26,7 +26,7 @@ Sobald die User*innen einen neuen Container erzeugen, passiert Folgendes: Es wir
 
 \begin{figure}[H]
     \centering
-    \includegraphics{media/DockerAndContainering/Speicherebenen.png}
+    \includegraphics[width=0.9\textwidth]{media/DockerAndContainering/Speicherebenen.png}
     \caption{Speicherebenen in Docker \cite{LxcVsDocker}}
 \end{figure}
 
