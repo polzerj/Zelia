@@ -3,7 +3,7 @@
 
 "Frontend Routing" ist ein bisschen komplizierter zu implementieren. Wenn man kein Framework wie \zb: Angular verwendet, muss man praktisch alles selbst implementieren. Bei \ZELIA\ wurde kein Framework verwendet, sondern  ein eigenes, kleines "Frontend Service" geschrieben, welches an die Bedürfnisse von \ZELIA\ angepasst ist.
 
-Aufteilen kann man die Client Bibliothek wie schon gesagt in zwei Teile: Das Komponentensystem und den Client-Side-Router. Das Komponentensystem wurde vorher schon beschrieben (siehe Kapitel WebComponents \ref{sec:webcomponents}). Beide Teile der Bibliothek haben keine Abhängigkeiten und können getrennt voneinander laufen. Sie sind für den Anwendungsfall in \ZELIA\ entwickelt, können aber auch problemlos für andere Web-Applikationen verwendet werden.
+Aufteilen kann man die Client Bibliothek wie schon gesagt in zwei Teile: Das Komponentensystem und den Client-Side-Router. Das Komponentensystem wurde vorher schon beschrieben (siehe Kapitel WebComponents \ref{sec:webcomponents}, Seite \pageref{sec:webcomponents}). Beide Teile der Bibliothek haben keine Abhängigkeiten und können getrennt voneinander laufen. Sie sind für den Anwendungsfall in \ZELIA\ entwickelt, können aber auch problemlos für andere Web-Applikationen verwendet werden.
 
 Wie vorhin erwähnt, wird bei \ZELIA\ ein einfaches "index.html" verwendet, um das Skript zu laden, welches sich um die gesamte Seite kümmert. Zusätzlich ist ein leerer Container mit dem Namen "app" definiert, der sich auf der Webseite befindet. Dieser Container wird vom Client-Side-Router verwendet, um Seiten dynamisch in die Hauptseite, die nie wirklich verlassen wird, hineinzuladen. Wenn das Skript vom Browser gestartet wird, erstellt \ZELIA\ ein Router Objekt mit folgenden Schnittstellen:
 
