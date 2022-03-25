@@ -17,7 +17,7 @@ Falls die Bearbeitung des Requests nicht funktioniert, antwortet der Server mit 
 \hfive{/api/room/{roomNumber}}
 \yaml{code/ZeliaAPI/roomnumber.yaml}{Schnittstelle eines Raumes}
 
-Wenn der Benutzer Informationen zu einem bestimmten Raum haben möchte, greift er mithilfe der "GET"-Methode auf den "/api/room/{roomNumber}" zu. Der Endpunkt benötigt einen Parameter. Dieser Parameter ist ein String und beinhaltet die Raumbezeichnung.  Wenn der mitgegebene Raum existiert, antwortet der Server mit einem Array, dass ein Raumobjekt zurückliefert, dass Informationen zu diesem Raum beinhaltet. Das Objekt hat folgende Eigenschaften:
+Wenn der Benutzer Informationen zu einem bestimmten Raum haben möchte, greift er mithilfe der "GET"-Methode auf den "/api/room/{roomNumber}" zu. Der Endpunkt benötigt einen Parameter. Dieser Parameter ist ein String und beinhaltet die Raumbezeichnung.  Wenn der mitgegebene Raum existiert, antwortet der Server mit einem Array, das ein Raumobjekt zurückliefert, welches Informationen zu diesem Raum beinhaltet. Das Objekt hat folgende Eigenschaften:
 
 \begin{itemize}
     \item roomNumber -- String mit der Raumbezeichnung
@@ -31,7 +31,7 @@ Wenn der Benutzer Informationen zu einem bestimmten Raum haben möchte, greift e
     \item hasWater -- Boolean-Wert, der angibt, ob der Raum über ein Waschbecken mit Wasserhahn verfügt. 
     \item boards -- String-Array, das die verschiedenen Tafeln im Raum beschreibt.
     \item numberOfComputers -- Integer-Wert, der die Anzahl der Computer in dem Raum angibt.
-    \item numberOfSeats -- Integer-Wert  
+    \item numberOfSeats -- Integer-Wert, der die Anzahl der Sitzplätze im Raum angibt.
 \end{itemize}
 
 Falls der Parameter "roomNumber" keine gültige Raumnummer enthält, wird ein Response mit Statuscode "404" zurückgeschickt. 
@@ -40,21 +40,21 @@ Falls während der Bearbeitung des Requests ein Fehler auftritt, antwortet der S
 \hfive{/api/room/{roomnumber}/timetable}
 \yaml{code/ZeliaAPI/timetable.yaml}{Schnittstelle eines Stundenplans}
 
-Der Endpunkt "/api/room/{roomNumber}/timetable" liefert einem Client den Stundenplan zu einem gewünschten Raum. Der Raum wird dabei als Parameter mitgegeben. Auf den Endpunkt wird mithilfe der GET-Methode zugegriffen. Wenn bei der Bearbeitung keine Komplikationen auftreten, antwortet der Server mit einem Array von Lessonobjekten. Wenn die beim Request mitgelieferte Raumbezeichnung nicht gültig ist, antwortet der Server mit einem Statuscode "404". Wenn bei der Bearbeitung des Requests ein anderer Fehler auftritt, antwortet der Server mit einem Statuscode "500".
+Der Endpunkt "/api/room/{roomNumber}/timetable" liefert einem Client den Stundenplan zu einem gewünschten Raum. Der Raum wird dabei als Parameter mitgegeben. Auf den Endpunkt wird mithilfe der GET-Methode zugegriffen. Wenn bei der Bearbeitung keine Komplikationen auftreten, antwortet der Server mit einem Array von Lesson-Objekten. Wenn die beim Request mitgelieferte Raumbezeichnung nicht gültig ist, antwortet der Server mit einem Statuscode "404". Wenn bei der Bearbeitung des Requests ein anderer Fehler auftritt, antwortet der Server mit einem Statuscode "500".
 
 \yaml{code/ZeliaAPI/lessonobjekt.yaml}{Schnittstelle eines Stunden-Objekts}
 
-Ein Lessonobjekt repräsentiert eine Unterrichtsstunde. Solch ein Objekt hat folgende Eigenschaften: 
+Ein Lesson-Objekt repräsentiert eine Unterrichtsstunde. Solch ein Objekt hat folgende Eigenschaften: 
 
 \begin{itemize}
     \item id -- Eine von der WebUntis-API vergebene ID.
     \item date -- Datum der Unterrichtsstunde.
     \item startTime -- Anfang der Unterrichtsstunde.
     \item endTime -- Ende der Unterrichtsstunde.
-    \item kl -- Array, dass mehrere Klassenobjekte beinhaltet, die jeweils eine Klasse der Schule repräsentieren, die an diesem Unterricht teilnimmt. 
-    \item te -- Array von Lehrerobjekten, welche jeweils einen Lehrer der Schule repräsentieren, die diesen Unterricht führen. 
-    \item su -- Array mit einem Gegenstandsobjekt, welches den Lehrgegenstand dieses Unterrichts repräsentiert.
-    \item ro -- Array, dass Raumobjekte beinhaltet, die jeweils einen Raum repräsentieren, der für diesen Unterricht verwendet wird. 
+    \item kl -- Array, dass mehrere Klassen-Objekte beinhaltet, die jeweils eine Klasse der Schule repräsentieren, die an diesem Unterricht teilnimmt. 
+    \item te -- Array von Lehrer-Objekten, welche jeweils einen Lehrer der Schule repräsentieren, die diesen Unterricht führen. 
+    \item su -- Array mit einem Gegenstands-Objekt, welches den Lehrgegenstand dieses Unterrichts repräsentiert.
+    \item ro -- Array, dass Raum-Objekte beinhaltet, die jeweils einen Raum repräsentieren, der für diesen Unterricht verwendet wird. 
     \item activityType -- String welcher die Art des Unterrichts repräsentiert. 
 \end{itemize}
 
@@ -76,7 +76,7 @@ Wenn das Objekt im Request-body nicht den Anforderungen entspricht, wird ein Res
 \hfive{/api/room/{roomNumber}/report}
 \yaml{code/ZeliaAPI/report.yaml}{Schnittstelle eines Meldungs-Endpunkts}
 
-Der "/api/room/{roomNumber}/report"-Endpunkt ermöglicht es einem Client, Beschwerden oder Schäden bezüglich eines Raumes einzureichen. Der betreffende Raum wird als Parameter mitgegeben. Um eine Beschwerde einzureichen, tätigt der Client auf diesen Endpunkt einen POST-Request. Im Request-Body schickt der Client ein Objekt mit, dass die Beschwerde näher beschreibt. Das Objekt hat folgende Eigenschaften:
+Der "/api/room/{roomNumber}/report"-Endpunkt ermöglicht es einem Client, Beschwerden oder Schäden bezüglich eines Raumes einzureichen. Der betreffende Raum wird als Parameter mitgegeben. Um eine Beschwerde einzureichen, tätigt der Client auf diesen Endpunkt einen POST-Request. Im Request-Body schickt der Client ein Objekt mit, das die Beschwerde näher beschreibt. Das Objekt hat folgende Eigenschaften:
 
 \begin{itemize}
     \item user -- String, der den Benutzernamen des Clients beinhaltet.
@@ -89,10 +89,10 @@ Wenn kein Fehler auftritt, antwortet der Server mit Statuscode "200". Wenn das O
 
 \pagebreak
 
-\hfive{Klassenobjekt}
-\yaml{code/ZeliaAPI/Klassenobjekt.yaml}{Definiton eines Klassenobjekts}
+\hfive{Klassen-Objekt}
+\yaml{code/ZeliaAPI/Klassenobjekt.yaml}{Definiton eines Klassen-Objekts}
 
-Ein Klassenobjekt repräsentiert eine Klasse in der Schule. Ein Klassenobjekt hat folgende Eigenschaften: 
+Ein Klassen-Objekt repräsentiert eine Klasse in der Schule. Ein Klassen-Objekt hat folgende Eigenschaften: 
 
 \begin{itemize}
     \item id -- Integerwert, er eine von der WebUntis-API vergebene ID enthält. 
@@ -101,9 +101,9 @@ Ein Klassenobjekt repräsentiert eine Klasse in der Schule. Ein Klassenobjekt ha
 \end{itemize}
 
 \hfive{Lehrerobjekt}
-\yaml{code/ZeliaAPI/Lehrerobjekt.yaml}{Definiton eines Lehrerobjekts}
+\yaml{code/ZeliaAPI/Lehrerobjekt.yaml}{Definiton eines Lehrer-Objekts}
 
-Ein Lehrerobjekt repräsentiert einen Lehrer an der Schule. Ein Lehrerobjekt hat folgende Eigenschaften: 
+Ein Lehrerobjekt repräsentiert einen Lehrer an der Schule. Ein Lehrer-Objekt hat folgende Eigenschaften: 
 
 \begin{itemize}
     \item id -- Integerwert, der eine von der WebUntis-API vergebene ID enthält.
@@ -111,10 +111,10 @@ Ein Lehrerobjekt repräsentiert einen Lehrer an der Schule. Ein Lehrerobjekt hat
     \item longname -- String, der den Nachnamen des Lehrers beinhaltet. 
 \end{itemize}
 
-\hfive{Gegenstandsobjekt}
-\yaml{code/ZeliaAPI/Gegenstandsobjekt.yaml}{Definition eines Gegenstandsobjekts}
+\hfive{Gegenstands-Objekt}
+\yaml{code/ZeliaAPI/Gegenstandsobjekt.yaml}{Definition eines Gegenstands-Objekts}
 
-Ein Gegenstandsobjekt repräsentiert einen Lehrgegenstand. Ein Gegenstandsobjekt hat folgende Eigenschaften: 
+Ein Gegenstands-Objekt repräsentiert einen Lehrgegenstand. Ein Gegenstands-Objekt hat folgende Eigenschaften: 
 
 \begin{itemize}
     \item id -- Integerwert, der eine von der WebUntis-API vergebene ID enthält. 
@@ -127,7 +127,7 @@ Ein Gegenstandsobjekt repräsentiert einen Lehrgegenstand. Ein Gegenstandsobjekt
 
 \pagebreak
 
-Ein Raumobjekt repräsentiert einen Raum in der Schule. Ein Raumobjekt hat folgende Eigenschaften: 
+Ein Raum-Objekt repräsentiert einen Raum in der Schule. Ein Raum-Objekt hat folgende Eigenschaften: 
 
 \begin{itemize}
     \item id -- Integerwert, der eine von der WebUntis-API vergebene ID enthält.
