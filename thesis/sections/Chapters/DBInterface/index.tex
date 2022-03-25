@@ -3,13 +3,13 @@
 
 \hthree{Allgemein}
 
-Das Datenbank-Interface ermöglicht es Daten, welche verschiedenen Controller im Back\-end-Code verarbeiten, in die Datenbank zu schreiben. Diese Daten sind beispielsweise Buchungen von Räumen oder auch Beschwerden. Durch das Interface können Daten nicht nur in die Datenbank geschrieben, sondern auch ausgelesen werden.
+Das Datenbank-Interface ermöglicht es Daten, welche verschiedene Controller im Back\-end-Code verarbeiten, in die Datenbank zu schreiben. Diese Daten sind beispielsweise Buchungen von Räumen oder auch Beschwerden. Durch das Interface können Daten nicht nur in die Datenbank geschrieben, sondern auch ausgelesen werden.
 
 \hthree{Auslesen von Rauminformationen}
 
 \typescript{code/DBInterface/GetRooms.ts}{Datenbankschnittstelle um Rauminformationen auslesen}
 
-Die in der vorrigen Abbildung beschriebeme Funktion ermöglicht es, Rauminformation zu einem bestimmten Raum auszulesen. Parameter der Funktion ist die Raumnummer als String. Falls die Rauminformation für den angegebenen Raum ausgelesen werden kann, wird diese Information in Form eines Arrays mit einem Raum-Objekt zurückgeliefert. Falls während dem Auslesen aus der Datenbank ein Fehler auftritt, wird eine \emph{DatabaseNotAvailableException} aufgerufen. Falls die ausgelesenen Daten die Länge 0 besitzen, wurde der Raum nicht gefunden. In diesem Fall wird eine \emph{RoomNotFoundException} aufgerufen.
+Die in der vorherigen Abbildung beschriebene Funktion ermöglicht es, Rauminformation zu einem bestimmten Raum auszulesen. Parameter der Funktion ist die Raumnummer als String. Falls die Rauminformation für den angegebenen Raum ausgelesen werden kann, wird diese Information in Form eines Arrays mit einem Raum-Objekt zurückgeliefert. Falls während dem Auslesen aus der Datenbank ein Fehler auftritt, wird eine \emph{DatabaseNotAvailableException} aufgerufen. Falls die ausgelesenen Daten die Länge 0 besitzen, wurde der Raum nicht gefunden. In diesem Fall wird eine \emph{RoomNotFoundException} aufgerufen.
 
 \hthree{Auslesen von Reports}
 
@@ -19,7 +19,7 @@ Mit dieser Funktion können alle Reports für einen bestimmten Raum ausgelesen w
 
 \typescript{code/DBInterface/GetAllRoomReports.ts}{Datenbankschnittstelle um alle Meldungen auslesen}
 
-Damit alle Reports für alle Räume auslesen zu können, gibt es die \emph{getAllRoomReports()} Funktion. Sie nimmt keine Parameter an. Wenn die Daten erfolgreich aus der Datenbank ausgelesen wurden, liefert die Funktion ein Array mit Report-Objekten zurück. Wenn während dem Auslesen aus der Datenbank ein Fehler auftritt, wird eine \emph{Database\-Not\-Available\-Exception} geworfen. Wenn nach dem Auslesen das Array die Länge 0 hat, wurden keine Reports gefunden. Es wird somit eine \emph{NoRoomReportsFoundException} geworfen.
+Damit alle Reports für alle Räume ausgelesen werden können, gibt es die \emph{getAllRoomReports()} Funktion. Sie nimmt keine Parameter an. Wenn die Daten erfolgreich aus der Datenbank ausgelesen wurden, liefert die Funktion ein Array mit Report-Objekten zurück. Wenn während dem Auslesen aus der Datenbank ein Fehler auftritt, wird eine \emph{DatabaseNotAvailableException} geworfen. Wenn nach dem Auslesen das Array die Länge 0 hat, wurden keine Reports gefunden. Es wird somit eine \emph{NoRoomReportsFoundException} geworfen.
 
 \hthree{Reports schreiben}
 
@@ -31,11 +31,13 @@ Damit Reports in die Datenbank geschrieben werden, wird die Funktion \emph{setRo
 
 \typescript{code/DBInterface/UpdateReport.ts}{Datenbankschnittstelle um Meldungen zu verifizieren}
 
-Um bereits vorhandene Reports zu verifizieren, wird die Funktion \emph{alterRoomReportVerifiedById} verwendet. Als Parameter wird hierbei eine ID als Integer mitgegeben. Falls der Report nicht verändert werden kann, wird eine \emph{CouldNotAlterDataExcception} geworfen.
+Um bereits vorhandene Reports zu verifizieren, wird die Funktion \emph{alterRoomReportVerifiedById} verwendet. Als Parameter wird hierbei die ID des Reports als Integer mitgegeben. Falls der Report nicht verändert werden kann, wird eine \emph{CouldNotAlterDataExcception} geworfen.
 
 \typescript{code/DBInterface/AlterRoomReportVerifiedById.ts}{Datenbankschnittstelle um den Status einer Meldung zu ändern}
 
-Um den Status von vorhandenen Reports zu ändern, wird die Funktion \emph{alterRoomReportVerifiedById} verwendet. Als Parameter wird hierbei eine ID als Integer mitgegeben. Falls der Report nicht verändert werden kann, wird eine \emph{CouldNotAlterDataExcception} geworfen.
+Um den Status von vorhandenen Reports zu ändern, wird die Funktion \emph{alterRoomReportVerifiedById} verwendet. Als Parameter wird hierbei die ID des Reports als Integer mitgegeben. Falls der Report nicht verändert werden kann, wird eine \emph{CouldNotAlterDataExcception} geworfen.
+
+\hthree{Reservationen auslesen}
 
 \typescript{code/DBInterface/getRoomReservationByRoomNumber.ts}{Datenbankschnittstelle um eine Reservation zu bekommen}
 
@@ -45,25 +47,33 @@ Um alle Reservationen für einen Raum zu bekommen, wird die Funktion \emph{getRo
 
 Um alle Reservationen zu bekommen, wird die Funktion \emph{getAllRoomReservations} verwendet. Falls die Abfrage nicht bearbeitet werden kann, wird eine \emph{DatabaseNotAvailableException} geworfen. Falls keine Reservationen gefunden wurden, wird eine \emph{NoRoomReservationsFoundException} geworfen.
 
+\hthree{Reservationen schreiben}
+
 \typescript{code/DBInterface/setRoomReservationByDate.ts}{Datenbankschnittstelle um eine Reservation zu erstellen}
 
-Um eine Reservation zu erstellen, wird die Funktion \emph{setRoomReservationByDate} verwendet. Als Parameter wird ein Booking-Objekt mitgegeben. Falls die Datenbank keine Reservation erstellen kann, wird eine \emph{CouldNotInsertDataException} geworfen. 
+Um eine Reservation zu erstellen, wird die Funktion \emph{setRoomReservationByDate} verwendet. Als Parameter wird ein Booking-Objekt mitgegeben. Falls keine Reservation erstellt werden kann, wird eine \emph{CouldNotInsertDataException} geworfen. 
+
+\hthree{Reservationen verändern}
 
 \typescript{code/DBInterface/alterRoomReservationVerifiedById.ts}{Datenbankschnittstelle um eine Reservation zu verifizieren}
 
-Um eine Reservation zu verifizieren, wird die Funktion \emph{alterRoomReservationVerifiedById} verwendet. Als Parameter wird eine ID als Integer mitgegeben. Falls die Reservation nicht verifiziert werden kann, wird eine \emph{CouldNotAlterDataExcception} geworfen.
+Um eine Reservation zu verifizieren, wird die Funktion \emph{alterRoomReservationVerifiedById} verwendet. Als Parameter wird die ID der Reservation als Integer mitgegeben. Falls die Reservation nicht verifiziert werden kann, wird eine \emph{CouldNotAlterDataExcception} geworfen.
 
 \typescript{code/DBInterface/ConfirmReservation.ts}{Datenbankschnittstelle um eine Reservation zu bestätigen}
 
-Um eine Reservation zu bestätigen, wird die Funktion \emph{alterRoomReservationConfirmById} verwendet. Als Parameter wird eine ID als Integer mitgegeben. Falls die Datenbank die Reservation nicht bestätigen kann, wird eine \emph{CouldNotAlterDataExcception} geworfen. 
+Um eine Reservation zu bestätigen, wird die Funktion \emph{alterRoomReservationConfirmById} verwendet. Als Parameter wird die ID der Reservation als Integer mitgegeben. Falls die Datenbank die Reservation nicht bestätigen kann, wird eine \emph{CouldNotAlterDataExcception} geworfen. 
 
 \typescript{code/DBInterface/alterRoomReservationDeclineById.ts}{Datenbankschnittstelle um eine Reservation abzulehnen}
 
-Um eine Reservation abzulehnen, wrid die Funktion \emph{alterRoomReservationDeclineById} verwendet. Als Parameterwird eine ID als Integer mitgegeben. Falls die Datenbank die Reservation nicht ablehnen kann, wird eine \emph{CouldNotAlterDataException} geworfen.
+Um eine Reservation abzulehnen, wird die Funktion \emph{alterRoomReservationDeclineById} verwendet. Als Parameter wird die ID der Reservation als Integer mitgegeben. Falls die Reservation nicht abgelehnt werden kann, wird eine \emph{CouldNotAlterDataException} geworfen.
+
+\hthree{Stundenpläne auslesen}
 
 \typescript{code/DBInterface/getLessonByRoomNumber.ts}{Datenbankschnittstelle um alle Unterrichtstunden für einen Raum abzufragen }
 
-Um alle Unterrichtstunden für einen bestimmten Raum zu bekommen, wird die Funktion \emph{getLessonByRoomNumber} verwendet. Als Parameter wird die Raumnummer als Integer mitgegeben. Zurückgeliefert wird ein Array, dass Lesson-Objekte enthält. Falls die Abfrage nicht bearbeitet werden kann, wird eine \emph{DatabaseNotAvailableException} geworfen. Falls der mitgegebene Raum nicht existiert, wird eine \emph{RoomNotFoundException} geworfen.
+Um alle Unterrichtstunden für einen bestimmten Raum zu bekommen, wird die Funktion \emph{getLessonByRoomNumber} verwendet. Als Parameter wird die Raumnummer als Integer mitgegeben. Zurückgeliefert wird ein Array, das Lesson-Objekte enthält. Falls die Abfrage nicht bearbeitet werden kann, wird eine \emph{DatabaseNotAvailableException} geworfen. Falls der mitgegebene Raum nicht existiert, wird eine \emph{RoomNotFoundException} geworfen.
+
+\hthree{AdminUser-Objekte bekommen}
 
 \typescript{code/DBInterface/getAdminUserByNameAndPw.ts}{Datenbankschnittstelle um ein AdminUser-Objekt zu bekommen}
 

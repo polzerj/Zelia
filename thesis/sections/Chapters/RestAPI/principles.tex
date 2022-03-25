@@ -14,11 +14,11 @@ Grundsätzlich gibt es drei verschiedene Arten, wie ein Client mit einem Server 
     \caption{Verschiedene Kommunikationsschemata \cite{ClientServer}}
 \end{figure}
 
-Bei der Synchronen Kommunikation schickt der Client dem Server einen Request. Der Server antwortet entsprechend auf diesen Request, nachdem er den Request erhält. Nachdem der Client die Response vom Server bekommen hat, kann er nun wieder einen Request schicken. Die Kommunikation läuft also synchron ab.
+Bei der synchronen Kommunikation schickt der Client dem Server einen Request. Der Server antwortet entsprechend auf diesen Request, nachdem er den Request erhält. Nachdem der Client die Response vom Server bekommen hat, kann er nun wieder einen Request schicken. Die Kommunikation läuft also synchron ab.
 
 Beim sogenannten Multiplexing schickt der Client hintereinander mehrere Requests an den Server, ohne nach jedem Request auf die Antwort des Servers zu warten. Nachdem der Client alle Requests an den Server geschickt hat, wartet er auf alle Antworten. Wenn der Server die erste Anfrage bekommt, bearbeitet er diese Anfrage und schickt eine Antwort zurück an den Client. Erst wenn die erste Anfrage vollständig bearbeitet wurde, kümmert sich der Server um die nächste Anfrage.
 
-Bei der sogenannten asynchronen Kommunikation schickt der Server wie beim Multiplexing mehrere Requests hintereinander an den Server. Der Server bearbeitet diese Anfragen dann asynchron statt synchron. Dies bedeutet, dass die Bearbeitung einer Anfrage die Bearbeitung der anderen Anfragen nicht blockiert. Die verschiedenen Anfragen werden praktisch unabhängig voneinander bearbeitet. Durch diese asynchrone Arbeitsweise ist es zum Beispiel möglich, dass der Request, der als letztes zum Server geschickt wird, als erstes beantwortet wird, da seine Bearbeitung die geringste Zeit beansprucht. \cite{ClientServer}
+Bei der sogenannten asynchronen Kommunikation schickt der Server wie beim Multiplexing mehrere Requests hintereinander an den Server. Der Server bearbeitet diese Anfragen dann asynchron statt synchron. Dies bedeutet, dass die Bearbeitung einer Anfrage die Bearbeitung einer anderen Anfragen nicht blockiert. Die verschiedenen Anfragen werden praktisch unabhängig voneinander bearbeitet. Durch diese asynchrone Arbeitsweise ist es zum Beispiel möglich, dass der Request, der als letztes zum Server geschickt wird, als erstes beantwortet wird, da seine Bearbeitung die geringste Zeit beansprucht. \cite{ClientServer}
 
 \hfour{Zustandslosigkeit}
 
@@ -36,7 +36,7 @@ Eines der wichtigsten Merkmale einer REST-Applikation ist eine einheitliche Schn
 
 \hfive{Ressourcen und deren Adressierung}
 
-Alle Informationen, die über eine URI erreichbar sind, werden Ressourcen bezeichnet. Generell kann jede REST-Anwendung über eine eindeutige URL erreicht werden. \cite{WikiREST}
+Alle Informationen, die über eine URL erreichbar sind, werden Ressourcen bezeichnet. Generell kann jede REST-Anwendung über eine eindeutige URL erreicht werden. \cite{WikiREST}
 
 \hfive{Darstellung von Ressourcen}
 
@@ -55,7 +55,7 @@ Alle Requests und Responses in einer REST-Anwendung müssen selbstbeschreibend s
     \item HEAD -- Mit HEAD werden Metadaten zu der angegebenen Ressource angefordert. 
     \item OPTIONS -- Mit OPTIONS werden die erlaubten HTTP-Methoden für die angegebene Ressource abgefragt. 
     \item CONNECT -- Mit CONNECT wird die Anfrage durch einen TCP-Tunnel geleitet. 
-    \item TRACE -- Mit TRACE kann überprüft werden, ob sich an der An-frage am Weg zum Server etwas ändert. Dabei schickt der Server die Anfrage, wie er sie bekommen hat zum Client zurück. Nun kann diese Anfrage mit der Anfrage, die der Client weggeschickt hat, verglichen werden. 
+    \item TRACE -- Mit TRACE kann überprüft werden, ob sich an der Anfrage am Weg zum Server etwas ändert. Dabei schickt der Server die Anfrage, wie er sie bekommen hat zum Client zurück. Nun kann diese Anfrage mit der Anfrage, die der Client weggeschickt hat, verglichen werden. 
 \end{itemize}
 
 Optional können weitere HTTP-Befehle wie COPY, MOVE, MKCOL, LOCK, UNLOCK, LINK und UNLINK verwendet werden. Falls UDP mit REST verwendet wird, kann das Constrained Application Protocol verwendet werden, welches leicht abgeänderte GET-, POST-, PUT- und DELETE-Methoden besitzt. \cite{WikiREST}
