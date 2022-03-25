@@ -29,6 +29,42 @@ Um Reports in die Datenbank zu schreiben, wird die Funktion \emph{setRoomReportD
 
 \hthree{Reports verändern}
 
-\typescript{code/DBInterface/UpdateReport.ts}{Datenbankschnittstelle um Meldungen zu erstellen}
+\typescript{code/DBInterface/UpdateReport.ts}{Datenbankschnittstelle um Meldungen zu verifizieren}
 
-Um bereits vorhandene Reports zu verändern, wird die Funktion \dots Oje, jetzt hab ich Corona und gehe nach Hause.
+Um bereits vorhandene Reports zu verifizieren, wird die Funktion \emph{alterRoomReportVerifiedById} verwendet. Als Parameter wird hierbei eine ID als Integer mitgegeben. Falls der Report nicht verändert werden kann, wird eine \emph{CouldNotAlterDataExcception} geworfen.
+
+\typescript{code/DBInterface/AlterRoomReportVerifiedById.ts}{Datenbankschnittstelle um den Status einer Meldung zu ändern}
+
+Um den Status von vorhandenen Reports zu ändern, wird die Funktion \emph{alterRoomReportVerifiedById} verwendet. Als Parameter wird hierbei eine ID als Integer mitgegeben. Falls der Report nicht verändert werden kann, wird eine \emph{CouldNotAlterDataExcception} geworfen.
+
+\typescript{code/DBInterface/getRoomReservationByRoomNumber.ts}{Datenbankschnittstelle um eine Reservation zu bekommen}
+
+Um alle Reservationen für einen Raum zu bekommen, wird die Funktion \emph{getRoomReservationByRoomNumber} verwendet. Als Parameter wird eine Raumnummer als String mitgegeben. Falls die Abfrage nicht bearbeitet werden kann, wird eine \emph{DatabaseNotAvailableException} geworfen. Falls die Raumnummer ungültig ist, wird eine \emph{RoomNotFoundException} geworfen.
+
+\typescript{code/DBInterface/getAllRoomReservations.ts}{Datenbankschnittstelle um alle Reservationen abzufragen}
+
+Um alle Reservationen zu bekommen, wird die Funktion \emph{getAllRoomReservations} verwendet. Falls die Abfrage nicht bearbeitet werden kann, wird eine \emph{DatabaseNotAvailableException} geworfen. Falls keine Reservationen gefunden wurden, wird eine \emph{NoRoomReservationsFoundException} geworfen.
+
+\typescript{code/DBInterface/setRoomReservationByDate.ts}{Datenbankschnittstelle um eine Reservation zu erstellen}
+
+Um eine Reservation zu erstellen, wird die Funktion \emph{setRoomReservationByDate} verwendet. Als Parameter wird ein Booking-Objekt mitgegeben. Falls die Datenbank keine Reservation erstellen kann, wird eine \emph{CouldNotInsertDataException} geworfen. 
+
+\typescript{code/DBInterface/alterRoomReservationVerifiedById.ts}{Datenbankschnittstelle um eine Reservation zu verifizieren}
+
+Um eine Reservation zu verifizieren, wird die Funktion \emph{alterRoomReservationVerifiedById} verwendet. Als Parameter wird eine ID als Integer mitgegeben. Falls die Reservation nicht verifiziert werden kann, wird eine \emph{CouldNotAlterDataExcception} geworfen.
+
+\typescript{code/DBInterface/ConfirmReservation.ts}{Datenbankschnittstelle um eine Reservation zu bestätigen}
+
+Um eine Reservation zu bestätigen, wird die Funktion \emph{alterRoomReservationConfirmById} verwendet. Als Parameter wird eine ID als Integer mitgegeben. Falls die Datenbank die Reservation nicht bestätigen kann, wird eine \emph{CouldNotAlterDataExcception} geworfen. 
+
+\typescript{code/DBInterface/alterRoomReservationDeclineById.ts}{Datenbankschnittstelle um eine Reservation abzulehnen}
+
+Um eine Reservation abzulehnen, wrid die Funktion \emph{alterRoomReservationDeclineById} verwendet. Als Parameterwird eine ID als Integer mitgegeben. Falls die Datenbank die Reservation nicht ablehnen kann, wird eine \emph{CouldNotAlterDataException} geworfen.
+
+\typescript{code/DBInterface/getLessonByRoomNumber.ts}{Datenbankschnittstelle um alle Unterrichtstunden für einen Raum abzufragen }
+
+Um alle Unterrichtstunden für einen bestimmten Raum zu bekommen, wird die Funktion \emph{getLessonByRoomNumber} verwendet. Als Parameter wird die Raumnummer als Integer mitgegeben. Zurückgeliefert wird ein Array, dass Lesson-Objekte enthält. Falls die Abfrage nicht bearbeitet werden kann, wird eine \emph{DatabaseNotAvailableException} geworfen. Falls der mitgegebene Raum nicht existiert, wird eine \emph{RoomNotFoundException} geworfen.
+
+\typescript{code/DBInterface/getAdminUserByNameAndPw.ts}{Datenbankschnittstelle um ein AdminUser-Objekt zu bekommen}
+
+Um ein AdminUser-Objekt für einen existierenden Admin-Account zu bekommen, wird die Funktion \emph{getAdminUserByNameAndPw} verwendet. Als Parameter wird ein Benutzername und ein Passwort als String mitgegeben. Wenn in der Datenbank ein Eintrag für diese Benutzername-Passwort-Kombination existiert, liefert die Funktion ein AdminUser-Objekt zurück. Falls die Abfrage nicht bearbeitet werden kann, wird eine \emph{DatabaseNotAvailableException} geworfen. Falls für den mitgegebenen Benutzer kein Eintrag in der Datenbank existiert, wird eine \emph {NoAdminUsersFoundException} geworfen.
