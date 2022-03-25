@@ -14,7 +14,7 @@ Wenn die Benutzerkenndaten nicht mit den Daten aus der Datenbank übereinstimmen
 \pagebreak
 \hfour{Validierung der Sitzung}
 
-Zum Validieren der Sitzung wird eine Middleware (siehe Kapitel \ref{sec:middleware}, S. \pageref{sec:middleware}) verwendet, welche das JWT auf dessen Gültigkeit überprüft. 
+Zum Validieren der Sitzung wird eine Middleware (siehe Kapitel \ref{sec:middleware}, Seite \pageref{sec:middleware}) verwendet, welche das JWT auf dessen Gültigkeit überprüft. 
 Wenn der Token gültig ist, wird die "next"-Funktion aufgerufen und der "Controller" wird ausgeführt. Der "Controller" sendet dann die angefragten Daten an den Client zurück. 
 Wenn der Token nicht gültig ist, wird der HTTP Status-Code 401 ("Unauthorized") zurückgegeben und die Weiterverarbeitung der Anfrage durch weitere "Middlewares" oder dem "Controller" blockiert.
 

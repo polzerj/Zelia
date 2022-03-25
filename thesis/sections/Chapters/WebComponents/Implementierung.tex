@@ -38,7 +38,7 @@ Wie oben erwähnt, lädt der "Component Loader" die notwendigen HTML-Files und s
 
 \typescript{code/WebComponents/ComponentLoader.ts}{Laden einer Komponente}
 
-Erst nachdem alle Ressourcen der Komponenten geladen wurden, wird der Client-Side-Router (siehe Kapitel Client-Side-Router \ref{sec:csrouter}) erstellt und somit die Seite gestartet. Dadurch kann sichergestellt werden, dass keine verzögerten Ladezeiten durch das Laden der Ressourcen auftreten.
+Erst nachdem alle Ressourcen der Komponenten geladen wurden, wird der Client-Side-Router (siehe Kapitel "Client-Side-Router" \ref{sec:csrouter}, Seite \pageref{sec:csrouter}) erstellt und somit die Seite gestartet. Dadurch kann sichergestellt werden, dass keine verzögerten Ladezeiten durch das Laden der Ressourcen auftreten.
 
 \begin{minipage}{\textwidth}
     \hfour{"Life-Cycle"}
@@ -78,7 +78,7 @@ Beispiel:
 
 \hfive{Die "OCR"-Seite}
 
-Auf dieser Seite können alle Geräte, die eine Kamera haben, eine Raumnummer von Raumschildern, Plakaten, usw. einscannen. Diese Anforderung wurde mittels "Optical Character Recognition", kurz "OCR", bewerkstelligt (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}). Die "OCR"-Seite besteht aus zwei Komponenten. Eine zeigt an was die Kamera sieht und die Andere dient als Link, um zurück zur Startseite zu kommen. Die Komponente, welche den Scanner anzeigt, ist auch zuständig den OCR-Service (siehe Kapitel Tesseract \ref{sec:tesseract}, Seite \pageref{sec:tesseract}) zu starten. Mit Hilfe von diesem wird dann der Text aus den Bildern ausgelesen. Bevor das Bild an den OCR-Service übergeht, wird es durch diese App auf zwei Farben komprimiert und zusammengeschnitten, sodass nur mehr der markierte Fokusbereich der Kamera weiter zu verarbeiten bleibt (siehe Abbildung \ref{fig:ocrpage}).
+Auf dieser Seite können alle Geräte, die eine Kamera haben, eine Raumnummer von Raumschildern, Plakaten, usw. einscannen. Diese Anforderung wurde mittels "Optical Character Recognition", kurz "OCR", bewerkstelligt (siehe Kapitel "Optical Character Recognition" \ref{sec:ocr}, Seite \pageref{sec:ocr}). Die "OCR"-Seite besteht aus zwei Komponenten. Eine zeigt an was die Kamera sieht und die Andere dient als Link, um zurück zur Startseite zu kommen. Die Komponente, welche den Scanner anzeigt, ist auch zuständig den OCR-Service (siehe Kapitel Tesseract \ref{sec:tesseract}, Seite \pageref{sec:tesseract}) zu starten. Mit Hilfe von diesem wird dann der Text aus den Bildern ausgelesen. Bevor das Bild an den OCR-Service übergeht, wird es durch diese App auf zwei Farben komprimiert und zusammengeschnitten, sodass nur mehr der markierte Fokusbereich der Kamera weiter zu verarbeiten bleibt (siehe Abbildung \ref{fig:ocrpage}).
 
 \begin{figure}[H]
     \centering
@@ -137,7 +137,7 @@ Wie beim Melden gibt man auch hier eine EDU-Mailadresse an. Zusätzlich sollte m
 
 Meldungen und Buchungen kann man im sogenannten "Admin Dashboard" einsehen. Damit nicht jeder die Raumbuchungen und Defektmeldungen sieht, muss man sich mit einem Administratorbenutzer anmelden. Jede Buchung und Meldung ist einem Administratorbenutzer zugeteilt und kann somit von diesem abgearbeitet werden. Im Fall von \ZELIA\ im Schulzentrum Ungargasse, sind diese Administratoren meist Abteilungsleiter*innen oder Lehrer*innen.
 
-Wie schon beschrieben, muss man als Administrator angemeldet sein, um Zugriff auf alle Meldungen und Buchungen zu haben. Hierfür gibt es die "Admin Login"-Seite, welche über den normalen \ZELIA-Webserver aufgerufen werden kann. Auf dieser Webseite findet man eine Komponente, die ein Anmeldeformular anzeigt. Beim Anmelden wird die Anfrage an den Server geschickt und auf die Antwort gewartet. Wenn der Server mit einem "JSON-Web-Token" (siehe Kapitel Authentifizierung "JSON Web Token -- JWT" \ref{sec:jwt}) antwortet, wird dieser im "session storage" (siehe Kapitel "Webspeicher" \ref{sec:webstorage}) gespeichert und man wird auf die Übersichtsseite weitergeleitet.
+Wie schon beschrieben, muss man als Administrator angemeldet sein, um Zugriff auf alle Meldungen und Buchungen zu haben. Hierfür gibt es die "Admin Login"-Seite, welche über den normalen \ZELIA-Webserver aufgerufen werden kann. Auf dieser Webseite findet man eine Komponente, die ein Anmeldeformular anzeigt. Beim Anmelden wird die Anfrage an den Server geschickt und auf die Antwort gewartet. Wenn der Server mit einem "JSON-Web-Token" (siehe Kapitel Authentifizierung "JSON Web Token -- JWT" \ref{sec:jwt}, Seite \pageref{sec:jwt}) antwortet, wird dieser im "session storage" (siehe Kapitel "Webspeicher" \ref{sec:webstorage}, Seite \pageref{sec:webstorage}) gespeichert und man wird auf die Übersichtsseite weitergeleitet.
 
 \begin{figure}[H]
     \centering

@@ -5,15 +5,15 @@ Der \ZELIA-Server ist notwendig, um den \ZELIA-Client zu verwenden. Der Client i
 
 \begin{minipage}{\textwidth}
     \hfour{Abhänigkeiten}
-    \hfive{NodeJS}
+    \hfive{"Node.js"}
     
-    Bevor man den Server aufsetzen und verwenden kann, gibt es ein paar Abhängigkeiten, die man installieren sollte. Die wichtigste Abhängigkeit, die man nur zum Entwickeln von \ZELIA\ braucht, ist NodeJS. NodeJS ist eine Javascript Engine, welche ohne ein Browser-Frontend läuft (siehe Kapitel NodeJS \ref{sec:nodejs}). Herunterladen kann man NodeJS von der offiziellen Webseite \emph{https://nodejs.org/} (siehe Abbildung \ref{fig:nodejsdownload}). Die Version 16.14.0 bietet sich an, da die meisten Pakete diese Version unterstützen. Für \ZELIA\ macht es aber keinen Unterschied, welche Version verwendet wird, da der Server auch auf der neusten Version von Node läuft.
+    Bevor man den Server aufsetzen und verwenden kann, gibt es ein paar Abhängigkeiten, die man installieren sollte. Die wichtigste Abhängigkeit, die man nur zum Entwickeln von \ZELIA\ braucht, ist "Node.js". "Node.js" ist eine Javascript Engine, welche ohne ein Browser-Frontend läuft (siehe Kapitel "Node.js" \ref{sec:nodejs}). Herunterladen kann man "Node.js" von der offiziellen Webseite \emph{https://nodejs.org/} (siehe Abbildung \ref{fig:nodejsdownload}). Die Version 16.14.0 bietet sich an, da die meisten Pakete diese Version unterstützen. Für \ZELIA\ macht es aber keinen Unterschied, welche Version verwendet wird, da der Server auch auf der neusten Version von Node läuft.
 \end{minipage}
     
 \begin{figure}[H]
     \centering
     \includegraphics[width=120mm]{media/Handbuch/nodejs.png}
-    \caption{Installation von NodeJS}
+    \caption{Installation von "Node.js"}
     \label{fig:nodejsdownload}
 \end{figure}
 
@@ -32,7 +32,7 @@ GitHub stellt "GitHub Desktop" zur Verfügung, welches auch ein integriertes Git
 
 \hfive{Docker}
 
-Docker baut, wie man in Kapitel \ref{sec:ContainerAndDocker} erfährt, auf Containertechnologien auf. Diese "Docker Container" machen es möglich unabhängig von der Hardware ausgeführt zu werden und vereinfachen den Startvorgang. Rein theoretisch bräuchte man Docker nicht, da man die einzelnen Komponenten auch nebeneinander auf einem Computer mittels mehrerer NodeJS Instanzen zum Laufen bringen könnte. Herunterladen kann man "Docker Desktop", die Benutzeroberfläche von Docker, von \emph{https://www.docker.com/get-started}.
+Docker baut, wie man in Kapitel \ref{sec:ContainerAndDocker} erfährt, auf Containertechnologien auf. Diese "Docker Container" machen es möglich unabhängig von der Hardware ausgeführt zu werden und vereinfachen den Startvorgang. Rein theoretisch bräuchte man Docker nicht, da man die einzelnen Komponenten auch nebeneinander auf einem Computer mittels mehrerer "Node.js" Instanzen zum Laufen bringen könnte. Herunterladen kann man "Docker Desktop", die Benutzeroberfläche von Docker, von \emph{https://www.docker.com/get-started}.
 
 \begin{figure}[H]
     \centering
@@ -94,9 +94,9 @@ JWT_SECRET=ZEL1A
 
 \hfour{Entwicklung}
 
-Wenn der Server im Entwicklungsmodus gestartet wird, kann bei einer Änderung im Quellcode der veränderte Programmteil automatisch neugestartet werden. Bevor der Server in diesem Zustand gestartet werden kann, muss man im \ZELIA-Verzeichnis in den beiden Unterordern "pwa" und "api" jeweils folgendes Kommando in der Konsole ausführen: \emph{npm install} oder verkürzt \emph{npm i}. Dadurch werden vom "Node Packet Manager" (siehe Kapitel "NPM" \ref{sec:npm}) alle Bibliotheken heruntergeladen, die benötigt werden, um den Server zum Laufen zu bringen.
+Wenn der Server im Entwicklungsmodus gestartet wird, kann bei einer Änderung im Quellcode der veränderte Programmteil automatisch neugestartet werden. Bevor der Server in diesem Zustand gestartet werden kann, muss man im \ZELIA-Verzeichnis in den beiden Unterordnern "pwa" und "api" jeweils folgendes Kommando in der Konsole ausführen: \emph{npm install} oder verkürzt \emph{npm i}. Dadurch werden vom "Node Packet Manager" (siehe Kapitel "NPM" \ref{sec:npm}, Seite \pageref{sec:npm}) alle Bibliotheken heruntergeladen, die benötigt werden, um den Server zum Laufen zu bringen.
 
-Danach muss man unter MacOS und Windows "Docker Desktop" öffnen, damit die "Docker-Engine" gestartet wird. Auf Linuxsystemen ist dieser Vorgang nicht notwendig (siehe Kapitel \ref{sec:dockerexplained}). Nachdem die "Docker-Engine" geladen wurde, kann man die Docker-Container mit folgendem Befehl starten:
+Danach muss man unter MacOS und Windows "Docker Desktop" öffnen, damit die "Docker-Engine" gestartet wird. Auf Linuxsystemen ist dieser Vorgang nicht notwendig (siehe Kapitel "Wie funktioniert Docker" \ref{sec:dockerexplained}, Seite \pageref{sec:dockerexplained}). Nachdem die "Docker-Engine" geladen wurde, kann man die Docker-Container mit folgendem Befehl starten:
 
 \emph{docker-compose -f docker-compose.dev.yaml -{}-env-file api/.env up}  
 

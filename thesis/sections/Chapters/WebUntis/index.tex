@@ -3,7 +3,7 @@
 
 \hthree{Einleitung}
 
-WebUntis ist der zentrale Ort, wo die Planung für eine Schule vorgenommen werden kann. Entscheidungen sind mithilfe von WebUntis leichter zu treffen und Informationen sind immer direkt griffbereit. Dies ist nicht nur für Lehrer*innen und die Administration der Schule, sondern auch für Schüler*innen und deren Eltern abrufbar. Da das Schulzentrum Ungargasse WebUntis jetzt schon einige Zeit verwendet, bietet es eine solide Grundlage für den Informationsgewinn – und Verarbeitung. Damit das \ZELIA-Team überhaupt eine Möglichkeit besitzt, auf Stundenpläne von Klassen und auf bestimmte Räume zugreifen zu können, benötigt es eine "REST-API". In folgenden Fall gibt es einen bereits bestehenden Node.Js-Wrapper der WebUntis-API mit einer weiterhelfenden Dokumentation zu den darin bestehenden Methoden und den zu verwendenden Parametern. Dieser wird nicht direkt von WebUntis bereitgestellt, sondern von einer kleinen Community auf GitHub. \cite{WebUntisWrapper}
+WebUntis ist der zentrale Ort, wo die Planung für eine Schule vorgenommen werden kann. Entscheidungen sind mithilfe von WebUntis leichter zu treffen und Informationen sind immer direkt griffbereit. Dies ist nicht nur für Lehrer*innen und die Administration der Schule, sondern auch für Schüler*innen und deren Eltern abrufbar. Da das Schulzentrum Ungargasse WebUntis jetzt schon einige Zeit verwendet, bietet es eine solide Grundlage für den Informationsgewinn- und Verarbeitung. Damit das \ZELIA-Team überhaupt eine Möglichkeit besitzt, auf Stundenpläne von Klassen und auf bestimmte Räume zugreifen zu können, benötigt es eine "REST-API". In folgenden Fall gibt es einen bereits bestehenden "Node.js"-Wrapper der WebUntis-API mit einer weiterhelfenden Dokumentation zu den darin bestehenden Methoden und den zu verwendenden Parametern. Dieser wird nicht direkt von WebUntis bereitgestellt, sondern von einer kleinen Community auf GitHub. \cite{WebUntisWrapper}
 
 \begin{figure}[H]
     \centering
@@ -57,7 +57,7 @@ In der Ausgabe werden also alle wichtigen Parameter angezeigt, sei es das Fach, 
 \typescript{code/WebUntis/getTimetableForAusgabe.ts}{Ausgabe des Stundenplans}
 
 \begin{minipage}\textwidth
-    Die Methode "getTimeGrid" wird verwendet, um die Struktur des Stundeplans anzuzeigen. Mit der Struktur sind die Unterrichtsstunden, deren Anfangs– und Endzeiten gemeint.
+    Die Methode "getTimeGrid" wird verwendet, um die Struktur des Stundenplans anzuzeigen. Mit der Struktur sind die Unterrichtsstunden, deren Anfangs– und Endzeiten gemeint.
 
 \typescript{code/WebUntis/getTimegrid.ts}{Methode um die Stundenplanstruktur abzufragen}
 
