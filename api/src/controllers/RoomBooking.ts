@@ -22,8 +22,9 @@ export default class RoomBooking extends ControllerBase {
     }
 
     async post(req: Request, res: Response) {
-        const { roomNumber, user, date, until, from, purpose } =
-            req.params as unknown as IBooking;
+        const { roomNumber, date, from, until, purpose, user } =
+            req.body as unknown as IBooking;
+
         let booking = new Booking(roomNumber, user, date, from, until, purpose);
 
         try {
