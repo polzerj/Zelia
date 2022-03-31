@@ -4,6 +4,8 @@ import { DatabaseNotAvailableException } from "../data/Exceptions/DatabaseNotAva
 import Booking from "../types/Booking";
 import RequestManager from "../services/RequestManager";
 import { sendVerificationMail } from "../services/Mail";
+import { setRoomReservationByDate } from "../data/DatabaseService";
+import { CouldNotInsertDataException } from "../data/Exceptions/CouldNotInsertDataException";
 
 interface IBooking {
     roomNumber: string;
@@ -20,14 +22,18 @@ export default class RoomBooking extends ControllerBase {
     }
 
     async post(req: Request, res: Response) {
-        // TODO:
-        // -> build obj
-        // -> add to mgr service
-        // -> send email
-        // <- send response
-
-        const { roomNumber, user, date, until, from, purpose } = req.params as unknown as IBooking;
+        const { roomNumber, user, date, until, from, purpose } =
+            req.params as unknown as IBooking;
         let booking = new Booking(roomNumber, user, date, from, until, purpose);
+
+        try {
+            await setRoomReservationByDate(booking);
+        } catch (e) {
+            if (e instanceof CouldNotInsertDataException) {
+                res.status(500).send("Could not insert into database");
+                return;
+            }
+        }
 
         RequestManager.add(booking);
         try {
