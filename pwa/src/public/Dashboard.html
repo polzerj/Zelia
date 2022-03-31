@@ -1,46 +1,111 @@
 <style>
     span {
-        font-size: 1.5em;
-    }
-    .user {
+        font-size: 1em;
     }
     .date {
         color: var(--fg-dark-color);
     }
     .card {
-        padding: 2em 2em 2em 2em;
+        padding: 1em 1em 1em 1em;
         background-color: var(--bg-dark-color);
         border-radius: 8px;
-        margin: 1em;
+        margin: 1em 0px 1em 0px;
+        font-size: 0.6em;
+    }
+    h1 {
+        font-size: 2em;
     }
     .card > h1 {
+        font-size: 1em;
         margin: 0px 0px 1em 0px;
+    }
+
+    .card > h2 {
+        font-size: 0.8em;
     }
     button {
         margin: 1em 2em 0px 0px;
-        font-size: 1.5em;
+        font-size: 0.8em;
         border-radius: 6px;
         border-width: 0px;
         padding: 0.4em;
         cursor: pointer;
     }
     button.report {
+        border-width: 0px;
         background-color: var(--primary);
-        color: var(--fg-color);
+        color: white;
     }
     button.allow {
         background-color: var(--green);
-        color: var(--fg-color);
+        color: white;
     }
     button.deny {
         background-color: var(--red);
-        color: var(--fg-color);
+        color: white;
+    }
+
+    .filter-items {
+        font-size: 0.5em;
+    }
+    label {
+        position: relative;
+        padding-left: 1.5em;
+        cursor: pointer;
+    }
+    input[type="checkbox"] {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+
+        width: 1em;
+        height: 1em;
+
+        background: red;
+        cursor: pointer;
+    }
+    .filter-header {
+        display: block;
+        margin-bottom: 0.4em;
+    }
+    .tag {
+        font-size: 0.6em;
+        padding: 0.4em;
+        border: 1px solid var(--fg-color);
+        border-radius: 1em;
+        margin: 0 1em 0 0px;
+    }
+    .booking {
+        border: 2px solid var(--primary);
+        background-color: var(--primary-light);
+
+        color: var(--primary-fg);
+    }
+
+    .report {
+        border: 2px solid var(--secondary);
+        background-color: var(--secondary-light);
+
+        color: var(--secondary-fg);
     }
 </style>
 
 <h1>Dashboard</h1>
 
+<!-- Filter for requests -->
+<div class="filter-items">
+    <span class="filter-header">Filter:</span>
+    <label for="cbxBooking">
+        {{cbxBooking}}
+        <input type="checkbox" name="cbxBooking" id="cbxBooking" checked />
+    </label>
+    <label for="cbxReport">
+        {{cbxReport}}
+        <input type="checkbox" name="cbxReport" id="cbxReport" checked />
+    </label>
+</div>
+
 <div id="divFeed"></div>
-<div class="card">
+<div class="card" id="noReqMsg" style="display: none">
     <span>{{noReqMsg}}</span>
 </div>

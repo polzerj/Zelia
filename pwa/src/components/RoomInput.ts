@@ -27,12 +27,15 @@ export default class RoomInput extends Component<SearchElements> {
             },
         });
 
-        this.setState("infoMsg", "Raumnummer eingeben:");
-        this.setState("btnText", "Choose");
+        this.setState("infoMsg", "Raumnummer:");
+        this.setState("btnText", "Suchen 🔎");
+        this.setState("btnScan", "Kamera öffnen 📸");
 
-        const isMobile = window.navigator.userAgent.toLowerCase().includes("mobile");
+        const isMobile = window.navigator.userAgent
+            .toLowerCase()
+            .includes("mobile");
 
-        let ocrInfoMsg = "Or use a camera";
+        let ocrInfoMsg = "Oder scannen";
         //if (!isMobile) ocrInfoMsg += " on your mobile device";
 
         this.setState("ocrInfoMsg", ocrInfoMsg);

@@ -1,16 +1,4 @@
-import {
-  Sequelize,
-  Model,
-  ModelDefined,
-  DataTypes,
-  HasManyGetAssociationsMixin,
-  HasManyAddAssociationMixin,
-  HasManyHasAssociationMixin,
-  Association,
-  HasManyCountAssociationsMixin,
-  HasManyCreateAssociationMixin,
-  Optional,
-} from "sequelize";
+import { Model, DataTypes } from "sequelize";
 
 import RoomReservationEntity from "./entities/RoomReservationEntity";
 import { Room } from "./RoomConnection";
@@ -24,6 +12,7 @@ export class RoomReservation extends Model<RoomReservationEntity> implements Roo
   public Id?: number;
   public RoomId!: number;
   public AssignedAdminId!: number;
+  public RoomNumber!: string;
   public ReservationReason!: string;
   public Email!: string;
   public StartReservation!: Date;
@@ -48,6 +37,10 @@ RoomReservation.init(
     },
     AssignedAdminId: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    RoomNumber: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     ReservationReason: {
@@ -88,7 +81,7 @@ RoomReservation.init(
 Room.hasMany(RoomReservation);
 RoomReservation.belongsTo(Room, { foreignKey: "RoomId" });
 
-export async function getRoomReservations(roomNumber: string): Promise<RoomReservation[]> {
+export async function getRoomReservation(roomNumber: string): Promise<RoomReservation[]> {
   const roomReservation = await RoomReservation.findAll({
     include: [
       {
@@ -106,12 +99,49 @@ export async function setRoomReservation(roomBooking: Booking) {
   RoomReservation.create({
     RoomId: roomId,
     AssignedAdminId: 1,
+    RoomNumber: roomBooking.roomNumber,
     ReservationReason: roomBooking.purpose,
     Email: roomBooking.user,
+    // TODO: Not going to work :)
     StartReservation: new Date(roomBooking.from),
     EndReservation: new Date(roomBooking.until),
     ReservationStatus: "open",
     Hash: roomBooking.hash,
     Verified: false,
   });
+}
+
+export async function getRoomReservations(): Promise<RoomReservation[]> {
+  const roomReservations = await RoomReservation.findAll({
+    attributes: {
+      exclude: [
+        "RoomId",
+        "AssignedAdminId",
+        "ReservationStatus",
+        "Hash",
+        "Verified",
+        "createdAt",
+        "updatedAt",
+      ],
+    },
+    include: [
+      {
+        model: Room,
+        required: true,
+      },
+    ],
+  });
+  return roomReservations;
+}
+
+export async function alterRoomReservationVerified(id: number) {
+  RoomReservation.update({ Verified: true }, { where: { Id: id } });
+}
+
+export async function alterRoomReservationConfirm(id: number) {
+  RoomReservation.update({ ReservationStatus: "confirmed" }, { where: { Id: id } });
+}
+
+export async function alterRoomReservationDecline(id: number) {
+  RoomReservation.update({ ReservationStatus: "decline" }, { where: { Id: id } });
 }

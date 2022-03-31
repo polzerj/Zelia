@@ -1,9 +1,10 @@
+import RoomReportEntity from "../data/entities/RoomReportEntity";
 import HashObject from "./HashObject";
 
 export default class Report extends HashObject {
     public readonly roomNumber: string;
     public readonly user: string;
-    public readonly firstDetected: Date;
+    public readonly firstDetected: number;
     public readonly information: string;
 
     constructor(
@@ -16,7 +17,17 @@ export default class Report extends HashObject {
 
         this.roomNumber = roomNumber;
         this.user = user;
-        this.firstDetected = new Date(firstDetected);
+        this.firstDetected = firstDetected;
         this.information = information;
+    }
+
+    static fromDB(report: RoomReportEntity): Report {
+        // room id is not room number -> join in db
+        return new Report(
+            report.RoomNumber,
+            report.Email,
+            report.ReportDateTime.getTime(),
+            report.ReportDescription
+        );
     }
 }

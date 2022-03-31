@@ -5,8 +5,10 @@ export default class Accordion {
     animation: null | Animation;
     isClosing: boolean;
     isExpanding: boolean;
+    duration: number = 400;
 
-    constructor(el: HTMLDetailsElement) {
+    constructor(el: HTMLDetailsElement, options?: { duration: number }) {
+        this.duration = options?.duration ?? this.duration;
         // Store the <details> element
         this.el = el;
         // Store the <summary> element
@@ -60,7 +62,7 @@ export default class Accordion {
                 height: [startHeight, endHeight],
             },
             {
-                duration: 400,
+                duration: this.duration,
                 easing: "ease-out",
             }
         );
@@ -103,7 +105,7 @@ export default class Accordion {
                 height: [startHeight, endHeight],
             },
             {
-                duration: 400,
+                duration: this.duration,
                 easing: "ease-out",
             }
         );

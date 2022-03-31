@@ -1,5 +1,5 @@
 export class RoomNotFoundException extends Error {
-  constructor() {
-    super("Room not found");
-  }
+    constructor() {
+        super("Room not found");
+    }
 }

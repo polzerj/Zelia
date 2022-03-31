@@ -1,4 +1,7 @@
 <style>
+    h1 {
+        font-size: 1.5em;
+    }
     form > *:not(label, h1) {
         background-color: rgba(0, 0, 0, 0);
 
@@ -21,25 +24,36 @@
         border-bottom: 1px solid var(--primary);
         margin: 1em auto 1em auto;
         border-radius: 0px;
+
+        font-size: 0.8em;
+        font-family: var(--default-font-style);
     }
     form > textarea {
         background-color: var(--bg-dark-color);
         resize: none;
+        margin: 1em 0px 0px 0px;
 
         border-radius: 4px;
+        font-size: 0.8em;
+        font-family: var(--default-font-style);
     }
     form > button {
+        color: var(--primary-fg);
         background-color: var(--primary);
-        font-size: 2em;
+        font-size: 1em;
         padding: 0.2em;
 
         border-radius: 4px;
+        cursor: pointer;
     }
+
     form > select {
         border-bottom: 1px solid var(--primary);
         margin: 1em auto 1em auto;
         border-radius: 0px;
         cursor: pointer;
+        font-family: var(--default-font-style);
+        font-size: 0.8em;
     }
 
     option {
@@ -51,19 +65,34 @@
 <form action="">
     <h1>{{bookingMsg}}</h1>
     <label for="email">EDU-Mail:</label>
-    <input type="email" name="email" id="email" placeholder="name.last@edu.szu.at" required pattern="^.*@(edu\.)?szu\.at$" />
+    <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="name.last@edu.szu.at"
+        required
+        pattern="^.*@(edu\.)?szu\.at$"
+    />
     <br />
     <label for="day">{{day}}</label>
     <input type="date" name="day" id="day" required /><br />
     <label for="start-lesson">{{startLesson}}</label>
     <select name="start-lesson" id="start-lesson">
-        <option value="-1" disabled selected>Wähle die Unterrichtseinheit</option>
+        <option value="-1" disabled selected>
+            Wähle die Unterrichtseinheit
+        </option>
     </select>
     <br />
     <label for="num-lesson">{{numLesson}}</label>
     <select name="num-lesson" id="num-lesson"></select>
     <br />
     <label for="purpose">{{messageLabel}}</label>
-    <textarea name="purpose" id="purpose" cols="30" rows="10" required></textarea>
+    <textarea
+        name="purpose"
+        id="purpose"
+        cols="30"
+        rows="10"
+        required
+    ></textarea>
     <button type="submit">{{btnSubmit}}</button>
 </form>

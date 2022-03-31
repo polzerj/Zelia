@@ -1,9 +1,10 @@
+import RoomReservationEntity from "../data/entities/RoomReservationEntity";
 import HashObject from "./HashObject";
 
 export default class Booking extends HashObject {
     public readonly roomNumber: string;
     public readonly user: string;
-    public readonly date: Date;
+    public readonly date: number;
 
     public readonly from: number;
     public readonly until: number;
@@ -21,10 +22,22 @@ export default class Booking extends HashObject {
 
         this.roomNumber = roomNumber;
         this.user = user;
-        this.date = new Date(date);
+        this.date = date;
 
         this.from = from;
         this.until = until;
         this.purpose = purpose;
+    }
+
+    static fromDB(booking: RoomReservationEntity): Booking {
+        // room id is not room number -> join in db
+        return new Booking(
+            booking.RoomNumber,
+            booking.Email,
+            booking.StartReservation.getTime(),
+            booking.StartReservation.getTime(),
+            booking.EndReservation.getTime(),
+            booking.ReservationReason
+        );
     }
 }

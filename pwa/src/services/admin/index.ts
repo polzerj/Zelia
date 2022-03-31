@@ -1,6 +1,6 @@
 import RoomReportModel from "../room/RoomReportModel";
 import logger from "../../util/logger";
-import { getAdminLoginUrl } from "../URLFactory";
+import { getAdminLoginUrl, getRequestsUrl } from "../URLFactory";
 import RoomBookingModel from "../room/RoomBookingModel";
 
 export async function login(username: string, password: string): Promise<boolean> {
@@ -20,28 +20,38 @@ export async function login(username: string, password: string): Promise<boolean
     let { token }: { token: string } = await res.json();
     sessionStorage.setItem("token", token);
 
+    console.log(token);
+
     return true;
 }
 
 export async function fetchRequests(type?: "reports" | "bookings" | "all", amount?: number): Promise<(RoomReportModel | RoomBookingModel)[]> {
-    return [
-        new RoomReportModel({
-            firstDedection: new Date().getTime(),
-            user: "julian.kusternigg@edu.szu.at",
-            roomNumber: "1308",
-            message: "Beamer liegt am Boden :(",
-        }),
-        new RoomBookingModel({
-            purpose: "Weil der Raum so schön ist :) !",
-            user: "julian.kusternigg@edu.szu.at",
-            roomNumber: "1308",
-            date: new Date().getTime(),
-            from: 1,
-            until: 3,
-        }),
-    ];
+    let token = sessionStorage.getItem("token");
+    if (!token) throw Error("No active session token");
+
+    let req = await fetch(getRequestsUrl(), {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            authorization: "bearer " + token,
+        },
+    });
+
+    let requests = await req.json();
+
+    return requestsToModel(requests);
+}
+
+function requestsToModel(requests: any[]) {
+    return requests.map((req) => {
+        if (req.purpose) return new RoomBookingModel(req);
+        return new RoomReportModel(req);
+    });
 }
 
 export function isLoggedIn(): boolean {
+    console.log(sessionStorage.getItem("token"));
+
     return sessionStorage.getItem("token") ? true : false;
 }

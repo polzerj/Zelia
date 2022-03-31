@@ -13,7 +13,12 @@ export default class AdminLogin extends Component<SearchElements> {
     constructor() {
         super("zelia-admin-login", {
             useShadowRoot: true,
-            queries: { tbxUsername: "#tbxUsername", tbxPassword: "#tbxPassword", form: "#frmLogin", error: "#divError" },
+            queries: {
+                tbxUsername: "#tbxUsername",
+                tbxPassword: "#tbxPassword",
+                form: "#frmLogin",
+                error: "#divError",
+            },
         });
     }
 
@@ -38,9 +43,10 @@ export default class AdminLogin extends Component<SearchElements> {
         let isLoggedIn = await login(username, password);
 
         if (isLoggedIn) {
-            router.redirect("/admin/dashbord");
+            router.redirect("/admin/dashboard");
         } else {
-            this.elements.error.textContent = "Useranme or Password wrong!";
+            this.elements.error.textContent =
+                "Username oder Password sind falsch!";
         }
     }
 }

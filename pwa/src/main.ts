@@ -119,7 +119,7 @@ function rootPage() {
 }
 
 function ocrPage() {
-    appendLink("<- Back", "/");
+    appendLink("<- Home", "/");
 
     const ocr = document.createElement("zelia-ocr");
     app.append(ocr);
@@ -128,7 +128,7 @@ function ocrPage() {
 async function roomPage(variables?: PathVariables) {
     logger.info(variables?.roomNumber);
 
-    appendLink("<- Back", "/");
+    appendLink("<- Home 🏠", "/");
 
     const info = document.createElement("zelia-room-info") as RoomInfo;
     if (variables?.roomNumber) info.roomNumber = variables?.roomNumber;
@@ -157,7 +157,10 @@ function reportPage(variables?: PathVariables) {
     if (variables?.roomNumber) report.roomNumber = variables?.roomNumber;
 
     if (variables?.roomNumber) {
-        appendLink("<- Back to " + variables?.roomNumber, "/room/" + variables?.roomNumber);
+        appendLink(
+            "<- Back to " + variables?.roomNumber,
+            "/room/" + variables?.roomNumber
+        );
     }
     app.append(report);
 }
@@ -169,7 +172,10 @@ function bookingPage(variables?: PathVariables) {
     if (variables?.roomNumber) report.roomNumber = variables?.roomNumber;
 
     if (variables?.roomNumber) {
-        appendLink("<- Back to " + variables?.roomNumber, "/room/" + variables?.roomNumber);
+        appendLink(
+            "<- Back to " + variables?.roomNumber,
+            "/room/" + variables?.roomNumber
+        );
     }
     app.append(report);
 }
@@ -182,7 +188,9 @@ function appendLink(text: string, path: string) {
 }
 
 function adminPage() {
-    const adminLogin = document.createElement("zelia-admin-login") as AdminLogin;
+    const adminLogin = document.createElement(
+        "zelia-admin-login"
+    ) as AdminLogin;
     app.append(adminLogin);
 }
 
@@ -192,6 +200,8 @@ function dashboardPage() {
         return;
     }
 
-    const adminDashboard = document.createElement("zelia-admin-dashboard") as Dashboard;
+    const adminDashboard = document.createElement(
+        "zelia-admin-dashboard"
+    ) as Dashboard;
     app.append(adminDashboard);
 }

@@ -13,8 +13,10 @@ export function buildSummary(info: RoomInfoModel) {
 export function createRoomInfoText(roomInfo: RoomInfoModel) {
     let infoStrings = [];
     if (roomInfo.hasTeacherComputer) infoStrings.push(`Raum hat Wasser🚰`);
-    if (roomInfo.isWheelchairAccessible) infoStrings.push(`Raum ist für Rollstuhlfahrer*innen geeignet 🧑‍🦽`);
-    if (roomInfo.hasTeacherComputer) infoStrings.push(`Dieser Raum hat einen Lehrer PC 🧑‍💻`);
+    if (roomInfo.isWheelchairAccessible)
+        infoStrings.push(`Raum ist für Rollstuhlfahrer*innen geeignet 🧑‍🦽`);
+    if (roomInfo.hasTeacherComputer)
+        infoStrings.push(`Dieser Raum hat einen Lehrercomputer 🧑‍💻`);
 
     infoStrings.push(`Anzahl an Computern: ${roomInfo.numberOfComputers} 🖥`);
 
@@ -24,15 +26,28 @@ export function createRoomInfoText(roomInfo: RoomInfoModel) {
     appendBoardInfo(roomInfo.boards, "pin", "eine Pinnwand 📌", "Pinnwände 📌");
 
     if (roomInfo.projector !== "None") {
-        infoStrings.push(`Dieser Raum hat einen Projektor ${roomInfo.projector === "Smart" ? " mit Schreibfunktion" : ""}`);
+        infoStrings.push(
+            `Dieser Raum hat einen Projektor ${
+                roomInfo.projector === "Smart" ? " mit Schreibfunktion" : ""
+            }`
+        );
     }
     if (roomInfo.projectorConnectors.length !== 0) {
-        infoStrings.push(`Anschlussmöglichkeiten an den Projektor: ${roomInfo.projectorConnectors.join(", ")}`);
+        infoStrings.push(
+            `Anschlussmöglichkeiten an den Projektor: ${roomInfo.projectorConnectors.join(
+                ", "
+            )}`
+        );
     }
 
     return infoStrings;
 
-    function appendBoardInfo(boards: ("black" | "white" | "smart" | "pin")[], type: "black" | "white" | "smart" | "pin", singular: string, plural: string) {
+    function appendBoardInfo(
+        boards: ("black" | "white" | "smart" | "pin")[],
+        type: "black" | "white" | "smart" | "pin",
+        singular: string,
+        plural: string
+    ) {
         const numOfBoards = boards.filter((board) => board === type).length;
         if (numOfBoards === 1) {
             infoStrings.push(`Dieser Raum hat ${singular}`);

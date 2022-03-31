@@ -1,17 +1,4 @@
-import {
-    Sequelize,
-    Model,
-    ModelDefined,
-    DataTypes,
-    HasManyGetAssociationsMixin,
-    HasManyAddAssociationMixin,
-    HasManyHasAssociationMixin,
-    Association,
-    HasManyCountAssociationsMixin,
-    HasManyCreateAssociationMixin,
-    Optional,
-    where,
-} from "sequelize";
+import { Model, DataTypes } from "sequelize";
 
 import RoomReportEntity from "./entities/RoomReportEntity";
 import { Room } from "./RoomConnection";
@@ -20,10 +7,14 @@ import sequelize from "./DatabaseConnectionHandler";
 import Report from "types/Report";
 import { getRoomInfoByRoomNumber } from "./DatabaseService";
 
-export class RoomReport extends Model<RoomReportEntity> implements RoomReportEntity {
+export class RoomReport
+    extends Model<RoomReportEntity>
+    implements RoomReportEntity
+{
     public Id?: number;
     public RoomId!: number;
     public AssignedAdminId!: number;
+    public RoomNumber!: string;
     public ReportDescription!: string;
     public Email!: string;
     public ReportDateTime!: Date;
@@ -47,6 +38,10 @@ RoomReport.init(
         },
         AssignedAdminId: {
             type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        RoomNumber: {
+            type: DataTypes.STRING,
             allowNull: false,
         },
         ReportDescription: {
@@ -83,7 +78,7 @@ RoomReport.init(
 Room.hasMany(RoomReport);
 RoomReport.belongsTo(Room, { foreignKey: "RoomId" });
 
-export async function getRoomReports(roomNumber: string): Promise<RoomReport[]> {
+export async function getRoomReport(roomNumber: string): Promise<RoomReport[]> {
     const roomReport = await RoomReport.findAll({
         include: [
             {
@@ -103,11 +98,49 @@ export async function setRoomReport(roomReport: Report) {
     RoomReport.create({
         RoomId: roomId,
         AssignedAdminId: 1,
+        RoomNumber: roomReport.roomNumber,
         ReportDescription: roomReport.information,
         Email: roomReport.user,
-        ReportDateTime: roomReport.firstDetected,
+        ReportDateTime: new Date(Date.now()),
         ReportStatus: "open",
         Hash: roomReport.hash,
         Verified: false,
     });
+}
+
+export async function getRoomReports(): Promise<RoomReport[]> {
+    const roomReports = await RoomReport.findAll({
+        attributes: {
+            exclude: [
+                "RoomId",
+                "AssignedAdminId",
+                "ReportStatus",
+                "Hash",
+                "Verified",
+                "createdAt",
+                "updatedAt",
+            ],
+        },
+        include: [
+            {
+                model: Room,
+                required: true,
+            },
+        ],
+    });
+    return roomReports;
+}
+
+export async function alterRoomReportVerified(id: number) {
+    await RoomReport.update({ Verified: true }, { where: { Id: id } });
+}
+
+export async function alterRoomReportStatus(
+    id: number,
+    toChangeStatus: string
+) {
+    await RoomReport.update(
+        { ReportStatus: toChangeStatus },
+        { where: { Id: id } }
+    );
 }

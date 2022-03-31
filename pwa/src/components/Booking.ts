@@ -33,14 +33,26 @@ export default class Booking extends Component<SearchElements> {
 
     registerEventListenerCallback() {
         this.elements.form.addEventListener("submit", this.bookingSubmitted);
-        this.elements.dapDay.addEventListener("change", this.reRenderStartLesson);
-        this.elements.sltStartLesson.addEventListener("change", this.reRenderNumberOfLessons);
+        this.elements.dapDay.addEventListener(
+            "change",
+            this.reRenderStartLesson
+        );
+        this.elements.sltStartLesson.addEventListener(
+            "change",
+            this.reRenderNumberOfLessons
+        );
     }
 
     removeEventListenerCallback() {
         this.elements.form.removeEventListener("submit", this.bookingSubmitted);
-        this.elements.dapDay.removeEventListener("change", this.reRenderStartLesson);
-        this.elements.sltStartLesson.removeEventListener("change", this.reRenderNumberOfLessons);
+        this.elements.dapDay.removeEventListener(
+            "change",
+            this.reRenderStartLesson
+        );
+        this.elements.sltStartLesson.removeEventListener(
+            "change",
+            this.reRenderNumberOfLessons
+        );
     }
     bindMethodsCallback() {
         this.bookingSubmitted = this.bookingSubmitted.bind(this);
@@ -58,10 +70,10 @@ export default class Booking extends Component<SearchElements> {
     }
 
     writeStates() {
-        this.setState("bookingMsg", `Wann willst du ${this.roomNumber} buchen?`);
-        this.setState("messageLabel", "Grund für die Buchung:");
-        this.setState("day", `An welchem Tag willst du ${this.roomNumber} buchen?`);
-        this.setState("startLesson", "Welche Stunde willst du buchen?");
+        this.setState("bookingMsg", `Raumbuchung für ${this.roomNumber}`);
+        this.setState("messageLabel", "Buchungsgrund:");
+        this.setState("day", `Tag der Buchung:`);
+        this.setState("startLesson", "Start der Reservierung");
         this.setState("numLesson", "Anzahl der Unterrichtseinheiten:");
         this.setState("btnSubmit", "Buchen");
         this.render(true);
@@ -71,7 +83,11 @@ export default class Booking extends Component<SearchElements> {
 
     reRenderStartLesson(e?: Event) {
         this.elements.sltStartLesson.innerHTML = "";
-
+        let el = document.createElement("option");
+        el.disabled = true;
+        el.innerText = "Bitte wählen";
+        el.selected = true;
+        this.elements.sltStartLesson.append(el);
         for (const lesson of this.freeLessons) {
             let el = document.createElement("option");
             el.value = lesson.toString();
