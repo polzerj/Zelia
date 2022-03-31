@@ -8,6 +8,13 @@ import Timetable from "./controllers/TimeTable";
 import CorsMiddleware from "./middleware/CorsMiddleware";
 import RoomList from "./controllers/RoomList";
 import RoomInfo from "./controllers/RoomInfo";
+import Login from "./controllers/Login";
+import { login } from "./services/WebUntis";
+import Timegrid from "./controllers/Timegrid";
+import { TryLogin } from "./services/WebUntis";
+import AdminRequest from "./controllers/AdminRequest";
+import RoomBooking from "./controllers/RoomBooking";
+import RoomReport from "./controllers/RoomReport";
 
 const app = new App({
     controllers: [
@@ -15,6 +22,11 @@ const app = new App({
         new Timetable(),
         new RoomList(),
         new RoomInfo(),
+        new Timegrid(),
+        new Login(),
+        new AdminRequest(),
+        new RoomReport(),
+        new RoomBooking(),
     ],
     middleWares: [
         // It is not deprecated if not used as function
@@ -27,4 +39,5 @@ const app = new App({
     baseUrl: "/api",
 });
 
+TryLogin();
 app.listen();

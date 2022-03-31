@@ -1,0 +1,51 @@
+<style>
+    form {
+        background-color: var(--bg-dark-color);
+        font-size: 1em;
+        padding: 1.5em;
+
+        border-radius: 8px;
+
+        width: fit-content;
+        margin: auto;
+    }
+    input {
+        display: block;
+        font-size: 1em;
+
+        background-color: var(--bg-dark-color);
+        color: var(--fg-color);
+        outline: none;
+        border: none;
+
+        border-bottom: 2px solid var(--primary);
+
+        margin: 1em 0px 1em 0px;
+    }
+    label {
+        display: block;
+    }
+    button {
+        width: 100%;
+        font-size: 1em;
+        padding: 0.4em;
+
+        background-color: var(--primary);
+        border: none;
+
+        border-radius: 8px;
+        color: var(--fg-color);
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: var(--primary-btn);
+    }
+</style>
+<form id="frmLogin">
+    <label for="tbxUsername">Username: </label>
+    <input type="text" name="tbxUsername" id="tbxUsername" />
+    <label for="tbxPassword">Password: </label>
+    <input type="password" name="tbxPassword" id="tbxPassword" />
+    <div id="divError"></div>
+    <button type="submit">Login</button>
+</form>

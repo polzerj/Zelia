@@ -2,6 +2,9 @@ import RoomEntity from "../data/entities/RoomEntity";
 import { roomEntitiesToRoomInfoModels } from "../data/mapper/RoomInfoMapper";
 import { getRoomInfoByRoomNumber } from "../data/DatabaseService";
 import { Request, Response, ControllerBase } from "../types";
+import { isValidLogin } from "../services/WebUntis";
+import { RoomNotFoundException } from "../data/Exceptions/RoomNotFoundException";
+import { DatabaseNotAvailableException } from "../data/Exceptions/DatabaseNotAvailableException";
 
 export default class RoomInfo extends ControllerBase {
     constructor() {
@@ -14,9 +17,15 @@ export default class RoomInfo extends ControllerBase {
         try {
             data = await getRoomInfoByRoomNumber(roomNumber);
         } catch (e: unknown) {
-            console.log(e);
-
-            res.status(404).send("Room not found");
+            if (e instanceof RoomNotFoundException) {
+                res.status(404).send("Room not found");
+                return;
+            }
+            if (e instanceof DatabaseNotAvailableException) {
+                res.status(500).send("Database not available");
+                return;
+            }
+            res.status(500).send((e as Error).message);
             return;
         }
         const model = roomEntitiesToRoomInfoModels(data);

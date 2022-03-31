@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Rest-API for Zelia",
     "scripts": {
-        "dev": "nodemon --watch 'src' -e 'ts,json' --exec \"npm run build && node -r dotenv/config dist/index.js\"",
+        "dev": "nodemon --watch 'src' -e 'ts,json' --exec \"ts-node -r dotenv/config src/index.ts\"",
         "start": "node dist/index.js",
         "build": "tsc",
         "clean": " rm -r dist"
@@ -16,6 +16,7 @@
         "@types/node": "^16.4.5",
         "dotenv": "^10.0.0",
         "nodemon": "^2.0.12",
+        "ts-node": "^10.4.0",
         "typescript": "^4.3.5"
     },
     "dependencies": {
@@ -24,9 +25,11 @@
         "cookie": "^0.4.0",
         "date-fns": "^2.25.0",
         "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
         "lodash.find": "^4.6.0",
-        "otplib": "^12",
         "mariadb": "^2.5.4",
+        "nodemailer": "^6.7.2",
+        "otplib": "^12",
         "sequelize": "^6.6.5"
     }
 }

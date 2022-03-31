@@ -2,6 +2,9 @@ import WebUntisCache from "./WebuntisCache";
 import WebUntis from "./WebUntisLib";
 import Lesson from "./WebUntisLib/Lesson";
 import Room from "./WebUntisLib/Room";
+export let isValidLogin = false;
+import { NoConnectionException } from "../../data/Exceptions/NoConnectionException";
+import { RoomNotFoundException } from "../../data/Exceptions/RoomNotFoundException";
 
 const {
     WEBUNTIS_SCHOOL,
@@ -26,6 +29,8 @@ export async function login() {
 export async function getTimetableByRoomNumber(
     roomNum: string
 ): Promise<Lesson[]> {
+    var table;
+    if (/^([A-Z]|[a-z])/.test(roomNum)) roomNum = roomNum.substr(1);
     let date = new Date();
     let roomId = await getIDbyRoomNumber(roomNum);
 
@@ -33,7 +38,37 @@ export async function getTimetableByRoomNumber(
         const table = cache.getTimetable(roomId);
         return table;
     }
-    let table = await untis.getTimetableFor(date, roomId, 4);
+    /*
+    try {
+        table = await untis.getTimetableFor(date, roomId, 4);
+    } catch (e) {
+        if (e.message == "Current session is not valid") {
+            await login();
+            await getTimetableByRoomNumber(roomNum);
+        } else if (e.message == "Server didn't returned any result.") {
+            console.log(e);
+            throw new RoomNotFoundException();
+        } else {
+            console.log(e.message);
+            throw new NoConnectionException();
+        }
+    }*/
+    try {
+        let valid = untis.validateSession();
+        if (valid) {
+            table = await untis.getTimetableFor(date, roomId, 4);
+        } else {
+            await login();
+            await getTimetableByRoomNumber(roomNum);
+        }
+    } catch (e) {
+        console.log(e);
+        if (e.message == "Server didn't returned any result.") {
+            throw new RoomNotFoundException();
+        } else {
+            throw new NoConnectionException();
+        }
+    }
     cache.setTimetable(roomId, table);
     return table;
 }
@@ -43,10 +78,50 @@ export async function getRoomList() {
     if (cache.roomsAvailable) {
         rooms = cache.rooms;
     } else {
-        rooms = await untis.getRooms();
-        cache.rooms = rooms;
+        try {
+            let valid = untis.validateSession();
+            if (valid) {
+                rooms = await untis.getRooms();
+                cache.rooms = rooms;
+            } else {
+                await login();
+                await getRoomList();
+            }
+        } catch (e) {
+            console.log(e);
+            throw new NoConnectionException();
+        }
+
+        /* if (e.message == "Current Session is not valid") {
+                let count = 0;
+                while (count < 3) {
+                    try {
+                        await login();
+                        break;
+                    } catch {
+                        count += 1;
+                    }
+                }
+                if (count >= 3) {
+                    throw new NoConnectionError();
+                    return;
+                }
+                await getRoomList();
+            } else {
+                throw new NoConnectionError();
+            }*/
     }
     return rooms;
+}
+
+export async function TryLogin() {
+    try {
+        await login();
+        isValidLogin = true;
+    } catch (e) {
+        console.log(e);
+    }
+    return isValidLogin;
 }
 
 async function getIDbyRoomNumber(RoomNumber: string) {
@@ -101,4 +176,32 @@ async function testCode() {
     console.table(mappedTable);
 }
 
-testCode();
+export async function getTimegrid() {
+    let grid;
+    let valid = await untis.validateSession();
+    try {
+        if (valid) {
+            grid = untis.getTimegrid();
+        } else {
+            await login();
+            grid = await getTimegrid();
+        }
+    } catch (e) {
+        console.log(e);
+        throw new NoConnectionException();
+    }
+    return grid;
+    //let grid = untis.getTimegrid();
+    /*try {
+        grid = untis.getTimegrid();
+    } catch (e) {
+        console.error(e);
+        if (e.message == "Current Session is not valid") {
+            await login();
+            await getTimegrid();
+        } else {
+            throw new NoConnectionError();
+        }
+    }*/
+    //return grid;
+}

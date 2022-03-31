@@ -1,0 +1,36 @@
+@font-face {
+    font-family: roboto;
+    src: url("/fonts/Roboto/Roboto-Light.ttf");
+}
+@font-face {
+    font-family: roboto-mono;
+    src: url("/fonts/Roboto_Mono/static/RobotoMono-Light.ttf");
+}
+
+:root {
+    --primary: hsl(189, 100%, 35%);
+    --secondary: hsl(197, 100%, 27%);
+    --primary-light: hsl(189, 100%, 35%, 50%);
+    --secondary-light: hsl(197, 100%, 27%, 50%);
+    --primary-fg: hsl(0, 0%, 98%);
+    --secondary-fg: hsl(0, 0%, 100%);
+
+    --fg-color: hsl(0, 0%, 2%);
+    --fg-dark-color: hsl(0, 0%, 42%);
+    --bg-color: hsl(0, 0%, 98%);
+    --bg-dark-color: hsl(0, 0%, 86%);
+
+    --green: hsl(133, 100%, 23%);
+    --red: hsl(0, 100%, 44%);
+
+    --default-font: roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --fg-color: hsl(0, 0%, 93%);
+        --fg-dark-color: hsl(0, 0%, 42%);
+        --bg-color: hsl(0, 0%, 7%);
+        --bg-dark-color: hsl(0, 0%, 16%);
+    }
+}

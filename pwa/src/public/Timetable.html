@@ -1,3 +1,47 @@
-<style></style>
+<style>
+    .dayView {
+        display: grid;
+        grid-template-columns: 1fr 10fr;
+    }
+    .dayView > div {
+        /*border: 3px solid black;*/
+        padding: 0.2em;
+        margin: 0;
+        text-align: center;
+    }
 
-<div id="ttContainer"></div>
+    .subject {
+        background-color: var(--primary);
+        color: var(--primary-fg);
+        margin: 0.2em;
+
+        font-size: 0.5em;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lessonID {
+        text-align: center;
+        background-color: var(--secondary);
+        color: var(--secondary-fg);
+    }
+
+    .lessonID:first-child {
+        border-top-left-radius: 8px;
+    }
+    .subject:nth-child(2) {
+        border-top-right-radius: 8px;
+    }
+    .lessonID:nth-last-child(2) {
+        border-bottom-left-radius: 8px;
+    }
+    .subject:last-child {
+        border-bottom-right-radius: 8px;
+    }
+</style>
+
+<div id="ttContainer">
+    <div class="dayView" id="ttView"></div>
+</div>

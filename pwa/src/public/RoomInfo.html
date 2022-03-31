@@ -2,11 +2,22 @@
     .hidden {
         display: none;
     }
+    details {
+        margin-bottom: 2em;
+    }
+    summary {
+        font-size: 1.5em;
+        cursor: pointer;
+        outline: none;
+    }
+    #divExtendable {
+        font-size: 0.6em;
+    }
 </style>
 
 <h2>{{welcomeMsg}}</h2>
 
 <details id="dtlInfo">
     <summary>{{infoSummary}}</summary>
-    <div id="divExtendable"></div>
+    <div id="divExtendable" class="content"></div>
 </details>

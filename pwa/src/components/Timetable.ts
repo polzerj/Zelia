@@ -1,3 +1,6 @@
+import { getTimetableViewOfTimegridAndTimetable, simplifyLesson, timetableToSortedTimetable } from "../services/mapper/timetable";
+import { getTimeGrid } from "../services/timegrid";
+import Timegrid from "../services/timegrid/Timegrid";
 import { getTimetableByRoomNumber } from "../services/timetable";
 import Lesson from "../services/timetable/Lesson";
 import Component from "../types/Component";
@@ -5,14 +8,20 @@ import logger from "../util/logger";
 
 interface SearchElements {
     container: HTMLDivElement;
+    view: HTMLDivElement;
 }
 
 export default class Timetable extends Component<SearchElements> {
+    private timegrid: Promise<Timegrid[]>;
     constructor() {
-        super("zelia-timetable", { container: "#ttContainer" }, false);
+        super("zelia-timetable", {
+            queries: { container: "#ttContainer", view: "#ttView" },
+            autoRender: false,
+        });
 
         let attr = this.getAttribute("room-number");
         if (attr) this.loadLessons(attr);
+        this.timegrid = getTimeGrid();
     }
 
     set roomNumber(roomNumber: string) {
@@ -38,58 +47,44 @@ export default class Timetable extends Component<SearchElements> {
         }
     }
 
-    private createTimetableElements(lessons: Lesson[]) {
-        let table = lessons
-            .map((lesson) => {
-                return {
-                    class: lesson.kl.map((kl) => kl.name),
-                    room: lesson.ro.map((ro) => ro.name),
-                    teacher: lesson.te.map((te) => te.name),
-                    subjectLongName: lesson.su.map((su) => su.longname),
-                    subject: lesson.su.map((su) => su.name),
-                    date: stringifyDate(lesson.date),
-                    start: stringifyTime(lesson.startTime),
-                    end: stringifyTime(lesson.endTime),
-                };
-            })
-            .sort((a, b) => a.start.localeCompare(b.start));
+    private async createTimetableElements(lessons: Lesson[]) {
+        let table = timetableToSortedTimetable(lessons);
+        const grid = await this.timegrid;
+        const griddedTimeTable = getTimetableViewOfTimegridAndTimetable(table, grid[0]);
+        const lessonNames = Object.keys(griddedTimeTable);
 
-        for (const lesson of table) {
-            let item = document.createElement("p");
-            item.textContent = `${lesson.subject[0]} - ${
-                lesson.class[0]
-            } - ${lesson.teacher.join(", ")} - start: ${lesson.start}`;
-            this.elements.container.append(item);
+        for (let i = 0; i < lessonNames.length; i++) {
+            const lesson = griddedTimeTable[lessonNames[i]];
+            if (this.elements.view.children.length == 0 && !lesson) continue;
+
+            let lessonID = document.createElement("div");
+            lessonID.textContent = lessonNames[i];
+            lessonID.classList.add("lessonID");
+
+            this.elements.view.append(lessonID);
+
+            let subject = document.createElement("div");
+            if (lesson) {
+                const simplifiedLesson = simplifyLesson(lesson);
+                subject.classList.add("subject");
+                subject.textContent = `${simplifiedLesson.subject[0]} - ${simplifiedLesson.class[0]} - ${simplifiedLesson.teacher.join(
+                    ", "
+                )}`;
+            }
+            this.elements.view.append(subject);
         }
 
-        if (lessons.length == 0) {
+        if (table.length == 0) {
             let item = document.createElement("p");
             item.textContent = "No lessons";
             this.elements.container.append(item);
         }
-
-        console.log(lessons);
     }
+
     private createNoTimetableFoundElement(e: Error) {
         logger.error(e);
 
         this.elements.container.append("No lesson data found");
         // when api server is running and invalid room number is fetched (1234) this function is called but "NO lessons data found" is removed from dom
     }
-}
-
-function stringifyDate(date: number) {
-    let dateStr = `${date}`;
-    return `${dateStr.substr(6, 2)}.${dateStr.substr(4, 2)}.${dateStr.substr(
-        0,
-        4
-    )}`;
-}
-
-function stringifyTime(time: number) {
-    let timeStr = `${time}`;
-    if (timeStr.length === 3) {
-        timeStr = `0${timeStr}`;
-    }
-    return `${timeStr.substr(0, 2)}:${timeStr.substr(2, 2)}`;
 }

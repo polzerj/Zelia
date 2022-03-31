@@ -1,55 +1,41 @@
-import {
-    Sequelize,
-    Model,
-    ModelDefined,
-    DataTypes,
-    HasManyGetAssociationsMixin,
-    HasManyAddAssociationMixin,
-    HasManyHasAssociationMixin,
-    Association,
-    HasManyCountAssociationsMixin,
-    HasManyCreateAssociationMixin,
-    Optional,
-  } from "sequelize";
+import { Model, DataTypes } from "sequelize";
 
 import AdminUserEntity from "./entities/AdminUserEntity";
 
 import sequelize from "./DatabaseConnectionHandler";
 
-
-class AdminUser extends Model<AdminUserEntity>
-    implements AdminUserEntity{
-        public Id!: number;
-        public UserName!: string;
-        public UserPassword!: string;
-    };
+export class AdminUser extends Model<AdminUserEntity> implements AdminUserEntity {
+  public Id!: number;
+  public UserName!: string;
+  public UserPassword!: string;
+}
 
 AdminUser.init(
-    {
-        Id:
-        {
-            type: DataTypes.NUMBER,
-            primaryKey: true,
-            allowNull: false,
-        },
-        UserName:
-        {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        UserPassword:
-        {
-            type: DataTypes.STRING,
-            allowNull: false
-        }
+  {
+    Id: {
+      type: DataTypes.NUMBER,
+      primaryKey: true,
+      allowNull: false,
     },
-    {
-        tableName: "AdminUser",
-        sequelize,
-    }
+    UserName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    UserPassword: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    tableName: "AdminUser",
+    sequelize,
+  }
 );
 
-export async function getAdminUser() :Promise<AdminUserEntity[]> {
-    const adminUser = await AdminUser.findAll()
-    return adminUser;
+export async function getAdminUser(userName: string, hash: string): Promise<AdminUser> {
+  const adminUser = await AdminUser.findOne({
+    attributes: { exclude: ["UserPassword", "createdAt", "updatedAt"] },
+    where: { UserName: userName, UserPassword: hash },
+  });
+  return adminUser;
 }

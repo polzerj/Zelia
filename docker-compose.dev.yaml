@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+    nginx:
+        image: nginx:1.16.0-alpine
+        volumes:
+            - ./nginx-dev.conf:/etc/nginx/nginx.conf
+            - ./certs:/etc/certs
+        ports:
+            - "443:443"
+        depends_on:
+            - "api"
+        environment:
+            PORT: ${PORT}
+            DB_SERVER: ${DB_SERVER}
+            DB_USER: ${DB_USER}
+            DB_DATABASE: ${DB_DATABASE}
+            DB_PASSWORD: "${DB_PASSWORD}"
+            WEBUNTIS_USERNAME: "${WEBUNTIS_USERNAME}"
+            WEBUNTIS_PASSWORD: "${WEBUNTIS_PASSWORD}"
+            WEBUNTIS_SCHOOL: ${WEBUNTIS_SCHOOL}
+            WEBUNTIS_BASE_URL: ${WEBUNTIS_BASE_URL}
+    api:
+        image: node:16-alpine
+        volumes:
+            - ./api:/src
+        working_dir: /src
+        command: ["npm", "run", "dev"]
+    pwa:
+        image: node:16-alpine
+        volumes:
+            - ./pwa:/src
+        ports:
+            - "3000:3000"
+        working_dir: /src
+        command: sh -c "npm run dev || rm -r node_modules ; npm i && npm run dev"
+    db:
+        image: mariadb
+        environment:
+            MARIADB_ROOT_PASSWORD: "${DB_PASSWORD}"
+        volumes:
+            - ./db/sql:/docker-entrypoint-initdb.d

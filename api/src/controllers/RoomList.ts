@@ -8,7 +8,13 @@ export default class RoomList extends ControllerBase {
     }
 
     async get(req: Request, res: Response) {
-        let rooms = await getRoomList();
+        let rooms;
+        try {
+            rooms = await getRoomList();
+        } catch (e) {
+            res.status(500).send(e.message);
+            return;
+        }
         res.json(roomsToStringArray(rooms));
     }
 }
