@@ -2,7 +2,6 @@
 
 - WebUntis
 - Node / Typescript
-- Express Server Architecture (planning>class_diagram)
 
 # Julian Kusternigg
 
@@ -24,7 +23,7 @@
 
 # Johannes Polzer
 
-- SolAr
+- Api-Architektur
 - WebComponents
 - Docker
 - nginx
