@@ -3,11 +3,13 @@ import { getRoomInfoByRoomNumber } from "../services/room";
 import { buildSummary, createRoomInfoText } from "../services/room/elementCreation";
 import RoomInfoModel from "../services/room/RoomInfoModel";
 import Component from "../types/Component";
+import RescourceNotFoundError from "../types/RescourceNotFoundError";
 import logger from "../util/logger";
 
 interface SearchElements {
     details: HTMLDetailsElement;
     divExtendable: HTMLDivElement;
+    status: HTMLSpanElement;
 }
 
 export default class RoomInfo extends Component<SearchElements> {
@@ -16,6 +18,7 @@ export default class RoomInfo extends Component<SearchElements> {
             queries: {
                 details: "#dtlInfo",
                 divExtendable: "#divExtendable",
+                status: "span",
             },
             autoRender: false,
         });
@@ -43,6 +46,17 @@ export default class RoomInfo extends Component<SearchElements> {
             let roomInfo = await getRoomInfoByRoomNumber(roomNumber);
             this.createElements(roomInfo[0]);
         } catch (e) {
+            if (e instanceof RescourceNotFoundError) {
+                this.setState("welcomeMsg", `Willkommen in ${roomNumber}!`);
+                this.setState("status", `Keine Daten verfügbar :(`);
+
+                this.elements.status.classList.remove("hidden");
+            } else {
+                this.setState("welcomeMsg", "Verbindung fehlgeschlagen!");
+            }
+
+            this.elements.details.classList.add("hidden");
+
             logger.error(e);
             this.createErrorElements();
         }
@@ -70,8 +84,5 @@ export default class RoomInfo extends Component<SearchElements> {
         this.elements.divExtendable.append(e);
     }
 
-    private createErrorElements() {
-        this.setState("welcomeMsg", "Raum nicht gefunden :(");
-        this.elements.details.classList.add("hidden");
-    }
+    private createErrorElements() {}
 }

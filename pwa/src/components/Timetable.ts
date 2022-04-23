@@ -76,7 +76,7 @@ export default class Timetable extends Component<SearchElements> {
 
         if (table.length == 0) {
             let item = document.createElement("p");
-            item.textContent = "No lessons";
+            item.textContent = "Keine eingetragenen Stunden vorhanden";
             this.elements.container.append(item);
         }
     }
@@ -84,7 +84,7 @@ export default class Timetable extends Component<SearchElements> {
     private createNoTimetableFoundElement(e: Error) {
         logger.error(e);
 
-        this.elements.container.append("No lesson data found");
+        this.elements.container.append("Kein Stundenplan gefunden");
         // when api server is running and invalid room number is fetched (1234) this function is called but "NO lessons data found" is removed from dom
     }
 }

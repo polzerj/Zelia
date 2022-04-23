@@ -138,16 +138,30 @@ async function roomPage(variables?: PathVariables) {
     if (variables?.roomNumber) timetable.roomNumber = variables?.roomNumber;
     app.append(timetable);
 
-    const reportLink = document.createElement("zelia-link") as Link;
-    reportLink.href = `/room/${variables?.roomNumber}/report`;
-    reportLink.innerText = "Report a Problem";
-    app.append(reportLink);
-    app.append(document.createElement("br"));
+    const container = document.createElement("div");
+    container.style.display = "flex";
+    container.style.flexDirection = "row";
+    container.style.justifyContent = "space-evenly";
+    container.style.margin = "1rem";
 
-    const bookingLink = document.createElement("zelia-link") as Link;
-    bookingLink.href = `/room/${variables?.roomNumber}/book`;
-    bookingLink.innerText = "Book this room";
-    app.append(bookingLink);
+    const reportButton = document.createElement("button");
+    reportButton.onclick = () => {
+        router.redirect(`/room/${variables?.roomNumber}/report`);
+    };
+    reportButton.innerText = "Raum melden";
+    reportButton.classList.add("request");
+
+    const bookingButton = document.createElement("button");
+    bookingButton.onclick = () => {
+        router.redirect(`/room/${variables?.roomNumber}/book`);
+    };
+    bookingButton.innerText = "Raum buchen";
+    bookingButton.classList.add("request");
+
+    container.append(reportButton);
+    container.append(bookingButton);
+
+    app.append(container);
 }
 
 function reportPage(variables?: PathVariables) {
@@ -157,10 +171,7 @@ function reportPage(variables?: PathVariables) {
     if (variables?.roomNumber) report.roomNumber = variables?.roomNumber;
 
     if (variables?.roomNumber) {
-        appendLink(
-            "<- Back to " + variables?.roomNumber,
-            "/room/" + variables?.roomNumber
-        );
+        appendLink("<- Zurück zu " + variables?.roomNumber, "/room/" + variables?.roomNumber);
     }
     app.append(report);
 }
@@ -172,10 +183,7 @@ function bookingPage(variables?: PathVariables) {
     if (variables?.roomNumber) report.roomNumber = variables?.roomNumber;
 
     if (variables?.roomNumber) {
-        appendLink(
-            "<- Back to " + variables?.roomNumber,
-            "/room/" + variables?.roomNumber
-        );
+        appendLink("<- Zurück zu " + variables?.roomNumber, "/room/" + variables?.roomNumber);
     }
     app.append(report);
 }
@@ -188,9 +196,7 @@ function appendLink(text: string, path: string) {
 }
 
 function adminPage() {
-    const adminLogin = document.createElement(
-        "zelia-admin-login"
-    ) as AdminLogin;
+    const adminLogin = document.createElement("zelia-admin-login") as AdminLogin;
     app.append(adminLogin);
 }
 
@@ -200,8 +206,6 @@ function dashboardPage() {
         return;
     }
 
-    const adminDashboard = document.createElement(
-        "zelia-admin-dashboard"
-    ) as Dashboard;
+    const adminDashboard = document.createElement("zelia-admin-dashboard") as Dashboard;
     app.append(adminDashboard);
 }

@@ -44,6 +44,8 @@
         font-size: 1em;
         padding: 0.2em;
 
+        margin-top: 1rem;
+
         border-radius: 4px;
         cursor: pointer;
     }
@@ -52,29 +54,11 @@
 <form action="">
     <h1>{{reportMsg}}</h1>
     <label for="email">EDU-Mail:</label>
-    <input
-        type="email"
-        name="email"
-        id="email"
-        placeholder="name.last@edu.szu.at"
-        required
-        pattern="^.*@(edu\.)?szu\.at$"
-    />
+    <input type="email" name="email" id="email" placeholder="name.last@edu.szu.at" required pattern="^.*@(edu\.)?szu\.at$" />
     <br />
     <label for="first-notice">{{firstNoticeLabel}}</label>
-    <input
-        type="datetime-local"
-        name="first-notice"
-        id="first-notice"
-        required
-    /><br />
+    <input type="datetime-local" name="first-notice" id="first-notice" required /><br />
     <label for="message">{{messageLabel}}</label>
-    <textarea
-        name="message"
-        id="message"
-        cols="30"
-        rows="10"
-        required
-    ></textarea>
+    <textarea name="message" id="message" cols="30" rows="10" required></textarea>
     <button type="submit">{{btnSubmit}}</button>
 </form>

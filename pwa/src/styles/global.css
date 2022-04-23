@@ -18,12 +18,18 @@ button {
     text-align: center;
     margin: auto;
 
-    background-color: var(--primary-btn);
-    color: var(--fg-color);
+    background-color: var(--primary);
+    color: var(--primary-fg);
 
     border: 2px solid var(--primary);
     border-radius: 8px;
 }
 button:hover {
     cursor: pointer;
+}
+
+button.request {
+    font-size: 1.4rem;
+    padding: 0.5rem;
+    margin: 1rem;
 }
