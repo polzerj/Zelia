@@ -1,4 +1,4 @@
 import Logger from "../../types/Logger";
-import DebugComponentLogger from "./DebugComponentLogger";
+import ConsoleLogger from "./ConsoleLogger";
 
-export default new DebugComponentLogger() as Logger;
+export default new ConsoleLogger() as Logger;
