@@ -32,9 +32,9 @@ const app = new App({
         // It is not deprecated if not used as function
         bodyParser.json(),
         bodyParser.urlencoded({ extended: true }),
+        CorsMiddleware,
         TestMiddleware,
         LoggingMiddleware,
-        CorsMiddleware,
     ],
     baseUrl: "/api",
 });
