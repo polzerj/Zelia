@@ -17,7 +17,7 @@ export default class VerifyController extends ControllerBase {
         //@ts-ignore
         var hash = req.query["hash"];
         var request: Booking | Report;
-        request = RequestManager.close(hash);
+        request = RequestManager.close(hash as string);
         if ((request = null)) {
             res.status(500).send("Hash could not be verified");
             return;
