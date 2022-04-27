@@ -12,7 +12,7 @@ export function buildSummary(info: RoomInfoModel) {
 
 export function createRoomInfoText(roomInfo: RoomInfoModel) {
     let infoStrings = [];
-    if (roomInfo.hasTeacherComputer) infoStrings.push(`Raum hat Wasser🚰`);
+    if (roomInfo.hasWater) infoStrings.push(`Raum hat Wasser🚰`);
     if (roomInfo.isWheelchairAccessible)
         infoStrings.push(`Raum ist für Rollstuhlfahrer*innen geeignet 🧑‍🦽`);
     if (roomInfo.hasTeacherComputer)
