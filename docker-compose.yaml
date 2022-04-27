@@ -19,6 +19,9 @@ services:
             WEBUNTIS_PASSWORD: "${WEBUNTIS_PASSWORD}"
             WEBUNTIS_SCHOOL: ${WEBUNTIS_SCHOOL}
             WEBUNTIS_BASE_URL: ${WEBUNTIS_BASE_URL}
+            EMAIL_NAME: ${EMAIL_NAME}
+            EMAIL_PASSWORD: "${EMAIL_PASSWORD}"
+            JWT_SECRET: "${JWT_SECRET}"
     db:
         image: mariadb
         environment:
