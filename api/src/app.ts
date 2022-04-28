@@ -1,5 +1,5 @@
 import { ControllerBase, Middleware } from "./types";
-import * as express from "express";
+import express = require("express");
 import { Application } from "express";
 
 const standardInit = {
