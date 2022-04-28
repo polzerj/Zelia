@@ -6,7 +6,6 @@ esbuild
         entryPoints: ["./src/index.ts"],
         outdir: "./dist",
         bundle: true,
-        minify: true,
         platform: "node",
         target: "node16",
         plugins: [nodeExternalsPlugin()],
