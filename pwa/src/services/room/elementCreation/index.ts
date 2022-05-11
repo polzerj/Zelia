@@ -2,23 +2,23 @@ import RoomInfoModel from "../RoomInfoModel";
 
 export function buildSummary(info: RoomInfoModel) {
     let summary = "";
-    if (info.isWheelchairAccessible) summary += "🧑‍🦽";
-    if (info.hasWater) summary += "🚰";
-    if (info.projector === "Normal") summary += "📽";
-    if (info.boards.some((board) => board === "pin")) summary += "📌";
-    if (info.hasTeacherComputer) summary += "🧑‍💻";
+    if (info.isWheelchairAccessible) summary += "🧑‍🦽 ";
+    if (info.hasWater) summary += "🚰 ";
+    if (info.projector === "Normal") summary += "📽 ";
+    if (info.boards.some((board) => board === "pin")) summary += "📌 ";
+    if (info.hasTeacherComputer) summary += "🧑‍💻 ";
     return summary;
 }
 
 export function createRoomInfoText(roomInfo: RoomInfoModel) {
     let infoStrings = [];
-    if (roomInfo.hasWater) infoStrings.push(`Raum hat Wasser🚰`);
+    if (roomInfo.hasWater) infoStrings.push(`Der Raum hat ein Waschbecken🚰`);
     if (roomInfo.isWheelchairAccessible)
-        infoStrings.push(`Raum ist für Rollstuhlfahrer*innen geeignet 🧑‍🦽`);
+        infoStrings.push(`Für Rollstuhlfahrer*innen geeignet 🧑‍🦽`);
     if (roomInfo.hasTeacherComputer)
-        infoStrings.push(`Dieser Raum hat einen Lehrercomputer 🧑‍💻`);
+        infoStrings.push(`1 Lehrer*innencomputer 🧑‍💻`);
 
-    infoStrings.push(`Anzahl an Computern: ${roomInfo.numberOfComputers} 🖥`);
+    infoStrings.push(`${roomInfo.numberOfComputers} Computer 🖥`);
 
     appendBoardInfo(roomInfo.boards, "black", "eine Kalktafel", "Kalktafeln");
     appendBoardInfo(roomInfo.boards, "white", "ein Whiteboard", "Whiteboards");
@@ -34,7 +34,7 @@ export function createRoomInfoText(roomInfo: RoomInfoModel) {
     }
     if (roomInfo.projectorConnectors.length !== 0) {
         infoStrings.push(
-            `Anschlussmöglichkeiten an den Projektor: ${roomInfo.projectorConnectors.join(
+            `Projektoranschlussmöglichkeiten: ${roomInfo.projectorConnectors.join(
                 ", "
             )}`
         );
